@@ -29,6 +29,7 @@ providers:
     sync:
       enabled: true
       period: "5m"
+      policy: "apply"
     module: |
       # Your Terraform module content
       output "example" {
@@ -52,7 +53,7 @@ The sync configuration supports the following properties:
 | `period` | string | Sync interval using duration format | No* | `^[0-9]+[smhd]$` (e.g., `5m`, `1h`, `30s`) |
 | `schedule` | string | Cron schedule expression | No* | Cron format with optional seconds |
 | `schedule_timezone` | string | Timezone for cron schedule | No | Standard timezone (e.g., `UTC`, `America/New_York`) |
-| `policy` | string | Sync policy configuration | No | Policy name |
+| `policy` | string | Sync policy determining allowed operations | No | `observe`, `apply`, `create-only`, `full-control` |
 
 **\*Note**: Either `period` or `schedule` must be specified, but not both.
 
@@ -131,7 +132,7 @@ providers:
       enabled: true
       schedule: "0 9-17 * * 1-5"  # Every hour from 9 AM to 5 PM, Monday to Friday
       schedule_timezone: "America/New_York"
-      policy: "production-policy"
+      policy: "observe"
     # ... other terraform configuration
 ```
 
@@ -163,7 +164,46 @@ The synchronization operates based on the configured schedule or period:
 
 ### Policy Configuration
 
-The optional `policy` field allows you to specify custom sync behaviors and rules defined in your Firestartr Pro configuration.
+The `policy` field determines what actions can be performed during synchronization. The following policies are available:
+
+| Policy | Allowed Operations | Description |
+|--------|-------------------|-------------|
+| `observe` | `sync` | Read-only synchronization - only monitors and syncs state without making changes |
+| `apply` | `updated`, `created`, `renamed`, `sync`, `retry`, `nothing` | Full apply permissions - can update, create, and rename resources |
+| `create-only` | `created`, `retry`, `sync` | Limited to creating new resources and retrying operations |
+| `full-control` | `updated`, `created`, `sync`, `mark-to-deletion`, `nothing` | Complete control including resource deletion |
+
+#### Policy Usage Examples
+
+**Production Environment (Observe Only):**
+```yaml
+providers:
+  terraform:
+    sync:
+      enabled: true
+      schedule: "0 */6 * * *"  # Every 6 hours
+      policy: "observe"
+```
+
+**Development Environment (Full Control):**
+```yaml
+providers:
+  terraform:
+    sync:
+      enabled: true
+      period: "5m"
+      policy: "full-control"
+```
+
+**Staging Environment (Apply Only):**
+```yaml
+providers:
+  terraform:
+    sync:
+      enabled: true
+      period: "15m"
+      policy: "apply"
+```
 
 ### Timezone Handling
 
@@ -193,7 +233,7 @@ providers:
       enabled: true
       schedule: "0 */2 * * *"  # Every 2 hours
       schedule_timezone: "UTC"
-      policy: "production-approval-required"
+      policy: "observe"
 
 # Development example - frequent sync  
 providers:
