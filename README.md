@@ -5,8 +5,7 @@ Welcome to the Firestartr Pro documentation. This repository contains comprehens
 ## Documentation Structure
 
 - [Terraform Provider](./docs/terraform/README.md) - Documentation for the Terraform provider
-- [Features](./docs/features/README.md) - Feature-specific documentation  
-- [API Reference](./docs/api/terraform-sync.md) - API documentation for direct integration
+- [Features](./docs/features/README.md) - Feature-specific documentation
 
 ## Getting Started
 

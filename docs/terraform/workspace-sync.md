@@ -49,7 +49,7 @@ The sync configuration supports the following properties:
 | Setting | Type | Description | Required | Format |
 |---------|------|-------------|----------|---------|
 | `enabled` | boolean | Enable/disable synchronization | Yes | `true` or `false` |
-| `period` | string | Sync interval using duration format | No* | `[0-9]+[smhd]` (e.g., `5m`, `1h`, `30s`) |
+| `period` | string | Sync interval using duration format | No* | `^[0-9]+[smhd]$` (e.g., `5m`, `1h`, `30s`) |
 | `schedule` | string | Cron schedule expression | No* | Cron format with optional seconds |
 | `schedule_timezone` | string | Timezone for cron schedule | No | Standard timezone (e.g., `UTC`, `America/New_York`) |
 | `policy` | string | Sync policy configuration | No | Policy name |
@@ -71,7 +71,7 @@ providers:
       period: "5m"  # Sync every 5 minutes
 ```
 
-**Period Format**: `[0-9]+[smhd]`
+**Period Format**: `^[0-9]+[smhd]$`
 - `s` = seconds (e.g., `30s`)
 - `m` = minutes (e.g., `5m`) 
 - `h` = hours (e.g., `2h`)
@@ -219,7 +219,7 @@ providers:
 - Test cron expressions before deploying
 
 **Period Format Errors**
-- Ensure format matches `[0-9]+[smhd]` pattern
+- Ensure format matches `^[0-9]+[smhd]$` pattern
 - Valid examples: `30s`, `5m`, `2h`, `1d`
 - Invalid examples: `5mins`, `2hours`, `1 day`
 
