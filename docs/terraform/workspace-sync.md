@@ -1,275 +1,313 @@
 # Terraform Workspace Synchronization
 
-Firestartr Pro provides powerful synchronization capabilities for Terraform workspaces, allowing you to keep your infrastructure state and configurations in sync across different environments and teams.
+The Terraform provider sync configuration allows you to control how and when Terraform workspaces are synchronized within TFWorkspaceClaim definitions.
 
 ## Overview
 
-The workspace synchronization feature enables automatic syncing of Terraform workspaces, ensuring consistency and coordination across your infrastructure deployments.
+The sync section within `providers.terraform` in a TFWorkspaceClaim enables automatic synchronization of Terraform state and resources at specified intervals or schedules.
 
 ## Configuration
 
-### Provider Configuration
+### TFWorkspaceClaim Sync Configuration
 
-To enable workspace synchronization, configure the sync section within the `providers.terraform` object in your Terraform configuration:
+Configure synchronization in your TFWorkspaceClaim YAML file within the `providers.terraform.sync` section:
 
-```hcl
-terraform {
-  required_providers {
-    firestartr = {
-      source = "firestartr-pro/firestartr"
-    }
-  }
-}
-
-provider "firestartr" {
-  # Provider configuration
-  api_key = var.firestartr_api_key
-  
-  # Terraform workspace sync configuration
-  terraform {
-    sync = {
-      enabled = true
-      
-      # Workspace synchronization settings
-      workspaces = {
-        # Enable sync for specific workspaces
-        production = {
-          enabled = true
-          sync_interval = "5m"
-          auto_apply = false
-        }
-        
-        staging = {
-          enabled = true
-          sync_interval = "2m"
-          auto_apply = true
-        }
-        
-        development = {
-          enabled = true
-          sync_interval = "1m"
-          auto_apply = true
-        }
+```yaml
+kind: TFWorkspaceClaim
+lifecycle: production
+name: example-workspace
+type: database
+owner: 'group:firestartr-team'
+system: 'system:firestartr-system'
+version: '1.0'
+providers:
+  terraform:
+    policy: full-control
+    tfStateKey: a1850b50-677d-4a81-92a4-1318503b5568
+    name: example-workspace
+    source: Inline
+    sync:
+      enabled: true
+      period: "5m"
+    module: |
+      # Your Terraform module content
+      output "example" {
+        value = "Hello World"
       }
-      
-      # Global sync settings
-      conflict_resolution = "manual" # Options: "manual", "latest_wins", "merge"
-      retry_attempts = 3
-      timeout = "10m"
-    }
-  }
-}
+    values: {}
+    context:
+      providers:
+        - name: provider-aws-workspaces
+      backend:
+        name: firestartr-terraform-state
 ```
 
 ## Sync Configuration Options
 
-### Workspace-Level Settings
+The sync configuration supports the following properties:
 
-Each workspace can be configured with its own sync settings:
+| Setting | Type | Description | Required | Format |
+|---------|------|-------------|----------|---------|
+| `enabled` | boolean | Enable/disable synchronization | Yes | `true` or `false` |
+| `period` | string | Sync interval using duration format | No* | `[0-9]+[smhd]` (e.g., `5m`, `1h`, `30s`) |
+| `schedule` | string | Cron schedule expression | No* | Cron format with optional seconds |
+| `schedule_timezone` | string | Timezone for cron schedule | No | Standard timezone (e.g., `UTC`, `America/New_York`) |
+| `policy` | string | Sync policy configuration | No | Policy name |
 
-| Setting | Description | Default | Required |
-|---------|-------------|---------|----------|
-| `enabled` | Enable/disable sync for this workspace | `false` | No |
-| `sync_interval` | How often to check for changes | `"5m"` | No |
-| `auto_apply` | Automatically apply changes when synced | `false` | No |
+**\*Note**: Either `period` or `schedule` must be specified, but not both.
 
-### Global Sync Settings
+### Scheduling Options
 
-Configure global synchronization behavior:
+You have two mutually exclusive options for scheduling synchronization:
+#### 1. Period-based Synchronization
 
-| Setting | Description | Options | Default |
-|---------|-------------|---------|---------|
-| `conflict_resolution` | How to handle sync conflicts | `manual`, `latest_wins`, `merge` | `manual` |
-| `retry_attempts` | Number of retry attempts on failure | Integer | `3` |
-| `timeout` | Maximum time to wait for sync operations | Duration string | `"10m"` |
+Use the `period` property for simple interval-based synchronization:
+
+```yaml
+providers:
+  terraform:
+    sync:
+      enabled: true
+      period: "5m"  # Sync every 5 minutes
+```
+
+**Period Format**: `[0-9]+[smhd]`
+- `s` = seconds (e.g., `30s`)
+- `m` = minutes (e.g., `5m`) 
+- `h` = hours (e.g., `2h`)
+- `d` = days (e.g., `1d`)
+
+#### 2. Schedule-based Synchronization
+
+Use the `schedule` property for cron-based scheduling:
+
+```yaml
+providers:
+  terraform:
+    sync:
+      enabled: true
+      schedule: "*/5 * * * *"  # Every 5 minutes
+      schedule_timezone: "UTC"
+```
+
+**Schedule Format**: Uses [cron-parser](https://www.npmjs.com/package/cron-parser) with optional seconds field
+
+- Standard 5-field format: `minute hour day month dayofweek`
+- Optional 6-field format: `second minute hour day month dayofweek`
+
+**Examples:**
+- `"0 9 * * 1-5"` - Every weekday at 9:00 AM
+- `"*/10 * * * *"` - Every 10 minutes
+- `"30 */2 * * *"` - Every 2 hours at 30 minutes past the hour
+- `"0 0 12 * * 0"` - Every Sunday at noon (6-field format with seconds)
 
 ## Usage Examples
 
-### Basic Workspace Sync
+### Basic Period-based Sync
 
-Enable basic synchronization for a single workspace:
+Simple synchronization every 10 minutes:
 
-```hcl
-provider "firestartr" {
-  terraform {
-    sync = {
-      enabled = true
-      
-      workspaces = {
-        my_workspace = {
-          enabled = true
-          sync_interval = "5m"
-        }
-      }
-    }
-  }
-}
+```yaml
+kind: TFWorkspaceClaim
+name: basic-sync-example
+providers:
+  terraform:
+    sync:
+      enabled: true
+      period: "10m"
+    # ... other terraform configuration
 ```
 
-### Advanced Multi-Workspace Configuration
+### Advanced Schedule-based Sync
 
-Configure different sync settings for multiple workspaces:
+Synchronize during business hours only:
 
-```hcl
-provider "firestartr" {
-  terraform {
-    sync = {
-      enabled = true
-      conflict_resolution = "latest_wins"
-      retry_attempts = 5
-      timeout = "15m"
-      
-      workspaces = {
-        production = {
-          enabled = true
-          sync_interval = "10m"
-          auto_apply = false  # Manual approval for production
-        }
-        
-        staging = {
-          enabled = true
-          sync_interval = "5m"
-          auto_apply = true   # Auto-apply for staging
-        }
-        
-        feature_branches = {
-          enabled = true
-          sync_interval = "2m"
-          auto_apply = true
-        }
-      }
-    }
-  }
-}
+```yaml
+kind: TFWorkspaceClaim
+name: business-hours-sync
+providers:
+  terraform:
+    sync:
+      enabled: true
+      schedule: "0 9-17 * * 1-5"  # Every hour from 9 AM to 5 PM, Monday to Friday
+      schedule_timezone: "America/New_York"
+      policy: "production-policy"
+    # ... other terraform configuration
 ```
 
-### Conditional Sync Configuration
+### High-frequency Development Sync
 
-Use Terraform variables and conditions to configure sync dynamically:
+For development environments requiring frequent updates:
 
-```hcl
-variable "environment" {
-  description = "The deployment environment"
-  type        = string
-  default     = "development"
-}
-
-variable "enable_sync" {
-  description = "Enable workspace synchronization"
-  type        = bool
-  default     = true
-}
-
-provider "firestartr" {
-  terraform {
-    sync = {
-      enabled = var.enable_sync
-      
-      workspaces = {
-        (var.environment) = {
-          enabled = var.enable_sync
-          sync_interval = var.environment == "production" ? "10m" : "5m"
-          auto_apply = var.environment != "production"
-        }
-      }
-    }
-  }
-}
+```yaml
+kind: TFWorkspaceClaim
+name: dev-environment
+providers:
+  terraform:
+    sync:
+      enabled: true
+      period: "2m"  # Sync every 2 minutes
+    # ... other terraform configuration
 ```
 
 ## Sync Behavior
 
 ### Synchronization Process
 
-1. **Change Detection**: The provider monitors workspace state changes at the configured interval
-2. **Conflict Analysis**: When changes are detected, the system checks for conflicts with other synchronized workspaces
-3. **Resolution**: Conflicts are resolved based on the configured `conflict_resolution` strategy
-4. **Application**: Changes are applied according to the `auto_apply` setting
+The synchronization operates based on the configured schedule or period:
 
-### Conflict Resolution Strategies
+1. **Trigger**: Sync is triggered either by period interval or cron schedule
+2. **State Check**: The system checks for changes in the Terraform workspace
+3. **Execution**: If changes are detected, the sync policy is applied
+4. **Logging**: All sync activities are logged for monitoring and debugging
 
-- **`manual`**: Requires manual intervention to resolve conflicts
-- **`latest_wins`**: The most recent change takes precedence
-- **`merge`**: Attempts to automatically merge non-conflicting changes
+### Policy Configuration
 
-### Monitoring and Logging
+The optional `policy` field allows you to specify custom sync behaviors and rules defined in your Firestartr Pro configuration.
 
-Workspace synchronization activities are logged and can be monitored through:
+### Timezone Handling
 
-- Provider logs with detailed sync operations
-- Firestartr Pro dashboard for sync status and history
-- Terraform state file annotations for sync metadata
+When using `schedule`, you can specify a timezone with `schedule_timezone`. If not specified, UTC is used by default.
 
 ## Best Practices
 
-1. **Environment-Specific Settings**: Use different sync intervals for different environments (longer for production)
-2. **Manual Approval for Production**: Disable `auto_apply` for production workspaces
-3. **Conflict Prevention**: Implement proper workspace isolation and access controls
-4. **Regular Monitoring**: Monitor sync logs and status regularly
-5. **Testing**: Test sync configurations in non-production environments first
+### Scheduling Recommendations
+
+1. **Production Environments**: Use longer intervals (e.g., `30m` or scheduled during maintenance windows)
+2. **Development Environments**: Use shorter intervals for rapid iteration (e.g., `2m` to `5m`)
+3. **Staging Environments**: Balance between development and production (e.g., `10m`)
+
+### Schedule vs Period Selection
+
+- **Use `period`** for simple, regular intervals
+- **Use `schedule`** for complex timing requirements (business hours, specific days, etc.)
+- **Use timezone** when coordinating across different geographical locations
+
+### Configuration Guidelines
+
+```yaml
+# Production example - conservative sync
+providers:
+  terraform:
+    sync:
+      enabled: true
+      schedule: "0 */2 * * *"  # Every 2 hours
+      schedule_timezone: "UTC"
+      policy: "production-approval-required"
+
+# Development example - frequent sync  
+providers:
+  terraform:
+    sync:
+      enabled: true
+      period: "5m"  # Every 5 minutes
+```
 
 ## Troubleshooting
 
 ### Common Issues
 
-**Sync Failures**
-- Check API connectivity and authentication
-- Verify workspace permissions
-- Review timeout settings for large state files
+**Sync Not Triggering**
+- Verify `enabled` is set to `true`
+- Check that either `period` or `schedule` is specified (not both)
+- Validate cron expression format for `schedule`
+- Ensure timezone is correctly specified
 
-**Conflicts**
-- Review conflict resolution strategy
-- Check for concurrent modifications
-- Ensure proper workspace access controls
+**Schedule Format Errors**
+- Use [cron-parser](https://www.npmjs.com/package/cron-parser) compatible format
+- Remember that seconds field is optional
+- Test cron expressions before deploying
 
-**Performance Issues**
-- Adjust sync intervals based on workspace activity
-- Consider state file size and complexity
-- Monitor network latency and provider API limits
+**Period Format Errors**
+- Ensure format matches `[0-9]+[smhd]` pattern
+- Valid examples: `30s`, `5m`, `2h`, `1d`
+- Invalid examples: `5mins`, `2hours`, `1 day`
 
-### Debugging
+## Schema Validation
 
-Enable detailed logging for sync operations:
+The sync configuration follows this JSON schema:
 
-```hcl
-provider "firestartr" {
-  # Enable debug logging
-  log_level = "DEBUG"
-  
-  terraform {
-    sync = {
-      # ... sync configuration
+```json
+{
+  "type": "object",
+  "properties": {
+    "enabled": {
+      "type": "boolean"
+    },
+    "period": {
+      "type": "string",
+      "pattern": "^[0-9]+[smhd]$"
+    },
+    "schedule": {
+      "type": "string"
+    },
+    "schedule_timezone": {
+      "type": "string"
+    },
+    "policy": {
+      "type": "string"
     }
-  }
+  },
+  "additionalProperties": false,
+  "required": ["enabled"],
+  "oneOf": [
+    {
+      "required": ["period"]
+    },
+    {
+      "required": ["schedule"]
+    },
+    {
+      "not": {
+        "anyOf": [
+          {
+            "required": ["period"]
+          },
+          {
+            "required": ["schedule"]
+          }
+        ]
+      }
+    }
+  ]
 }
 ```
 
+### Validation Rules
+
+1. `enabled` is always required
+2. Either `period` OR `schedule` must be specified (mutually exclusive)
+3. `schedule_timezone` can only be used with `schedule`
+4. `period` must match the pattern `^[0-9]+[smhd]$`
+5. `schedule` uses cron-parser format with optional seconds field
+
 ## Migration Guide
 
-### Enabling Sync for Existing Workspaces
+### Adding Sync to Existing TFWorkspaceClaim
 
-1. **Backup State**: Create backups of existing Terraform state files
-2. **Gradual Rollout**: Enable sync for non-critical workspaces first
-3. **Monitor**: Watch for conflicts and performance impacts
-4. **Adjust Settings**: Fine-tune sync intervals and conflict resolution based on observations
+To add synchronization to an existing workspace:
 
-### Updating Sync Configuration
+1. **Update the YAML**: Add the sync section to your TFWorkspaceClaim
+2. **Apply Changes**: Deploy the updated claim to your cluster
+3. **Monitor**: Watch the sync behavior and adjust timing as needed
 
-Changes to sync configuration require a provider refresh:
+```yaml
+# Before
+providers:
+  terraform:
+    name: existing-workspace
+    # ... other config
 
-```bash
-terraform init -upgrade
-terraform plan
-terraform apply
+# After  
+providers:
+  terraform:
+    name: existing-workspace
+    sync:
+      enabled: true
+      period: "10m"
+    # ... other config
 ```
 
-## Security Considerations
+### Changing Sync Configuration
 
-- Ensure proper API key management and rotation
-- Use workspace-specific access controls
-- Monitor sync activities for unauthorized changes
-- Implement network security for provider communications
-
-## API Reference
-
-For advanced use cases, refer to the [Firestartr Pro API documentation](../api/terraform-sync.md) for direct API integration options.
+Simply update the sync section and redeploy the TFWorkspaceClaim. Changes take effect on the next sync cycle.
