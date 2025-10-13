@@ -98,21 +98,38 @@ providers:
 
 #### Cron Format Reference
 
-| Field | Values | Special Characters |
-|-------|--------|-------------------|
-| Minute | 0-59 | `*`, `,`, `-`, `/` |
-| Hour | 0-23 | `*`, `,`, `-`, `/` |
-| Day of Month | 1-31 | `*`, `,`, `-`, `/`, `?`, `L`, `W` |
-| Month | 1-12 or JAN-DEC | `*`, `,`, `-`, `/` |
-| Day of Week | 0-7 or SUN-SAT | `*`, `,`, `-`, `/`, `?`, `L`, `#` |
-| Seconds (optional) | 0-59 | `*`, `,`, `-`, `/` |
+```
+*    *    *    *    *    *
+┬    ┬    ┬    ┬    ┬    ┬
+│    │    │    │    │    │
+│    │    │    │    │    └─ day of week (0-7, 1L-7L) (0 or 7 is Sun)
+│    │    │    │    └────── month (1-12, JAN-DEC)
+│    │    │    └─────────── day of month (1-31, L)
+│    │    └──────────────── hour (0-23)
+│    └───────────────────── minute (0-59)
+└────────────────────────── second (0-59, optional)
+```
+
+| Field | Values | Description |
+|-------|--------|-------------|
+| Second (optional) | 0-59 | Second field (when using 6-field format) |
+| Minute | 0-59 | Minute field |
+| Hour | 0-23 | Hour field |
+| Day of Month | 1-31, L | Day of the month, or L for last day |
+| Month | 1-12, JAN-DEC | Month field, numeric or abbreviated name |
+| Day of Week | 0-7, SUN-SAT, 1L-7L | Day of week (0 or 7 is Sunday) |
 
 **Special Characters:**
-- `*` - Any value
-- `,` - Value list separator
-- `-` - Range of values
-- `/` - Step values
-- `?` - No specific value (day fields only)
+
+| Character | Description | Example |
+|-----------|-------------|---------|
+| `*` | Any value | `* * * * *` (every minute) |
+| `?` | Any value (alias for `*`) | `? * * * *` (every minute) |
+| `,` | Value list separator | `1,2,3 * * * *` (1st, 2nd, and 3rd minute) |
+| `-` | Range of values | `1-5 * * * *` (every minute from 1 through 5) |
+| `/` | Step values | `*/5 * * * *` (every 5th minute) |
+| `L` | Last day of month/week | `0 0 L * *` (midnight on last day of month) |
+| `#` | Nth day of month | `0 0 * * 1#1` (first Monday of month) |
 
 #### Common Cron Patterns
 
@@ -325,13 +342,13 @@ providers:
       policy: "full-control"
 ```
 
-**Patch Tuesday Deployments:**
+**Second Tuesday Deployments:**
 ```yaml
 providers:
   terraform:
     sync:
       enabled: true
-      schedule: "0 3 8-14 * 2"  # Second Tuesday of each month at 3 AM
+      schedule: "0 3 * * 2#2"  # Second Tuesday of each month at 3 AM
       schedule_timezone: "UTC"
       policy: "apply"
 ```
