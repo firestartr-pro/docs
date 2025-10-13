@@ -166,43 +166,55 @@ The synchronization operates based on the configured schedule or period:
 
 The `policy` field determines what actions can be performed during synchronization. The following policies are available:
 
-| Policy | Allowed Operations | Description |
-|--------|-------------------|-------------|
-| `observe` | `sync` | Read-only synchronization - only monitors and syncs state without making changes |
-| `apply` | `updated`, `created`, `renamed`, `sync`, `retry`, `nothing` | Full apply permissions - can update, create, and rename resources |
-| `create-only` | `created`, `retry`, `sync` | Limited to creating new resources and retrying operations |
-| `full-control` | `updated`, `created`, `sync`, `mark-to-deletion`, `nothing` | Complete control including resource deletion |
+| Policy | Create | Update | Delete | Use Case |
+|--------|--------|--------|--------|----------|
+| `observe` | ✗ | ✗ | ✗ | Audit/monitor only |
+| `apply` | ✓ | ✓ | (✗)* | Standard GitOps (update/patch only) |
+| `full-control` | ✓ | ✓ | ✓ | Strict enforcement, full reconciliation |
+| `create-only` | ✓ | ✗ | ✗ | Seeding resources, preserving manual edits |
+
+**Note**: The `apply` policy typically does not delete resources, focusing on updates and patches.
 
 #### Policy Usage Examples
 
-**Production Environment (Observe Only):**
+**Production Environment (Audit/Monitor Only):**
 ```yaml
 providers:
   terraform:
     sync:
       enabled: true
       schedule: "0 */6 * * *"  # Every 6 hours
-      policy: "observe"
+      policy: "observe"  # No changes, audit only
 ```
 
-**Development Environment (Full Control):**
+**Development Environment (Full Reconciliation):**
 ```yaml
 providers:
   terraform:
     sync:
       enabled: true
       period: "5m"
-      policy: "full-control"
+      policy: "full-control"  # Create, update, and delete resources
 ```
 
-**Staging Environment (Apply Only):**
+**Staging Environment (GitOps Updates):**
 ```yaml
 providers:
   terraform:
     sync:
       enabled: true
       period: "15m"
-      policy: "apply"
+      policy: "apply"  # Create and update, but preserve existing resources
+```
+
+**Initial Deployment (Create Resources Only):**
+```yaml
+providers:
+  terraform:
+    sync:
+      enabled: true
+      period: "10m"
+      policy: "create-only"  # Only create new resources, preserve manual changes
 ```
 
 ### Timezone Handling
