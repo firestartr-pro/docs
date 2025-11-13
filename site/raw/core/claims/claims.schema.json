@@ -1023,7 +1023,9 @@
                 "type": "object",
                 "properties": {
                   "secretName": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Validation for Kubernetes Secret keys, allowing only alphanumeric characters, hyphens, underscores, and dots.",
+                    "pattern": "^([a-zA-Z0-9._-]+)$"
                   },
                   "remoteRef": {
                     "type": "string"
@@ -1108,32 +1110,29 @@
               "$ref": "firestartr.dev://common/ClaimProviderEnvelope"
             },
             {
+              "type": "object",
+              "properties": {
+                "externalSecrets": {
+                  "$ref": "firestartr.dev://secrets/ExternalSecretsSection"
+                },
+                "secretStore": {
+                  "$ref": "firestartr.dev://secrets/SecretStore"
+                },
+                "pushSecrets": {
+                  "$ref": "firestartr.dev://secrets/PushSecretsSection"
+                }
+              },
+              "required": [
+                "secretStore"
+              ],
               "anyOf": [
                 {
-                  "properties": {
-                    "externalSecrets": {
-                      "$ref": "firestartr.dev://secrets/ExternalSecretsSection"
-                    },
-                    "secretStore": {
-                      "$ref": "firestartr.dev://secrets/SecretStore"
-                    }
-                  },
                   "required": [
-                    "secretStore",
                     "externalSecrets"
                   ]
                 },
                 {
-                  "properties": {
-                    "pushSecrets": {
-                      "$ref": "firestartr.dev://secrets/PushSecretsSection"
-                    },
-                    "secretStore": {
-                      "$ref": "firestartr.dev://secrets/SecretStore"
-                    }
-                  },
                   "required": [
-                    "secretStore",
                     "pushSecrets"
                   ]
                 }
