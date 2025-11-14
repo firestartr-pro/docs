@@ -1,0 +1,1965 @@
+---
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  name: githubgroups.firestartr.dev
+spec:
+  group: firestartr.dev
+  names:
+    kind: FirestartrGithubGroup
+    plural: githubgroups
+    singular: githubgroup
+    shortNames:
+      - ghgroup
+  scope: Namespaced
+  versions:
+    - name: v1
+      served: true
+      storage: true
+      subresources:
+        status: {}
+      schema:
+        openAPIV3Schema:
+          description: "A resource to handle GitHub groups"
+          type: object
+          properties:
+            spec:
+              type: object
+              properties:
+                org:
+                  type: string
+                privacy:
+                  type: string
+                  enum:
+                    - closed
+                    - secret
+                description:
+                  type: string
+                parentTeam:
+                  type: object
+                  properties:
+                    ref:
+                      type: object
+                      properties:
+                        kind:
+                          type: string
+                        name:
+                          type: string
+                        needsSecret:
+                          type: boolean
+                      required:
+                        - kind
+                        - name
+                        - needsSecret
+                  required:
+                    - ref
+                members:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      ref:
+                        type: object
+                        properties:
+                          kind:
+                            type: string
+                          name:
+                            type: string
+                          needsSecret:
+                            type: boolean
+                        required:
+                          - kind
+                          - name
+                          - needsSecret
+                    required:
+                      - ref
+                context:
+                  type: object
+                  required:
+                    - backend
+                    - provider
+                  properties:
+                    backend:
+                      type: object
+                      required:
+                        - ref
+                      properties:
+                        ref:
+                          type: object
+                          required:
+                            - kind
+                            - name
+                          properties:
+                            kind:
+                              type: string
+                              enum:
+                                - FirestartrProviderConfig
+                            name:
+                              type: string
+                    provider:
+                      type: object
+                      required:
+                        - ref
+                      properties:
+                        ref:
+                          type: object
+                          required:
+                            - kind
+                            - name
+                          properties:
+                            kind:
+                              type: string
+                              enum:
+                                - FirestartrProviderConfig
+                            name:
+                              type: string
+                firestartr:
+                  type: object
+                  properties:
+                    tfStateKey:
+                      type: string
+                writeConnectionSecretToRef:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                    outputs:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          key:
+                            type: string
+                        required:
+                          - key
+              required:
+                - org
+                - privacy
+                - members
+                - context
+                - firestartr
+                - writeConnectionSecretToRef
+            status:
+              type: object
+              properties:
+                conditions:
+                  type: array
+                  items:
+                    type: object
+                    required:
+                      - status
+                      - type
+                    properties:
+                      lastSyncTime:
+                        type: string
+                        format: date-time
+                      nextSyncTime:
+                        type: string
+                        format: date-time
+                      lastTransitionTime:
+                        type: string
+                        format: date-time
+                      lastUpdateTime:
+                        type: string
+                        format: date-time
+                      message:
+                        type: string
+                      observedGeneration:
+                        type: integer
+                        format: int64
+                      reason:
+                        type: string
+                      status:
+                        type: string
+                        enum:
+                          - "True"
+                          - "False"
+                          - "Unknown"
+                      type:
+                        type: string
+                  x-kubernetes-list-map-keys:
+                    - type
+                  x-kubernetes-list-type: map
+                failedIssuanceAttempts:
+                  type: integer
+                lastFailureTime:
+                  type: string
+                  format: date-time
+                nextPrivateKeySecretName:
+                  type: string
+                notAfter:
+                  type: string
+                  format: date-time
+                notBefore:
+                  type: string
+                  format: date-time
+                renewalTime:
+                  type: string
+                  format: date-time
+                revision:
+                  type: integer
+      additionalPrinterColumns:
+        - name: STATE
+          type: string
+          description: Current state of the resource
+          jsonPath: .status.conditions[?(@.status=="True")].type
+        - name: REASON
+          type: string
+          description: Reason for the resource's state
+          jsonPath: .status.conditions[?(@.status=="True")].reason
+        - name: MESSAGE
+          type: string
+          description: Small description of the reason
+          jsonPath: .status.conditions[?(@.status=="True")].message
+---
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  name: githubmemberships.firestartr.dev
+spec:
+  group: firestartr.dev
+  names:
+    kind: FirestartrGithubMembership
+    plural: githubmemberships
+    singular: githubmembership
+    shortNames:
+      - ghuser
+  scope: Namespaced
+  versions:
+    - name: v1
+      served: true
+      storage: true
+      subresources:
+        status: {}
+      schema:
+        openAPIV3Schema:
+          description: "A resource to handle GitHub memberships to a GitHub organization."
+          type: object
+          required:
+            - metadata
+            - spec
+          properties:
+            spec:
+              type: object
+              properties:
+                org:
+                  type: string
+                role:
+                  type: string
+                  enum:
+                    - member
+                    - admin
+                context:
+                  type: object
+                  required:
+                    - backend
+                    - provider
+                  properties:
+                    backend:
+                      type: object
+                      required:
+                        - ref
+                      properties:
+                        ref:
+                          type: object
+                          required:
+                            - kind
+                            - name
+                          properties:
+                            kind:
+                              type: string
+                              enum:
+                                - FirestartrProviderConfig
+                            name:
+                              type: string
+                    provider:
+                      type: object
+                      required:
+                        - ref
+                      properties:
+                        ref:
+                          type: object
+                          required:
+                            - kind
+                            - name
+                          properties:
+                            kind:
+                              type: string
+                              enum:
+                                - FirestartrProviderConfig
+                            name:
+                              type: string
+                firestartr:
+                  type: object
+                  properties:
+                    tfStateKey:
+                      type: string
+                  required:
+                    - tfStateKey
+
+                writeConnectionSecretToRef:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                    outputs:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          key:
+                            type: string
+                        required:
+                          - key
+                  required:
+                    - name
+                    - outputs
+              required:
+                - org
+                - context
+                - firestartr
+                - role
+            status:
+              type: object
+              properties:
+                conditions:
+                  type: array
+                  items:
+                    type: object
+                    required:
+                      - status
+                      - type
+                    properties:
+                      lastSyncTime:
+                        type: string
+                        format: date-time
+                      nextSyncTime:
+                        type: string
+                        format: date-time
+                      lastTransitionTime:
+                        type: string
+                        format: date-time
+                      lastUpdateTime:
+                        type: string
+                        format: date-time
+                      message:
+                        type: string
+                      observedGeneration:
+                        type: integer
+                        format: int64
+                      reason:
+                        type: string
+                      status:
+                        type: string
+                        enum:
+                          - "True"
+                          - "False"
+                          - "Unknown"
+                      type:
+                        type: string
+                  x-kubernetes-list-map-keys:
+                    - type
+                  x-kubernetes-list-type: map
+                failedIssuanceAttempts:
+                  type: integer
+                lastFailureTime:
+                  type: string
+                  format: date-time
+                nextPrivateKeySecretName:
+                  type: string
+                notAfter:
+                  type: string
+                  format: date-time
+                notBefore:
+                  type: string
+                  format: date-time
+                renewalTime:
+                  type: string
+                  format: date-time
+                revision:
+                  type: integer
+      additionalPrinterColumns:
+        - name: STATE
+          type: string
+          description: Current state of the resource
+          jsonPath: .status.conditions[?(@.status=="True")].type
+        - name: REASON
+          type: string
+          description: Reason for the resource's state
+          jsonPath: .status.conditions[?(@.status=="True")].reason
+        - name: MESSAGE
+          type: string
+          description: Small description of the reason
+          jsonPath: .status.conditions[?(@.status=="True")].message
+---
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  name: githuborgwebhooks.firestartr.dev
+spec:
+  group: firestartr.dev
+  scope: Namespaced
+  names:
+    plural: githuborgwebhooks
+    singular: githuborgwebhook
+    kind: FirestartrGithubOrgWebhook
+    shortNames:
+      - ghow
+  versions:
+    - name: v1
+      served: true
+      storage: true
+      subresources:
+        status: {}
+      schema:
+        openAPIV3Schema:
+          description: "A resource to handle GitHub Organization Webhooks"
+          type: object
+          properties:
+            spec:
+              type: object
+              properties:
+                orgName:
+                  type: string
+                  description: Organization name on GitHub
+                webhook:
+                  type: object
+                  properties:
+                    url:
+                      type: string
+                      description: Webhook endpoint URL
+                    contentType:
+                      type: string
+                      enum: [json, form]
+                      description: Payload content type (json or form)
+                    secretRef:
+                      type: object
+                      description: Secret ref for signing the payload
+                      properties:
+                        kind:
+                          type: string
+                          enum:
+                            - Secret
+                          description: 'The type of Kubernetes resource to reference.'
+                        name:
+                          type: string
+                          description: Secret name
+                        key:
+                          type: string
+                          description: Secret key that contains the webhook secret
+                      required:
+                        - name
+                        - key
+                        - kind
+                    insecureSsl:
+                      type: boolean
+                      description: Whether to allow unverified SSL connections (not recommended)
+                      default: false
+                    active:
+                      type: boolean
+                      description: If the webhook is active
+                      default: true
+                    events:
+                      type: array
+                      items:
+                        type: string
+                      description: List of events that trigger the webhook (e.g., push, pull_request, issues)
+                  required:
+                    - url
+                    - contentType
+                    - events
+                    - secretRef
+                context:
+                  type: object
+                  required:
+                    - backend
+                    - provider
+                  properties:
+                    backend:
+                      type: object
+                      required:
+                        - ref
+                      properties:
+                        ref:
+                          type: object
+                          required:
+                            - kind
+                            - name
+                          properties:
+                            kind:
+                              type: string
+                              enum:
+                                - FirestartrProviderConfig
+                            name:
+                              type: string
+                    provider:
+                      type: object
+                      required:
+                        - ref
+                      properties:
+                        ref:
+                          type: object
+                          required:
+                            - kind
+                            - name
+                          properties:
+                            kind:
+                              type: string
+                              enum:
+                                - FirestartrProviderConfig
+                            name:
+                              type: string
+                firestartr:
+                  type: object
+                  properties:
+                    tfStateKey:
+                      type: string
+                writeConnectionSecretToRef:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                    outputs:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          key:
+                            type: string
+                        required:
+                          - key
+              required:
+                - orgName
+                - webhook
+                - writeConnectionSecretToRef
+            status:
+              type: object
+              properties:
+                conditions:
+                  type: array
+                  items:
+                    type: object
+                    required:
+                      - status
+                      - type
+                    properties:
+                      lastSyncTime:
+                        type: string
+                        format: date-time
+                      nextSyncTime:
+                        type: string
+                        format: date-time
+                      lastTransitionTime:
+                        type: string
+                        format: date-time
+                      lastUpdateTime:
+                        type: string
+                        format: date-time
+                      message:
+                        type: string
+                      observedGeneration:
+                        type: integer
+                        format: int64
+                      reason:
+                        type: string
+                      status:
+                        type: string
+                        enum:
+                          - "True"
+                          - "False"
+                          - "Unknown"
+                      type:
+                        type: string
+                  x-kubernetes-list-map-keys:
+                    - type
+                  x-kubernetes-list-type: map
+                failedIssuanceAttempts:
+                  type: integer
+                lastFailureTime:
+                  type: string
+                  format: date-time
+                nextPrivateKeySecretName:
+                  type: string
+                notAfter:
+                  type: string
+                  format: date-time
+                notBefore:
+                  type: string
+                  format: date-time
+                renewalTime:
+                  type: string
+                  format: date-time
+                revision:
+                  type: integer
+      additionalPrinterColumns:
+        - name: STATE
+          type: string
+          description: Current state of the resource
+          jsonPath: .status.conditions[?(@.status=="True")].type
+        - name: REASON
+          type: string
+          description: Reason for the resource's state
+          jsonPath: .status.conditions[?(@.status=="True")].reason
+        - name: MESSAGE
+          type: string
+          description: Small description of the reason
+          jsonPath: .status.conditions[?(@.status=="True")].message
+---
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  name: githubrepositoryfeatures.firestartr.dev
+spec:
+  group: firestartr.dev
+  names:
+    kind: FirestartrGithubRepositoryFeature
+    plural: githubrepositoryfeatures
+    singular: githubrepositoryfeature
+    shortNames:
+      - ghrepofeat
+  scope: Namespaced
+  versions:
+    - name: v1
+      served: true
+      storage: true
+      subresources:
+        status: {}
+      schema:
+        openAPIV3Schema:
+          description: "A resource to handle features for GitHub repos."
+          type: object
+          properties:
+            spec:
+              type: object
+              properties:
+                firestartr:
+                  type: object
+                  properties:
+                    tfStateKey:
+                      type: string
+                  required:
+                    - tfStateKey
+                type:
+                  type: string
+                org:
+                  type: string
+                context:
+                  type: object
+                  required:
+                    - backend
+                    - provider
+                  properties:
+                    backend:
+                      type: object
+                      required:
+                        - ref
+                      properties:
+                        ref:
+                          type: object
+                          required:
+                            - kind
+                            - name
+                          properties:
+                            kind:
+                              type: string
+                              enum:
+                                - FirestartrProviderConfig
+                            name:
+                              type: string
+                    provider:
+                      type: object
+                      required:
+                        - ref
+                      properties:
+                        ref:
+                          type: object
+                          required:
+                            - kind
+                            - name
+                          properties:
+                            kind:
+                              type: string
+                              enum:
+                                - FirestartrProviderConfig
+                            name:
+                              type: string
+                version:
+                  type: string
+                repositoryTarget:
+                  type: object
+                  properties:
+                    ref:
+                      type: object
+                      properties:
+                        kind:
+                          type: string
+                        name:
+                          type: string
+                        needsSecret:
+                          type: boolean
+                      required:
+                        - kind
+                        - name
+                        - needsSecret
+                    branch:
+                      type: string
+                  required:
+                    - ref
+                    - branch
+                files:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      path:
+                        type: string
+                      userManaged:
+                        type: boolean
+                      content:
+                        type: string
+                      targetBranch:
+                        type: string
+                        default: ""
+                    required:
+                      - path
+                      - userManaged
+                      - content
+              required:
+                - type
+                - version
+                - org
+                - repositoryTarget
+                - files
+                - context
+            status:
+              type: object
+              properties:
+                conditions:
+                  type: array
+                  items:
+                    type: object
+                    required:
+                      - status
+                      - type
+                    properties:
+                      lastSyncTime:
+                        type: string
+                        format: date-time
+                      nextSyncTime:
+                        type: string
+                        format: date-time
+                      lastTransitionTime:
+                        type: string
+                        format: date-time
+                      lastUpdateTime:
+                        type: string
+                        format: date-time
+                      message:
+                        type: string
+                      observedGeneration:
+                        type: integer
+                        format: int64
+                      reason:
+                        type: string
+                      status:
+                        type: string
+                        enum:
+                          - "True"
+                          - "False"
+                          - "Unknown"
+                      type:
+                        type: string
+                  x-kubernetes-list-map-keys:
+                    - type
+                  x-kubernetes-list-type: map
+                failedIssuanceAttempts:
+                  type: integer
+                lastFailureTime:
+                  type: string
+                  format: date-time
+                nextPrivateKeySecretName:
+                  type: string
+                notAfter:
+                  type: string
+                  format: date-time
+                notBefore:
+                  type: string
+                  format: date-time
+                renewalTime:
+                  type: string
+                  format: date-time
+                revision:
+                  type: integer
+      additionalPrinterColumns:
+        - name: STATE
+          type: string
+          description: Current state of the resource
+          jsonPath: .status.conditions[?(@.status=="True")].type
+        - name: REASON
+          type: string
+          description: Reason for the resource's state
+          jsonPath: .status.conditions[?(@.status=="True")].reason
+        - name: MESSAGE
+          type: string
+          description: Small description of the reason
+          jsonPath: .status.conditions[?(@.status=="True")].message
+---
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  name: githubrepositorysecretssections.firestartr.dev
+spec:
+  group: firestartr.dev
+  names:
+    kind: FirestartrGithubRepositorySecretsSection
+    plural: githubrepositorysecretssections
+    singular: githubrepositorysecretssection
+    shortNames:
+      - grss
+  scope: Namespaced
+  versions:
+    - name: v1
+      served: true
+      storage: true
+      subresources:
+        status: {}
+      schema:
+        openAPIV3Schema:
+          type: object
+          properties:
+            apiVersion:
+              type: string
+            kind:
+              type: string
+            metadata:
+              type: object
+            spec:
+              type: object
+              properties:
+                firestartr:
+                  type: object
+                  properties:
+                    tfStateKey:
+                      type: string
+                  required:
+                    - tfStateKey
+                repositoryTarget:
+                  type: object
+                  properties:
+                    ref:
+                      type: object
+                      properties:
+                        kind:
+                          type: string
+                        name:
+                          type: string
+                        needsSecret:
+                          type: boolean
+                      required:
+                        - kind
+                        - name
+                        - needsSecret
+                  required:
+                    - ref
+                secrets:
+                  description: 'A map of secret types, each containing a list of secrets.'
+                  type: object
+                  properties:
+                    actions:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          name:
+                            type: string
+                            description: 'The name of the secret.'
+                            minLength: 1
+                          ref:
+                            description: 'A reference to the Kubernetes Secret resource that contains the value.'
+                            type: object
+                            properties:
+                              kind:
+                                type: string
+                                enum:
+                                  - Secret
+                                description: 'The type of Kubernetes resource to reference.'
+                              name:
+                                type: string
+                                description: 'The name of the Kubernetes Secret resource.'
+                                minLength: 1
+                              key:
+                                type: string
+                                description: 'The key within the Kubernetes Secret data.'
+                                minLength: 1
+                            required:
+                              - kind
+                              - name
+                              - key
+                        required:
+                          - name
+                          - ref
+                    codespaces:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          name:
+                            type: string
+                            description: 'The name of the secret.'
+                            minLength: 1
+                          ref:
+                            description: 'A reference to the Kubernetes Secret resource that contains the value.'
+                            type: object
+                            properties:
+                              kind:
+                                type: string
+                                enum:
+                                  - Secret
+                                description: 'The type of Kubernetes resource to reference.'
+                              name:
+                                type: string
+                                description: 'The name of the Kubernetes Secret resource.'
+                                minLength: 1
+                              key:
+                                type: string
+                                description: 'The key within the Kubernetes Secret data.'
+                                minLength: 1
+                            required:
+                              - kind
+                              - name
+                              - key
+                        required:
+                          - name
+                          - ref
+                    dependabot:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          name:
+                            type: string
+                            description: 'The name of the secret.'
+                            minLength: 1
+                          ref:
+                            description: 'A reference to the Kubernetes Secret resource that contains the value.'
+                            type: object
+                            properties:
+                              kind:
+                                type: string
+                                enum:
+                                  - Secret
+                                description: 'The type of Kubernetes resource to reference.'
+                              name:
+                                type: string
+                                description: 'The name of the Kubernetes Secret resource.'
+                                minLength: 1
+                              key:
+                                type: string
+                                description: 'The key within the Kubernetes Secret data.'
+                                minLength: 1
+                            required:
+                              - kind
+                              - name
+                              - key
+                        required:
+                          - name
+                          - ref
+                context:
+                  description: 'References to provider configurations and backends needed by the operator.'
+                  type: object
+                  properties:
+                    provider:
+                      description: 'The provider configuration for authenticating with an external service (e.g., GitHub).'
+                      type: object
+                      properties:
+                        ref:
+                          type: object
+                          properties:
+                            kind:
+                              type: string
+                              enum:
+                                - FirestartrProviderConfig
+                            name:
+                              type: string
+                              minLength: 1
+                          required:
+                            - kind
+                            - name
+                      required:
+                        - ref
+                    backend:
+                      description: 'The backend configuration for state management (e.g., Terraform).'
+                      type: object
+                      properties:
+                        ref:
+                          type: object
+                          properties:
+                            kind:
+                              type: string
+                              enum:
+                                - FirestartrProviderConfig
+                            name:
+                              type: string
+                              minLength: 1
+                          required:
+                            - kind
+                            - name
+                      required:
+                        - ref
+                  required:
+                    - provider
+              required:
+                - repositoryTarget
+                - secrets
+            status:
+              type: object
+              description: 'The status of the resource as reported by the controller.'
+              properties:
+                conditions:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      lastSyncTime:
+                        type: string
+                        format: date-time
+                      nextSyncTime:
+                        type: string
+                        format: date-time
+                      lastTransitionTime:
+                        type: string
+                        format: date-time
+                      message:
+                        type: string
+                      reason:
+                        type: string
+                      status:
+                        type: string
+                        enum: ['True', 'False', 'Unknown']
+                      type:
+                        type: string
+                syncedSecrets:
+                  description: 'A list of secrets that have been successfully synchronized.'
+                  type: array
+                  items:
+                    type: string
+      additionalPrinterColumns:
+        - name: STATE
+          type: string
+          description: Current state of the resource
+          jsonPath: .status.conditions[?(@.status=="True")].type
+        - name: REASON
+          type: string
+          description: Reason for the resource's state
+          jsonPath: .status.conditions[?(@.status=="True")].reason
+---
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  name: githubrepositories.firestartr.dev
+spec:
+  group: firestartr.dev
+  names:
+    kind: FirestartrGithubRepository
+    plural: githubrepositories
+    singular: githubrepository
+    shortNames:
+      - ghrepo
+  scope: Namespaced
+  versions:
+    - name: v1
+      served: true
+      storage: true
+      subresources:
+        status: {}
+      schema:
+        openAPIV3Schema:
+          description: "A resource to handle the GitHub repos of an organization."
+          type: object
+          properties:
+            spec:
+              type: object
+              properties:
+                org:
+                  type: string
+                context:
+                  type: object
+                  required:
+                    - backend
+                    - provider
+                  properties:
+                    backend:
+                      type: object
+                      required:
+                        - ref
+                      properties:
+                        ref:
+                          type: object
+                          required:
+                            - kind
+                            - name
+                          properties:
+                            kind:
+                              type: string
+                              enum:
+                                - FirestartrProviderConfig
+                            name:
+                              type: string
+                    provider:
+                      type: object
+                      required:
+                        - ref
+                      properties:
+                        ref:
+                          type: object
+                          required:
+                            - kind
+                            - name
+                          properties:
+                            kind:
+                              type: string
+                              enum:
+                                - FirestartrProviderConfig
+                            name:
+                              type: string
+                firestartr:
+                  type: object
+                  properties:
+                    tfStateKey:
+                      type: string
+                    technology:
+                      type: object
+                      properties:
+                        stack:
+                          type: string
+                        version:
+                          type: string
+                  required:
+                    - tfStateKey
+                    - technology
+                repo:
+                  type: object
+                  properties:
+                    description:
+                      type: string
+                    allowMergeCommit:
+                      type: boolean
+                    allowSquashMerge:
+                      type: boolean
+                    allowRebaseMerge:
+                      type: boolean
+                    allowAutoMerge:
+                      type: boolean
+                    deleteBranchOnMerge:
+                      type: boolean
+                    autoInit:
+                      type: boolean
+                    archiveOnDestroy:
+                      type: boolean
+                    allowUpdateBranch:
+                      type: boolean
+                    hasIssues:
+                      type: boolean
+                    hasWiki:
+                      type: boolean
+                    pages:
+                      type: object
+                    visibility:
+                      type: string
+                      enum:
+                        - private
+                        - public
+                        - internal
+                    defaultBranch:
+                      type: string
+                    additionalBranches:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          name:
+                            type: string
+                            description: "The name of the additional branch"
+                          orphan:
+                            type: boolean
+                            description: "Whether the additional branch is orphaned"
+                    codeowners:
+                      type: string
+                  required:
+                    - visibility
+                    - defaultBranch
+                actions:
+                  type: object
+                  properties:
+                    oidc:
+                      type: object
+                      properties:
+                        useDefault:
+                          type: boolean
+                        includeClaimKeys:
+                          type: array
+                          items:
+                            type: string
+                      required:
+                        - useDefault
+                        - includeClaimKeys
+                  required:
+                    - oidc
+                pages:
+                  type: object
+                  properties:
+                    cname:
+                      type: string
+                    source:
+                      type: object
+                      properties:
+                        branch:
+                          type: string
+                        path:
+                          type: string
+                permissions:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      role:
+                        type: string
+                      collaborator:
+                        type: string
+                      ref:
+                        type: object
+                        properties:
+                          kind:
+                            type: string
+                          name:
+                            type: string
+                          needsSecret:
+                            type: boolean
+                    oneOf:
+                      - required:
+                          - ref
+                      - required:
+                          - collaborator
+                vars:
+                  type: object
+                  properties:
+                    # Define the variable item schema anchor
+                    variableItemSchema: &variableItemSchema
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                        value:
+                          type: string
+                        ref:
+                          type: object
+                          properties:
+                            kind:
+                              type: string
+                            name:
+                              type: string
+                            key:
+                              type: string
+                          required:
+                            - kind
+                            - name
+                            - key
+                      oneOf:
+                        - required:
+                            - name
+                            - ref
+                        - required:
+                            - name
+                            - value
+                    actions:
+                      type: array
+                      items: *variableItemSchema
+                branchProtections:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      branch:
+                        type: string
+                      statusChecks:
+                        type: array
+                        items:
+                          type: string
+                      requiredReviewersCount:
+                        type: integer
+                      requiredCodeownersReviewers:
+                        type: boolean
+                      enforceAdmins:
+                        type: boolean
+                      requireSignedCommits:
+                        type: boolean
+                      requireConversationResolution:
+                        type: boolean
+                    required:
+                      - branch
+                writeConnectionSecretToRef:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                    outputs:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          key:
+                            type: string
+                        required:
+                          - key
+                  required:
+                    - name
+                    - outputs
+              required:
+                - org
+                - firestartr
+                - context
+                - repo
+                - actions
+                - permissions
+                - branchProtections
+                - writeConnectionSecretToRef
+            status:
+              type: object
+              properties:
+                conditions:
+                  type: array
+                  items:
+                    type: object
+                    required:
+                      - status
+                      - type
+                    properties:
+                      lastSyncTime:
+                        type: string
+                        format: date-time
+                      nextSyncTime:
+                        type: string
+                        format: date-time
+                      lastTransitionTime:
+                        type: string
+                        format: date-time
+                      lastUpdateTime:
+                        type: string
+                        format: date-time
+                      message:
+                        type: string
+                      observedGeneration:
+                        type: integer
+                        format: int64
+                      reason:
+                        type: string
+                      status:
+                        type: string
+                        enum:
+                          - "True"
+                          - "False"
+                          - "Unknown"
+                      type:
+                        type: string
+                  x-kubernetes-list-map-keys:
+                    - type
+                  x-kubernetes-list-type: map
+                failedIssuanceAttempts:
+                  type: integer
+                lastFailureTime:
+                  type: string
+                  format: date-time
+                nextPrivateKeySecretName:
+                  type: string
+                notAfter:
+                  type: string
+                  format: date-time
+                notBefore:
+                  type: string
+                  format: date-time
+                renewalTime:
+                  type: string
+                  format: date-time
+                revision:
+                  type: integer
+      additionalPrinterColumns:
+        - name: STATE
+          type: string
+          description: Current state of the resource
+          jsonPath: .status.conditions[?(@.status=="True")].type
+        - name: REASON
+          type: string
+          description: Reason for the resource's state
+          jsonPath: .status.conditions[?(@.status=="True")].reason
+---
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  name: providerconfigs.firestartr.dev
+spec:
+  group: firestartr.dev
+  names:
+    kind: FirestartrProviderConfig
+    plural: providerconfigs
+    singular: providerconfig
+    shortNames:
+      - prvcfg
+  scope: Namespaced
+  versions:
+    - name: v1
+      served: true
+      storage: true
+      subresources:
+        status: {}
+      schema:
+        openAPIV3Schema:
+          description: "A resource to handle backend and provider configuration."
+          type: object
+          required:
+            - metadata
+            - spec
+          properties:
+            spec:
+              type: object
+              properties:
+                type:
+                  type: string
+                source:
+                  type: string
+                version:
+                  type: string
+                config:
+                  type: string
+                inline:
+                  type: string
+                env:
+                  type: string
+                secrets:
+                  type: object
+                  additionalProperties:
+                    type: object
+                    required:
+                      - secretRef
+                    properties:
+                      secretRef:
+                        type: object
+                        required:
+                          - name
+                          - key
+                          - namespace
+                        properties:
+                          name:
+                            type: string
+                          namespace:
+                            type: string
+                          key:
+                            type: string
+              required:
+                - type
+                - config
+                - source
+                - version
+            status:
+              type: object
+              properties:
+                conditions:
+                  type: array
+                  items:
+                    type: object
+                    required:
+                      - status
+                      - type
+                    properties:
+                      lastTransitionTime:
+                        type: string
+                        format: date-time
+                      lastUpdateTime:
+                        type: string
+                        format: date-time
+                      message:
+                        type: string
+                      observedGeneration:
+                        type: integer
+                        format: int64
+                      reason:
+                        type: string
+                      status:
+                        type: string
+                        enum:
+                          - "True"
+                          - "False"
+                          - "Unknown"
+                      type:
+                        type: string
+                  x-kubernetes-list-map-keys:
+                    - type
+                  x-kubernetes-list-type: map
+                failedIssuanceAttempts:
+                  type: integer
+                lastFailureTime:
+                  type: string
+                  format: date-time
+                nextPrivateKeySecretName:
+                  type: string
+                notAfter:
+                  type: string
+                  format: date-time
+                notBefore:
+                  type: string
+                  format: date-time
+                renewalTime:
+                  type: string
+                  format: date-time
+                revision:
+                  type: integer
+      additionalPrinterColumns:
+        - name: STATE
+          type: string
+          description: Current state of the resource
+          jsonPath: .status.conditions[?(@.status=="True")].type
+        - name: REASON
+          type: string
+          description: Reason for the resource's state
+          jsonPath: .status.conditions[?(@.status=="True")].reason
+        - name: MESSAGE
+          type: string
+          description: Small description of the reason
+          jsonPath: .status.conditions[?(@.status=="True")].message
+---
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  name: terraformworkspaceplans.firestartr.dev
+spec:
+  group: firestartr.dev
+  names:
+    kind: FirestartrTerraformWorkspacePlan
+    plural: terraformworkspaceplans
+    singular: terraformworkspaceplan
+    shortNames:
+      - tfwpl
+  scope: Namespaced
+  versions:
+    - name: v1
+      served: true
+      storage: true
+      subresources:
+        status: {}
+      schema:
+        openAPIV3Schema:
+          description: "A workspace to handle Terraform code"
+          type: object
+          required:
+            - metadata
+            - spec
+          properties:
+            spec:
+              type: object
+              properties:
+                context:
+                  type: object
+                  required:
+                    - backend
+                    - providers
+                  properties:
+                    backend:
+                      type: object
+                      required:
+                        - ref
+                      properties:
+                        ref:
+                          type: object
+                          required:
+                            - kind
+                            - name
+                          properties:
+                            kind:
+                              type: string
+                              enum:
+                                - FirestartrProviderConfig
+                            name:
+                              type: string
+                    providers:
+                      type: array
+                      items:
+                        type: object
+                        required:
+                          - ref
+                        properties:
+                          ref:
+                            type: object
+                            required:
+                              - kind
+                              - name
+                            properties:
+                              kind:
+                                type: string
+                                enum:
+                                  - FirestartrProviderConfig
+                              name:
+                                type: string
+                firestartr:
+                  type: object
+                  properties:
+                    tfStateKey:
+                      type: string
+                  required:
+                    - tfStateKey
+                module:
+                  type: string
+                source:
+                  type: string
+                  enum:
+                    - Remote
+                    - Inline
+                values:
+                  type: string
+                references:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                      ref:
+                        type: object
+                        required:
+                          - kind
+                          - name
+                          - key
+                        properties:
+                          kind:
+                            type: string
+                            enum:
+                              - FirestartrTerraformWorkspace
+                              - ExternalSecret
+                          name:
+                            type: string
+                          key:
+                            type: string
+                writeConnectionSecretToRef:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                    outputs:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          key:
+                            type: string
+                        required:
+                          - key
+                  required:
+                    - name
+                    - outputs
+              required:
+                - firestartr
+            status:
+              type: object
+              properties:
+                conditions:
+                  type: array
+                  items:
+                    type: object
+                    required:
+                      - status
+                      - type
+                    properties:
+                      lastTransitionTime:
+                        type: string
+                        format: date-time
+                      lastUpdateTime:
+                        type: string
+                        format: date-time
+                      message:
+                        type: string
+                      observedGeneration:
+                        type: integer
+                        format: int64
+                      reason:
+                        type: string
+                      status:
+                        type: string
+                        enum:
+                          - "True"
+                          - "False"
+                          - "Unknown"
+                      type:
+                        type: string
+                  x-kubernetes-list-map-keys:
+                    - type
+                  x-kubernetes-list-type: map
+                failedIssuanceAttempts:
+                  type: integer
+                lastFailureTime:
+                  type: string
+                  format: date-time
+                nextPrivateKeySecretName:
+                  type: string
+                notAfter:
+                  type: string
+                  format: date-time
+                notBefore:
+                  type: string
+                  format: date-time
+                renewalTime:
+                  type: string
+                  format: date-time
+                revision:
+                  type: integer
+      additionalPrinterColumns:
+        - name: STATE
+          type: string
+          description: Current state of the resource
+          jsonPath: .status.conditions[?(@.status=="True")].type
+        - name: REASON
+          type: string
+          description: Reason for the resource's state
+          jsonPath: .status.conditions[?(@.status=="True")].reason
+---
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  name: terraformworkspaces.firestartr.dev
+spec:
+  group: firestartr.dev
+  names:
+    kind: FirestartrTerraformWorkspace
+    plural: terraformworkspaces
+    singular: terraformworkspace
+    shortNames:
+      - tfwp
+  scope: Namespaced
+  versions:
+    - name: v1
+      served: true
+      storage: true
+      subresources:
+        status: {}
+      schema:
+        openAPIV3Schema:
+          description: "A workspace to handle Terraform code"
+          type: object
+          required:
+            - metadata
+            - spec
+          properties:
+            spec:
+              type: object
+              properties:
+                context:
+                  type: object
+                  required:
+                    - backend
+                    - providers
+                  properties:
+                    backend:
+                      type: object
+                      required:
+                        - ref
+                      properties:
+                        ref:
+                          type: object
+                          required:
+                            - kind
+                            - name
+                          properties:
+                            kind:
+                              type: string
+                              enum:
+                                - FirestartrProviderConfig
+                            name:
+                              type: string
+                    providers:
+                      type: array
+                      items:
+                        type: object
+                        required:
+                          - ref
+                        properties:
+                          ref:
+                            type: object
+                            required:
+                              - kind
+                              - name
+                            properties:
+                              kind:
+                                type: string
+                                enum:
+                                  - FirestartrProviderConfig
+                              name:
+                                type: string
+                firestartr:
+                  type: object
+                  properties:
+                    tfStateKey:
+                      type: string
+                  required:
+                    - tfStateKey
+                module:
+                  type: string
+                source:
+                  type: string
+                  enum:
+                    - Remote
+                    - Inline
+                values:
+                  type: string
+                references:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                      ref:
+                        type: object
+                        required:
+                          - kind
+                          - name
+                          - key
+                        properties:
+                          kind:
+                            type: string
+                            enum:
+                              - FirestartrTerraformWorkspace
+                              - ExternalSecret
+                          name:
+                            type: string
+                          key:
+                            type: string
+                writeConnectionSecretToRef:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                    outputs:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          key:
+                            type: string
+                        required:
+                          - key
+                  required:
+                    - name
+                    - outputs
+              required:
+                - firestartr
+            status:
+              type: object
+              properties:
+                conditions:
+                  type: array
+                  items:
+                    type: object
+                    required:
+                      - status
+                      - type
+                    properties:
+                      lastTransitionTime:
+                        type: string
+                        format: date-time
+                      lastSyncTime:
+                        type: string
+                        format: date-time
+                      nextSyncTime:
+                        type: string
+                        format: date-time
+                      lastUpdateTime:
+                        type: string
+                        format: date-time
+                      message:
+                        type: string
+                      observedGeneration:
+                        type: integer
+                        format: int64
+                      reason:
+                        type: string
+                      status:
+                        type: string
+                        enum:
+                          - "True"
+                          - "False"
+                          - "Unknown"
+                      type:
+                        type: string
+                  x-kubernetes-list-map-keys:
+                    - type
+                  x-kubernetes-list-type: map
+                failedIssuanceAttempts:
+                  type: integer
+                lastFailureTime:
+                  type: string
+                  format: date-time
+                nextPrivateKeySecretName:
+                  type: string
+                notAfter:
+                  type: string
+                  format: date-time
+                notBefore:
+                  type: string
+                  format: date-time
+                renewalTime:
+                  type: string
+                  format: date-time
+                revision:
+                  type: integer
+      additionalPrinterColumns:
+        - name: STATE
+          type: string
+          description: Current state of the resource
+          jsonPath: .status.conditions[?(@.status=="True")].type
+        - name: REASON
+          type: string
+          description: Reason for the resource's state
+          jsonPath: .status.conditions[?(@.status=="True")].reason
+---
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  name: tfresults.firestartr.dev
+spec:
+  group: firestartr.dev
+  names:
+    kind: TFResult
+    plural: tfresults
+    singular: tfresult
+    shortNames:
+      - tfresult 
+  scope: Namespaced
+  versions:
+    - name: v1
+      served: true
+      storage: true
+      schema:
+        openAPIV3Schema:
+          description: "A resource to handle Terraform results."
+          type: object
+          properties:
+            spec:
+              type: object
+              properties:
+                action:
+                  type: string
+                  enum:
+                    - init
+                    - plan
+                    - apply
+                    - destroy
+                    - synth
+                reference:
+                  type: object
+                  properties:
+                    refKind:
+                      type: string
+                    refName:
+                      type: string
+                  required:
+                    - refKind
+                    - refName
+                result:
+                  type: string
