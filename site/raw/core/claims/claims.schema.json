@@ -1,7 +1,3 @@
-
-> @prefapp/firestartr-cdk8s_renderer@0.0.0 export-schemas
-> tsx scripts/schema-exporter.ts
-
 [
   {
     "$id": "Common-meta",
