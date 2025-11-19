@@ -1,0 +1,16 @@
+baseURL = 'https://docs.firestartr.dev/'
+languageCode = 'en-us'
+title = 'Firestartr Documentation'
+theme = 'hugo-book'
+disablePathToLower = true
+
+[params]
+  BookComments = false
+  BookSection = '*'
+  BookPortableLinks = true
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderHooks]
+      [markup.goldmark.renderHooks.link]
+        useEmbedded = 'auto'

@@ -1,0 +1,130 @@
+name: Deploy Hugo Documentation
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+        with:
+          submodules: true
+
+      - name: Create env variables
+        run: |
+          {
+            echo "WEB_CONTENT_DIR=site/web/content"
+            echo "WEB_DOCS_DIR=site/web/content/docs"
+            echo "WEB_FEATURES_DIR=site/web/content/features"
+          } >> "$GITHUB_ENV"
+
+      - name: Migrate content from site/raw to site/web/content
+        run: |
+          # Clean existing content directory
+          rm -rf "${WEB_CONTENT_DIR:?}"/*
+          mkdir -p "${WEB_DOCS_DIR}"
+
+          # Copy core docs
+          for file in site/raw/core/docs/*.md; do
+            filename="$(basename "$file")"
+            if [ "$filename" = "README.md" ]; then
+              # Copy README.md to _index.md
+              cp "$file" "${WEB_DOCS_DIR}/_index.md"
+            else
+              cp "$file" "${WEB_DOCS_DIR}/$filename"
+            fi
+          done
+
+      - name: Migrate features to site/web/content
+        run: |
+          mkdir -p "${WEB_CONTENT_DIR}"/features
+
+          # Copy features README.md to _index.md WITHOUT frontmatter
+          cp site/raw/features/README.md "${WEB_FEATURES_DIR}"/_index.md
+
+          # Process each feature directory
+          for feature_dir in site/raw/features/*/; do
+            if [ -d "$feature_dir" ]; then
+              feature_name=$(basename "$feature_dir")
+              mkdir -p "${WEB_FEATURES_DIR}/$feature_name"
+
+              for file in "$feature_dir"/*.md; do
+                if [ ! -f "$file" ]; then
+                  continue
+                fi
+
+                filename=$(basename "$file")
+                # Copy feature README.md to _index.md WITH frontmatter
+                if [ "$filename" = "README.md" ]; then
+                  index_file="${WEB_FEATURES_DIR}/$feature_name/_index.md"
+                  {
+                    echo "+++"
+                    echo "bookCollapseSection = true"
+                    echo "weight = 1"
+                    echo "+++"
+                    cat "$feature_dir/README.md"
+                  } > "$index_file"
+                elif [ "$filename" = "CHANGELOG.md" ]; then
+                  cp "$file" "${WEB_FEATURES_DIR}/$feature_name/$filename"
+                else
+                  dest_file="${WEB_FEATURES_DIR}/$feature_name/$filename"
+                  {
+                    echo "+++"
+                    echo "weight = 1"
+                    echo "+++"
+                    echo ""
+                    cat "$file"
+                  } > "$dest_file"
+                fi
+              done
+            fi
+          done
+
+          # Migrate static assets
+          mkdir -p site/web/static/images
+
+          # Copy images from core docs
+          if [ -d "site/raw/core/docs/images" ]; then
+            cp -r site/raw/core/docs/images/* site/web/static/images/ 2>/dev/null || true
+          fi
+
+          # Copy logo as favicon
+          if [ -f "logos/logo.png" ]; then
+            cp logos/logo.png site/web/static/favicon.png
+          fi
+
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v4
+        with:
+          hugo-version: '0.152.2'
+          extended: true
+
+      - name: Build Hugo site
+        run: |
+          cd site/web
+          hugo --minify
+
+      - name: Deploy to deployments branch
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./site/web/public
+          publish_branch: deployments
+          force_orphan: true
+          user_name: 'github-actions[bot]'
+          user_email: 'github-actions[bot]@users.noreply.github.com'
+          commit_message: 'Deploy documentation from ${{ github.sha }}'
