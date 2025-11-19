@@ -118,6 +118,15 @@ jobs:
           cd site/web
           hugo --minify
 
+      - name: Upload generated content and static assets
+        uses: actions/upload-artifact@v4
+        with:
+          name: hugo-generated-files
+          path: |
+            site/web/content/
+            site/web/static/
+          retention-days: 30
+
       - name: Deploy to deployments branch
         uses: peaceiris/actions-gh-pages@v4
         with:
