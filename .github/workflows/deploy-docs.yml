@@ -84,31 +84,36 @@ jobs:
                 fi
 
                 filename=$(basename "$file")
-                # Copy feature README.md to _index.md WITH frontmatter
+                dest_file="${WEB_FEATURES_DIR}/${feature_name}/${filename}"
+
                 if [ "$filename" = "README.md" ]; then
-                  index_file="${WEB_FEATURES_DIR}/$feature_name/_index.md"
+                  dest_file="${WEB_FEATURES_DIR}/${feature_name}/_index.md"
                   {
                     echo "+++"
                     echo "bookCollapseSection = true"
                     echo "weight = 1"
                     echo "+++"
-                    cat "$feature_dir/README.md"
-                  } > "$index_file"
-                  echo "    ✓ README.md → _index.md (with frontmatter)"
-                elif [ "$filename" = "CHANGELOG.md" ]; then
-                  cp "$file" "${WEB_FEATURES_DIR}/$feature_name/$filename"
-                  echo "    ✓ $filename"
-                else
-                  dest_file="${WEB_FEATURES_DIR}/$feature_name/$filename"
+                    echo ""
+                    cat "${file}"
+                  } > "${dest_file}"
+
+                  echo "    ✓ README.md → _index.md"
+                  continue
+                fi
+
+                if [ "$filename" != "CHANGELOG.md" ]; then
                   {
                     echo "+++"
                     echo "weight = 1"
                     echo "+++"
-                    echo ""
-                    cat "$file"
-                  } > "$dest_file"
-                  echo "    ✓ $filename"
+                    cat "${file}"
+                  } > "${dest_file}"
+                else
+                  # Only CHANGELOG.md
+                  cp "${file}" "${dest_file}"
                 fi
+
+                echo "    ✓ ${filename}"
               done
             fi
           done
