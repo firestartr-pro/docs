@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - feat/add-hugo-documentation-site
   workflow_dispatch:
 
 permissions:
@@ -125,15 +126,16 @@ jobs:
           path: |
             site/web/content/
             site/web/static/
+            site/web/public/
           retention-days: 30
 
-      - name: Deploy to deployments branch
-        uses: peaceiris/actions-gh-pages@v4
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./site/web/public
-          publish_branch: deployments
-          force_orphan: true
-          user_name: 'github-actions[bot]'
-          user_email: 'github-actions[bot]@users.noreply.github.com'
-          commit_message: 'Deploy documentation from ${{ github.sha }}'
+      # - name: Deploy to deployments branch
+      #   uses: peaceiris/actions-gh-pages@v4
+      #   with:
+      #     github_token: ${{ secrets.GITHUB_TOKEN }}
+      #     publish_dir: ./site/web/public
+      #     publish_branch: deployments
+      #     force_orphan: true
+      #     user_name: 'github-actions[bot]'
+      #     user_email: 'github-actions[bot]@users.noreply.github.com'
+      #     commit_message: 'Deploy documentation from ${{ github.sha }}'
