@@ -109,7 +109,7 @@ jobs:
           fi
 
       - name: Setup Hugo
-        uses: peaceiris/actions-hugo@v4
+        uses: peaceiris/actions-hugo@v3
         with:
           hugo-version: '0.152.2'
           extended: true
