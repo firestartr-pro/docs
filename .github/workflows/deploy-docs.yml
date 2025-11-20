@@ -47,7 +47,14 @@ jobs:
               cp "$file" "${WEB_CONTENT_DIR}/_index.md"
               echo "  ✓ Copied README.md → _index.md"
             else
-              cp "$file" "${WEB_CONTENT_DIR}/$filename"
+              {
+                echo "+++"
+                echo "weight = 1"
+                echo "+++"
+                echo ""
+                cat "$file"
+              } > "${WEB_CONTENT_DIR}/$filename"
+              echo "    ✓ $filename"
               echo "  ✓ Copied $filename"
             fi
           done
