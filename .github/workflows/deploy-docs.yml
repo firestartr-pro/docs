@@ -60,7 +60,7 @@ jobs:
           done
 
           # Copy images
-          cp -r site/raw/core/images "${WEB_CONTENT_DIR}/images"
+          cp -r site/raw/core/docs/images "${WEB_CONTENT_DIR}/images"
           echo "  ✓ Copied images/ directory"
           
           echo "✓ Core documentation migration complete: $file_count files copied"
