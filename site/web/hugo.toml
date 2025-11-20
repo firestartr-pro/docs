@@ -14,3 +14,5 @@ disablePathToLower = true
     [markup.goldmark.renderHooks]
       [markup.goldmark.renderHooks.link]
         useEmbedded = 'auto'
+      [markup.goldmark.renderHooks.image]
+        useEmbedded = 'auto'
