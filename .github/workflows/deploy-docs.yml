@@ -73,7 +73,7 @@ jobs:
             echo "+++"
             echo ""
             cat "site/raw/features/README.md"
-          } > "${WEB_FEATURES_DIR}"
+          } > "${WEB_FEATURES_DIR}/_index.md"
           echo "✓ Features index copied"
 
           # Process each feature directory
