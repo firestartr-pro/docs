@@ -59,10 +59,6 @@ jobs:
             fi
           done
 
-          # Copy images
-          cp -r site/raw/core/docs/images "${WEB_CONTENT_DIR}/images"
-          echo "  ✓ Copied images/ directory"
-          
           echo "✓ Core documentation migration complete: $file_count files copied"
 
       - name: Migrate features to site/web/content
@@ -141,6 +137,12 @@ jobs:
           else
             echo "✗ No logo.png found"
           fi
+
+          # Copy images
+          mkdir -p site/web/assets
+          cp -r site/raw/core/docs/images site/web/assets/images
+          echo "  ✓ Copied images/ directory to assets/"
+          
           echo "✓ Static assets migration complete"
 
       - name: Setup Hugo
