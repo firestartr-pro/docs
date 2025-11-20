@@ -44,7 +44,6 @@ jobs:
           # Copy core docs
           echo ""
           echo "Copying core documentation files..."
-          file_count=0
           for file in site/raw/core/docs/*.md; do
             filename="$(basename "$file")"
             if [ "$filename" = "README.md" ]; then
@@ -55,7 +54,6 @@ jobs:
               cp "$file" "${WEB_DOCS_DIR}/$filename"
               echo "  ✓ Copied $filename"
             fi
-            file_count=$((file_count + 1))
           done
           echo "✓ Core documentation migration complete: $file_count files copied"
 
@@ -71,15 +69,12 @@ jobs:
           # Process each feature directory
           echo ""
           echo "Processing individual features..."
-          feature_count=0
-          total_files=0
           for feature_dir in site/raw/features/*/; do
             if [ -d "$feature_dir" ]; then
               feature_name=$(basename "$feature_dir")
               mkdir -p "${WEB_FEATURES_DIR}/$feature_name"
               echo "  Processing feature: $feature_name"
 
-              feature_files=0
               for file in "$feature_dir"/*.md; do
                 if [ ! -f "$file" ]; then
                   continue
@@ -111,19 +106,12 @@ jobs:
                   } > "$dest_file"
                   echo "    ✓ $filename"
                 fi
-                feature_files=$((feature_files + 1))
               done
-
-              total_files=$((total_files + feature_files))
-              feature_count=$((feature_count + 1))
-              echo "    Total files in $feature_name: $feature_files"
             fi
           done
-          echo "✓ Features migration complete: $feature_count features, $total_files files"
 
-          # Migrate static assets
-          echo ""
-          echo "Migrating static assets..."
+      - name: Migrate static assets
+        run: |
           mkdir -p site/web/static/images
 
           # Copy images from core docs
@@ -140,7 +128,7 @@ jobs:
             cp logos/logo.png site/web/static/favicon.png
             echo "✓ Logo copied as favicon"
           else
-            echo "ℹ No logo.png found"
+            echo "✗ No logo.png found"
           fi
           echo "✓ Static assets migration complete"
 
