@@ -49,7 +49,7 @@ jobs:
             filename="$(basename "$file")"
             if [ "$filename" = "README.md" ]; then
               # Copy README.md to _index.md
-              cp "$file" "${WEB_DOCS_DIR}/_index.md"
+              cp "$file" "${WEB_CONTENT_DIR}/_index.md"
               echo "  ✓ Copied README.md → _index.md"
             else
               cp "$file" "${WEB_DOCS_DIR}/$filename"
@@ -99,7 +99,7 @@ jobs:
                   echo "    ✓ README.md → _index.md (with frontmatter)"
                 elif [ "$filename" = "CHANGELOG.md" ]; then
                   cp "$file" "${WEB_FEATURES_DIR}/$feature_name/$filename"
-                  echo "    ✓ $filename (excluded from site)"
+                  echo "    ✓ $filename"
                 else
                   dest_file="${WEB_FEATURES_DIR}/$feature_name/$filename"
                   {
@@ -109,7 +109,7 @@ jobs:
                     echo ""
                     cat "$file"
                   } > "$dest_file"
-                  echo "    ✓ $filename (with frontmatter)"
+                  echo "    ✓ $filename"
                 fi
                 feature_files=$((feature_files + 1))
               done
