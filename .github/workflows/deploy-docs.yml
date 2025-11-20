@@ -34,7 +34,7 @@ jobs:
 
       - name: Migrate content from site/raw to site/web/content
         run: |
-          mkdir -p "${WEB_CONTENT_DIR}"
+          mkdir -p "${WEB_CONTENT_DIR}"/features
           echo "✓ Content directory created"
 
           # Copy core docs
@@ -59,12 +59,10 @@ jobs:
             fi
           done
 
-          echo "✓ Core documentation migration complete: $file_count files copied"
+          echo "✓ Core documentation migration complete"
 
       - name: Migrate features to site/web/content
         run: |
-          mkdir -p "${WEB_CONTENT_DIR}"/features
-
           # Copy features README.md to _index.md WITHOUT frontmatter
           echo "Copying features index..."
           {
@@ -80,7 +78,7 @@ jobs:
           # Process each feature directory
           echo ""
           echo "Processing individual features..."
-          for feature_dir in site/raw/features/*/; do
+          find site/raw/features -mindepth 1 -maxdepth 1 -type d | while read -r feature_dir; do
             if [ -d "$feature_dir" ]; then
               feature_name=$(basename "$feature_dir")
               mkdir -p "${WEB_FEATURES_DIR}/$feature_name"
