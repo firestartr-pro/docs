@@ -66,7 +66,14 @@ jobs:
 
           # Copy features README.md to _index.md WITHOUT frontmatter
           echo "Copying features index..."
-          cp site/raw/features/README.md "${WEB_FEATURES_DIR}"/_index.md
+          {
+            echo "+++"
+            echo "bookCollapseSection = true"
+            echo "weight = 2"
+            echo "+++"
+            echo ""
+            cat "site/raw/features/README.md"
+          } > "${WEB_FEATURES_DIR}"
           echo "✓ Features index copied"
 
           # Process each feature directory
