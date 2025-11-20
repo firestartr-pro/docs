@@ -29,17 +29,13 @@ jobs:
         run: |
           {
             echo "WEB_CONTENT_DIR=site/web/content"
-            echo "WEB_DOCS_DIR=site/web/content/docs"
             echo "WEB_FEATURES_DIR=site/web/content/features"
           } >> "$GITHUB_ENV"
 
       - name: Migrate content from site/raw to site/web/content
         run: |
-          # Clean existing content directory
-          echo "Cleaning existing content directory..."
-          rm -rf "${WEB_CONTENT_DIR:?}"/*
-          mkdir -p "${WEB_DOCS_DIR}"
-          echo "✓ Content directory cleaned and recreated"
+          mkdir -p "${WEB_CONTENT_DIR}"
+          echo "✓ Content directory created"
 
           # Copy core docs
           echo ""
@@ -51,7 +47,7 @@ jobs:
               cp "$file" "${WEB_CONTENT_DIR}/_index.md"
               echo "  ✓ Copied README.md → _index.md"
             else
-              cp "$file" "${WEB_DOCS_DIR}/$filename"
+              cp "$file" "${WEB_CONTENT_DIR}/$filename"
               echo "  ✓ Copied $filename"
             fi
           done
@@ -115,9 +111,10 @@ jobs:
           mkdir -p site/web/static/images
 
           # Copy images from core docs
-          if [ -d "site/raw/core/docs/images" ]; then
-            image_count=$(find site/raw/core/docs/images -type f | wc -l)
-            cp -r site/raw/core/docs/images/* site/web/static/images/ 2>/dev/null || true
+          images_raw_dir="site/raw/core/docs/images"
+          if [ -d "${images_raw_dir}" ]; then
+            image_count=$(find "${images_raw_dir}" -type f | wc -l)
+            cp -r "${images_raw_dir}"/* site/web/static/images/ 2>/dev/null || true
             echo "✓ Copied $image_count images from core docs"
           else
             echo "ℹ No images directory found in core docs"
