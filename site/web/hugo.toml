@@ -1,4 +1,4 @@
-baseURL = 'https://docs.firestartr.dev/'
+baseURL = 'https://docs.firestartr.dev/docs/'
 languageCode = 'en-us'
 title = 'Firestartr Documentation'
 theme = 'hugo-book'
