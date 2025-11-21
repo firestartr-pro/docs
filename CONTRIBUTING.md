@@ -1,0 +1,299 @@
+# Contributing to Firestartr Documentation
+
+This guide explains how to contribute to the Firestartr documentation and test your changes locally.
+
+## Documentation Structure
+
+The documentation is organized as follows:
+
+```
+docs/
+├── site/
+│   ├── raw/                    # SOURCE - Generated from other repositories
+│   │   ├── core/               # Core Firestartr documentation
+│   │   │   ├── docs/           # Documentation markdown files
+│   │   │   ├── crds/           # Custom Resource Definitions (versioned)
+│   │   │   └── claims/         # Claims JSON schema
+│   │   └── features/           # Individual feature documentation
+│   └── web/                    # Hugo static site
+│       ├── content/            # Check artifacts from GitHub Actions
+│       ├── static/             # Check artifacts from GitHub Actions
+│       ├── themes/             # Hugo Book theme (git submodule)
+│       └── hugo.toml           # Hugo configuration
+└── .github/workflows/
+    └── deploy-docs.yml         # Automated deployment workflow
+```
+
+## Editing Documentation
+
+### Where to Edit
+
+**Always edit files in `site/raw/`** - never edit files in `site/web/content/` as they are auto-generated.
+
+- **Core documentation**: Edit files in `site/raw/core/docs/`
+- **Feature documentation**: Edit files in `site/raw/features/<feature-name>/`
+
+### Documentation Workflow
+
+1. Edit source files in `site/raw/`
+2. Migrate content locally (see steps below)
+3. Test with Hugo local server
+4. Commit and push to main branch
+5. GitHub Actions automatically migrates, builds, and deploys
+
+## Testing Documentation Locally
+
+### Prerequisites
+
+Install Hugo extended version:
+
+```bash
+# macOS (Homebrew)
+brew install hugo
+
+# Linux (Snap)
+snap install hugo
+
+# Or download from https://github.com/gohugoio/hugo/releases
+```
+
+Verify installation:
+
+```bash
+hugo version
+# Should show v0.152.2 or later with "extended"
+```
+
+### Initialize Git Submodules
+
+The Hugo Book theme is included as a git submodule. Initialize it:
+
+```bash
+git submodule update --init --recursive
+```
+
+### Step 1: Clean Previous Content
+
+Remove the auto-generated content to start fresh:
+
+```bash
+rm -rf site/web/content/*
+```
+
+### Step 2: Migrate Core Documentation
+
+Copy core documentation files from `site/raw/core/docs/` to `site/web/content/docs/`:
+
+```bash
+mkdir -p site/web/content/docs
+
+# Copy README.md as _index.md
+cp site/raw/core/docs/README.md site/web/content/docs/_index.md
+
+# Copy all other markdown files
+for file in site/raw/core/docs/*.md; do
+  filename=$(basename "$file")
+  if [ "$filename" != "README.md" ]; then
+    cp "$file" site/web/content/docs/$filename
+  fi
+done
+```
+
+### Step 3: Migrate Features Documentation
+
+Migrate the features index:
+
+```bash
+mkdir -p site/web/content/features
+cp site/raw/features/README.md site/web/content/features/_index.md
+```
+
+Then migrate each feature with frontmatter:
+
+```bash
+for feature_dir in site/raw/features/*/; do
+  if [ -d "$feature_dir" ]; then
+    feature_name=$(basename "$feature_dir")
+    mkdir -p "site/web/content/features/$feature_name"
+
+    for file in "$feature_dir"/*.md; do
+      if [ ! -f "$file" ]; then
+        continue
+      fi
+
+      filename=$(basename "$file")
+
+      if [ "$filename" = "README.md" ]; then
+        # Feature README with frontmatter
+        {
+          echo "+++"
+          echo "bookCollapseSection = true"
+          echo "weight = 1"
+          echo "+++"
+          cat "$file"
+        } > "site/web/content/features/$feature_name/_index.md"
+      elif [ "$filename" = "CHANGELOG.md" ]; then
+        # CHANGELOG without frontmatter
+        cp "$file" "site/web/content/features/$feature_name/$filename"
+      else
+        # Other files with frontmatter
+        {
+          echo "+++"
+          echo "weight = 1"
+          echo "+++"
+          echo ""
+          cat "$file"
+        } > "site/web/content/features/$feature_name/$filename"
+      fi
+    done
+  fi
+done
+```
+
+### Step 4: Migrate Static Assets
+
+Copy images and logos:
+
+```bash
+mkdir -p site/web/static/images
+
+# Copy images
+if [ -d "site/raw/core/docs/images" ]; then
+  cp -r site/raw/core/docs/images/* site/web/static/images/
+fi
+
+# Copy logo as favicon
+if [ -f "logos/logo.png" ]; then
+  cp logos/logo.png site/web/static/favicon.png
+fi
+```
+
+### Step 5: Start Hugo Server
+
+```bash
+cd site/web
+hugo server
+```
+
+The documentation site will be available at **http://localhost:1313/**
+
+Hugo will watch for changes in `site/web/content/` and automatically rebuild. However, if you edit files in `site/raw/`, you need to re-run the migration steps above.
+
+### Quick Build (Without Server)
+
+To build the static site without running a server:
+
+```bash
+cd site/web
+hugo --minify
+```
+
+Output will be in `site/web/public/`
+
+## Testing GitHub Actions Build Artifacts
+
+If you want to test the documentation site generated by the GitHub Actions workflow without setting up Hugo locally:
+
+### Step 1: Download the Artifact
+
+1. Go to the `Actions` tab in the repository
+2. Click on the workflow run you want to test
+3. Scroll down to the "Artifacts" section
+4. Download the artifact
+5. Extract the downloaded ZIP file
+
+### Step 2: Serve the Static Site
+
+Navigate to the extracted `public` directory and start a local web server:
+
+```bash
+cd public
+python3 -m http.server 8000
+```
+
+### Step 3: View the Site
+
+Open your browser and navigate to **http://localhost:8000/**
+
+You can now browse the documentation site exactly as it will appear after deployment.
+
+## Migration Rules
+
+The migration script follows these rules:
+
+### Core Documentation (`site/raw/core/docs/`)
+- `README.md` → `content/docs/_index.md` (no frontmatter)
+- Other `.md` files → copied as-is (no frontmatter)
+
+### Features Documentation (`site/raw/features/`)
+- `features/README.md` → `content/features/_index.md` (no frontmatter)
+- Feature `README.md` → `content/features/<name>/_index.md` with frontmatter:
+  ```toml
+  +++
+  bookCollapseSection = true
+  weight = 1
+  +++
+  ```
+- `CHANGELOG.md` → copied as-is (no frontmatter)
+- Other `.md` files → copied with frontmatter:
+  ```toml
+  +++
+  weight = 1
+  +++
+  ```
+
+### Static Assets
+- `site/raw/core/docs/images/*` → `site/web/static/images/`
+- `logos/logo.png` → `site/web/static/favicon.png`
+
+## Hugo Configuration
+
+The Hugo configuration is in `site/web/hugo.toml`:
+
+- **Theme**: Hugo Book
+- **Base URL**: `https://docs.firestartr.dev/`
+- **BookPortableLinks**: Enabled (allows relative markdown links to work)
+
+## Deployment
+
+When you push to the `main` branch, GitHub Actions automatically:
+
+1. Migrates content from `site/raw/` to `site/web/content/`
+2. Builds the Hugo site with minification
+3. Deploys to the `gh-pages` branch
+4. GitHub Pages serves the site from the `gh-pages` branch
+
+## Common Issues
+
+### Theme Not Found
+
+If you see "theme not found" errors:
+
+```bash
+git submodule update --init --recursive
+```
+
+### Links Not Working
+
+Make sure `BookPortableLinks = true` is set in `hugo.toml` under `[params]`.
+
+### Images Not Displaying
+
+Images should be placed in `site/raw/core/docs/images/` and referenced as:
+
+```markdown
+![Alt text](/images/filename.png)
+```
+
+## Style Guidelines
+
+- Use clear, concise language
+- Include code examples where appropriate
+- Use proper markdown formatting
+- Document all configuration options
+- Provide troubleshooting sections for complex features
+- Link to external resources when helpful
+
+## Questions?
+
+For questions or issues, please open an issue on the repository.
