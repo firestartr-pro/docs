@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main
-      - feat/add-hugo-documentation-site
+
   workflow_dispatch:
 
 permissions:
