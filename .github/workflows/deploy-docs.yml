@@ -168,9 +168,9 @@ jobs:
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./site/web/public
+          publish_dir: site/web/public
           publish_branch: gh-pages
-          destination_dir: /docs
+          destination_dir: docs
           force_orphan: true
           user_name: 'github-actions[bot]'
           user_email: 'github-actions[bot]@users.noreply.github.com'
