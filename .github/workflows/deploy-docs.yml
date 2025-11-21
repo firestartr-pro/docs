@@ -55,7 +55,6 @@ jobs:
                 cat "$file"
               } > "${WEB_CONTENT_DIR}/$filename"
               echo "    ✓ $filename"
-              echo "  ✓ Copied $filename"
             fi
           done
 
