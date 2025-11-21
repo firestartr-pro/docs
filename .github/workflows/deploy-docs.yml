@@ -163,7 +163,7 @@ jobs:
             site/web/public/
           retention-days: 30
 
-      - name: Deploy to deployments branch
+      - name: Deploy to gh-pages branch
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
