@@ -260,8 +260,8 @@ When you push to the `main` branch, GitHub Actions automatically:
 
 1. Migrates content from `site/raw/` to `site/web/content/`
 2. Builds the Hugo site with minification
-3. Deploys to the `deployments` branch
-4. GitHub Pages serves the site from the `deployments` branch
+3. Deploys to the `gh-pages` branch
+4. GitHub Pages serves the site from the `gh-pages` branch
 
 ## Common Issues
 
