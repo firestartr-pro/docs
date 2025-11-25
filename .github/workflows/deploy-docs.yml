@@ -1,0 +1,177 @@
+name: Deploy Hugo Documentation
+
+on:
+  push:
+    branches:
+      - main
+
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+        with:
+          submodules: true
+
+      - name: Create env variables
+        run: |
+          {
+            echo "WEB_CONTENT_DIR=site/web/content"
+            echo "WEB_FEATURES_DIR=site/web/content/features"
+          } >> "$GITHUB_ENV"
+
+      - name: Migrate content from site/raw to site/web/content
+        run: |
+          mkdir -p "${WEB_CONTENT_DIR}"/features
+          echo "✓ Content directory created"
+
+          # Copy core docs
+          echo ""
+          echo "Copying other documentation files/images ..."
+          for file in site/raw/core/docs/*.md; do
+            filename="$(basename "$file")"
+            if [ "$filename" = "README.md" ]; then
+              # Copy README.md to _index.md
+              cp "$file" "${WEB_CONTENT_DIR}/_index.md"
+              echo "  ✓ Copied README.md → _index.md"
+            else
+              {
+                echo "+++"
+                echo "weight = 1"
+                echo "+++"
+                echo ""
+                cat "$file"
+              } > "${WEB_CONTENT_DIR}/$filename"
+              echo "    ✓ $filename"
+            fi
+          done
+
+          echo "✓ Core documentation migration complete"
+
+      - name: Migrate features to site/web/content
+        run: |
+          # Copy features README.md to _index.md WITHOUT frontmatter
+          echo "Copying features index..."
+          {
+            echo "+++"
+            echo "bookCollapseSection = true"
+            echo "weight = 2"
+            echo "+++"
+            echo ""
+            cat "site/raw/features/README.md"
+          } > "${WEB_FEATURES_DIR}/_index.md"
+          echo "✓ Features index copied"
+
+          # Process each feature directory
+          echo ""
+          echo "Processing individual features..."
+          find site/raw/features -mindepth 1 -maxdepth 1 -type d | while read -r feature_dir; do
+            if [ -d "$feature_dir" ]; then
+              feature_name=$(basename "$feature_dir")
+              mkdir -p "${WEB_FEATURES_DIR}/$feature_name"
+              echo "  Processing feature: $feature_name"
+
+              for file in "$feature_dir"/*.md; do
+                if [ ! -f "$file" ]; then
+                  continue
+                fi
+
+                filename=$(basename "$file")
+                dest_file="${WEB_FEATURES_DIR}/${feature_name}/${filename}"
+
+                if [ "$filename" = "README.md" ]; then
+                  dest_file="${WEB_FEATURES_DIR}/${feature_name}/_index.md"
+                  {
+                    echo "+++"
+                    echo "bookCollapseSection = true"
+                    echo "weight = 1"
+                    echo "+++"
+                    echo ""
+                    cat "${file}"
+                  } > "${dest_file}"
+
+                  echo "    ✓ README.md → _index.md"
+                  continue
+                fi
+
+                if [ "$filename" != "CHANGELOG.md" ]; then
+                  {
+                    echo "+++"
+                    echo "weight = 1"
+                    echo "+++"
+                    cat "${file}"
+                  } > "${dest_file}"
+                else
+                  # Only CHANGELOG.md
+                  cp "${file}" "${dest_file}"
+                fi
+
+                echo "    ✓ ${filename}"
+              done
+            fi
+          done
+
+      - name: Migrate static assets
+        run: |
+          mkdir -p site/web/static
+
+          # Copy logo as favicon
+          if [ -f "logos/logo.png" ]; then
+            cp logos/logo.png site/web/static/favicon.png
+            echo "✓ Logo copied as favicon"
+          else
+            echo "✗ No logo.png found"
+          fi
+
+          # Copy images
+          mkdir -p site/web/assets
+          cp -r site/raw/core/docs/images site/web/assets/images
+          echo "  ✓ Copied images/ directory to assets/"
+          
+          echo "✓ Static assets migration complete"
+
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v3
+        with:
+          hugo-version: '0.152.2'
+          extended: true
+
+      - name: Build Hugo site
+        working-directory: site/web
+        run: |
+          hugo --minify
+
+      - name: Upload generated content and static assets
+        uses: actions/upload-artifact@v4
+        with:
+          name: hugo-generated-files
+          path: |
+            site/web/content/
+            site/web/static/
+            site/web/public/
+          retention-days: 30
+
+      - name: Deploy to gh-pages branch
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: site/web/public
+          publish_branch: gh-pages
+          destination_dir: docs
+          force_orphan: true
+          user_name: 'github-actions[bot]'
+          user_email: 'github-actions[bot]@users.noreply.github.com'
+          commit_message: 'Deploy documentation from ${{ github.sha }}'
+          cname: docs.firestartr.dev
