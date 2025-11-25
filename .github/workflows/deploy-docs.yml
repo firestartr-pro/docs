@@ -1,11 +1,9 @@
-name: Deploy Hugo Documentation
+name: Deploy Firestartr Documentation
 
 on:
   push:
     branches:
       - main
-      - feat/redirect-to-docs
-
   workflow_dispatch:
 
 permissions:
@@ -19,23 +17,20 @@ concurrency:
 
 jobs:
   deploy:
-    runs-on: ubuntu-latest
+    env:
+      WEB_CONTENT_DIR: "site/web/content"
+      WEB_FEATURES_DIR: "site/web/content/features"
+    runs-on: ubuntu-24.04
     steps:
       - name: Checkout repository
         uses: actions/checkout@v5
         with:
           submodules: true
 
-      - name: Create env variables
-        run: |
-          {
-            echo "WEB_CONTENT_DIR=site/web/content"
-            echo "WEB_FEATURES_DIR=site/web/content/features"
-          } >> "$GITHUB_ENV"
-
       - name: Migrate content from site/raw to site/web/content
         run: |
-          mkdir -p "${WEB_CONTENT_DIR}"/features
+          mkdir -p "${WEB_CONTENT_DIR}"
+          mkdir -p "${WEB_FEATURES_DIR}"
           echo "✓ Content directory created"
 
           # Copy core docs
@@ -58,10 +53,9 @@ jobs:
               echo "    ✓ $filename"
             fi
           done
-
           echo "✓ Core documentation migration complete"
 
-      - name: Migrate features to site/web/content
+      - name: Migrate features to ${{ env.WEB_FEATURES_DIR }}
         run: |
           # Copy features README.md to _index.md WITHOUT frontmatter
           echo "Copying features index..."
@@ -144,7 +138,7 @@ jobs:
           echo "✓ Static assets migration complete"
 
       - name: Setup Hugo
-        uses: peaceiris/actions-hugo@v3
+        uses: peaceiris/actions-hugo@75d2e84710de30f6ff7268e08f310b60ef14033f
         with:
           hugo-version: '0.152.2'
           extended: true
@@ -181,7 +175,7 @@ jobs:
           retention-days: 30
 
       - name: Deploy to gh-pages branch
-        uses: peaceiris/actions-gh-pages@v4
+        uses: peaceiris/actions-gh-pages@4f9cc6602d3f66b9c108549d475ec49e8ef4d45e
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: deploy-temp
