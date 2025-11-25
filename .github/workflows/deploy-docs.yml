@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - feat/redirect-to-docs
 
   workflow_dispatch:
 
@@ -153,6 +154,21 @@ jobs:
         run: |
           hugo --minify
 
+      - name: Prepare deployment with root redirect
+        run: |
+          # Create a temporary directory for deployment
+          mkdir -p deploy-temp/docs
+
+          # Copy Hugo-generated content to docs subdirectory
+          cp -r site/web/public/* deploy-temp/docs/
+
+          # Copy redirect index.html to root
+          cp site/web/redirect-index.html deploy-temp/index.html
+
+          echo "✓ Deployment structure prepared:"
+          echo "  - Root redirect: deploy-temp/index.html"
+          echo "  - Hugo content: deploy-temp/docs/"
+
       - name: Upload generated content and static assets
         uses: actions/upload-artifact@v4
         with:
@@ -161,15 +177,15 @@ jobs:
             site/web/content/
             site/web/static/
             site/web/public/
+            deploy-temp/
           retention-days: 30
 
       - name: Deploy to gh-pages branch
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: site/web/public
+          publish_dir: deploy-temp
           publish_branch: gh-pages
-          destination_dir: docs
           force_orphan: true
           user_name: 'github-actions[bot]'
           user_email: 'github-actions[bot]@users.noreply.github.com'
