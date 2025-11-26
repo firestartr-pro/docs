@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.7.0](https://github.com/prefapp/features/compare/terraform-infra-v1.6.0...terraform-infra-v1.7.0) (2025-11-26)
+
+
+### Features
+
+* exclude files from terraform plan ([#762](https://github.com/prefapp/features/issues/762)) ([e448ad6](https://github.com/prefapp/features/commit/e448ad680a05d06cd4d2ad04ab050631cda5b7ba))
+
 ## [1.6.0](https://github.com/prefapp/features/compare/terraform-infra-v1.5.2...terraform-infra-v1.6.0) (2025-11-07)
 
 
