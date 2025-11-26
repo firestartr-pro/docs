@@ -138,7 +138,7 @@ jobs:
           echo "✓ Static assets migration complete"
 
       - name: Setup Hugo
-        uses: peaceiris/actions-hugo@75d2e84710de30f6ff7268e08f310b60ef14033f
+        uses: peaceiris/actions-hugo@75d2e84710de30f6ff7268e08f310b60ef14033f # v3
         with:
           hugo-version: '0.152.2'
           extended: true
@@ -175,7 +175,7 @@ jobs:
           retention-days: 30
 
       - name: Deploy to gh-pages branch
-        uses: peaceiris/actions-gh-pages@4f9cc6602d3f66b9c108549d475ec49e8ef4d45e
+        uses: peaceiris/actions-gh-pages@4f9cc6602d3f66b9c108549d475ec49e8ef4d45e # v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: deploy-temp
