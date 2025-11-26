@@ -1,0 +1,216 @@
+{
+  "features": [
+    {
+      "name": "build_and_dispatch_docker_images",
+      "version": "5.1.3",
+      "files": [
+        {
+          "name": "README.md",
+          "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/features/build_and_dispatch_docker_images/README.md"
+        },
+        {
+          "name": "CHANGELOG.md",
+          "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/features/build_and_dispatch_docker_images/CHANGELOG.md"
+        }
+      ]
+    },
+    {
+      "name": "catalog_repo",
+      "version": "1.2.0",
+      "files": [
+        {
+          "name": "README.md",
+          "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/features/catalog_repo/README.md"
+        },
+        {
+          "name": "CHANGELOG.md",
+          "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/features/catalog_repo/CHANGELOG.md"
+        }
+      ]
+    },
+    {
+      "name": "charts_repo",
+      "version": "1.4.2",
+      "files": [
+        {
+          "name": "README.md",
+          "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/features/charts_repo/README.md"
+        },
+        {
+          "name": "CHANGELOG.md",
+          "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/features/charts_repo/CHANGELOG.md"
+        }
+      ]
+    },
+    {
+      "name": "claims_repo",
+      "version": "1.15.4",
+      "files": [
+        {
+          "name": "README.md",
+          "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/features/claims_repo/README.md"
+        },
+        {
+          "name": "CHANGELOG.md",
+          "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/features/claims_repo/CHANGELOG.md"
+        }
+      ]
+    },
+    {
+      "name": "firestartr_repo",
+      "version": "1.0.0",
+      "files": [
+        {
+          "name": "README.md",
+          "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/features/firestartr_repo/README.md"
+        },
+        {
+          "name": "CHANGELOG.md",
+          "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/features/firestartr_repo/CHANGELOG.md"
+        }
+      ]
+    },
+    {
+      "name": "issue_templates",
+      "version": "1.2.1",
+      "files": [
+        {
+          "name": "README.md",
+          "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/features/issue_templates/README.md"
+        },
+        {
+          "name": "CHANGELOG.md",
+          "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/features/issue_templates/CHANGELOG.md"
+        }
+      ]
+    },
+    {
+      "name": "release_please",
+      "version": "1.4.0",
+      "files": [
+        {
+          "name": "README.md",
+          "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/features/release_please/README.md"
+        },
+        {
+          "name": "CHANGELOG.md",
+          "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/features/release_please/CHANGELOG.md"
+        }
+      ]
+    },
+    {
+      "name": "state_github",
+      "version": "1.0.0",
+      "files": [
+        {
+          "name": "README.md",
+          "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/features/state_github/README.md"
+        },
+        {
+          "name": "CHANGELOG.md",
+          "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/features/state_github/CHANGELOG.md"
+        }
+      ]
+    },
+    {
+      "name": "state_infra",
+      "version": "1.1.0",
+      "files": [
+        {
+          "name": "README.md",
+          "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/features/state_infra/README.md"
+        },
+        {
+          "name": "CHANGELOG.md",
+          "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/features/state_infra/CHANGELOG.md"
+        }
+      ]
+    },
+    {
+      "name": "state_repo",
+      "version": "2.2.0",
+      "files": [
+        {
+          "name": "README.md",
+          "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/features/state_repo/README.md"
+        },
+        {
+          "name": "CHANGELOG.md",
+          "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/features/state_repo/CHANGELOG.md"
+        }
+      ]
+    },
+    {
+      "name": "state_repo_apps",
+      "version": "3.6.0",
+      "files": [
+        {
+          "name": "KUBERNETES_README.md",
+          "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/features/state_repo_apps/KUBERNETES_README.md"
+        },
+        {
+          "name": "README.md",
+          "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/features/state_repo_apps/README.md"
+        },
+        {
+          "name": "SECRETS_README.md",
+          "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/features/state_repo_apps/SECRETS_README.md"
+        },
+        {
+          "name": "TFWORKSPACES_README.md",
+          "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/features/state_repo_apps/TFWORKSPACES_README.md"
+        },
+        {
+          "name": "CHANGELOG.md",
+          "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/features/state_repo_apps/CHANGELOG.md"
+        }
+      ]
+    },
+    {
+      "name": "state_repo_sys_services",
+      "version": "2.3.2",
+      "files": [
+        {
+          "name": "README.md",
+          "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/features/state_repo_sys_services/README.md"
+        },
+        {
+          "name": "CHANGELOG.md",
+          "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/features/state_repo_sys_services/CHANGELOG.md"
+        }
+      ]
+    },
+    {
+      "name": "tech_docs",
+      "version": "0.10.2",
+      "files": [
+        {
+          "name": "README.md",
+          "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/features/tech_docs/README.md"
+        },
+        {
+          "name": "CHANGELOG.md",
+          "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/features/tech_docs/CHANGELOG.md"
+        }
+      ]
+    },
+    {
+      "name": "terraform-infra",
+      "version": "1.6.0",
+      "files": [
+        {
+          "name": "ACCOUNTS_README.md",
+          "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/features/terraform-infra/ACCOUNTS_README.md"
+        },
+        {
+          "name": "README.md",
+          "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/features/terraform-infra/README.md"
+        },
+        {
+          "name": "CHANGELOG.md",
+          "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/features/terraform-infra/CHANGELOG.md"
+        }
+      ]
+    }
+  ]
+}
