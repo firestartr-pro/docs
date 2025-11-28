@@ -1,0 +1,24 @@
+{
+  "modules": [
+    {
+      "name": "aws-cloudfront-delivery",
+      "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/aws-cloudfront-delivery/README.md"
+    },
+    {
+      "name": "aws-oidc",
+      "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/aws-oidc/README.md"
+    },
+    {
+      "name": "aws-parameter-store",
+      "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/aws-parameter-store/README.md"
+    },
+    {
+      "name": "aws-rds",
+      "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/aws-rds/README.md"
+    },
+    {
+      "name": "aws-terraform-backend",
+      "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/aws-terraform-backend/README.md"
+    }
+  ]
+}
