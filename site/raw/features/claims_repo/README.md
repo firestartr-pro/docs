@@ -51,7 +51,7 @@ This feature installs the workflows necessary for manually hydrating and deletin
 
 1. Head over to the `Actions` tab of the `claims` repo and select the `📜 Import GitHub resources` workflow on the left side list.
 
-![Example 1](https://github.com/user-attachments/assets/ea3b780f-7249-4709-97d9-7d213283cf5a)
+![The Actions tabs](./images/claims_repo-example_3-1.jpg)
 *The Actions tabs*
 
 2. Select `Run workflow` on the right hand side of the screen, and add filters to the type of resources you want to import. The filters can be:
@@ -60,7 +60,7 @@ This feature installs the workflows necessary for manually hydrating and deletin
 - **NAME=[name]**: import all resources with the name [name]. The name must be an exact match.
 - **SKIP=SKIP**: skip this import.
 
-![Example 8](https://github.com/user-attachments/assets/d7a83ab2-a1c3-4946-8d06-09d05bdcb868)
+![Import GitHub resources](./images/claims_repo-example_3-2.jpg)
 
 3. Press the green button and wait for the workflow to finish. Once the workflow is finished, a PR will be created both in the `state-github` repo and the `claims` repo. Merge them both and the resource will be imported
 
@@ -69,7 +69,7 @@ This feature installs the workflows necessary for manually hydrating and deletin
 
 1. Head over to the `Actions` tab of the `claims` repo and select the `Update claims' features` workflow on the left side list.
 
-![Example 1](https://github.com/user-attachments/assets/ea3b780f-7249-4709-97d9-7d213283cf5a)
+![The Actions tabs](./images/claims_repo-example_4-1.jpg)
 *The Actions tabs*
 
 2. Select `Run workflow` on the right hand side of the screen, and add filters to narrow the features and claims you want to update. The filters can be:
@@ -78,7 +78,7 @@ This feature installs the workflows necessary for manually hydrating and deletin
 - **Claims list**: optional filter. Either a single `claim.name`, a list of comma separated values, each being a different `claim.name` or an empty value, which will update all applicable claims. Note that `claim.name` refers to the value of the `name` field inside the `claim` YAML file and not to the name of the YAML file itself.
 - **Version constraint**: optional filter. Either a valid version, a valid version constraint or an empty value, which will update to the latest avaliable version. A valid version is a version that's avaliable for all features in `Features list`, in the `major.minor.patch` semver format, and will result in the feature being updated to that exact version. Valid version constraint documentation can be found [here](https://github.com/Masterminds/semver?tab=readme-ov-file#basic-comparisons) (comparisions work fine too) and will result in the feature being updated to the latest version avaliable that satisfies the specified constraint.
 
-![Example 9](https://github.com/user-attachments/assets/ea00aa10-18ea-4cd7-af6b-7029c18b3438)
+![Update claims' features](./images/claims_repo-example_4-2.jpg)
 
 
 3. Press the green button and wait for the workflow to finish. Once the workflow is finished, a PR will be created for each claim that was updated. The PR body will contain a list of changes made since the version that was currently installed up until the version that was updated to. Merge them all and then [hydrate the claims](#hydrating-claims)
