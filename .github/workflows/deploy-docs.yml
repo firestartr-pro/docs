@@ -131,6 +131,8 @@ jobs:
           fi
 
           # Copy all images from site/raw/images (core + features)
+          mkdir -p site/web/assets/images/
+
           if [ -d "site/raw/images" ]; then
             cp -r site/raw/images/* site/web/assets/images/
             echo "✓ Copied images from site/raw/images"
