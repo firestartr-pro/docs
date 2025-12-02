@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.6.1](https://github.com/prefapp/features/compare/state_repo_apps-v3.6.0...state_repo_apps-v3.6.1) (2025-11-26)
+
+
+### Bug Fixes
+
+* state_repo_apps generate deployment ([#752](https://github.com/prefapp/features/issues/752)) ([d69436d](https://github.com/prefapp/features/commit/d69436ddc437f0035747625de91bbc8079b89159))
+
 ## [3.6.0](https://github.com/prefapp/features/compare/state_repo_apps-v3.5.0...state_repo_apps-v3.6.0) (2025-10-09)
 
 

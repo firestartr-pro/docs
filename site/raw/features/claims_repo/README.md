@@ -10,20 +10,20 @@ This feature installs the workflows necessary for manually hydrating and deletin
 
 3. Head over to the `Actions` tab of the `claims` repo and select the `<Your claim type> claim: hydrate` workflow on the left side list.
 
-![Select workflow](./images/claims_repo-example_1-1.jpg)
+![Example 1](https://github.com/user-attachments/assets/ea3b780f-7249-4709-97d9-7d213283cf5a)
 *The Actions tabs*
 
 4. Select `Run workflow` on the right hand side of the screen, introduce the name of the claim to be hydrated and select the claim type (if it is a GitHub claim). NOTE: the name of the claim should be the value of the field `name` inside the claim YAML. Setting this value to the file name may result in the workflow not working as expected.
 
-![Run workflow](./images/claims_repo-example_1-2.jpg)
+![Example 2](https://github.com/user-attachments/assets/116962a7-c05f-48ac-8a0e-d0b9620b1153)
 *Hydrating a GitHub claim*
 
-![Hydrating GitHub claim](./images/claims_repo-example_1-3.jpg)
+![Example 4](https://github.com/user-attachments/assets/43a3a379-9e32-46e9-9239-c0b7b06bddef)
 *Hydrating a TFWorkspace claim*
 
 5. Press the green button and wait for the workflow to finish. When it's done, click its entry in the list and there'll be a link to the `state-github` or `state-infra` repo PR. You can use it to review the PR and merge it if everything is correct.
 
-![Review result](./images/claims_repo-example_1-4.jpg)
+![Example 6](https://github.com/user-attachments/assets/1baf53bd-8b15-43eb-8b6e-b64121524b82)
 *The action summary with a link to the state repo*
 
 ## Deleting claims
