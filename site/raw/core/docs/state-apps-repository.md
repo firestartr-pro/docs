@@ -55,7 +55,7 @@ There are two main flows in the state repository:
 * Automatic image update: Whenever a new spanshot, pre-release or release is created on any of the microservices, the image is built and pushed to the state repository.
 * On demand deployments: State values may be updated at any time by the user, just by updating the values files. Then, to apply the changes, the user must trigger the deployment.
 
-![State Apps Dispatch Flow](./images/state-apps-dispatch.png)
+![State Apps Dispatch Flow](./images/core-state-apps-dispatch.png)
 
 
 Has been made this way to follow the GitOps principles, where the state of the system is stored in a Git repository as code, and the changes are applied through pull requests and merges.
@@ -65,11 +65,11 @@ Keeping the actual state of the system in a [*wet repository*](https://cloud.goo
 
 The automatic image update flow is triggered by the creation of a new snapshot, pre-release or release on any of the microservices.
 
-![State Apps Dispatch Detail](./images/state-apps-dispatch-detail.png)
+![State Apps Dispatch Detail](./images/core-state-apps-dispatch-detail.png)
 
 Then it dispatches new deployments with the new microservice images to the state repository.
 
-![Image update PR example](./images/state-apps-image-update-pr.png)
+![Image update PR example](./images/core-state-apps-image-update-pr.png)
 
 > Additionally the person that triggered the image update is added as reviewer together with appropiate labels to be abel to track it down more easily
 
@@ -87,7 +87,7 @@ being able to use [glob patterns](https://docs.oracle.com/en-us/iaas/Content/dev
 
 Then *n* deployment pull requests are created, the user must review and merge them to apply the changes.
 
-![On-demand deployment example](./images/state-apps-on-demand-deployment.png)
+![On-demand deployment example](./images/core-state-apps-on-demand-deployment.png)
 
 
 > If a pull request for a given environment is already open, the deployment will throw an error for that environment, making the user to close or merging the pull request before triggering the deployment again.

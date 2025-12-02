@@ -560,6 +560,14 @@
                 },
                 "secrets": {
                   "$ref": "firestartr.dev://github/GithubComponentClaimSecrets"
+                },
+                "topics": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "maxLength": 50,
+                    "pattern": "^[a-z0-9][a-z0-9-]*$"
+                  }
                 }
               },
               "required": [

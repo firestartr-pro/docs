@@ -1164,6 +1164,12 @@ spec:
                       type: boolean
                     pages:
                       type: object
+                    topics:
+                      type: array
+                      items:
+                        type: string
+                        description: "Topics of this repo"
+                      default: []
                     visibility:
                       type: string
                       enum:
