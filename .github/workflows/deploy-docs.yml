@@ -130,11 +130,12 @@ jobs:
             echo "✗ No logo.png found"
           fi
 
-          # Copy images
-          mkdir -p site/web/assets
-          cp -r site/raw/core/docs/images site/web/assets/images
-          echo "  ✓ Copied images/ directory to assets/"
-          
+          # Copy all images from site/raw/images (core + features)
+          if [ -d "site/raw/images" ]; then
+            cp -r site/raw/images/* site/web/assets/images/
+            echo "✓ Copied images from site/raw/images"
+          fi
+
           echo "✓ Static assets migration complete"
 
       - name: Setup Hugo
