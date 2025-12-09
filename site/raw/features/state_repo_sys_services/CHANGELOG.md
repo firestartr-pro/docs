@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.3.3](https://github.com/prefapp/features/compare/state_repo_sys_services-v2.3.2...state_repo_sys_services-v2.3.3) (2025-11-26)
+
+
+### Bug Fixes
+
+* github emojis ([c395560](https://github.com/prefapp/features/commit/c3955608af8464e36aa370ab3776d58fc661f59e))
+
 ## [2.3.2](https://github.com/prefapp/features/compare/state_repo_sys_services-v2.3.1...state_repo_sys_services-v2.3.2) (2025-11-07)
 
 

@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.16.0](https://github.com/prefapp/features/compare/claims_repo-v1.15.4...claims_repo-v1.16.0) (2025-12-09)
+
+
+### Features
+
+* Add automerge input ([#776](https://github.com/prefapp/features/issues/776)) ([1749ca3](https://github.com/prefapp/features/commit/1749ca3e615ba2f3a76881fdb900a988bf42084f))
+
 ## [1.15.4](https://github.com/prefapp/features/compare/claims_repo-v1.15.3...claims_repo-v1.15.4) (2025-10-21)
 
 
