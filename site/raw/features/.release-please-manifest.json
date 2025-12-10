@@ -6,7 +6,7 @@
     "packages/state_repo": "2.2.0",
     "packages/state_infra": "1.1.0",
     "packages/state_repo_sys_services": "2.3.4",
-    "packages/state_repo_apps": "3.6.1",
+    "packages/state_repo_apps": "3.6.2",
     "packages/claims_repo": "1.16.0",
     "packages/state_github": "1.0.0",
     "packages/firestartr_repo": "1.0.0",

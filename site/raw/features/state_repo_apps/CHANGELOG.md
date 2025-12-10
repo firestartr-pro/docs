@@ -1,5 +1,13 @@
 # Changelog
 
+## [3.6.2](https://github.com/prefapp/features/compare/state_repo_apps-v3.6.1...state_repo_apps-v3.6.2) (2025-12-10)
+
+
+### Bug Fixes
+
+* Include gitkeep in state features ([#743](https://github.com/prefapp/features/issues/743)) ([7250b58](https://github.com/prefapp/features/commit/7250b58c16aacb222b333aeed7ddfd8fc25f4e3a))
+* Set oci path using home instead of pwd ([#782](https://github.com/prefapp/features/issues/782)) ([1362466](https://github.com/prefapp/features/commit/136246659e4a21d269edb2cae18b0e8ccc5570da))
+
 ## [3.6.1](https://github.com/prefapp/features/compare/state_repo_apps-v3.6.0...state_repo_apps-v3.6.1) (2025-11-26)
 
 
