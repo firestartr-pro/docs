@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.3.4](https://github.com/prefapp/features/compare/state_repo_sys_services-v2.3.3...state_repo_sys_services-v2.3.4) (2025-12-10)
+
+
+### Bug Fixes
+
+* Set oci path using home instead of pwd ([#782](https://github.com/prefapp/features/issues/782)) ([1362466](https://github.com/prefapp/features/commit/136246659e4a21d269edb2cae18b0e8ccc5570da))
+
 ## [2.3.3](https://github.com/prefapp/features/compare/state_repo_sys_services-v2.3.2...state_repo_sys_services-v2.3.3) (2025-11-26)
 
 
