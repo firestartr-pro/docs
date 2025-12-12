@@ -541,18 +541,6 @@
                   "type": "string",
                   "description": "The github organization name"
                 },
-                "name": {
-                  "type": "string",
-                  "description": "The github repo name"
-                },
-                "orgPermissions": {
-                  "type": "string",
-                  "description": "The level of org Permission"
-                },
-                "archiveOnDestroy": {
-                  "type": "boolean",
-                  "description": "whether this repo should be archived when the claim is deleted"
-                },
                 "visibility": {
                   "type": "string",
                   "enum": [
@@ -560,10 +548,6 @@
                     "public",
                     "internal"
                   ]
-                },
-                "description": {
-                  "type": "string",
-                  "description": "The purpose of this repo"
                 },
                 "features": {
                   "type": "array",
@@ -755,6 +739,29 @@
     {
       "$id": "TerraformProvider",
       "definitions": {
+        "TerraformProviderFiles": {
+          "$id": "firestartr.dev://terraform/TerraformProviderFiles",
+          "description": "A list of files included in the terraform project",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "source": {
+                "type": "string",
+                "description": "path of the original file to include in the final CR"
+              },
+              "destination": {
+                "type": "string",
+                "description": "path where the file will be placed in the final terraform project"
+              }
+            },
+            "additionalProperties": false,
+            "required": [
+              "source",
+              "destination"
+            ]
+          }
+        },
         "TerraformProvider": {
           "$id": "firestartr.dev://terraform/TerraformProvider",
           "type": "object",
@@ -788,6 +795,9 @@
                     "Remote",
                     "Inline"
                   ]
+                },
+                "files": {
+                  "$ref": "firestartr.dev://terraform/TerraformProviderFiles"
                 },
                 "sync": {
                   "type": "object",
