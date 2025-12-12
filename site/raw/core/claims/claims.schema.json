@@ -541,6 +541,18 @@
                   "type": "string",
                   "description": "The github organization name"
                 },
+                "name": {
+                  "type": "string",
+                  "description": "The github repo name"
+                },
+                "orgPermissions": {
+                  "type": "string",
+                  "description": "The level of org Permission"
+                },
+                "archiveOnDestroy": {
+                  "type": "boolean",
+                  "description": "whether this repo should be archived when the claim is deleted"
+                },
                 "visibility": {
                   "type": "string",
                   "enum": [
@@ -548,6 +560,10 @@
                     "public",
                     "internal"
                   ]
+                },
+                "description": {
+                  "type": "string",
+                  "description": "The purpose of this repo"
                 },
                 "features": {
                   "type": "array",

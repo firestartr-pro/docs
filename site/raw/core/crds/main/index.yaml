@@ -1156,6 +1156,7 @@ spec:
                       type: boolean
                     archiveOnDestroy:
                       type: boolean
+                      default: true
                     allowUpdateBranch:
                       type: boolean
                     hasIssues:
