@@ -1816,6 +1816,22 @@ spec:
                     - Inline
                 values:
                   type: string
+                files: # <--- New property
+                  type: array
+                  description: 'A list of files to be created in the Terraform workspace directory.'
+                  default: [] 
+                  items:
+                    type: object
+                    required:
+                      - content
+                      - path
+                    properties:
+                      content:
+                        type: string
+                        description: 'The base64 encoded content of the file.'
+                      path:
+                        type: string
+                        description: 'The target relative path for the file within the Terraform workspace directory.'
                 references:
                   type: array
                   items:
