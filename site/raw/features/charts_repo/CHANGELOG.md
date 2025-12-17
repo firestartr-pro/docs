@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.4.3](https://github.com/prefapp/features/compare/charts_repo-v1.4.2...charts_repo-v1.4.3) (2025-12-17)
+
+
+### Bug Fixes
+
+* **charts_repo:** fix version extraction in generate-artifact.yaml ([#784](https://github.com/prefapp/features/issues/784)) ([728c539](https://github.com/prefapp/features/commit/728c5391d8a9d5b548688ebf40ec5f99a26b8a43))
+
 ## [1.4.2](https://github.com/prefapp/features/compare/charts_repo-v1.4.1...charts_repo-v1.4.2) (2025-09-10)
 
 
