@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.7.0](https://github.com/prefapp/features/compare/state_repo_apps-v3.6.2...state_repo_apps-v3.7.0) (2025-12-23)
+
+
+### Features
+
+* Add validations to deployment branch state repo apps ([#780](https://github.com/prefapp/features/issues/780)) ([5c96504](https://github.com/prefapp/features/commit/5c96504c9b443d86a95cfbd3d0c847b46af7652d))
+
 ## [3.6.2](https://github.com/prefapp/features/compare/state_repo_apps-v3.6.1...state_repo_apps-v3.6.2) (2025-12-10)
 
 
