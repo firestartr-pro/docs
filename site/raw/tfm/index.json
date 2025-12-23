@@ -5,6 +5,18 @@
       "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/aws-cloudfront-delivery/README.md"
     },
     {
+      "name": "aws-ecr",
+      "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/aws-ecr/README.md"
+    },
+    {
+      "name": "aws-ecs",
+      "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/aws-ecs/README.md"
+    },
+    {
+      "name": "aws-eks",
+      "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/aws-eks/README.md"
+    },
+    {
       "name": "aws-oidc",
       "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/aws-oidc/README.md"
     },
@@ -17,8 +29,124 @@
       "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/aws-rds/README.md"
     },
     {
+      "name": "aws-sso",
+      "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/aws-sso/README.md"
+    },
+    {
       "name": "aws-terraform-backend",
       "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/aws-terraform-backend/README.md"
+    },
+    {
+      "name": "aws-vpc",
+      "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/aws-vpc/README.md"
+    },
+    {
+      "name": "azure-aks",
+      "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-aks/README.md"
+    },
+    {
+      "name": "azure-app-gateway",
+      "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-app-gateway/README.md"
+    },
+    {
+      "name": "azure-application",
+      "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-application/README.md"
+    },
+    {
+      "name": "azure-backup-vault",
+      "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-backup-vault/README.md"
+    },
+    {
+      "name": "azure-customrole",
+      "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-customrole/README.md"
+    },
+    {
+      "name": "azure-disks",
+      "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-disks/README.md"
+    },
+    {
+      "name": "azure-disks-backup",
+      "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-disks-backup/README.md"
+    },
+    {
+      "name": "azure-event-hub",
+      "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-event-hub/README.md"
+    },
+    {
+      "name": "azure-flexible-server-postgresql",
+      "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-flexible-server-postgresql/README.md"
+    },
+    {
+      "name": "azure-kv",
+      "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-kv/README.md"
+    },
+    {
+      "name": "azure-mi",
+      "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-mi/README.md"
+    },
+    {
+      "name": "azure-oidc",
+      "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-oidc/README.md"
+    },
+    {
+      "name": "azure-public-ip",
+      "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-public-ip/README.md"
+    },
+    {
+      "name": "azure-public-prefix",
+      "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-public-prefix/README.md"
+    },
+    {
+      "name": "azure-redis-cache",
+      "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-redis-cache/README.md"
+    },
+    {
+      "name": "azure-resource-group",
+      "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-resource-group/README.md"
+    },
+    {
+      "name": "azure-role-assignment",
+      "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-role-assignment/README.md"
+    },
+    {
+      "name": "azure-sa",
+      "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-sa/README.md"
+    },
+    {
+      "name": "azure-sa-backup",
+      "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-sa-backup/README.md"
+    },
+    {
+      "name": "azure-vmss",
+      "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-vmss/README.md"
+    },
+    {
+      "name": "azure-vnet-and-subnet",
+      "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-vnet-and-subnet/README.md"
+    },
+    {
+      "name": "azure-vnet-peering",
+      "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-vnet-peering/README.md"
+    },
+    {
+      "name": "azuread-group",
+      "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azuread-group/README.md"
+    },
+    {
+      "name": "cloudamqp-cluster",
+      "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/cloudamqp-cluster/README.md"
+    },
+    {
+      "name": "mongodb-atlas-azure-privatelink",
+      "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/mongodb-atlas-azure-privatelink/README.md"
+    },
+    {
+      "name": "mongodb-atlas-cluster",
+      "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/mongodb-atlas-cluster/README.md"
+    },
+    {
+      "name": "mongodb-atlas-project",
+      "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/mongodb-atlas-project/README.md"
     }
   ]
 }
