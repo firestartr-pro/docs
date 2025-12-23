@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.7.1](https://github.com/prefapp/features/compare/state_repo_apps-v3.7.0...state_repo_apps-v3.7.1) (2025-12-23)
+
+
+### Bug Fixes
+
+* Bold CR name ([#789](https://github.com/prefapp/features/issues/789)) ([e802577](https://github.com/prefapp/features/commit/e802577c742e567cef2880e171c66162e298644f))
+
 ## [3.7.0](https://github.com/prefapp/features/compare/state_repo_apps-v3.6.2...state_repo_apps-v3.7.0) (2025-12-23)
 
 
