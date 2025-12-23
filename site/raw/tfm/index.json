@@ -85,8 +85,20 @@
       "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-mi/README.md"
     },
     {
+      "name": "azure-nsg-nsr",
+      "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-nsg-nsr/README.md"
+    },
+    {
       "name": "azure-oidc",
       "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-oidc/README.md"
+    },
+    {
+      "name": "azure-policy-assignments",
+      "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-policy-assignments/README.md"
+    },
+    {
+      "name": "azure-policy-definitions",
+      "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-policy-definitions/README.md"
     },
     {
       "name": "azure-public-ip",
@@ -135,6 +147,10 @@
     {
       "name": "cloudamqp-cluster",
       "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/cloudamqp-cluster/README.md"
+    },
+    {
+      "name": "cloudamqp-vpc",
+      "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/cloudamqp-vpc/README.md"
     },
     {
       "name": "mongodb-atlas-azure-privatelink",
