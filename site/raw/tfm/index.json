@@ -105,6 +105,11 @@
       "external-links": []
     },
     {
+      "name": "azure-linux-vm",
+      "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-linux-vm/README.md",
+      "external-links": []
+    },
+    {
       "name": "azure-mi",
       "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-mi/README.md",
       "external-links": []
