@@ -185,6 +185,11 @@
       "external-links": []
     },
     {
+      "name": "azure-windows-vm",
+      "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-windows-vm/README.md",
+      "external-links": []
+    },
+    {
       "name": "azuread-group",
       "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azuread-group/README.md",
       "external-links": []
