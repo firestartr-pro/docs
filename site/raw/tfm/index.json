@@ -13,7 +13,6 @@
       "external-links": [
         "https://raw.githubusercontent.com/terraform-aws-modules/terraform-aws-ecr/refs/heads/master/README.md"
       ],
-      "version": "unknown",
       "source": "git::https://github.com/terraform-aws-modules/terraform-aws-ecr.git"
     },
     {
@@ -71,7 +70,6 @@
       "external-links": [
         "https://raw.githubusercontent.com/terraform-aws-modules/terraform-aws-vpc/refs/heads/master/README.md"
       ],
-      "version": "unknown",
       "source": "git::https://github.com/terraform-aws-modules/terraform-aws-vpc.git"
     },
     {
