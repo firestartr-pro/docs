@@ -9,7 +9,9 @@
     {
       "name": "aws-ecr",
       "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/aws-ecr/README.md",
-      "external-link": "https://raw.githubusercontent.com/terraform-aws-modules/terraform-aws-ecr/refs/heads/master/README.md",
+      "external-links": [
+        "https://raw.githubusercontent.com/terraform-aws-modules/terraform-aws-ecr/refs/heads/master/README.md"
+      ],
       "source": "git::https://github.com/terraform-aws-modules/terraform-aws-ecr.git"
     },
     {
@@ -57,7 +59,9 @@
     {
       "name": "aws-vpc",
       "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/aws-vpc/README.md",
-      "external-link": "https://raw.githubusercontent.com/terraform-aws-modules/terraform-aws-vpc/refs/heads/master/README.md",
+      "external-links": [
+        "https://raw.githubusercontent.com/terraform-aws-modules/terraform-aws-vpc/refs/heads/master/README.md"
+      ],
       "source": "git::https://github.com/terraform-aws-modules/terraform-aws-vpc.git"
     },
     {
