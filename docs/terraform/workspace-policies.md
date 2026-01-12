@@ -22,6 +22,7 @@ Each policy explicitly enables a set of internal controller actions during a Ter
 * **`UPDATED` / `RENAMED`**: Allows modification of existing infrastructure through `terraform apply`. These are restricted in `observe` and `create-only` policies to prevent state changes.
 * **`MARKED_TO_DELETION`**: The most sensitive operation. It grants permission to perform a `terraform destroy` or remove resources from state. **Only** permitted under the `full-control` policy.
 * **`RETRY`**: Allows the controller to automatically re-attempt a failed Terraform run. Available in all policies except `observe`.
+* **`NOTHING`**: Allows the controller to run and perform no operation. Available in all policies.
 
 ---
 

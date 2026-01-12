@@ -5,7 +5,8 @@ This section contains documentation for the Firestartr Pro Terraform provider.
 ## Features
 
 ### Workspace Synchronization
-- [Terraform Workspace Sync](./workspace-sync.md) - Configure synchronization for Terraform workspaces
+- [Terraform Workspace Policies](./workspace-policies.md) - Configure the policies and operations in Terraform workspaces.
+- [Terraform Workspace Sync](./workspace-sync.md) - Configure synchronization for Terraform workspaces.
 
 ## Provider Configuration
 
