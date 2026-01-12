@@ -267,7 +267,7 @@ providers:
 
 **Staging Environment - Regular Testing:**
 ```yaml
-kind: TFWorkspaceClaim  
+kind: TFWorkspaceClaim
 name: staging-environment
 providers:
   terraform:
@@ -384,7 +384,7 @@ providers:
     sync:
       enabled: true
       schedule: "0 */4 * * *"  # Every 4 hours for security monitoring
-      schedule_timezone: "UTC" 
+      schedule_timezone: "UTC"
       policy: "observe"
 ```
 
@@ -502,7 +502,7 @@ providers:
       schedule_timezone: "UTC"
       policy: "observe"
 
-# Development example - frequent sync  
+# Development example - frequent sync
 providers:
   terraform:
     sync:
@@ -617,7 +617,7 @@ providers:
     name: existing-workspace
     # ... other config
 
-# After  
+# After
 providers:
   terraform:
     name: existing-workspace
