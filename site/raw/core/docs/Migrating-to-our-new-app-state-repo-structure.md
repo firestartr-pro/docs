@@ -259,11 +259,11 @@ kubectl get secret argocd-initial-admin-secret -n argocd -o jsonpath="{.data.pas
 ```
 
 Then, go to the **Applications** section in the left hand menu and check the application has been created. If it hasn't, check the logs of the `argocd-application-set-controller` pod.
-![ArgoCD example](./images/argocd-example.png)
+![ArgoCD example](./images/core-argocd-example.png)
 
 You may need to manually synchronize it if its status is reported as `missing`. Then check the pods have also been created inside the Kubernetes cluster.
 
-![Kubernetes example](./images/kubernetes-example.png)
+![Kubernetes example](./images/core-kubernetes-example.png)
 
 Check any connections that might have changed between pods, if needed.
 
