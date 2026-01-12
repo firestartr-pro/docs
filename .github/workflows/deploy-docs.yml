@@ -33,26 +33,55 @@ jobs:
           mkdir -p "${WEB_FEATURES_DIR}"
           echo "✓ Content directory created"
 
-          # Copy core docs
+          # Copy core docs (with nested directory support)
           echo ""
-          echo "Copying other documentation files/images ..."
-          for file in site/raw/core/docs/*.md; do
-            filename="$(basename "$file")"
-            if [ "$filename" = "README.md" ]; then
-              # Copy README.md to _index.md
-              cp "$file" "${WEB_CONTENT_DIR}/_index.md"
-              echo "  ✓ Copied README.md → _index.md"
-            else
-              {
-                echo "+++"
-                echo "weight = 1"
-                echo "+++"
-                echo ""
-                cat "$file"
-              } > "${WEB_CONTENT_DIR}/$filename"
-              echo "    ✓ $filename"
-            fi
+          echo "Copying core documentation files..."
+
+          # Create directory structure first
+          find site/raw/core/docs -mindepth 1 -type d | while read -r dir; do
+            rel_path="${dir#site/raw/core/docs/}"
+            mkdir -p "${WEB_CONTENT_DIR}/${rel_path}"
+            echo "  Created directory: ${rel_path}"
           done
+
+          # Process root README.md first (becomes root _index.md without frontmatter)
+          if [ -f "site/raw/core/docs/README.md" ]; then
+            cp "site/raw/core/docs/README.md" "${WEB_CONTENT_DIR}/_index.md"
+            echo "  ✓ README.md → _index.md (root)"
+          fi
+
+          # Process all subdirectory README.md files (become _index.md with bookCollapseSection)
+          find site/raw/core/docs -mindepth 1 -type f -name "README.md" | while read -r file; do
+            dir_path="$(dirname "$file")"
+            rel_dir="${dir_path#site/raw/core/docs/}"
+            dest_file="${WEB_CONTENT_DIR}/${rel_dir}/_index.md"
+
+            {
+              echo "+++"
+              echo "bookCollapseSection = true"
+              echo "weight = 1"
+              echo "+++"
+              echo ""
+              cat "$file"
+            } > "$dest_file"
+            echo "  ✓ ${rel_dir}/README.md → _index.md (collapsible)"
+          done
+
+          # Process all other markdown files (non-README files)
+          find site/raw/core/docs -type f -name "*.md" ! -name "README.md" | while read -r file; do
+            rel_path="${file#site/raw/core/docs/}"
+            dest_file="${WEB_CONTENT_DIR}/${rel_path}"
+
+            {
+              echo "+++"
+              echo "weight = 1"
+              echo "+++"
+              echo ""
+              cat "$file"
+            } > "$dest_file"
+            echo "  ✓ ${rel_path}"
+          done
+
           echo "✓ Core documentation migration complete"
 
       - name: Migrate features to ${{ env.WEB_FEATURES_DIR }}
