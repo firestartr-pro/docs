@@ -211,8 +211,8 @@
     {
       "name": "azure-vnet-and-subnet",
       "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-vnet-and-subnet/README.md",
-      "version": "2.1.1",
-      "source": "git::https://github.com/prefapp/tfm.git//modules/azure-vnet-and-subnet?ref=azure-vnet-and-subnet-v2.1.1"
+      "version": "2.1.2",
+      "source": "git::https://github.com/prefapp/tfm.git//modules/azure-vnet-and-subnet?ref=azure-vnet-and-subnet-v2.1.2"
     },
     {
       "name": "azure-vnet-peering",
