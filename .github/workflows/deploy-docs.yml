@@ -51,7 +51,7 @@ jobs:
           fi
 
           # Process all subdirectory README.md files (become _index.md with bookCollapseSection)
-          find site/raw/core/docs -mindepth 1 -type f -name "README.md" | while read -r file; do
+          find site/raw/core/docs -mindepth 2 -type f -name "README.md" | while read -r file; do
             dir_path="$(dirname "$file")"
             rel_dir="${dir_path#site/raw/core/docs/}"
             dest_file="${WEB_CONTENT_DIR}/${rel_dir}/_index.md"
