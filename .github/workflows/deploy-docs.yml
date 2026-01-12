@@ -169,6 +169,15 @@ jobs:
 
           echo "✓ Static assets migration complete"
 
+      - name: Rewrite README.md links for Hugo compatibility
+        run: |
+          echo "Rewriting README.md links in generated content..."
+          # Find all markdown files and replace /README.md) with /)
+          find site/web/content -type f -name "*.md" -exec sed -i 's|/README\.md)|/)|g' {} +
+          # Also handle ./README.md) -> ./)
+          find site/web/content -type f -name "*.md" -exec sed -i 's|(\.*/\?\([^)]*\)/README\.md)|(./\1/)|g' {} +
+          echo "✓ README.md links rewritten for Hugo"
+
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@75d2e84710de30f6ff7268e08f310b60ef14033f # v3
         with:
