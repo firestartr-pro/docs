@@ -27,7 +27,7 @@ And then update the chart's version number. Create a PR with these changes and o
 
 If not already done, create the new state repo claim and install the latest version `state_repo_apps` feature (`v2` at the time of writing). The recommended name nomenclature for state repos we are currently using is `app-<application-name>`.
 
-Once the repo has been created, you will also need to create the folder structure (see [state apps main/master branch](https://github.com/prefapp/gitops-k8s/wiki/State%E2%80%90apps-repositories#-main-or-master-branch)) and copy the corresponding environment folder and `YAML` file for the `cluster/tenant` pair that is going to be migrated. You can copy all the environments at once as long as you don't change the state repo the `make_dispatches.yaml` config dispatches to (see [Leaving pro dispatching to the old state repo](#leaving-pro-dispatching-to-the-old-state-repo) and [make_dispatches config v3](https://github.com/prefapp/features/blob/v3/packages/build_and_dispatch_docker_images/templates/.github/BUILD_AND_DISPATCH_DOCKER_IMAGES_README.md#make-dispatches)), but it's recommended to migrate environments one by one whenever possible.
+Once the repo has been created, you will also need to create the folder structure (see [state apps main/master branch](https://github.com/prefapp/gitops-k8s/wiki/State%E2%80%90apps-repositories#-main-or-master-branch)) and copy the corresponding environment folder and `YAML` file for the `cluster/tenant` pair that is going to be migrated. You can copy all the environments at once as long as you don't change the state repo the `make_dispatches.yaml` config dispatches to (see [Leaving pro dispatching to the old state repo](#leaving-pro-dispatching-to-the-old-state-repo) and [make_dispatches config v3](https://github.com/prefapp/features/blob/v3/packages/build_and_dispatch_docker_images/core-templates/.github/BUILD_AND_DISPATCH_DOCKER_IMAGES_README.md#make-dispatches)), but it's recommended to migrate environments one by one whenever possible.
 
 Once the repo has been created, give the Argo notifications GitHub app [the permissions necessary for it to work](https://github.com/prefapp/gitops-k8s/wiki/State%E2%80%90apps-repositories#%EF%B8%8F-setup) over the new repo.
 
@@ -133,7 +133,7 @@ deployments:  # <- Notice how "dispatches" was changed to "deployments"
     state_repo: state-repo-1 # Optional, only use if it was in the original config (old). For the rest of the cases it can be set but it is appropriate to take it from the organization's action variable (or by overwriting the repository's action variable) in the service repository's setting area.
 ```
 
-To learn more about the new config format and its parameters, read [make_dispatches config](https://github.com/prefapp/features/blob/main/packages/build_and_dispatch_docker_images/templates/.github/BUILD_AND_DISPATCH_DOCKER_IMAGES_README.md#make-dispatches)
+To learn more about the new config format and its parameters, read [make_dispatches config](https://github.com/prefapp/features/blob/main/packages/build_and_dispatch_docker_images/core-templates/.github/BUILD_AND_DISPATCH_DOCKER_IMAGES_README.md#make-dispatches)
 
 In the case of updating a `make_dispatches.yaml` file which contains one or more working `pro` environment configurations, see [this section](https://github.com/prefapp/gitops-k8s/wiki/Migrating-to-our-new-app-state-repo-structure#leaving-pro-dispatching-to-the-old-state-repo)
 
