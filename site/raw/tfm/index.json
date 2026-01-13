@@ -163,8 +163,8 @@
     {
       "name": "azure-public-ip",
       "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-public-ip/README.md",
-      "version": "0.3.2",
-      "source": "git::https://github.com/prefapp/tfm.git//modules/azure-public-ip?ref=azure-public-ip-v0.3.2"
+      "version": "0.3.3",
+      "source": "git::https://github.com/prefapp/tfm.git//modules/azure-public-ip?ref=azure-public-ip-v0.3.3"
     },
     {
       "name": "azure-public-prefix",
