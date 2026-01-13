@@ -223,8 +223,8 @@
     {
       "name": "azure-windows-vm",
       "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-windows-vm/README.md",
-      "version": "0.1.9",
-      "source": "git::https://github.com/prefapp/tfm.git//modules/azure-windows-vm?ref=azure-windows-vm-v0.1.9"
+      "version": "0.1.10",
+      "source": "git::https://github.com/prefapp/tfm.git//modules/azure-windows-vm?ref=azure-windows-vm-v0.1.10"
     },
     {
       "name": "azuread-group",
