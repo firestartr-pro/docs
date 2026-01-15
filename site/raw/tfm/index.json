@@ -17,8 +17,8 @@
     {
       "name": "aws-ecs",
       "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/aws-ecs/README.md",
-      "version": "1.0.0",
-      "source": "git::https://github.com/prefapp/tfm.git//modules/aws-ecs?ref=aws-ecs-v1.0.0"
+      "version": "1.1.0",
+      "source": "git::https://github.com/prefapp/tfm.git//modules/aws-ecs?ref=aws-ecs-v1.1.0"
     },
     {
       "name": "aws-eks",
@@ -243,6 +243,12 @@
       "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/cloudamqp-vpc/README.md",
       "version": "1.1.1",
       "source": "git::https://github.com/prefapp/tfm.git//modules/cloudamqp-vpc?ref=cloudamqp-vpc-v1.1.1"
+    },
+    {
+      "name": "dummy",
+      "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/dummy/README.md",
+      "version": "unknown",
+      "source": "unknown"
     },
     {
       "name": "mongodb-atlas-azure-privatelink",
