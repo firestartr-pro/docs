@@ -247,8 +247,8 @@
     {
       "name": "dummy",
       "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/dummy/README.md",
-      "version": "unknown",
-      "source": "unknown"
+      "version": "0.1.0",
+      "source": "git::https://github.com/prefapp/tfm.git//modules/dummy?ref=dummy-v0.1.0"
     },
     {
       "name": "mongodb-atlas-azure-privatelink",
