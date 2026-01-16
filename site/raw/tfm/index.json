@@ -17,8 +17,8 @@
     {
       "name": "aws-ecs",
       "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/aws-ecs/README.md",
-      "version": "1.1.0",
-      "source": "git::https://github.com/prefapp/tfm.git//modules/aws-ecs?ref=aws-ecs-v1.1.0"
+      "version": "1.1.1",
+      "source": "git::https://github.com/prefapp/tfm.git//modules/aws-ecs?ref=aws-ecs-v1.1.1"
     },
     {
       "name": "aws-eks",
