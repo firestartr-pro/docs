@@ -35,7 +35,7 @@ Each branch is structured as follows:
 Upon installation, three main directories are created: `kubernetes`, `tfworkspaces`, and `secrets`.
 
 Each directory holds the dehydrated deployment files for its type and follows the expected folder structure described below:
-- `kubernetes` folder structure: `<platform>`/`<tenant>`/`<environment>`. At the same level as the `environment` folder, an `<environment_name>.yaml` file is expected, which contains the [Helmfile release configuration](kubernetes/README.md#helmfile-configuration) for rendering the Helm charts.
+- `kubernetes` folder structure: `<platform>`/`<tenant>`/`<environment>`. At the same level as the `environment` folder, an `<environment_name>.yaml` file is expected, which contains the [Helmfile release configuration](KUBERNETES_README/#helmfile-configuration) for rendering the Helm charts.
 - `tfworkspaces` folder structure: `<platform>`/`<tenant>`/`<environment>`. This folder can contain multiple different, unrelated `TFWorkspaceClaim`s.
 - `secrets`: the expected structure is: `<tenant>`/`<environment>`. This folder can contain multiple `SecretsClaim`s.
 
@@ -71,9 +71,9 @@ This branch shouldn't be edited manually unless necessary; however, all changes 
 
 For detailed information on each deployment type:
 
-- **[Kubernetes Deployments](kubernetes/README.md)** - Complete guide for deploying containerized applications
-- **[TFWorkspace Deployments](tfworkspaces/README.md)** - Guide for managing Terraform infrastructure
-- **[Secrets Management](secrets/README.md)** - How to deploy and manage secrets
+- **[Kubernetes Deployments](KUBERNETES_README/)** - Complete guide for deploying containerized applications
+- **[TFWorkspace Deployments](TFWORKSPACES_README/)** - Guide for managing Terraform infrastructure
+- **[Secrets Management](SECRETS_README/)** - How to deploy and manage secrets
 
 ## Key Features
 

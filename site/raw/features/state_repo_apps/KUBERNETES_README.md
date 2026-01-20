@@ -59,31 +59,31 @@ The feature's workflows can need the following GitHub **vars**, or **secrets** c
 | Name  | Mandatory | Description   |
 |-------|-----------|-----------------------------------------------------------------------------|
 | `vars.HELM_CHARTS_PUBLICATION_TYPE` |   NO      | The publication method for the organization's Helm charts, and therefore, **the access method to the organization's helm charts registries** (i.e., `oci`, `https`). Default to `https` (public URL) |
-| `vars.DOCKER_REGISTRY_RELEASES`     |   NO :one:     | The registry name, or URL, for the OCI Helm charts releases registry. It must exists in `.firestartr` repository **default** branch, inside the `/docker_registries` folder. :four:    |
-| `vars.DOCKER_REGISTRY_SNAPSHOTS`    |   NO :one:     | The registry name, or URL, for the OCI Helm charts snapshots registry. It must exists in `.firestartr` repository **default** branch, inside the `/docker_registries` folder. :four: |
-| `vars.AZURE_CLIENT_ID`               |   NO :two:     | The Managed Identity client ID, with access permissions to the Azure ACR, needed by the oci-auth tool to configure the `azure_oidc` integration. |
-| `vars.AZURE_TENANT_ID`               |   NO :two:     | The Tenant ID where the ACR resides, needed by the oci-auth tool to configure the `azure_oidc` integration. |
-| `vars.AZURE_SUBSCRIPTION_ID`         |   NO :two:     | The Azure subscription ID, where the ACR resides, needed by the oci-auth tool to configure the `azure_oidc` integration. |
-| `vars.AWS_ROLE_ARN`                |   NO :two:     | The AWS IAM Role ARN, with access permissions to the ECR, needed by the oci-auth tool to configure the `aws_oidc` integration. |
-| `vars.AWS_DEFAULT_REGION`                  |   NO :two:     | The AWS region where the ECR resides, needed by the oci-auth tool to configure the `aws_oidc` integration. |
-| `vars.DOCKER_REGISTRY_RELEASES_USERNAME` |   NO :three:      | The username for the Helm OCI registry for releases.  |
-| `vars.DOCKER_REGISTRY_SNAPSHOTS_USERNAME`|   NO :three:     | The username for the Helm OCI registry for snapshots. |
-| `secrets.DOCKER_REGISTRY_RELEASES_PASSWORD` |   NO :three:     | The password for the Helm OCI registry for released chart versions. |
-| `secrets.DOCKER_REGISTRY_SNAPSHOTS_PASSWORD` |  NO :three:   | The password for the Helm OCI registry for non-released chart versions.|
+| `vars.DOCKER_REGISTRY_RELEASES`     |   NO 1️⃣     | The registry name, or URL, for the OCI Helm charts releases registry. It must exists in `.firestartr` repository **default** branch, inside the `/docker_registries` folder. 4️⃣    |
+| `vars.DOCKER_REGISTRY_SNAPSHOTS`    |   NO 1️⃣     | The registry name, or URL, for the OCI Helm charts snapshots registry. It must exists in `.firestartr` repository **default** branch, inside the `/docker_registries` folder. 4️⃣ |
+| `vars.AZURE_CLIENT_ID`               |   NO 2️⃣     | The Managed Identity client ID, with access permissions to the Azure ACR, needed by the auth-oci tool to configure the `azure_oidc` integration. |
+| `vars.AZURE_TENANT_ID`               |   NO 2️⃣     | The Tenant ID where the ACR resides, needed by the auth-oci tool to configure the `azure_oidc` integration. |
+| `vars.AZURE_SUBSCRIPTION_ID`         |   NO 2️⃣     | The Azure subscription ID, where the ACR resides, needed by the auth-oci tool to configure the `azure_oidc` integration. |
+| `vars.AWS_ROLE_ARN`                |   NO 2️⃣     | The AWS IAM Role ARN, with access permissions to the ECR, needed by the auth-oci tool to configure the `aws_oidc` integration. |
+| `vars.AWS_DEFAULT_REGION`                  |   NO 2️⃣     | The AWS region where the ECR resides, needed by the auth-oci tool to configure the `aws_oidc` integration. |
+| `vars.DOCKER_REGISTRY_RELEASES_USERNAME` |   NO 3️⃣      | The username for the Helm OCI registry for releases.  |
+| `vars.DOCKER_REGISTRY_SNAPSHOTS_USERNAME`|   NO 3️⃣     | The username for the Helm OCI registry for snapshots. |
+| `secrets.DOCKER_REGISTRY_RELEASES_PASSWORD` |   NO 3️⃣     | The password for the Helm OCI registry for released chart versions. |
+| `secrets.DOCKER_REGISTRY_SNAPSHOTS_PASSWORD` |  NO 3️⃣   | The password for the Helm OCI registry for non-released chart versions.|
 
-:one: Only needed if **`HELM_CHARTS_PUBLICATION_TYPE` is set to `oci`**
+1️⃣ Only needed if **`HELM_CHARTS_PUBLICATION_TYPE` is set to `oci`**
 
-:two: Only needed if the registry authentication **is OIDC**, i.e.:
+2️⃣ Only needed if the registry authentication **is OIDC**, i.e.:
   - `azure_oidc` using a Managed Identity.
   - `aws_oidc` using an IAM Role.
 
-:three: Only needed if the registry authentication **is not OIDC**, i.e.:
+3️⃣ Only needed if the registry authentication **is not OIDC**, i.e.:
   - `ghcr` using a PAT distinct from the default actions' `GITHUB_TOKEN`. Else, the action will use the `GITHUB_TOKEN` by default.
   - `generic`, i.e. **user** & **password**.
 
 See [auth-oci](https://github.com/prefapp/auth-oci) tool documentation for more details.
 
-:four: The `docker_registries` folder contains a YAML files for each registry available in the organization, with the necessary configuration.
+4️⃣ The `docker_registries` folder contains a YAML files for each registry available in the organization, with the necessary configuration.
 ***
 
 ## Workflows

@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.3.7](https://github.com/prefapp/features/compare/state_repo_sys_services-v2.3.6...state_repo_sys_services-v2.3.7) (2026-01-20)
+
+
+### Bug Fixes
+
+* readmes ([b51fb44](https://github.com/prefapp/features/commit/b51fb4413e1fabbc41d9ac7585e2212a92deb851))
+
 ## [2.3.6](https://github.com/prefapp/features/compare/state_repo_sys_services-v2.3.5...state_repo_sys_services-v2.3.6) (2026-01-20)
 
 
