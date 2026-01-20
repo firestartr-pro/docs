@@ -19,9 +19,9 @@ The Kubernetes workloads are defined using Helm charts, and rendered using Helmf
 Each Kubernetes environment must have a corresponding environment configuration file, located at `kubernetes/<platform>/<tenant>/<environment>/<environment_name>.yaml` in the repository default branch, and a set of values files inside the `kubernetes/<platform>/<tenant>/<environment>/` directory.
 
 #### `<environment>.yaml` configuration file
-This file defines a set of parameters used by the common [helm-apps Helmfile Go template](https://github.com/prefapp/daggerverse/blob/{{| ORCHESTRATOR_VERSION |}}/hydrate-orchestrator/modules/hydrate-kubernetes/helm-apps/helmfile.yaml.gotmpl) which is used by the [hydrate-orchestrator](https://github.com/prefapp/daggerverse/tree/{{| ORCHESTRATOR_VERSION |}}/hydrate-orchestrator) Dagger module, to render the specified charts and render the Kubernetes workload. An example of such file is shown below:
+This file defines a set of parameters used by the common [helm-apps Helmfile Go template](https://github.com/prefapp/daggerverse/blob/main/hydrate-orchestrator/modules/hydrate-kubernetes/helm-apps/helmfile.yaml.gotmpl) which is used by the [hydrate-orchestrator](https://github.com/prefapp/daggerverse/tree/main/hydrate-orchestrator) Dagger module, to render the specified charts and render the Kubernetes workload. An example of such file is shown below:
 
-https://github.com/prefapp/daggerverse/blob/{{| ORCHESTRATOR_VERSION |}}/hydrate-orchestrator/modules/hydrate-kubernetes/fixtures/values-repo-dir/kubernetes/cluster-name/test-tenant/pre.yaml
+[example](https://github.com/prefapp/daggerverse/blob/main/hydrate-orchestrator/modules/hydrate-kubernetes/fixtures/values-repo-dir/kubernetes/cluster-name/test-tenant/pre.yaml)
 ```yaml
 version: 0.1.0  # chart version
 chart: prefapp/aws-web-service-umbrella # chart name

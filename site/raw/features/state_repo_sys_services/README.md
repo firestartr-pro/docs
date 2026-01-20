@@ -14,8 +14,8 @@ To configure a new Kubernetes sys-service deployment, you need to define the Hel
 Each Kubernetes sys-service must have a corresponding configuration file,  located at `kubernetes-sys-services/<platform>/<sys-service-name>.yaml` and a set of values files inside the `kubernetes-sys-services/<platform>/<sys-service-name>/` directory, in the repository default branch.
 
 #### `<sys-service>.yaml` file
-This file defines a set of parameters used by the common [`helmfile.yaml.gotmpl` Go template](https://github.com/prefapp/daggerverse/blob/{{| ORCHESTRATOR_VERSION |}}/hydrate-orchestrator/modules/hydrate-kubernetes/helm-sys-services/helmfile.yaml.gotmpl) which is used by the [hydrate-orchestrator](https://github.com/prefapp/daggerverse/tree/{{| ORCHESTRATOR_VERSION |}}/hydrate-orchestrator) Dagger module, to download the specified charts and render the Kubernetes workloads. An example of such file is shown below:
-https://github.com/prefapp/daggerverse/blob/{{| ORCHESTRATOR_VERSION |}}/hydrate-orchestrator/modules/hydrate-kubernetes/fixtures/values-repo-dir-sys-services/kubernetes-sys-services/cluster-name/stakater.yaml
+This file defines a set of parameters used by the common [`helmfile.yaml.gotmpl` Go template](https://github.com/prefapp/daggerverse/blob/main/hydrate-orchestrator/modules/hydrate-kubernetes/helm-sys-services/helmfile.yaml.gotmpl) which is used by the [hydrate-orchestrator](https://github.com/prefapp/daggerverse/tree/main/hydrate-orchestrator) Dagger module, to download the specified charts and render the Kubernetes workloads. An example of such file is shown below:
+https://github.com/prefapp/daggerverse/blob/main/hydrate-orchestrator/modules/hydrate-kubernetes/fixtures/values-repo-dir-sys-services/kubernetes-sys-services/cluster-name/stakater.yaml
 
 ```yaml
 version: 1.2.0
@@ -38,10 +38,10 @@ execs: []
 #### Helm values files
 Inside the `kubernetes-sys-services/<platform>/<sys-service-name>/` directory, there must be a set of Helm values YAML files. These files contain the Helm values used to configure the Helm chart for the sys-service.
 
-Helmfile will use the hydrate-orchestrator [helm-sys-services `values.yaml.gotmpl`](https://github.com/prefapp/daggerverse/blob/{{| ORCHESTRATOR_VERSION |}}/hydrate-orchestrator/modules/hydrate-kubernetes/helm-sys-services/values.yaml.gotmpl) template to render the values to be used for the Helm chart installation.
+Helmfile will use the hydrate-orchestrator [helm-sys-services `values.yaml.gotmpl`](https://github.com/prefapp/daggerverse/blob/main/hydrate-orchestrator/modules/hydrate-kubernetes/helm-sys-services/values.yaml.gotmpl) template to render the values to be used for the Helm chart installation.
 
 An example of such file is shown below:
-https://github.com/prefapp/daggerverse/blob/{{| ORCHESTRATOR_VERSION |}}/hydrate-orchestrator/modules/hydrate-kubernetes/fixtures/values-repo-dir-sys-services/kubernetes-sys-services/cluster-name/stakater/values.yaml
+https://github.com/prefapp/daggerverse/blob/main/hydrate-orchestrator/modules/hydrate-kubernetes/fixtures/values-repo-dir-sys-services/kubernetes-sys-services/cluster-name/stakater/values.yaml
 
 ```yaml
 replicaCount: 2
