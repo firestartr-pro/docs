@@ -1,11 +1,59 @@
 # ☸️ How to Deploy a Kubernetes Workload
 
-This feature allows to deploy a Kubernetes workload is a breeze! It allows to change the deployment configuration manually and also supports automatically updates of the services images, when new versions are build and pushed to the registry.
+This feature makes deploying a Kubernetes workload a breeze! It allows changing the deployment configuration manually and also supports automatic updates of the services’ images when new versions are built and pushed to the registry.
 
-*The deployment is done via GitOps, using ArgoCD. This means that the deployment is done when new changes arrives to the `deployment` branch in the state GitHub repository, which is then automatically picked up by ArgoCD and deployed to the Kubernetes cluster.*
+*The deployment is done via GitOps, using ArgoCD. This means that the deployment is triggered when new changes arrive to the `deployment` branch in the state GitHub repository, which is then automatically picked up by ArgoCD and deployed to the Kubernetes cluster.*
 
 ***
 ## Configuration
+To configure a new Kubernetes deployment for your application, you need to define the Helmfile configuration and Helm values files for each environment, in the repository default branch, inside the `kubernetes/<platform>/<tenant>/<environment>/` directory.
+
+But, you first need to check if the deployment coordinates (platform, tenant, environment) are allowed for your application. You can check this in your `.firestartr` organization repository.
+
+If the coordinates are not allowed, you need to add them in the `.firestartr` repository, following the instructions in the [Firestartr documentation](https://docs.firestartr.dev/docs/The-dot-firestartr-repository/).
+
+### Helmfile Configuration
+
+The Kubernetes workloads are defined using Helm charts, and rendered using Helmfile. Also Kustomize patches and exec commands can be defined to customize the rendered manifests.
+
+Each Kubernetes environment must have a corresponding environment configuration file, located at `kubernetes/<platform>/<tenant>/<environment>/<environment_name>.yaml` in the repository default branch, and a set of values files inside the `kubernetes/<platform>/<tenant>/<environment>/` directory.
+
+#### `<environment>.yaml` configuration file
+This file defines a set of parameters used by the common [helm-apps Helmfile Go template](https://github.com/prefapp/daggerverse/blob/{{| ORCHESTRATOR_VERSION |}}/hydrate-orchestrator/modules/hydrate-kubernetes/helm-apps/helmfile.yaml.gotmpl) which is used by the [hydrate-orchestrator](https://github.com/prefapp/daggerverse/tree/{{| ORCHESTRATOR_VERSION |}}/hydrate-orchestrator) Dagger module, to render the specified charts and render the Kubernetes workload. An example of such file is shown below:
+
+https://github.com/prefapp/daggerverse/blob/{{| ORCHESTRATOR_VERSION |}}/hydrate-orchestrator/modules/hydrate-kubernetes/fixtures/values-repo-dir/kubernetes/cluster-name/test-tenant/pre.yaml
+```yaml
+version: 0.1.0  # chart version
+chart: prefapp/aws-web-service-umbrella # chart name
+releaseName: sample-app # helm release name
+namespace: my-namespace # kubernetes namespace
+hooks: []
+
+extraPatches: # Kustomize patches to apply to the rendered manifests
+  - target:
+      group: apps
+      version: v1
+      kind: Deployment
+      name: sample-app-micro-a
+    patch:
+      - op: add
+        path: /metadata/labels/manolo
+        value: escobar
+execs: # Exec commands to run after rendering the manifests
+  - command: ".github/certs_to_ca_yaml.py"
+    args: [
+      "--ca_certs_path",
+      "./kubernetes/{{.StateValues.cluster}}/{{.StateValues.tenant}}/{{$.Environment.Name}}/ca-certs",
+      "--ca_yml_path",
+      "./kubernetes/{{.StateValues.cluster}}/{{.StateValues.tenant}}/{{$.Environment.Name}}/ca.yaml"
+    ]
+```
+#### Helm values files
+Inside the `kubernetes/<platform>/<tenant>/<environment>/` directory, there must be a set of Helm values YAML files. These files contain the Helm values used to configure the Helm chart for the workload.
+
+Helmfile will use the hydrate-orchestrator [helm-apps `values.yaml.gotmpl`](https://github.com/prefapp/daggerverse/blob/main/hydrate-orchestrator/modules/hydrate-kubernetes/helm-apps/values.yaml.gotmpl) template to render the values to be used for the Helm chart installation.
+
+### GitHub Variables and Secrets
 The feature's workflows can need the following GitHub **vars**, or **secrets** configured (at organization or repository level), to manage the access to the Helm charts registries, depending on the publication method used by the organization:
 
 | Name  | Mandatory | Description   |
@@ -41,7 +89,7 @@ See [auth-oci](https://github.com/prefapp/auth-oci) tool documentation for more 
 ## Workflows
 The feature provides the following GitHub Actions workflows:
 
-### 👓 Validate pull-requests (Validate PR)
+### 🔎 Validate pull-requests (Validate PR)
 This workflow validates changes in pull requests to ensure they meet the required standards.
 
 **Permissions**:
@@ -61,7 +109,15 @@ This workflow is triggered manually, normally after merging a pull request with 
 - `packages: read`: Needed to pull the Helm charts from GitHub Container Registry, if applicable.
 ***
 
-#### 1.1 📋 How to Use It
+### 🤖 Automatic Deployment (Auto-generate Deployments)
+This workflow automatically creates a deployment pull-request when changes are merged to the main branch in this repository. It scans for changes in `kubernetes/**` and automatically launches the deployment generation workflow if changes are detected.
+
+**Permissions**:
+- `contents: write`: Needed to clone the repository.
+- `actions: write`: Needed to execute the other workflows in the repository.
+***
+
+#### 📋 How to Use The Manual Workflow
 
 1. **Update Values**
    - Go to the relate state repo’s default branch. Normally this repositories are named `app-<application_name>`.
@@ -107,8 +163,6 @@ This workflow dispatches an event to trigger the auto-update of a Kubernetes wor
 - `pull-requests: write`: Needed to create the pull-request against the `deployment` branch, and comment on it.
 - `packages: read`: Needed to pull the Helm charts from GitHub Container Registry, if applicable.
 
-
-
 This workflow automatically updates image versions in your Kubernetes workloads when a new image is built and pushed to the organization registry, creating a deployment pull-request for you.
 
 ---
@@ -147,14 +201,13 @@ This workflow automatically updates image versions in your Kubernetes workloads 
     commands:
       - [apk, add, python]
     ```
-
 ---
 
 #### 2.4 🛠️ Troubleshooting
 
 - **Fails?** Check the logs. Ensure the event includes valid image data.
 - **PR Not Merging?** Verify `AUTO_MERGE` is in `kubernetes/<platform>/<tenant>/<environment/>`.
-- **No PR?** Confirm the event fired correctly.
+- **No PR?** Confirm the event was triggered correctly.
 
 ***
 

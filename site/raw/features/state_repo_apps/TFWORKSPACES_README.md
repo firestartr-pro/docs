@@ -8,7 +8,16 @@ This GitHub Actions workflow lets you update your GitOps repo (watched by ArgoCD
 
 ---
 
-### 1.1 📋 How to Use It
+### 🤖 Automatic Deployment (Auto-generate Deployments)
+This workflow automatically creates a deployment pull-request when changes are merged to the default branch in this repository. It scans for changes in `tfworkspaces/**` and automatically launches the deployment generation workflow if changes are detected.
+
+**Permissions**:
+- `contents: write`: Needed to clone the repository.
+- `actions: write`: Needed to execute the other workflows in the repository.
+
+---
+
+### 1.1 📋 How to Use The Manual Workflow
 
 1. **Update Values**
    - Go to your repo’s main/master branch.
@@ -124,7 +133,7 @@ This workflow updates your `TFWorkspace` image versions automatically when a new
     ```yaml
     # example
     image: ghcr.io/prefapp/gitops-k8s:v1.39.2_slim
-    ``` 
+    ```
 
 ---
 

@@ -10,11 +10,20 @@ This workflow generates deployment files (CRs) for secrets based on a tenant and
 
 ---
 
-### 1.1 📋 How to Use It
+### 🤖 Automatic Deployment (Auto-generate Deployments)
+This workflow automatically creates a deployment pull-request when changes are merged to the main branch in this repository. It scans for changes in `kubernetes/**` and automatically launches the deployment generation workflow if changes are detected.
 
-1. **Update Values**  
-   - Go to your repo’s main/master branch.  
-   - Edit the "values" files (e.g., in `secrets/<tenant>/<environment>/secret.yaml`) with the desired changes.  
+**Permissions**:
+- `contents: write`: Needed to clone the repository.
+- `actions: write`: Needed to execute the other workflows in the repository.
+
+---
+
+### 1.1 📋 How to Use The Manual Workflow
+
+1. **Update Values**
+   - Go to your repo’s main/master branch.
+   - Edit the "values" files (e.g., in `secrets/<tenant>/<environment>/secret.yaml`) with the desired changes.
    - Create a PR, wait for the `PR Verify` completion ✅ and merge it into `main/master`.
    - Example secrets claim:
      ```yaml
@@ -37,43 +46,43 @@ This workflow generates deployment files (CRs) for secrets based on a tenant and
              generator:
              # Points to a generator custom resource,
              # see: https://external-secrets.io/latest/api/generator/password/
-               name: pg-generator 
+               name: pg-generator
          externalSecrets:
          # Filling the key 'externalSecrets', a ExternalSecret will be created,
          # and the system will access to the key vault (azure) or parameter store (aws),
          # and create a secret into the kubernetes cluster
-         # that can be referenced from the TFWorkspaceClaim 
+         # that can be referenced from the TFWorkspaceClaim
            refreshInterval: 10m
            secrets:
            - secretName: rds_conn
            - secretName: my_test
      ```
-2. **Head to Your Repo**  
+2. **Head to Your Repo**
    - Go to the "Actions" tab on GitHub.
 
-3. **Locate the Workflow**  
+3. **Locate the Workflow**
    - Find `Generate secrets deployment` in the list.
 
-4. **Launch It**  
-   - Click "Run workflow".  
-   - Fill in:  
-     - `tenant` (e.g., `customer1`).  
-     - `environment` (e.g., `prod`).  
+4. **Launch It**
+   - Click "Run workflow".
+   - Fill in:
+     - `tenant` (e.g., `customer1`).
+     - `environment` (e.g., `prod`).
    - Hit "Run workflow" to start.
 
 ---
 
 ### 1.2 🌟 What You Get
 
-- **Updated Repo**: New deployment files (CRs) for secrets land in a PR against the `deployment` branch.  
-- **Summary**: Check the workflow logs on GitHub for details.  
+- **Updated Repo**: New deployment files (CRs) for secrets land in a PR against the `deployment` branch.
+- **Summary**: Check the workflow logs on GitHub for details.
 - **Deploy**: Merge the PR, and ArgoCD will sync the secrets to your system.
 
 ---
 
 ### 1.3 🛠️ Troubleshooting
 
-- **Fails?** Check the logs or summary in GitHub Actions. Verify your `tenant` and `environment` inputs.  
+- **Fails?** Check the logs or summary in GitHub Actions. Verify your `tenant` and `environment` inputs.
 - **No PR?** Ensure the inputs match a valid secrets path (e.g., `secrets/customer1/prod`).
 
 ***

@@ -2,11 +2,55 @@
 
 This feature allows to deploy Kubernetes sys-services, i.e. operators and controllers needed in the cluster, at cluster level, and managed by the platform team.
 
-*The deployment is done via GitOps, using ArgoCD. This means that the deployment is done when new changes arrive to the `deployment` branch in the state GitHub repository, which is then automatically picked up by ArgoCD and deployed to the Kubernetes cluster.*
+*The deployment is done via GitOps, using ArgoCD. This means that the deployment is done when new changes arrive to the `deployment` branch in the state GitHub repository, which is then automatically picked up by ArgoCD and deployed to the destination Kubernetes cluster.*
 
 ***
 
 ## Configuration
+To configure a new Kubernetes sys-service deployment, you need to define the Helmfile configuration and Helm values files for each sys-service, in the repository default branch, inside the `kubernetes-sys-services/<platform>/<sys-service-name>/` directory.
+
+### Helmfile Configuration
+
+Each Kubernetes sys-service must have a corresponding configuration file,  located at `kubernetes-sys-services/<platform>/<sys-service-name>.yaml` and a set of values files inside the `kubernetes-sys-services/<platform>/<sys-service-name>/` directory, in the repository default branch.
+
+#### `<sys-service>.yaml` file
+This file defines a set of parameters used by the common [`helmfile.yaml.gotmpl` Go template](https://github.com/prefapp/daggerverse/blob/{{| ORCHESTRATOR_VERSION |}}/hydrate-orchestrator/modules/hydrate-kubernetes/helm-sys-services/helmfile.yaml.gotmpl) which is used by the [hydrate-orchestrator](https://github.com/prefapp/daggerverse/tree/{{| ORCHESTRATOR_VERSION |}}/hydrate-orchestrator) Dagger module, to download the specified charts and render the Kubernetes workloads. An example of such file is shown below:
+https://github.com/prefapp/daggerverse/blob/{{| ORCHESTRATOR_VERSION |}}/hydrate-orchestrator/modules/hydrate-kubernetes/fixtures/values-repo-dir-sys-services/kubernetes-sys-services/cluster-name/stakater.yaml
+
+```yaml
+version: 1.2.0
+chart: stakater/reloader
+
+hooks: []
+
+extraPatches: # []
+  - target:
+      group: rbac.authorization.k8s.io
+      kind: ClusterRoleBinding
+      name:  stakater-reloader-role-binding
+    patch:
+      - op: add
+        path: /metadata/labels/test-label
+        value: test-value
+execs: []
+```
+
+#### Helm values files
+Inside the `kubernetes-sys-services/<platform>/<sys-service-name>/` directory, there must be a set of Helm values YAML files. These files contain the Helm values used to configure the Helm chart for the sys-service.
+
+Helmfile will use the hydrate-orchestrator [helm-sys-services `values.yaml.gotmpl`](https://github.com/prefapp/daggerverse/blob/{{| ORCHESTRATOR_VERSION |}}/hydrate-orchestrator/modules/hydrate-kubernetes/helm-sys-services/values.yaml.gotmpl) template to render the values to be used for the Helm chart installation.
+
+An example of such file is shown below:
+https://github.com/prefapp/daggerverse/blob/{{| ORCHESTRATOR_VERSION |}}/hydrate-orchestrator/modules/hydrate-kubernetes/fixtures/values-repo-dir-sys-services/kubernetes-sys-services/cluster-name/stakater/values.yaml
+
+```yaml
+replicaCount: 2
+image:
+  repository: stakater/reloader
+  tag: v0.0.96
+```
+
+### GitHub Variables and Secrets
 The feature's workflows can need the following GitHub **vars**, or **secrets** configured (at organization or repository level), to manage the access to the Helm charts registries, depending on the publication method used by the organization:
 
 | Name  | Mandatory | Description   |
