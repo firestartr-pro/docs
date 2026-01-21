@@ -29,7 +29,7 @@ If not already done, create the new state repo claim and install the latest vers
 
 Once the repo has been created, you will also need to create the folder structure (see [state apps main/master branch](./state-apps-repository.md#-main-or-master-branch)) and copy the corresponding environment folder and `YAML` file for the `cluster/tenant` pair that is going to be migrated. You can copy all the environments at once as long as you don't change the state repo the `make_dispatches.yaml` config dispatches to (see [Leaving pro dispatching to the old state repo](#-leaving-pro-dispatching-to-the-old-state-repo) and [make_dispatches config](https://github.com/prefapp/features/blob/main/packages/build_and_dispatch_docker_images/templates/docs/README.md#make-dispatches)), but it's recommended to migrate environments one by one whenever possible.
 
-Once the repo has been created, give the Argo notifications GitHub app [the necessary permissions to make it work](./state-apps-repository.md#%EF%B8%8F-setup) over the new repo.
+Once the repo has been created, give the Argo notifications GitHub app [the necessary permissions to make it work](./state-apps-repository.md#-setup) over the new repo.
 
 To be able to do pull of the charts, if they are private, add in Settings > Secrets and variables > Actions > Variables > New repository variable > DOCKER_REGISTRY_RELEASES=registryName
 
