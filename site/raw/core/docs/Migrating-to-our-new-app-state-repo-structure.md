@@ -27,9 +27,9 @@ And then update the chart's version number. Create a PR with these changes and o
 
 If not already done, create the new state repo claim and install the latest version `state_repo_apps` feature (`v2` at the time of writing). The recommended name nomenclature for state repos we are currently using is `app-<application-name>`.
 
-Once the repo has been created, you will also need to create the folder structure (see [state apps main/master branch](https://github.com/prefapp/gitops-k8s/wiki/State%E2%80%90apps-repositories#-main-or-master-branch)) and copy the corresponding environment folder and `YAML` file for the `cluster/tenant` pair that is going to be migrated. You can copy all the environments at once as long as you don't change the state repo the `make_dispatches.yaml` config dispatches to (see [Leaving pro dispatching to the old state repo](#leaving-pro-dispatching-to-the-old-state-repo) and [make_dispatches config v3](https://github.com/prefapp/features/blob/v3/packages/build_and_dispatch_docker_images/templates/.github/BUILD_AND_DISPATCH_DOCKER_IMAGES_README.md#make-dispatches)), but it's recommended to migrate environments one by one whenever possible.
+Once the repo has been created, you will also need to create the folder structure (see [state apps main/master branch](./state-apps-repository.md#-main-or-master-branch)) and copy the corresponding environment folder and `YAML` file for the `cluster/tenant` pair that is going to be migrated. You can copy all the environments at once as long as you don't change the state repo the `make_dispatches.yaml` config dispatches to (see [Leaving pro dispatching to the old state repo](#-leaving-pro-dispatching-to-the-old-state-repo) and [make_dispatches config](https://github.com/prefapp/features/blob/main/packages/build_and_dispatch_docker_images/templates/docs/README.md#make-dispatches)), but it's recommended to migrate environments one by one whenever possible.
 
-Once the repo has been created, give the Argo notifications GitHub app [the permissions necessary for it to work](https://github.com/prefapp/gitops-k8s/wiki/State%E2%80%90apps-repositories#%EF%B8%8F-setup) over the new repo.
+Once the repo has been created, give the Argo notifications GitHub app [the necessary permissions to make it work](./state-apps-repository.md#%EF%B8%8F-setup) over the new repo.
 
 To be able to do pull of the charts, if they are private, add in Settings > Secrets and variables > Actions > Variables > New repository variable > DOCKER_REGISTRY_RELEASES=registryName
 
@@ -57,11 +57,11 @@ set:
     value: "{{ .StateValues.version }}"
 ```
 
-If the `namespace` also needs to be updated, it can be done now too. Note that doing so will require additional steps to be done, as described [here](https://github.com/prefapp/gitops-k8s/wiki/Migrating-to-our-new-app-state-repo-structure#when-also-updating-the-deployments-namespace)
+If the `namespace` also needs to be updated, it can be done now too. Note that doing so will require additional steps to be done, as described [here](#-when-also-updating-the-deployments-namespace)
 
 ### Step 3: 🛠️updating the .firestartr configuration
 
-Some files may be missing from the `.firestartr` configuration repository (usually the `app` configuration file) so create them as needed. See the [.firestartr section](https://github.com/prefapp/gitops-k8s/wiki/The-.firestartr-repository) to learn more about `.firestartr`, its folder structure and the configurations within.
+Some files may be missing from the `.firestartr` configuration repository (usually the `app` configuration file) so create them as needed. See the [.firestartr section](./The-dot-firestartr-repository.md) to learn more about `.firestartr`, its folder structure and the configurations within.
 
 ### Step 4: 🔧 updating make_dispatches in the code repo
 
@@ -133,9 +133,9 @@ deployments:  # <- Notice how "dispatches" was changed to "deployments"
     state_repo: state-repo-1 # Optional, only use if it was in the original config (old). For the rest of the cases it can be set but it is appropriate to take it from the organization's action variable (or by overwriting the repository's action variable) in the service repository's setting area.
 ```
 
-To learn more about the new config format and its parameters, read [make_dispatches config](https://github.com/prefapp/features/blob/main/packages/build_and_dispatch_docker_images/templates/.github/BUILD_AND_DISPATCH_DOCKER_IMAGES_README.md#make-dispatches)
+To learn more about the new config format and its parameters, read [make_dispatches config](https://github.com/prefapp/features/blob/main/packages/build_and_dispatch_docker_images/templates/docs/README.md#make-dispatches)
 
-In the case of updating a `make_dispatches.yaml` file which contains one or more working `pro` environment configurations, see [this section](https://github.com/prefapp/gitops-k8s/wiki/Migrating-to-our-new-app-state-repo-structure#leaving-pro-dispatching-to-the-old-state-repo)
+In the case of updating a `make_dispatches.yaml` file which contains one or more working `pro` environment configurations, see [this section](#-leaving-pro-dispatching-to-the-old-state-repo)
 
 NOTES:
 - Make sure the `build_and_dispatch_docker_images` feature is installed in the code repository from the corresponding `component` claim and at least version `5.0.1`. It should contain at least these arguments in `providers.github.features.build_and_dispatch_docker_images.args`:
@@ -231,7 +231,7 @@ In this example, the branch used is `deployment`, by default this orphan branch 
 
 Before creating your first deployment, go ahead and uninstall the old release like this:
 
-`helm --namespace <namespace> uninstall <release>` (use the old namespace if it was updated in [the second step](https://github.com/prefapp/gitops-k8s/wiki/Migrating-to-our-new-app-state-repo-structure#step-2-updating-the-chart-and-its-version))
+`helm --namespace <namespace> uninstall <release>` (use the old namespace if it was updated in [the second step](#step-2--updating-the-chart-and-its-version))
 
 Notes:
 - It's important to check that when deleting a release, all the artifacts associated with it have been deleted, particularly those that provision or attach resources from a provider (LoadBalancer Services, PersistentVolumes, etc)
@@ -342,7 +342,7 @@ If the namespace also needs to be updated when migrating the state repo (because
 
 In order to migrate secrets from an external provider (e.g. Azure KeyVault) into a Kubernetes ExternalSecrets object, go to the `state-sys-services` repo and do the following:
 
-1. Create the folders necessary for your application if not already done, following [this structure](https://github.com/prefapp/gitops-k8s/wiki/State%E2%80%90sys%E2%80%90services-repository#-main-or-master-branch)
+1. Create the folders necessary for your application if not already done, following [this structure](./state-sys-services-repository.md#-main-or-master-branch)
 2. Create an additional `extra_artifacts` folder inside `kubernetes-sys-services/<cluster>/<application>` with the following files:
 
 ```yaml
@@ -401,7 +401,7 @@ metadata:
 
 In order to migrate secrets from an Azure KeyVault or AWS Parameter Store into a Kubernetes CSI, go to the `state-sys-services` repo and do the following:
 
-1. Create the folders necessary for your application if not already done, following [this structure](https://github.com/prefapp/gitops-k8s/wiki/State%E2%80%90sys%E2%80%90services-repository#-main-or-master-branch)
+1. Create the folders necessary for your application if not already done, following [this structure](./state-sys-services-repository.md#-main-or-master-branch)
 2. Create an additional `extra_artifacts` folder inside `kubernetes-sys-services/<cluster>/<application>` with the following file:
 
 ```yaml
