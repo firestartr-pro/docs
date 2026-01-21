@@ -183,12 +183,12 @@ jobs:
           echo "Rewriting GitHub feature repository links to Hugo-compatible URLs..."
           
           # Two-pass approach:
-          # 1. README.md files → /docs/features/{feature}/[#{anchor}]
-          # 2. Other .md files → /docs/features/{feature}/{filename}/[#{anchor}]
+          # 1. README.md files → features/{feature}/[#{anchor}]
+          # 2. Other .md files → features/{feature}/{filename}/[#{anchor}]
           
           find site/web/content -type f -name "*.md" -exec sed -i -E \
-            -e 's|https://github\.com/prefapp/features/blob/[^/]+/packages/([^/]+)/templates/[^/]*/README\.md(#[^)]+)?\)|/docs/features/\1/\2)|g' \
-            -e 's|https://github\.com/prefapp/features/blob/[^/]+/packages/([^/]+)/templates/[^/]*/([^/]+)\.md(#[^)]+)?\)|/docs/features/\1/\2/\3)|g' \
+            -e 's|https://github\.com/prefapp/features/blob/[^/]+/packages/([^/]+)/templates/[^/]*/README\.md(#[^)]+)?\)|features/\1/\2)|g' \
+            -e 's|https://github\.com/prefapp/features/blob/[^/]+/packages/([^/]+)/templates/[^/]*/([^/]+)\.md(#[^)]+)?\)|features/\1/\2/\3)|g' \
             {} +
           
           echo "✓ GitHub feature links rewritten to Hugo URLs"
