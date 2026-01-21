@@ -13,11 +13,6 @@ Welcome to the Firestartr public documentation. This documentation is intended f
 
 ## Overview
 
-### [Our Features](./Our-features.md)
-Comprehensive list of all available Firestartr features with links to their documentation. Features include build and dispatch Docker images, claims repository management, issue templates, release management, state infrastructure, and state repository variants (apps and sys-services).
-
----
-
 ## Configuration
 
 ### [The .firestartr Repository](./The-dot-firestartr-repository.md)
