@@ -39,7 +39,7 @@ A detailed explanation of each configuration file will be provided below.
 - [App](#-app-configuration-example-and-field-description)
 - [Registry](#-registry-configuration-example-and-field-description)
 - [Platform](#-platform-configuration-example-and-field-description)
-- [Provider](#-provider-configuration-example-and-field-description)
+- [Provider](#-providers-configuration-example-and-field-description)
 - [App validation](#-app-validation-configuration-example-and-field-description)
 - [Policy](#-about-validation-policies)
 
@@ -53,7 +53,7 @@ services:
     service_names: [micro-a, micro-b]
 ```
 
-- **name**: the name of the application for which this configuration will be applied. This value is used in the `make_dispatches.yaml` file ([more info here](https://github.com/prefapp/features/blob/main/packages/build_and_dispatch_docker_images/templates/.github/BUILD_AND_DISPATCH_DOCKER_IMAGES_README.md#make-dispatches))
+- **name**: the name of the application for which this configuration will be applied. This value is used in the `make_dispatches.yaml` file ([more info here](https://github.com/prefapp/features/blob/main/packages/build_and_dispatch_docker_images/templates/docs/README.md#make-dispatches))
 - **state_repo**: the state repo related to the application (each application should have its own state repo).
 - **services**: a list of service objects. Each of them contains:
   1. **repo**: the repository where objects will be uploaded. If they are prefixed by whether they are a docker image or a helm chart, this field's value should be only the last part of the repo name (i.e., if images are prefixed with `service/` and a image is uploaded as `service/client/service-name`, this fields value should be `client/service-name`). See the [registry configuration files](#-registry-configuration-example-and-field-description) for more info on how to set the prefix.
