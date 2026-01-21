@@ -178,6 +178,21 @@ jobs:
           find site/web/content -type f -name "*.md" -exec sed -i 's|(\.*/\?\([^)]*\)/README\.md)|(./\1/)|g' {} +
           echo "✓ README.md links rewritten for Hugo"
 
+      - name: Rewrite GitHub feature links to Hugo URLs
+        run: |
+          echo "Rewriting GitHub feature repository links to Hugo-compatible URLs..."
+          
+          # Two-pass approach:
+          # 1. README.md files → /docs/features/{feature}/[#{anchor}]
+          # 2. Other .md files → /docs/features/{feature}/{filename}/[#{anchor}]
+          
+          find site/web/content -type f -name "*.md" -exec sed -i -E \
+            -e 's|https://github\.com/prefapp/features/blob/[^/]+/packages/([^/]+)/templates/[^/]*/README\.md(#[^)]+)?\)|/docs/features/\1/\2)|g' \
+            -e 's|https://github\.com/prefapp/features/blob/[^/]+/packages/([^/]+)/templates/[^/]*/([^/]+)\.md(#[^)]+)?\)|/docs/features/\1/\2/\3)|g' \
+            {} +
+          
+          echo "✓ GitHub feature links rewritten to Hugo URLs"
+
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@75d2e84710de30f6ff7268e08f310b60ef14033f # v3
         with:
