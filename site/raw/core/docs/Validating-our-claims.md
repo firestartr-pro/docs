@@ -22,7 +22,7 @@ Description of each field:
 - **applyTo**: a list of conditions which describe to which claims this validation applies to. For this, for each value in each element of the list, an AND operation is done with each other value of that element, then for each element an OR operation is done against each other element. See ["About the applyTo field values"](#exclamation-about-the-applyto-field-values) to learn more about the possible values of this field.
 - **data**: key-value pairs, where each key is a variable name and each name its value, to be used inside the `regoFile` file.
 
-# :exclamation: About the applyTo field values
+# ❗ About the applyTo field values
 
 Each element of the `applyTo` field can have the following values:
 
@@ -34,7 +34,7 @@ Each element of the `applyTo` field can have the following values:
 - *Tenant*: apply only to claims who will deploy to exactly the `tenant` with this value as its name
 - *Platform*: apply only to claims who will deploy to exactly the `platform` with this value as its name
 
-### :bangbang: Example of the applyTo field criteria
+### ‼️ Example of the applyTo field criteria
 
 ```yaml
 ...
@@ -64,7 +64,7 @@ OR
 
 the claim with the name `my-claim-1`"
 
-### :test_tube: Test your validations quickly
+### 🧪 Test your validations quickly
 
 1. Create your data rule
 ```yaml

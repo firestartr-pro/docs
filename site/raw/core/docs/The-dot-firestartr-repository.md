@@ -124,7 +124,7 @@ data:
 - **name**: the name of the validation file, which must be unique between them.
 - **description**: a brief description of what this validation does. Purely for human readability purpouses.
 - **regoFile**: path to the rego file, relative to the policies folder (i.e., this field's value will be concatenated to `.firestartr/validations/policies` like so: `.firestartr/validations/policies/[this_fields_value]`)
-- **applyTo**: a list of conditions which describe to which claims this validation applies to. For this, for each value in each element of the list, an AND operation is done with each other value of that element, then for each element an OR operation is done against each other element. See ["About the applyTo field values"](./Validating-Our-Claims#about-the-applyto-field-values) to learn more about the possible values of this field.
+- **applyTo**: a list of conditions which describe to which claims this validation applies to. For this, for each value in each element of the list, an AND operation is done with each other value of that element, then for each element an OR operation is done against each other element. See ["About the applyTo field values"](./Validating-Our-Claims#-about-the-applyto-field-values) to learn more about the possible values of this field.
 - **data**: key-value pairs, where each key is a variable name and each name its value, to be used inside the `regoFile` file.
 
 ### 📢 About validation policies
