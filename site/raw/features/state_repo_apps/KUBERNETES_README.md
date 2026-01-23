@@ -211,6 +211,10 @@ This workflow automatically updates image versions in your Kubernetes workloads 
 
 ***
 
+## 3. 🗑️ Delete Deployment (Delete Kubernetes Deployment)
+
+This workflow helps you delete a Kubernetes workload by creating two PRs: one for the `deployment` branch, and another for the main branch. It takes the same inputs as the "Generate Kubernetes Deployment" workflow: `platform`, `tenant`, and `environment`.
+
 ### 🎉 Quick Tips
 - **Manual (1)**: Great for testing or specific deployments.
 - **Auto (2)**: Keeps your workloads fresh with zero effort.

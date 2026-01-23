@@ -145,6 +145,10 @@ This workflow updates your `TFWorkspace` image versions automatically when a new
 
 ***
 
+## 3. 🗑️ Delete Deployment (Delete TFWorkspaces Deployment)
+
+This workflow helps you delete a Terraform workspace by creating two PRs: one for the `deployment` branch, and another for the main branch. It takes the same inputs as the "Generate TFWorkspaces Deployment" workflow: `claim_name`.
+
 ### 🎉 Quick Tips
 - **Manual (1)**: Perfect for testing or one-off changes.
 - **Auto (2)**: Ideal for keeping images fresh without lifting a finger.

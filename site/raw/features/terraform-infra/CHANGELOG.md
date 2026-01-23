@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.7.1](https://github.com/prefapp/features/compare/terraform-infra-v1.7.0...terraform-infra-v1.7.1) (2026-01-23)
+
+
+### Bug Fixes
+
+* **terraform-infra:** update git diff for PR ([#803](https://github.com/prefapp/features/issues/803)) ([fe6e42a](https://github.com/prefapp/features/commit/fe6e42a23f6b045549fbed436892a64acf8c8a92))
+
 ## [1.7.0](https://github.com/prefapp/features/compare/terraform-infra-v1.6.0...terraform-infra-v1.7.0) (2025-11-26)
 
 

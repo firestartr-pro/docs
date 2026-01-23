@@ -63,6 +63,11 @@ This branch shouldn't be edited manually unless necessary; however, all changes 
 ### Automatic Deployments
 - **Auto-generate Deployments** (`auto-generate-deployments.yml`): Automatically create deployments pull-requests when changes are merged to the main branch, for all deployments affected by the changes.
 
+### Delete Deployments
+- **Delete Kubernetes Deployment** (`delete-deployment-kubernetes.yml`) - Create deletion PR for Kubernetes workloads
+- **Delete TFWorkspace Deployment** (`delete-deployment-tfworkspaces.yml`) - Create deletion PR for Terraform workspaces
+- **Delete Secrets Deployment** (`delete-deployment-secrets.yml`) - Create deletion PR for deployed secrets
+
 ### Auto-Update Workflows
 - **Dispatch Image to Kubernetes** (`dispatch-image-kubernetes.yml`) - Auto-update Kubernetes workloads when new images are pushed
 - **Dispatch Image to TFWorkspaces** (`dispatch-image-tfworkspaces.yml`) - Auto-update TFWorkspace images

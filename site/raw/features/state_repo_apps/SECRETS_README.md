@@ -87,5 +87,9 @@ This workflow automatically creates a deployment pull-request when changes are m
 
 ***
 
+## 2. 🗑️ Delete Deployment (Delete Secrets Deployment)
+
+This workflow helps you delete a secret by creating two PRs: one for the `deployment` branch, and another for the main branch. It takes the same inputs as the "Generate Secrets Deployment" workflow: `tenant`, and `environment`.
+
 ### 🎉 Quick Tip
 - Use this workflow to manually deploy secrets for a specific tenant and environment. Once the PR is merged, ArgoCD handles the rest!
