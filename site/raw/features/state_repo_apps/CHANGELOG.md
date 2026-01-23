@@ -1,5 +1,20 @@
 # Changelog
 
+## [3.8.0](https://github.com/prefapp/features/compare/state_repo_apps-v3.7.1...state_repo_apps-v3.8.0) (2026-01-23)
+
+
+### Features
+
+* Add deletion workflows ([#795](https://github.com/prefapp/features/issues/795)) ([156a155](https://github.com/prefapp/features/commit/156a155075395ed83c0c65add0c938fc478254be))
+* New automatic workflows ([#794](https://github.com/prefapp/features/issues/794)) ([03981fb](https://github.com/prefapp/features/commit/03981fb93b3ef4a277f7a6d6fe3ca911d1b92073))
+
+
+### Bug Fixes
+
+* README ([d2dd0d5](https://github.com/prefapp/features/commit/d2dd0d5bedd7a47212214fa84623e56967eedb53))
+* readmes ([b51fb44](https://github.com/prefapp/features/commit/b51fb4413e1fabbc41d9ac7585e2212a92deb851))
+* Update docs ([#797](https://github.com/prefapp/features/issues/797)) ([d8bd6c8](https://github.com/prefapp/features/commit/d8bd6c8181b9f2626f83af18501994a1d9a0c31e))
+
 ## [3.7.1](https://github.com/prefapp/features/compare/state_repo_apps-v3.7.0...state_repo_apps-v3.7.1) (2025-12-23)
 
 
