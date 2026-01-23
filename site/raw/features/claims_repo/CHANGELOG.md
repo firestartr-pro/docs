@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.16.1](https://github.com/prefapp/features/compare/claims_repo-v1.16.0...claims_repo-v1.16.1) (2026-01-23)
+
+
+### Bug Fixes
+
+* claims_defaults.yaml platformOwner example ([#781](https://github.com/prefapp/features/issues/781)) ([f72c0ae](https://github.com/prefapp/features/commit/f72c0ae9b79bfd317c667bdf4b08f5d181822edf))
+* PR not merging sometimes ([#792](https://github.com/prefapp/features/issues/792)) ([cdc910b](https://github.com/prefapp/features/commit/cdc910bc63936fb7a60b0ba851aff16fcca7ba80))
+
 ## [1.16.0](https://github.com/prefapp/features/compare/claims_repo-v1.15.4...claims_repo-v1.16.0) (2025-12-09)
 
 
