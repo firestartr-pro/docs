@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Firestartr Documentation</title><link>https://docs.firestartr.dev/docs/features/state_github/</link><description>Recent content on Firestartr Documentation</description><generator>Hugo</generator><language>en-us</language><atom:link href="https://docs.firestartr.dev/docs/features/state_github/index.xml" rel="self" type="application/rss+xml"/><item><title/><link>https://docs.firestartr.dev/docs/features/state_github/CHANGELOG/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.firestartr.dev/docs/features/state_github/CHANGELOG/</guid><description>&lt;h1 id="changelog"&gt;Changelog&lt;a class="anchor" href="#changelog"&gt;#&lt;/a&gt;&lt;/h1&gt;
+&lt;h2 id="100-2025-04-24"&gt;1.0.0 (2025-04-24)&lt;a class="anchor" href="#100-2025-04-24"&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id="features"&gt;Features&lt;a class="anchor" href="#features"&gt;#&lt;/a&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Added new state_github feature (&lt;a href="https://github.com/prefapp/features/issues/436"&gt;#436&lt;/a&gt;) (&lt;a href="https://github.com/prefapp/features/commit/e8f379182418d1c7cb7bc11e9dc4661c48223033"&gt;e8f3791&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;</description></item></channel></rss>
