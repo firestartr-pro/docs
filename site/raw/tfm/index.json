@@ -77,6 +77,12 @@
       "source": "git::https://github.com/terraform-aws-modules/terraform-aws-vpc.git"
     },
     {
+      "name": "aws-waf",
+      "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/aws-waf/README.md",
+      "version": "0.2.0",
+      "source": "git::https://github.com/prefapp/tfm.git//modules/aws-waf?ref=aws-waf-v0.2.0"
+    },
+    {
       "name": "azure-aks",
       "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-aks/README.md",
       "version": "1.9.3",
