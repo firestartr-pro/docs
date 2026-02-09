@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.2.1](https://github.com/prefapp/features/compare/state_repo-v2.2.0...state_repo-v2.2.1) (2026-02-09)
+
+
+### Bug Fixes
+
+* Fixed all git config calls in all feature's workflows ([#811](https://github.com/prefapp/features/issues/811)) ([3c961d5](https://github.com/prefapp/features/commit/3c961d58875449bc7761ea58d8c4806c699c90ec))
+
 ## [2.2.0](https://github.com/prefapp/features/compare/state_repo-v2.1.0...state_repo-v2.2.0) (2025-10-21)
 
 
