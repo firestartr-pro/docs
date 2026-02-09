@@ -285,7 +285,7 @@
               },
               "owner": {
                 "type": "string",
-                "pattern": "^(user|group):[a-zA-Z0-9_-]+$"
+                "pattern": "^(user|group):[a-zA-Z0-9_&-]+$"
               }
             },
             "required": [
