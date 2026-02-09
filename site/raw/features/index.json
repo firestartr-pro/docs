@@ -142,7 +142,7 @@
     },
     {
       "name": "state_repo_apps",
-      "version": "3.8.0",
+      "version": "3.8.1",
       "files": [
         {
           "name": "KUBERNETES_README.md",

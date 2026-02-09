@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.8.1](https://github.com/prefapp/features/compare/state_repo_apps-v3.8.0...state_repo_apps-v3.8.1) (2026-02-09)
+
+
+### Bug Fixes
+
+* Fixed all git config calls in all feature's workflows ([#811](https://github.com/prefapp/features/issues/811)) ([3c961d5](https://github.com/prefapp/features/commit/3c961d58875449bc7761ea58d8c4806c699c90ec))
+
 ## [3.8.0](https://github.com/prefapp/features/compare/state_repo_apps-v3.7.1...state_repo_apps-v3.8.0) (2026-01-23)
 
 
