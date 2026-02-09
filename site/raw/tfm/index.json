@@ -39,6 +39,12 @@
       "source": "git::https://github.com/prefapp/tfm.git//modules/aws-kms?ref=aws-kms-v0.2.0"
     },
     {
+      "name": "aws-kms-multiple",
+      "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/aws-kms-multiple/README.md",
+      "version": "0.1.0",
+      "source": "git::https://github.com/prefapp/tfm.git//modules/aws-kms-multiple?ref=aws-kms-multiple-v0.1.0"
+    },
+    {
       "name": "aws-oidc",
       "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/aws-oidc/README.md",
       "version": "1.4.1",
