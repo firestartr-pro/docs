@@ -1,5 +1,15 @@
 # Changelog
 
+## [1.16.2](https://github.com/prefapp/features/compare/claims_repo-v1.16.1...claims_repo-v1.16.2) (2026-02-09)
+
+
+### Bug Fixes
+
+* Fixed all git config calls in all feature's workflows ([#811](https://github.com/prefapp/features/issues/811)) ([3c961d5](https://github.com/prefapp/features/commit/3c961d58875449bc7761ea58d8c4806c699c90ec))
+* Simplify UX ([#820](https://github.com/prefapp/features/issues/820)) ([abe10d1](https://github.com/prefapp/features/commit/abe10d1d80c5d145ec6613c8f4c50fa659af3205))
+* Updated deletion workflows to include link to last state PR ([#816](https://github.com/prefapp/features/issues/816)) ([355a88e](https://github.com/prefapp/features/commit/355a88e7da953cbbcc62e05cbaf1676b4e92453d))
+* Updated name and run-name of update features workflow ([#819](https://github.com/prefapp/features/issues/819)) ([0332c23](https://github.com/prefapp/features/commit/0332c231c8bf20f5f4e94e519390c3d81fb7099c))
+
 ## [1.16.1](https://github.com/prefapp/features/compare/claims_repo-v1.16.0...claims_repo-v1.16.1) (2026-01-23)
 
 
