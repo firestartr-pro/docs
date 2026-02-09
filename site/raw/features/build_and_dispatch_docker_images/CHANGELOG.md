@@ -1,5 +1,13 @@
 # Changelog
 
+## [5.1.4](https://github.com/prefapp/features/compare/build_and_dispatch_docker_images-v5.1.3...build_and_dispatch_docker_images-v5.1.4) (2026-02-09)
+
+
+### Bug Fixes
+
+* Simplify UX ([#820](https://github.com/prefapp/features/issues/820)) ([abe10d1](https://github.com/prefapp/features/commit/abe10d1d80c5d145ec6613c8f4c50fa659af3205))
+* Updated build_images docs to include new fields ([#807](https://github.com/prefapp/features/issues/807)) ([835b2db](https://github.com/prefapp/features/commit/835b2db4ffa20b713282f53c5db260771d36f44d))
+
 ## [5.1.3](https://github.com/prefapp/features/compare/build_and_dispatch_docker_images-v5.1.2...build_and_dispatch_docker_images-v5.1.3) (2025-10-30)
 
 

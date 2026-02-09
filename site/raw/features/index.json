@@ -2,7 +2,7 @@
   "features": [
     {
       "name": "build_and_dispatch_docker_images",
-      "version": "5.1.3",
+      "version": "5.1.4",
       "files": [
         {
           "name": "README.md",
@@ -30,7 +30,7 @@
     },
     {
       "name": "charts_repo",
-      "version": "1.4.2",
+      "version": "1.4.3",
       "files": [
         {
           "name": "README.md",
@@ -44,7 +44,7 @@
     },
     {
       "name": "claims_repo",
-      "version": "1.15.4",
+      "version": "1.16.1",
       "files": [
         {
           "name": "README.md",
@@ -142,7 +142,7 @@
     },
     {
       "name": "state_repo_apps",
-      "version": "3.6.0",
+      "version": "3.8.0",
       "files": [
         {
           "name": "KUBERNETES_README.md",
@@ -168,7 +168,7 @@
     },
     {
       "name": "state_repo_sys_services",
-      "version": "2.3.2",
+      "version": "2.3.7",
       "files": [
         {
           "name": "README.md",
@@ -196,7 +196,7 @@
     },
     {
       "name": "terraform-infra",
-      "version": "1.7.0",
+      "version": "1.7.1",
       "files": [
         {
           "name": "ACCOUNTS_README.md",

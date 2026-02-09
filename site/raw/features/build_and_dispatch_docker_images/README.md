@@ -31,6 +31,13 @@ snapshots:  # Configuration specific for snapshots, used by build_docker_pre-rel
       - name: aws.amazon.com
         repository: programs/program-name  # Repository names can be different between registries
         auth_strategy: aws_oidc  # Multiple auth strategies should be supported but they currently aren't
+    extra_tags: # List of extra tags to publish the image as
+      - latest
+      - stable
+    platforms:  # List of platforms for which to build the image. If unspecified, the image will be built for linux/amd64 only
+      # Only linux/amd64 and linux/arm64 are currently supported
+      - linux/amd64
+      - linux/arm64
 
   another-flavor:
     dockerfile: path/to/dockerfile
@@ -60,6 +67,8 @@ Each flavor key can contain:
 - `build_args`: key-value pairs that are set as environment variables when building the image. The key is the environment value name, and the value its value, and any number of them can be specified.
 - `registry`: a [`registry` object](#registry-objects) that overrides the [default registry](#defaults). If this key is specified, ***no image will be uploaded to the [default registry](#defaults)***
 - `extra_registries`: a list of [`registry` object](#registry-objects) to where the image will be uploaded to, in addition to the [default registry](#defaults). If this key is specified, ***the image will still be uploaded to the [default registry](#defaults)***
+- `extra_tags`: optional list of strings representing extra tags to publish the image as. While the default tag is constructed as `<flavor>_<version>`, no extra info will be appended to these tags. E.g. if the flavor is `default` and the version is `v1.2.3`, the default tag will be `default_v1.2.3`, and if `latest` is specified as an extra tag, the image will also be tagged as `latest`. For this reason, all values listed as `extra_tags` must be unique across all flavors and types (i.e., two different flavors cannot both have `latest` as an extra tag, even if one is a snapshot and the other a release)
+- `platforms`: optional list of strings representing platforms for which to build the image. If unspecified, the image will be built for `linux/amd64` only. Currently, only `linux/amd64` and `linux/arm64` are supported. If specified, the image will be built only for the platform(s) listed.
 
 #### Registry objects
 
@@ -180,6 +189,17 @@ Specifies which image to dispatch. Can have any of the following values:
 - `$branch_<branch_name>`: the latest available image associated to `<branch_name>`
 - Any commit SHA (both short and long) or tag: the latest available image associated to the input
 
+#### About the `Trigger deployment` workflow
+
+A second workflow, `Trigger deployment` (with filename `trigger_deployment.yaml`), is also included. This is a simplified version of the more complex `make_dispatches` workflow, and is meant to be used by users who want to trigger simple deployments, to a specific `tenant`, `platform` and `env`. Its inputs are:
+
+- `flavor`: which flavor to dispatch. Contrary to the normal `make_dispatches` workflow, only a single flavor can be specified here, and it will also dictate the `image_type` (i.e., if the flavor exists in `snapshots`, the image type will be `snapshots`, and the same for `releases`. If it exists in both, `*` will be used). Defaults to `default`
+- `version`: equivalent to the `overwrite_version` input of the normal `make_dispatches` workflow, with one notable difference: if the value is left empty, `$latest_release` will be used
+- `tenant`: equivalent to the `filter_by_tenant` input of the normal `make_dispatches` workflow. Mandatory
+- `platform`: equivalent to the `filter_by_platform` input of the normal `make_dispatches` workflow. Mandatory
+- `env`: equivalent to the `filter_by_env` input of the normal `make_dispatches` workflow. Mandatory
+
+For ease of use, the `tenant`, `platform` and `env` inputs have been made into choice dropdowns, populated from the configuration files in the `.firestartr` repository. This population is done automatically via the `update-features-with-dot-firestartr-info.yaml` workflow from the [`claims_repo` feature](https://docs.firestartr.dev/docs/features/#-claims-repo). When this feature is installed for the first time, it's needed to either launch that workflow manually or wait until it automatically runs at midnight UTC, so that the dropdowns get populated with the correct values.
 
 ## Feature arguments
 

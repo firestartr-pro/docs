@@ -83,6 +83,14 @@ This feature installs the workflows necessary for manually hydrating and deletin
 
 3. Press the green button and wait for the workflow to finish. Once the workflow is finished, a PR will be created for each claim that was updated. The PR body will contain a list of changes made since the version that was currently installed up until the version that was updated to. Merge them all and then [hydrate the claims](#hydrating-claims)
 
+## About the `update-features-with-dot-firestartr-info` workflow
+
+This workflow is executed every day at 00:00 UTC. It clones the `.firestartr` repository and uses it to populate arguments for the following features:
+
+- `build_and_dispatch_docker_images`: populates the arguments `tenant_list`, `platform_list` and `env_list`
+
+This workflow can also be executed manually if needed.
+
 ## Feature arguments
 
 - `state_github_repo`: the name of the repository where the GitHub related CRs are stored. Defaults to `state-github`
