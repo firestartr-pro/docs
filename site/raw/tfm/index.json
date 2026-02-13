@@ -63,6 +63,12 @@
       "source": "git::https://github.com/prefapp/tfm.git//modules/aws-rds?ref=aws-rds-v0.1.1"
     },
     {
+      "name": "aws-s3",
+      "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/aws-s3/README.md",
+      "version": "0.1.0",
+      "source": "git::https://github.com/prefapp/tfm.git//modules/aws-s3?ref=aws-s3-v0.1.0"
+    },
+    {
       "name": "aws-sso",
       "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/aws-sso/README.md",
       "version": "0.6.1",
