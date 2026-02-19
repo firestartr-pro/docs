@@ -3,8 +3,8 @@
     {
       "name": "aws-amq-rabbit",
       "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/aws-amq-rabbit/README.md",
-      "version": "0.2.0",
-      "source": "git::https://github.com/prefapp/tfm.git//modules/aws-amq-rabbit?ref=aws-amq-rabbit-v0.2.0"
+      "version": "0.3.0",
+      "source": "git::https://github.com/prefapp/tfm.git//modules/aws-amq-rabbit?ref=aws-amq-rabbit-v0.3.0"
     },
     {
       "name": "aws-cloudfront-delivery",
