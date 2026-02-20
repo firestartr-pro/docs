@@ -1,6 +1,6 @@
 # Build and dispatch workflows
 
-This feature is a collection of seven workflows (along with their configuration files), which when used in conjunction allow an user to build final docker images from a release tag, or snapshot images, from a pre-release tag, or commit SHA; Once the images are built, the `make_dispatches` workflow dispatch the image update automatically to their respective state repositories. They can be thought of as two different but closely related features.
+This feature is a collection of seven workflows (along with their configuration files), which when used in conjunction allow a user to build final docker images from a release tag, or snapshot images, from a pre-release tag, or commit SHA; Once the images are built, the `make_dispatches` workflow dispatches the image update automatically to their respective state repositories. They can be thought of as two different but closely related features.
 
 The workflows `trigger_dispatch_on_releases.yaml`, `trigger_dispatch_on_pre-releases.yaml` and `trigger_dispatch_on_snapshot.yaml` only serve to trigger `make_dispatches.yaml` after a successful automated call to any of the `build_docker_<type>.yaml` workflows. They require no other explanation so they won't be discussed in this README
 
@@ -19,7 +19,7 @@ snapshots:  # Configuration specific for snapshots, used by build_docker_pre-rel
   flavor:  # Flavor-specific configuration. A flavor can be named anything as long as it's a valid YAML key
     dockerfile: path/to/dockerfile  # Path relative to the repo root folder
     auto: false  # Whether or not to automatically build this flavor when the * input is specified (see "Inputs" below). Defaults to false
-    build_args:  # Enviroment variables to set during the image building process
+    build_args:  # Environment variables to set during the image building process
       #  ENV_VARIABLE_NAME: env_variable_value
       API_URL: https://api.com/url
       UI_COLOR: '#125690'
@@ -41,7 +41,7 @@ snapshots:  # Configuration specific for snapshots, used by build_docker_pre-rel
 
   another-flavor:
     dockerfile: path/to/dockerfile
-    registry:  # The default registry can be overriden (see "Defaults" below)
+    registry:  # The default registry can be overridden (see "Defaults" below)
       name: nondefault.registry.es
       repository: nondefault/repo
       auth_strategy: azure_oidc  # Can be any of azure_oidc or aws_oidc
@@ -76,7 +76,7 @@ A registry object contains the following keys:
 
 - `name`: base URL of the registry. E.g. when uploading a image to `registry.com/image_repo/image_tag`, this key's value should be `registry.com`
 - `repository`: name of the repository inside of the registry `name` to where upload the image to. E.g. when uploading a image to `registry.com/image_repo/image_tag`, this key's value should be `image_repo`
-- `auth_strategy`: type of authentication to use for login, as different registries require different authentication methods. Though many are defined, currently only `az_oidc` and `aws_oidc` are supported
+- `auth_strategy`: type of authentication to use for login, as different registries require different authentication methods. Though many are defined, currently only `azure_oidc` and `aws_oidc` are supported
 
 #### Inputs
 
@@ -215,6 +215,6 @@ For ease of use, the `tenant`, `platform` and `env` inputs have been made into c
 - `make_dispatches_config_file_path`: path to the `make_dispatches` config file to be used by the `make_dispatches` workflow, relative to the root of the repository. Defaults to `.github/make_dispatches.yaml`
 - `apps_folder_path`: path to the `apps` folder to be used by the `make_dispatches` workflow. This is a path local to the runner, used after all the configuration repositories have been downloaded. Defaults to `.firestartr/apps`
 - `platform_folder_path`: path to the `platforms` folder to be used by the `make_dispatches` workflow. This is a path local to the runner, used after all the configuration repositories have been downloaded. Defaults to `.firestartr/platforms`
-- `registries_folder_path`: path to the `registries` folder to be used by the `make_dispatches` workflow. This is a path local to the runner, used after all the configuration repositories have been downloaded. Defaults to `.firestartr/registries`
+- `registries_folder_path`: path to the `docker_registries` folder to be used by the `make_dispatches` workflow. This is a path local to the runner, used after all the configuration repositories have been downloaded. Defaults to `.firestartr/docker_registries`
 
 **NOTE**: `make_dispatches` downloads the `firestartr_config_repo` repository to access the configuration files via the `apps_folder_path`, `platform_folder_path` and `registries_folder_path` feature arguments. However, `firestartr_config_repo` is always downloaded under the `.firestartr` folder, regardless of what the actual name of the repository is, so the paths specified in the `*_folder_path` arguments should all start with `.firestartr/` (unless the folders are located in another repo)
