@@ -1,5 +1,5 @@
 # release-please
-  
+
 ## Overview
 
 This repository is managed with [**release-please**](https://github.com/googleapis/release-please), a tool that automates the creation of release PRs and GitHub tags based on [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/).
@@ -17,7 +17,7 @@ The purpose of this document is to describe how to:
 
 ### Semantic Versioning
 
-Each release follows **semantic versioning**:  
+Each release follows **semantic versioning**:
 `MAJOR.MINOR.PATCH`
 
 | Level | Description | Example of change |
@@ -65,7 +65,7 @@ flowchart TD
    - Updated changelog.
    - Updated version numbers in module files.
 5. When the release PR is merged, GitHub automatically:
-   - Creates a tag (e.g., `aws-s3-v1.2.3`)
+   - Creates a tag (e.g., `v1.2.3`)
    - Publishes a release entry.
 
 ---
@@ -75,8 +75,8 @@ flowchart TD
 The behavior of `release-please` is controlled via the `release-please-config.json` and `.release-please-manifest.json` files,
 which define module paths, release types, and version tracking.
 
-In the file `release-please-config.json`, we define how `release-please` should behave.  
-It can be configured for **single repositories** or **monorepos**, and supports different release types (e.g., `terraform-module`, `node`, `python`, etc.).  
+In the file `release-please-config.json`, we define how `release-please` should behave.
+It can be configured for **single repositories** or **monorepos**, and supports different release types (e.g., `terraform-module`, `node`, `python`, etc.).
 For more details, see the [manifest releaser documentation](https://github.com/googleapis/release-please/blob/main/docs/manifest-releaser.md).
 
 By default, a simple configuration for a repository **without monorepo** structure looks like this:
@@ -101,7 +101,7 @@ The file `.release-please-manifest.json` keeps track of the **current released v
 
 ## 🧠 Notes
 
-- Use clear, descriptive commit messages that follow the **Conventional Commits** format.  
-- Use types like `ci:` or `docs:` for changes that should **not** trigger new releases.  
+- Use clear, descriptive commit messages that follow the **Conventional Commits** format.
+- Use types like `ci:` or `docs:` for changes that should **not** trigger new releases.
 - Always review the **release PR** before merging to ensure that changelogs and versions are correct.
 - Tag prefixes (e.g., `aws-s3-v1.2.3`) are derived from the module name defined in the configuration file.

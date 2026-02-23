@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.0](https://github.com/prefapp/features/compare/issue_templates-v1.2.1...issue_templates-v1.3.0) (2026-02-23)
+
+
+### Features
+
+* new validation structure ([#635](https://github.com/prefapp/features/issues/635)) ([7e3f1cb](https://github.com/prefapp/features/commit/7e3f1cbd35af1d333a7f965dcce965975c371f92))
+
 ## [1.2.1](https://github.com/prefapp/features/compare/issue_templates-v1.2.0...issue_templates-v1.2.1) (2024-02-08)
 
 
