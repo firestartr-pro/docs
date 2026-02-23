@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.4.1](https://github.com/prefapp/features/compare/release_please-v1.4.0...release_please-v1.4.1) (2026-02-23)
+
+
+### Bug Fixes
+
+* **release-please:** Avoid trigger other workflows ([#839](https://github.com/prefapp/features/issues/839)) ([5514867](https://github.com/prefapp/features/commit/5514867cd75881777a2cab2693b3f291162d1d29))
+
 ## [1.4.0](https://github.com/prefapp/features/compare/release_please-v1.3.1...release_please-v1.4.0) (2025-11-13)
 
 
