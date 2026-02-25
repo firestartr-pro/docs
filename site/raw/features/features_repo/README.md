@@ -50,6 +50,7 @@ Features are automatically versioned with **Release Please** using Conventional 
 - Create a package.json file using npm init.
 
 config.yaml structure
+
 ```
 feature_name: example
 
@@ -86,6 +87,7 @@ patches:
 
 We use the [Mustache](https://mustache.github.io/mustache.5.html) template engine.
 You can add logic with conditionals:
+
 ```mustache
 {{| #condition |}}
   {{| variable |}}   ← this renders when condition is true
@@ -104,15 +106,71 @@ You can add logic with conditionals:
 
 ### Removing an existing feature
 
-- Create a new branch from ```main```.
-- Remove the feature directory under ```packages/```.
-- Remove the feature from ```.release-please-manifest.json```.
+- Create a new branch from `main`.
+- Remove the feature directory under `packages/`.
+- Remove the feature from `.release-please-manifest.json`.
 - Merge the branch using a Conventional Commit → new release is created without the feature.
 
+---
+
+## Testing Features
+
+### Using generic-fixtures/cr.yaml
+
+The `generic-fixtures/cr.yaml` file provides a reusable Custom Resource (CR) fixture for testing feature rendering. This fixture contains a complete example of a `FirestartrGithubRepository` resource with all common fields populated.
+
+#### How to use it
+
+Each feature package includes a `render_tests.yaml` file that defines test cases. To use the generic fixture:
+
+```yaml
+# packages/<feature-name>/render_tests.yaml
+tests:
+  - name: test1
+    cr: "../../generic-fixtures/cr.yaml"
+```
+
+#### What the fixture provides
+
+The generic CR fixture includes:
+
+- **Metadata**: annotations, labels, and resource name
+- **Spec.org**: Organization name (`firestartr-test`)
+- **Spec.context**: Backend and provider references
+- **Spec.firestartr**: Technology stack and state key configuration
+- **Spec.repo**: Repository settings (visibility, branches, merge options, etc.)
+- **Spec.actions**: OIDC configuration
+- **Spec.permissions**: Team/group permissions
+- **Spec.branchProtections**: Branch protection rules
+
+#### Creating custom fixtures
+
+If your feature requires specific CR fields not covered by the generic fixture, you can:
+
+1. Create a custom fixture in your feature's `__tests__/` folder:
+
+   ```yaml
+   # packages/<feature-name>/__tests__/custom-cr.yaml
+   apiVersion: firestartr.dev/v1
+   kind: FirestartrGithubRepository
+   metadata:
+     name: my-custom-resource
+   spec:
+     # ... your custom fields
+   ```
+
+2. Reference it in your `render_tests.yaml`:
+   ```yaml
+   tests:
+     - name: custom-test
+       cr: "./__tests__/custom-cr.yaml"
+   ```
+
+---
 
 ## Links
 
 - [Firestartr Documentation](https://docs.firestartr.dev)
 - [All Official Features](https://docs.firestartr.dev/docs/features/)
 
-Built with ❤️  using Firestartr
+Built with ❤️ using Firestartr
