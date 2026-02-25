@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.16.3](https://github.com/prefapp/features/compare/claims_repo-v1.16.2...claims_repo-v1.16.3) (2026-02-25)
+
+
+### Bug Fixes
+
+* Disable auto merge for infra hydration workflow ([#849](https://github.com/prefapp/features/issues/849)) ([e985348](https://github.com/prefapp/features/commit/e985348ff9e67dd47b24a9585f936cfa7f60948a))
+
 ## [1.16.2](https://github.com/prefapp/features/compare/claims_repo-v1.16.1...claims_repo-v1.16.2) (2026-02-09)
 
 

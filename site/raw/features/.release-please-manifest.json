@@ -7,7 +7,7 @@
     "packages/state_infra": "1.1.0",
     "packages/state_repo_sys_services": "2.3.7",
     "packages/state_repo_apps": "3.8.1",
-    "packages/claims_repo": "1.16.2",
+    "packages/claims_repo": "1.16.3",
     "packages/state_github": "1.1.0",
     "packages/firestartr_repo": "1.0.0",
     "packages/terraform-infra": "1.7.1",
