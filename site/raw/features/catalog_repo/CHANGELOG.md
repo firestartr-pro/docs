@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.3.0](https://github.com/prefapp/features/compare/catalog_repo-v1.2.0...catalog_repo-v1.3.0) (2026-02-26)
+
+
+### Features
+
+* Add AUTO_MERGE control file support for state-infra, state-github, and catalog ([#856](https://github.com/prefapp/features/issues/856)) ([73ead5e](https://github.com/prefapp/features/commit/73ead5e8131c1aece8641984c74d00e260ff0866))
+* new validation structure ([#635](https://github.com/prefapp/features/issues/635)) ([7e3f1cb](https://github.com/prefapp/features/commit/7e3f1cbd35af1d333a7f965dcce965975c371f92))
+
+
+### Bug Fixes
+
+* Fixed all git config calls in all feature's workflows ([#811](https://github.com/prefapp/features/issues/811)) ([3c961d5](https://github.com/prefapp/features/commit/3c961d58875449bc7761ea58d8c4806c699c90ec))
+
 ## [1.2.0](https://github.com/prefapp/features/compare/catalog_repo-v1.1.0...catalog_repo-v1.2.0) (2025-07-21)
 
 

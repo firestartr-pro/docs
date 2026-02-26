@@ -11,7 +11,7 @@
     "packages/state_github": "1.2.0",
     "packages/firestartr_repo": "1.0.0",
     "packages/terraform-infra": "1.7.1",
-    "packages/catalog_repo": "1.2.0",
+    "packages/catalog_repo": "1.3.0",
     "packages/charts_repo": "1.4.3",
     "packages/features_repo": "0.3.1"
 }
