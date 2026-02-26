@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.17.1](https://github.com/prefapp/features/compare/claims_repo-v1.17.0...claims_repo-v1.17.1) (2026-02-26)
+
+
+### Bug Fixes
+
+* auto-merge logic ([#878](https://github.com/prefapp/features/issues/878)) ([a83ada9](https://github.com/prefapp/features/commit/a83ada94069899ce0a17b06713f774adfbb6814d))
+
 ## [1.17.0](https://github.com/prefapp/features/compare/claims_repo-v1.16.3...claims_repo-v1.17.0) (2026-02-26)
 
 
