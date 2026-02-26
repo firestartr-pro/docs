@@ -1,0 +1,323 @@
+<!doctype html><html lang=en-us dir=ltr><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="🔍 Overview# This documentation focuses on the structure and purpose of application repositories for deploying workloads in Kubernetes. Each application has its own dedicated repository to ensure isolation, clear organization, and streamlined management of configuration and deployment files.
+The repository serves as the single source of truth for the application’s configuration across clusters, tenants, and environments.
+📂 Repository directory structure# Applications are organized in the following directory structure within the Git repository:
+"><meta name=theme-color media="(prefers-color-scheme: light)" content="#ffffff"><meta name=theme-color media="(prefers-color-scheme: dark)" content="#343a40"><meta name=color-scheme content="light dark"><meta property="og:url" content="https://docs.firestartr.dev/docs/state-apps-repository/"><meta property="og:site_name" content="Firestartr Documentation"><meta property="og:title" content="Firestartr Documentation"><meta property="og:description" content="🔍 Overview# This documentation focuses on the structure and purpose of application repositories for deploying workloads in Kubernetes. Each application has its own dedicated repository to ensure isolation, clear organization, and streamlined management of configuration and deployment files.
+The repository serves as the single source of truth for the application’s configuration across clusters, tenants, and environments.
+📂 Repository directory structure# Applications are organized in the following directory structure within the Git repository:"><meta property="og:locale" content="en_us"><meta property="og:type" content="article"><meta itemprop=name content="Firestartr Documentation"><meta itemprop=description content="🔍 Overview# This documentation focuses on the structure and purpose of application repositories for deploying workloads in Kubernetes. Each application has its own dedicated repository to ensure isolation, clear organization, and streamlined management of configuration and deployment files.
+The repository serves as the single source of truth for the application’s configuration across clusters, tenants, and environments.
+📂 Repository directory structure# Applications are organized in the following directory structure within the Git repository:"><meta itemprop=wordCount content="1927"><title>State Apps Repository | Firestartr Documentation</title><link rel=icon href=/docs/favicon.png><link rel=manifest href=/docs/manifest.json><link rel=canonical href=https://docs.firestartr.dev/docs/state-apps-repository/><link rel=stylesheet href=/docs/book.min.cc2c524ed250aac81b23d1f4af87344917b325208841feca0968fe450f570575.css integrity="sha256-zCxSTtJQqsgbI9H0r4c0SRezJSCIQf7KCWj+RQ9XBXU=" crossorigin=anonymous><script defer src=/docs/fuse.min.js></script><script defer src=/docs/en.search.min.27ea268489c4afe5460ac64c12852404231f9abe51a238c074a89899891f1487.js integrity="sha256-J+omhInEr+VGCsZMEoUkBCMfmr5RojjAdKiYmYkfFIc=" crossorigin=anonymous></script></head><body dir=ltr class="book-kind-page book-type-page"><input type=checkbox class="hidden toggle" id=menu-control>
+<input type=checkbox class="hidden toggle" id=toc-control><main class="container flex"><aside class=book-menu><div class=book-menu-content><nav><h2 class=book-brand><a class="flex align-center" href=/docs/><span>Firestartr Documentation</span></a></h2><div class="book-search hidden"><input id=book-search-input type=text placeholder=Search aria-label=Search maxlength=64 data-hotkeys=s/><div class="book-search-spinner hidden"></div><ul id=book-search-results></ul></div><script>document.querySelector(".book-search").classList.remove("hidden")</script><ul><li><a href=/docs/Migrating-to-our-new-app-state-repo-structure/>Migrating to Our New App State Repo Structure</a></li><li><input type=checkbox id=section-77ba58481c81cfcc87f14a72108199d0 class=toggle>
+<label for=section-77ba58481c81cfcc87f14a72108199d0 class=flex><a href=/docs/providers/>Providers</a>
+<img src=/docs/icons/chevron-right.svg class=book-icon alt=Expand></label><ul><li><input type=checkbox id=section-b1b6ec47a00c93e67ba6b7835cfc5cbb class=toggle>
+<label for=section-b1b6ec47a00c93e67ba6b7835cfc5cbb class=flex><a href=/docs/providers/terraform/>Terraform</a>
+<img src=/docs/icons/chevron-right.svg class=book-icon alt=Expand></label><ul><li><a href=/docs/providers/terraform/workspace-policies/>Workspace Policies</a></li><li><a href=/docs/providers/terraform/workspace-sync/>Workspace Sync</a></li></ul></li></ul></li><li><a href=/docs/state-apps-repository/ class=active>State Apps Repository</a></li><li><a href=/docs/state-sys-services-repository/>State Sys Services Repository</a></li><li><a href=/docs/The-dot-firestartr-repository/>The Dot Firestartr Repository</a></li><li><a href=/docs/Validating-our-claims/>Validating Our Claims</a></li><li><input type=checkbox id=section-59625c6804349fe2bfba21980f88c1e3 class=toggle>
+<label for=section-59625c6804349fe2bfba21980f88c1e3 class=flex><a href=/docs/features/>Features</a>
+<img src=/docs/icons/chevron-right.svg class=book-icon alt=Expand></label><ul><li><input type=checkbox id=section-175a6acb21b23225ad6bb7d217c9122e class=toggle>
+<label for=section-175a6acb21b23225ad6bb7d217c9122e class=flex><a href=/docs/features/build_and_dispatch_docker_images/>Build and Dispatch Docker Images</a>
+<img src=/docs/icons/chevron-right.svg class=book-icon alt=Expand></label><ul><li><a href=/docs/features/build_and_dispatch_docker_images/CHANGELOG/>Changelog</a></li></ul></li><li><input type=checkbox id=section-39ffb35bc31c80c3835fb6d107d8f566 class=toggle>
+<label for=section-39ffb35bc31c80c3835fb6d107d8f566 class=flex><a href=/docs/features/catalog_repo/>Catalog Repo</a>
+<img src=/docs/icons/chevron-right.svg class=book-icon alt=Expand></label><ul><li><a href=/docs/features/catalog_repo/CHANGELOG/>Changelog</a></li></ul></li><li><input type=checkbox id=section-6b57e3023d9f976a9384af45ac1defa0 class=toggle>
+<label for=section-6b57e3023d9f976a9384af45ac1defa0 class=flex><a href=/docs/features/charts_repo/>Charts Repo</a>
+<img src=/docs/icons/chevron-right.svg class=book-icon alt=Expand></label><ul><li><a href=/docs/features/charts_repo/CHANGELOG/>Changelog</a></li></ul></li><li><input type=checkbox id=section-b6a186066fe5df06a19368fd8c4e2996 class=toggle>
+<label for=section-b6a186066fe5df06a19368fd8c4e2996 class=flex><a href=/docs/features/claims_repo/>Claims Repo</a>
+<img src=/docs/icons/chevron-right.svg class=book-icon alt=Expand></label><ul><li><a href=/docs/features/claims_repo/CHANGELOG/>Changelog</a></li></ul></li><li><input type=checkbox id=section-38807a9873b684081175bcfa2c2cf899 class=toggle>
+<label for=section-38807a9873b684081175bcfa2c2cf899 class=flex><a href=/docs/features/features_repo/>Features Repo</a>
+<img src=/docs/icons/chevron-right.svg class=book-icon alt=Expand></label><ul><li><a href=/docs/features/features_repo/CHANGELOG/>Changelog</a></li></ul></li><li><input type=checkbox id=section-b095c0174f431275dbfbd179b858882c class=toggle>
+<label for=section-b095c0174f431275dbfbd179b858882c class=flex><a href=/docs/features/firestartr_repo/>Firestartr Repo</a>
+<img src=/docs/icons/chevron-right.svg class=book-icon alt=Expand></label><ul><li><a href=/docs/features/firestartr_repo/CHANGELOG/>Changelog</a></li></ul></li><li><input type=checkbox id=section-8c74538169d2bfcc42048e94a7a8b10f class=toggle>
+<label for=section-8c74538169d2bfcc42048e94a7a8b10f class=flex><a href=/docs/features/issue_templates/>Issue Templates</a>
+<img src=/docs/icons/chevron-right.svg class=book-icon alt=Expand></label><ul><li><a href=/docs/features/issue_templates/CHANGELOG/>Changelog</a></li></ul></li><li><input type=checkbox id=section-356bba00636a6fa9c561ac1523b4c383 class=toggle>
+<label for=section-356bba00636a6fa9c561ac1523b4c383 class=flex><a href=/docs/features/release_please/>Release Please</a>
+<img src=/docs/icons/chevron-right.svg class=book-icon alt=Expand></label><ul><li><a href=/docs/features/release_please/CHANGELOG/>Changelog</a></li></ul></li><li><input type=checkbox id=section-17190a34986f329bfce42d3c100d77a8 class=toggle>
+<label for=section-17190a34986f329bfce42d3c100d77a8 class=flex><a href=/docs/features/state_github/>State Github</a>
+<img src=/docs/icons/chevron-right.svg class=book-icon alt=Expand></label><ul><li><a href=/docs/features/state_github/CHANGELOG/>Changelog</a></li></ul></li><li><input type=checkbox id=section-5f9553708125dcb2260eaa1dc68fa4b3 class=toggle>
+<label for=section-5f9553708125dcb2260eaa1dc68fa4b3 class=flex><a href=/docs/features/state_infra/>State Infra</a>
+<img src=/docs/icons/chevron-right.svg class=book-icon alt=Expand></label><ul><li><a href=/docs/features/state_infra/CHANGELOG/>Changelog</a></li></ul></li><li><input type=checkbox id=section-5cfdf617da323132dc220c8cdac15345 class=toggle>
+<label for=section-5cfdf617da323132dc220c8cdac15345 class=flex><a href=/docs/features/state_repo/>State Repo</a>
+<img src=/docs/icons/chevron-right.svg class=book-icon alt=Expand></label><ul><li><a href=/docs/features/state_repo/CHANGELOG/>Changelog</a></li></ul></li><li><input type=checkbox id=section-ed9c88a7368e2738f3eb675492c08586 class=toggle>
+<label for=section-ed9c88a7368e2738f3eb675492c08586 class=flex><a href=/docs/features/state_repo_apps/>State Repo Apps</a>
+<img src=/docs/icons/chevron-right.svg class=book-icon alt=Expand></label><ul><li><a href=/docs/features/state_repo_apps/KUBERNETES_README/>Kubernetes Readme</a></li><li><a href=/docs/features/state_repo_apps/SECRETS_README/>Secrets Readme</a></li><li><a href=/docs/features/state_repo_apps/TFWORKSPACES_README/>Tfworkspaces Readme</a></li><li><a href=/docs/features/state_repo_apps/CHANGELOG/>Changelog</a></li></ul></li><li><input type=checkbox id=section-9b5377154045b7f8613471f4d8281e78 class=toggle>
+<label for=section-9b5377154045b7f8613471f4d8281e78 class=flex><a href=/docs/features/state_repo_sys_services/>State Repo Sys Services</a>
+<img src=/docs/icons/chevron-right.svg class=book-icon alt=Expand></label><ul><li><a href=/docs/features/state_repo_sys_services/CHANGELOG/>Changelog</a></li></ul></li><li><input type=checkbox id=section-36ec9bd0ed3955d6fa86995304f3f940 class=toggle>
+<label for=section-36ec9bd0ed3955d6fa86995304f3f940 class=flex><a href=/docs/features/tech_docs/>Tech Docs</a>
+<img src=/docs/icons/chevron-right.svg class=book-icon alt=Expand></label><ul><li><a href=/docs/features/tech_docs/CHANGELOG/>Changelog</a></li></ul></li><li><input type=checkbox id=section-85da29a6eded009fe28c389b53dac15e class=toggle>
+<label for=section-85da29a6eded009fe28c389b53dac15e class=flex><a href=/docs/features/terraform-infra/>Terraform Infra</a>
+<img src=/docs/icons/chevron-right.svg class=book-icon alt=Expand></label><ul><li><a href=/docs/features/terraform-infra/ACCOUNTS_README/>Accounts Readme</a></li><li><a href=/docs/features/terraform-infra/CHANGELOG/>Changelog</a></li></ul></li></ul></li></ul></nav><script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script></div></aside><div class=book-page><header class="book-header hidden"><div class="flex align-center justify-between"><label for=menu-control><img src=/docs/icons/menu.svg class=book-icon alt=Menu></label><h3>State Apps Repository</h3><label for=toc-control><img src=/docs/icons/toc.svg class=book-icon alt="Table of Contents"></label></div><aside class=hidden><nav id=TableOfContents><ul><li><a href=#-repository-directory-structure>📂 Repository directory structure</a><ul><li><a href=#-main-or-master-branch>🌱 <code>main</code> (or <code>master</code>) branch</a></li><li><a href=#-deployment-branch>🚀 <code>deployment</code> branch</a></li></ul></li><li><a href=#-repository-usage-design>📚 Repository Usage Design</a><ul><li><a href=#-automatic-image-update>🔄 Automatic image update</a></li><li><a href=#-on-demand-deployments>🖐️ On demand deployments</a></li></ul></li><li><a href=#-branch-and-deployment-revision>🔧 Branch and Deployment Revision</a></li><li><a href=#-dynamic-application-deployment-with-applicationset>⚙️ Dynamic application deployment with ApplicationSet</a><ul><li><a href=#how-it-works>How It Works:</a></li></ul></li><li><a href=#-notification-system-with-argocd>🔔 Notification system with ArgoCD</a><ul><li><a href=#-how-it-works>🔨 How It Works</a></li><li><a href=#-setup>⚙️ Setup</a></li></ul></li><li><a href=#-platform-control-through-argo-project>🔒 Platform control through Argo Project</a></li></ul></nav></aside></header><article class="markdown book-article"><h1 id=-overview>🔍 Overview<a class=anchor href=#-overview>#</a></h1><p>This documentation focuses on the structure and purpose of application repositories for deploying workloads in Kubernetes. Each application has its own dedicated repository to ensure isolation, clear organization, and streamlined management of configuration and deployment files.</p><p>The repository serves as the single source of truth for the application’s configuration across clusters, tenants, and environments.</p><h2 id=-repository-directory-structure>📂 Repository directory structure<a class=anchor href=#-repository-directory-structure>#</a></h2><p>Applications are organized in the following directory structure within the Git repository:</p><h3 id=-main-or-master-branch>🌱 <code>main</code> (or <code>master</code>) branch<a class=anchor href=#-main-or-master-branch>#</a></h3><p>This branch serves as the source for environment-specific configurations and high-level settings for the application.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=display:flex><span>kubernetes/
+</span></span><span style=display:flex><span>  ├── &lt;cluster-name&gt;/        <span style=color:#75715e># Target Kubernetes cluster</span>
+</span></span><span style=display:flex><span>  │      ├── &lt;tenant-name&gt;/  <span style=color:#75715e># Team or tenant managing the app</span>
+</span></span><span style=display:flex><span>  │      │      ├── &lt;env-name&gt;/    <span style=color:#75715e># Environment (dev, staging, prod)</span>
+</span></span><span style=display:flex><span>  │      │      │      ├── values.yaml  <span style=color:#75715e># Parameters specific to the environment</span>
+</span></span><span style=display:flex><span>  │      │      │      ├── extra_artifacts/   <span style=color:#75715e># Optional extra artifacts for kubernetes deployments</span></span></span></code></pre></div><p>Each application deployment requires a configuration file at the following path <code>kubernetes/&lt;cluster-name>/&lt;tenant-name>/&lt;env-name>.yaml</code> with the following structure:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#f92672>chart</span>: <span style=color:#ae81ff>&lt;alias&gt;/&lt;chart-name&gt;</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>registry</span>: <span style=color:#ae81ff>&lt;registry_url&gt;</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>version</span>: <span style=color:#ae81ff>&lt;version&gt;</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>releaseName</span>: <span style=color:#ae81ff>&lt;release_name&gt;</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>hooks</span>: []
+</span></span><span style=display:flex><span><span style=color:#f92672>extraPatches</span>: []</span></span></code></pre></div><h3 id=-deployment-branch>🚀 <code>deployment</code> branch<a class=anchor href=#-deployment-branch>#</a></h3><p>This branch contains the raw Kubernetes manifests that ArgoCD applies to clusters. These manifests are generated from the configurations in the <code>main</code> (or <code>master</code>) branch.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=display:flex><span>kubernetes/
+</span></span><span style=display:flex><span>  ├── &lt;cluster-name&gt;/        <span style=color:#75715e># Cluster where the application is deployed</span>
+</span></span><span style=display:flex><span>  │      ├── &lt;tenant-name&gt;/  <span style=color:#75715e># Tenant or team managing the application</span>
+</span></span><span style=display:flex><span>  │      │      ├── &lt;env-name&gt;/    <span style=color:#75715e># Environment (dev, staging, prod)</span>
+</span></span><span style=display:flex><span>  │      │      │      ├── Deployment.&lt;metadata.name&gt;.yaml    <span style=color:#75715e># Kubernetes Deployment resource</span>
+</span></span><span style=display:flex><span>  │      │      │      ├── Configmap.&lt;metadata.name&gt;.yaml     <span style=color:#75715e># ConfigMaps or other configs</span>
+</span></span><span style=display:flex><span>  │      │      │      └── ...other-resources</span></span></code></pre></div><h2 id=-repository-usage-design>📚 Repository Usage Design<a class=anchor href=#-repository-usage-design>#</a></h2><p>There are two main flows in the state repository:</p><ul><li>Automatic image update: Whenever a new spanshot, pre-release or release is created on any of the microservices, the image is built and pushed to the state repository.</li><li>On demand deployments: State values may be updated at any time by the user, just by updating the values files. Then, to apply the changes, the user must trigger the deployment.</li></ul><p><img src=/docs/images/core-state-apps-dispatch.png alt="State Apps Dispatch Flow"></p><p>Has been made this way to follow the GitOps principles, where the state of the system is stored in a Git repository as code, and the changes are applied through pull requests and merges.
+Keeping the actual state of the system in a <a href=https://cloud.google.com/kubernetes-engine/enterprise/config-sync/docs/concepts/gitops-best-practices#create-wet-repo><em>wet repository</em></a> or branch in this case.</p><h3 id=-automatic-image-update>🔄 Automatic image update<a class=anchor href=#-automatic-image-update>#</a></h3><p>The automatic image update flow is triggered by the creation of a new snapshot, pre-release or release on any of the microservices.</p><p><img src=/docs/images/core-state-apps-dispatch-detail.png alt="State Apps Dispatch Detail"></p><p>Then it dispatches new deployments with the new microservice images to the state repository.</p><p><img src=/docs/images/core-state-apps-image-update-pr.png alt="Image update PR example"></p><blockquote class=book-hint><p>Additionally the person that triggered the image update is added as reviewer together with appropiate labels to be abel to track it down more easily</p></blockquote><p>Images versions are handled by
+the charts, adding an annotation with the image version and microservice name for each resource affected. Whenever a deployment is triggered,
+it retrieves the image version from the annotation if not specified by the new release. Therefore if a deployment uses two different microservices,
+it will use the image version specified in the release for the microservice that has a new version, and the one specified in the annotation for the other microservice.</p><h3 id=-on-demand-deployments>🖐️ On demand deployments<a class=anchor href=#-on-demand-deployments>#</a></h3><p>On demand deployments flow is triggered by the user using the manual workflow dispatch action,
+being able to use <a href=https://docs.oracle.com/en-us/iaas/Content/devops/using/glob-patterns.htm>glob patterns</a> to deploy multiple environments at once.</p><blockquote class=book-hint><p>The user must update the values files in the state repository before triggering the deployment.</p></blockquote><p>Then <em>n</em> deployment pull requests are created, the user must review and merge them to apply the changes.</p><p><img src=/docs/images/core-state-apps-on-demand-deployment.png alt="On-demand deployment example"></p><blockquote class=book-hint><p>If a pull request for a given environment is already open, the deployment will throw an error for that environment, making the user to close or merging the pull request before triggering the deployment again.</p></blockquote><h2 id=-branch-and-deployment-revision>🔧 Branch and Deployment Revision<a class=anchor href=#-branch-and-deployment-revision>#</a></h2><p>The deployment configuration is based on a specific Git branch and revision:</p><ul><li><strong>Branch:</strong> <code>deployment</code></li><li><strong>Path:</strong> <code>kubernetes/*/*/*</code> — The application is retrieved dynamically from a path that matches the directory structure described above.</li></ul><p>This means that the application is linked to a specific folder within the <code>deployment</code> branch of the repository, enabling easy identification and deployment based on the cluster, tenant, and environment.</p><h2 id=-dynamic-application-deployment-with-applicationset>⚙️ Dynamic application deployment with ApplicationSet<a class=anchor href=#-dynamic-application-deployment-with-applicationset>#</a></h2><p>Argo CD’s <code>ApplicationSet</code> configuration enables dynamic creation of application deployments. When new deployments are needed, they are automatically created by referencing the directory structure in the repository.</p><h3 id=how-it-works>How It Works:<a class=anchor href=#how-it-works>#</a></h3><ul><li>The <strong>ApplicationSet</strong> reads the structure of the repository and dynamically creates applications for each combination of cluster, tenant, and environment found in the paths under <code>kubernetes/*/*/*</code>.</li><li>The <strong>Application name</strong> is generated based on the directory segments, following this format: <code>&lt;tenant>-&lt;my-app>-&lt;environment></code></li></ul><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#75715e># apps/&lt;application-name&gt;/argo-&lt;application-name&gt;.ApplicationSet.yaml</span>
+</span></span><span style=display:flex><span>---
+</span></span><span style=display:flex><span><span style=color:#f92672>apiVersion</span>: <span style=color:#ae81ff>argoproj.io/v1alpha1</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>kind</span>: <span style=color:#ae81ff>ApplicationSet</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>metadata</span>:
+</span></span><span style=display:flex><span>  <span style=color:#f92672>name</span>: <span style=color:#ae81ff>app-&lt;application-name&gt;</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>namespace</span>: <span style=color:#ae81ff>argocd</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>spec</span>:
+</span></span><span style=display:flex><span>  <span style=color:#f92672>generators</span>:
+</span></span><span style=display:flex><span>  - <span style=color:#f92672>git</span>:
+</span></span><span style=display:flex><span>      <span style=color:#f92672>directories</span>:
+</span></span><span style=display:flex><span>      - <span style=color:#f92672>path</span>: <span style=color:#ae81ff>&lt;technology.type&gt;/*/*/* </span> <span style=color:#75715e># technology.type -&gt; kubernetes, vmss, etc. as defined by the cluster configuration in the .firestartr repo</span>
+</span></span><span style=display:flex><span>      <span style=color:#f92672>repoURL</span>: <span style=color:#ae81ff>https://github.com/&lt;org&gt;/&lt;new-state-repo&gt;.git</span>
+</span></span><span style=display:flex><span>      <span style=color:#f92672>revision</span>: <span style=color:#ae81ff>deployment</span>
+</span></span><span style=display:flex><span>      <span style=color:#f92672>values</span>:
+</span></span><span style=display:flex><span>        <span style=color:#f92672>&lt;cluster1-name&gt;</span>: <span style=color:#ae81ff>&lt;cluster1-url&gt;</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>&lt;cluster2-name&gt;</span>: <span style=color:#ae81ff>&lt;cluster2-url&gt;</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>&lt;cluster3-name&gt;</span>: <span style=color:#ae81ff>&lt;cluster3-url&gt;</span>
+</span></span><span style=display:flex><span>        <span style=color:#ae81ff>...</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>goTemplate</span>: <span style=color:#66d9ef>true</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>goTemplateOptions</span>:
+</span></span><span style=display:flex><span>  - <span style=color:#ae81ff>missingkey=error</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>template</span>:
+</span></span><span style=display:flex><span>    <span style=color:#f92672>metadata</span>:
+</span></span><span style=display:flex><span>      <span style=color:#f92672>name</span>: <span style=color:#e6db74>&#39;app-&lt;application-name&gt;-{{index .path.segments 1}}-{{index .path.segments 2}}-{{index .path.segments 3}}&#39;</span>
+</span></span><span style=display:flex><span>      <span style=color:#f92672>labels</span>:
+</span></span><span style=display:flex><span>        <span style=color:#f92672>app-name</span>: <span style=color:#e6db74>&#39;&lt;application-name&gt;&#39;</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>spec</span>:
+</span></span><span style=display:flex><span>      <span style=color:#f92672>destination</span>:
+</span></span><span style=display:flex><span>        <span style=color:#f92672>namespace</span>: <span style=color:#e6db74>&#39;{{index .path.segments 2}}-&lt;application-name&gt;-{{index .path.segments 3}}&#39;</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>server</span>: <span style=color:#e6db74>&#39;{{index .values (index .path.segments 1)}}&#39;</span>
+</span></span><span style=display:flex><span>      <span style=color:#f92672>project</span>: <span style=color:#e6db74>&#39;app-&lt;application-name&gt;&#39;</span>
+</span></span><span style=display:flex><span>      <span style=color:#f92672>source</span>:
+</span></span><span style=display:flex><span>        <span style=color:#f92672>path</span>: <span style=color:#e6db74>&#39;{{index .path.segments 0}}/{{index .path.segments 1}}/{{index .path.segments 2}}/{{index .path.segments 3}}&#39;</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>repoURL</span>: <span style=color:#ae81ff>https://github.com/&lt;org&gt;/&lt;new-state-repo&gt;.git</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>targetRevision</span>: <span style=color:#ae81ff>deployment</span>
+</span></span><span style=display:flex><span>      <span style=color:#f92672>syncPolicy</span>:
+</span></span><span style=display:flex><span>        <span style=color:#f92672>automated</span>: <span style=color:#66d9ef>null</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>syncOptions</span>:
+</span></span><span style=display:flex><span>        - <span style=color:#ae81ff>CreateNamespace=true</span>
+</span></span><span style=display:flex><span>        - <span style=color:#ae81ff>ServerSideApply=true</span>
+</span></span><span style=display:flex><span>      <span style=color:#f92672>ignoreDifferences</span>:
+</span></span><span style=display:flex><span>      - <span style=color:#f92672>group</span>: <span style=color:#e6db74>&#34;policy&#34;</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>kind</span>: <span style=color:#ae81ff>PodDisruptionBudget</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>jsonPointers</span>:
+</span></span><span style=display:flex><span>        - <span style=color:#ae81ff>/status</span>
+</span></span><span style=display:flex><span>        - <span style=color:#ae81ff>/metadata/uid</span>
+</span></span><span style=display:flex><span>        - <span style=color:#ae81ff>/metadata/generation</span>
+</span></span><span style=display:flex><span>        - <span style=color:#ae81ff>/metadata/resourceVersion</span>
+</span></span><span style=display:flex><span>        - <span style=color:#ae81ff>/metadata/creationTimestamp</span></span></span></code></pre></div><h2 id=-notification-system-with-argocd>🔔 Notification system with ArgoCD<a class=anchor href=#-notification-system-with-argocd>#</a></h2><p>ArgoCD notifications provides feedback to the user about the status of the deployments. There are three types of notifications:</p><ul><li><strong>Github Commit Status:</strong> Adds a status to the commit synced by the app.</li><li><strong>Github Deployment:</strong> Creates a deployment in the repository.</li></ul><h3 id=-how-it-works>🔨 How It Works<a class=anchor href=#-how-it-works>#</a></h3><p>ArgoCD notifications are configured with the following components:</p><ul><li>Templates: Define the content of the notification, using Go templates. They can be customized for each service (e.g., Slack, GitHub).</li><li>Triggers: Define the conditions that trigger the notification. They can be based on the status of the application, the environment, or other factors. It also specifies what template to use by template name.</li><li>Subscriptions: Define what triggers to use in each application. We are configuring it globally but it can be configured per application using annotations.</li></ul><p>Check the <a href=https://argo-cd.readthedocs.io/en/stable/operator-manual/notifications/>docs</a> for further reading.</p><h3 id=-setup>⚙️ Setup<a class=anchor href=#-setup>#</a></h3><p>Create a GitHub App <em>fs-argocd-notifications</em> in the client with the following permissions:</p><ul><li>Deployments: Read & Write</li><li>Commit statuses: Read & Write</li><li>Environments: Read & Write</li></ul><p>Then, generate a private key and store it in your cloud provider:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>az keyvault secret set --name fs-argocd-notifications-pem --vault-name &lt;VAULT_NAME&gt; --file fs-argocd-notifications.&lt;DATE&gt;.private-key.pem</span></span></code></pre></div><p>Create a Slack App, install it in the desired workspace, and generate a token.</p><p>Store the token in your cloud provider:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>az keyvault secret set --name slack-token --vault-name &lt;VAULT_NAME&gt; --value &lt;SLACK_TOKEN&gt;</span></span></code></pre></div><p>Make sure to have the following permissions:</p><ul><li><code>chat:write</code></li><li><code>chat:write.customize</code></li></ul><h4 id=-argocd-helm-chart>📝 ArgoCD helm chart<a class=anchor href=#-argocd-helm-chart>#</a></h4><p>We need to configure the chart with the following values:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#f92672>notifications</span>:
+</span></span><span style=display:flex><span>  <span style=color:#f92672>secret</span>:
+</span></span><span style=display:flex><span>    <span style=color:#75715e># As we are using state repository, we cannot store the secret in the repository</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>create</span>: <span style=color:#66d9ef>false</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>argocdUrl</span>: <span style=color:#e6db74>&#34;&lt;ARGOCD_URL&gt;&#34;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>notifiers</span>:
+</span></span><span style=display:flex><span>    <span style=color:#f92672>service.github</span>: |<span style=color:#e6db74>
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>      appID: &lt;GITHUB_APP_ID&gt;
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>      installationID: &lt;GITHUB_INSTALLATION_ID&gt;
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>      privateKey: $github-privateKey</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>service.slack</span>: |<span style=color:#e6db74>
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>      token: $slack-token</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>subscriptions</span>:
+</span></span><span style=display:flex><span>    - <span style=color:#f92672>recipients</span>:
+</span></span><span style=display:flex><span>        - <span style=color:#ae81ff>github:&lt;GITHUB_APP_NAME&gt;</span> <span style=color:#75715e># fs-argocd-notifications</span>
+</span></span><span style=display:flex><span>      <span style=color:#f92672>triggers</span>:
+</span></span><span style=display:flex><span>        - <span style=color:#66d9ef>on</span>-<span style=color:#ae81ff>sync-failed</span>
+</span></span><span style=display:flex><span>        - <span style=color:#66d9ef>on</span>-<span style=color:#ae81ff>health-degraded</span>
+</span></span><span style=display:flex><span>        - <span style=color:#66d9ef>on</span>-<span style=color:#ae81ff>deployed</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>templates</span>:
+</span></span><span style=display:flex><span>    <span style=color:#f92672>template.app-deployed</span>: |<span style=color:#e6db74>
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>      github:
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>        repoURLPath: &#34;{{.app.spec.source.repoURL}}&#34;
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>        revisionPath: &#34;{{.app.status.operationState.syncResult.revision}}&#34;
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>        status:
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>          state: success
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>          label: &#34;continuous-delivery/{{.app.metadata.name}}&#34;
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>          targetURL: &#34;{{.context.argocdUrl}}/applications/{{.app.metadata.name}}?operation=true&#34;
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>        deployment:
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>          state: success
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>          environment: &#34;{{ .app.spec.source.path }}&#34;
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>          environmentURL: &#34;{{index .app.status.summary.externalURLs 0}}&#34;
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>          logURL: &#34;{{.context.argocdUrl}}/applications/{{.app.metadata.name}}?operation=true&#34;
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>          requiredContexts: []
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>          autoMerge: false
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>          transientEnvironment: false
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>      message: |
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>        {{if eq .serviceType &#34;slack&#34;}}:white_check_mark:{{end}} Application {{.app.metadata.name}} is now running new version of deployments manifests.
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>      slack:
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>        attachments: |
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>          [{
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>            &#34;title&#34;: &#34;{{ .app.metadata.name}}&#34;,
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>            &#34;title_link&#34;:&#34;{{.context.argocdUrl}}/applications/{{.app.metadata.name}}&#34;,
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>            &#34;color&#34;: &#34;#18be52&#34;,
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>            &#34;fields&#34;: [
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>            {
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>              &#34;title&#34;: &#34;Sync Status&#34;,
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>              &#34;value&#34;: &#34;{{.app.status.sync.status}}&#34;,
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>              &#34;short&#34;: true
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>            },
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>            {
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>              &#34;title&#34;: {{- if .app.spec.source }} &#34;Repository&#34; {{- else if .app.spec.sources }} &#34;Repositories&#34; {{- end }},
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>              &#34;value&#34;: {{- if .app.spec.source }} &#34;:arrow_heading_up: {{ .app.spec.source.repoURL }}&#34; {{- else if .app.spec.sources }} &#34;{{- range $index, $source := .app.spec.sources }}{{ if $index }}\n{{ end }}:arrow_heading_up: {{ $source.repoURL }}{{- end }}&#34; {{- end }},
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>              &#34;short&#34;: true
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>            },
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>            {
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>              &#34;title&#34;: &#34;Revision&#34;,
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>              &#34;value&#34;: &#34;{{.app.status.sync.revision}}&#34;,
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>              &#34;short&#34;: true
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>            }
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>            {{range $index, $c := .app.status.conditions}}
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>            ,
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>            {
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>              &#34;title&#34;: &#34;{{$c.type}}&#34;,
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>              &#34;value&#34;: &#34;{{$c.message}}&#34;,
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>              &#34;short&#34;: true
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>            }
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>            {{end}}
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>            ]
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>          }]
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>        deliveryPolicy: Post
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>        groupingKey: &#34;&#34;
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>        notifyBroadcast: false</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>template.app-sync-failed</span>: |<span style=color:#e6db74>
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>      github:
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>        repoURLPath: &#34;{{.app.spec.source.repoURL}}&#34;
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>        revisionPath: &#34;{{.app.status.operationState.syncResult.revision}}&#34;
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>        status:
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>          state: failure
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>          label: &#34;continuous-delivery/{{.app.metadata.name}}&#34;
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>          targetURL: &#34;{{.context.argocdUrl}}/applications/{{.app.metadata.name}}?operation=true&#34;
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>        deployment:
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>          state: failure
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>          environment: &#34;{{ .app.spec.source.path }}&#34;
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>          environmentURL: &#34;{{index .app.status.summary.externalURLs 0}}&#34;
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>          logURL: &#34;{{.context.argocdUrl}}/applications/{{.app.metadata.name}}?operation=true&#34;
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>          requiredContexts: []
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>          autoMerge: false
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>          transientEnvironment: false
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>      message: |
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>        {{if eq .serviceType &#34;slack&#34;}}:exclamation:{{end}}  The sync operation of application {{.app.metadata.name}} has failed at {{.app.status.operationState.finishedAt}} with the following error: {{.app.status.operationState.message}}
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>        Sync operation details are available at: {{.context.argocdUrl}}/applications/{{.app.metadata.name}}?operation=true .
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>      slack:
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>        attachments: |
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>          [{
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>            &#34;title&#34;: &#34;{{ .app.metadata.name}}&#34;,
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>            &#34;title_link&#34;:&#34;{{.context.argocdUrl}}/applications/{{.app.metadata.name}}&#34;,
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>            &#34;color&#34;: &#34;#E96D76&#34;,
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>            &#34;fields&#34;: [
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>            {
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>              &#34;title&#34;: &#34;Sync Status&#34;,
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>              &#34;value&#34;: &#34;{{.app.status.sync.status}}&#34;,
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>              &#34;short&#34;: true
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>            },
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>            {
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>              &#34;title&#34;: {{- if .app.spec.source }} &#34;Repository&#34; {{- else if .app.spec.sources }} &#34;Repositories&#34; {{- end }},
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>              &#34;value&#34;: {{- if .app.spec.source }} &#34;:arrow_heading_up: {{ .app.spec.source.repoURL }}&#34; {{- else if .app.spec.sources }} &#34;{{- range $index, $source := .app.spec.sources }}{{ if $index }}\n{{ end }}:arrow_heading_up: {{ $source.repoURL }}{{- end }}&#34; {{- end }},
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>              &#34;short&#34;: true
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>            }
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>            {{range $index, $c := .app.status.conditions}}
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>            ,
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>            {
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>              &#34;title&#34;: &#34;{{$c.type}}&#34;,
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>              &#34;value&#34;: &#34;{{$c.message}}&#34;,
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>              &#34;short&#34;: true
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>            }
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>            {{end}}
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>            ]
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>          }]
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>        deliveryPolicy: Post
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>        groupingKey: &#34;&#34;
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>        notifyBroadcast: false</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>triggers</span>:
+</span></span><span style=display:flex><span>    <span style=color:#75715e># Make sure that the send field is the same as the template name and you subscribe the app with the trigger name (e.g. on-deployed)</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>trigger.on-deployed</span>: |<span style=color:#e6db74>
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>      - description: Application is synced and healthy. Triggered once per commit.
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>        oncePer: app.status.sync.revision
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>        send:
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>        - app-deployed
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>        when: app.status.operationState.phase in [&#39;Succeeded&#39;] and app.status.health.status == &#39;Healthy&#39;</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>trigger.on-health-degraded</span>: |<span style=color:#e6db74>
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>      - description: Application has degraded
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>        send:
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>        - app-sync-failed
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>        when: app.status.health.status == &#39;Degraded&#39;</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>trigger.on-sync-failed</span>: |<span style=color:#e6db74>
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>      - description: Application syncing has failed
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>        send:
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>        - app-sync-failed
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>        when: app.status.operationState != nil and app.status.operationState.phase in [&#39;Error&#39;,
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>          &#39;Failed&#39;]</span></span></span></code></pre></div><h4 id=-argocd-external-secrets>🔒 ArgoCD External Secrets<a class=anchor href=#-argocd-external-secrets>#</a></h4><p>As we said before, we cannot store the private key in the repository, so we need to create an external secret with the private key. Therefore we need to create the following manifests:</p><p><em>argocd-notifications-service-account.yml</em></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#f92672>apiVersion</span>: <span style=color:#ae81ff>v1</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>kind</span>: <span style=color:#ae81ff>ServiceAccount</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>metadata</span>:
+</span></span><span style=display:flex><span>  <span style=color:#f92672>name</span>: <span style=color:#ae81ff>argocd-notifications</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>annotations</span>:
+</span></span><span style=display:flex><span>    <span style=color:#f92672>azure.workload.identity/client-id</span>: <span style=color:#ae81ff>&lt;CLIENT_ID&gt;</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>azure.workload.identity/tenant-id</span>: <span style=color:#ae81ff>&lt;TENANT_ID&gt;</span></span></span></code></pre></div><p><em>argocd-notifications-secret-store.yml</em></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#f92672>apiVersion</span>: <span style=color:#ae81ff>external-secrets.io/v1beta1</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>kind</span>: <span style=color:#ae81ff>SecretStore</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>metadata</span>:
+</span></span><span style=display:flex><span>  <span style=color:#f92672>name</span>: <span style=color:#ae81ff>argocd-notifications</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>spec</span>:
+</span></span><span style=display:flex><span>  <span style=color:#f92672>provider</span>:
+</span></span><span style=display:flex><span>    <span style=color:#f92672>azurekv</span>:
+</span></span><span style=display:flex><span>      <span style=color:#f92672>authType</span>: <span style=color:#ae81ff>WorkloadIdentity</span>
+</span></span><span style=display:flex><span>      <span style=color:#f92672>vaultUrl</span>: <span style=color:#e6db74>&#34;&lt;VAULT_URL&gt;&#34;</span>
+</span></span><span style=display:flex><span>      <span style=color:#f92672>serviceAccountRef</span>:
+</span></span><span style=display:flex><span>        <span style=color:#f92672>name</span>: <span style=color:#ae81ff>argocd-notifications</span></span></span></code></pre></div><blockquote class=book-hint><p>In this case we are using Azure Key Vault as the secret store, check the <a href=https://external-secrets.io/main/provider/aws-secrets-manager/>docs</a> for other providers.</p></blockquote><p><em>argocd-notifications-external-secret.yml</em></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#f92672>apiVersion</span>: <span style=color:#ae81ff>external-secrets.io/v1beta1</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>kind</span>: <span style=color:#ae81ff>ExternalSecret</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>metadata</span>:
+</span></span><span style=display:flex><span>  <span style=color:#f92672>name</span>: <span style=color:#ae81ff>argocd-notifications</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>spec</span>:
+</span></span><span style=display:flex><span>  <span style=color:#f92672>refreshInterval</span>: <span style=color:#ae81ff>1h</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>secretStoreRef</span>:
+</span></span><span style=display:flex><span>    <span style=color:#f92672>kind</span>: <span style=color:#ae81ff>SecretStore</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>name</span>: <span style=color:#ae81ff>argocd-notifications</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>target</span>:
+</span></span><span style=display:flex><span>    <span style=color:#f92672>name</span>: <span style=color:#ae81ff>argocd-notifications-secret</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>creationPolicy</span>: <span style=color:#ae81ff>Owner</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>data</span>:
+</span></span><span style=display:flex><span>  - <span style=color:#f92672>secretKey</span>: <span style=color:#ae81ff>github-privateKey</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>remoteRef</span>:
+</span></span><span style=display:flex><span>      <span style=color:#f92672>key</span>: <span style=color:#ae81ff>secret/fs-argocd-notifications-pem</span> <span style=color:#75715e># If you used a different name for the secret in the vault, change it here</span></span></span></code></pre></div><h2 id=-platform-control-through-argo-project>🔒 Platform control through Argo Project<a class=anchor href=#-platform-control-through-argo-project>#</a></h2><p>With the defined directory structure, the ApplicationSet generates namespaces based on the paths of the GitOps repository. This allows us to add deployment control through the AppProject, specifically per application, with a list of allowed namespaces and destinations.</p><p>Therefore, if someone a new deployment of an application to the directories in the GitOps repository without going through the platform control, the ApplicationSet will attempt to create an Application with a namespace derived from the directories where the developer placed their artifacts. However, the AppProject will block the deployment since the generated namespace, or the configured cluster destination, is not among the allowed ones.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=display:flex><span>---
+</span></span><span style=display:flex><span><span style=color:#75715e># apps/&lt;application-name&gt;/argo-&lt;application-name&gt;.Project.yaml</span>
+</span></span><span style=display:flex><span>---
+</span></span><span style=display:flex><span><span style=color:#f92672>apiVersion</span>: <span style=color:#ae81ff>argoproj.io/v1alpha1</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>kind</span>: <span style=color:#ae81ff>AppProject</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>metadata</span>:
+</span></span><span style=display:flex><span>  <span style=color:#f92672>name</span>: <span style=color:#ae81ff>app-&lt;application-name&gt;</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>namespace</span>: <span style=color:#ae81ff>argocd</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>annotations</span>:
+</span></span><span style=display:flex><span>    <span style=color:#75715e># Make sure it matches the trigger name in the notifications configuration (e.g. on-deployed)</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>notifications.argoproj.io/subscribe.on-health-degraded.slack</span>: <span style=color:#ae81ff>&lt;slack-channel&gt;</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>notifications.argoproj.io/subscribe.on-sync-failed.slack</span>: <span style=color:#ae81ff>&lt;slack-channel&gt;</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>notifications.argoproj.io/subscribe.on-deployed.github</span>: <span style=color:#ae81ff>&lt;github-app-name&gt;</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>notifications.argoproj.io/subscribe.on-health-degraded.github</span>: <span style=color:#ae81ff>&lt;github-app-name&gt;</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>notifications.argoproj.io/subscribe.on-sync-failed.github</span>: <span style=color:#ae81ff>&lt;github-app-name&gt;</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>spec</span>:
+</span></span><span style=display:flex><span>  <span style=color:#f92672>description</span>: <span style=color:#ae81ff>&lt;application-name&gt; State Project </span> <span style=color:#75715e># Obviously any description is valid</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>clusterResourceWhitelist</span>: <span style=color:#75715e># Add cluster wide resources that the application can manage</span>
+</span></span><span style=display:flex><span>  <span style=color:#75715e># For instance we may need to create an IngressClass</span>
+</span></span><span style=display:flex><span>  - <span style=color:#f92672>group</span>: <span style=color:#ae81ff>networking.k8s.io</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>kind</span>: <span style=color:#ae81ff>IngressClass</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>sourceRepos</span>:
+</span></span><span style=display:flex><span>  - <span style=color:#e6db74>&#34;https://github.com/&lt;org&gt;/&lt;new-state-repo&gt;.git&#34;</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>destinations</span>:
+</span></span><span style=display:flex><span>  - <span style=color:#f92672>namespace</span>: <span style=color:#ae81ff>&lt;tenant1-env1-application-namespace&gt;</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>server</span>: <span style=color:#ae81ff>&lt;tenant1-env1-cluster-url&gt;</span>
+</span></span><span style=display:flex><span>  - <span style=color:#f92672>namespace</span>: <span style=color:#ae81ff>&lt;tenant2-env1-application-namespace&gt; </span> <span style=color:#75715e># Add only the namespaces and clusters that you plan to configure and deploy</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>server</span>: <span style=color:#ae81ff>&lt;tenant2-env1-cluster-url&gt;</span>
+</span></span><span style=display:flex><span>  <span style=color:#75715e># - namespace: &#34;&lt;tenant1-env2-application-namespace&gt;&#34;  # &lt;- You can add not yet configured namespaces and clusters as comments, and uncomment them with necessary</span>
+</span></span><span style=display:flex><span>  <span style=color:#75715e>#   server: &lt;tenant1-env2-cluster-url&gt;</span></span></span></code></pre></div></article><footer class=book-footer><div class="flex flex-wrap justify-between"><div></div><div></div></div><div class="flex flex-wrap justify-between"><span><a href=/docs/providers/terraform/workspace-sync/ class="flex align-center"><img src=/docs/icons/backward.svg class=book-icon alt=Backward>
+<span>Workspace Sync</span>
+</a></span><span><a href=/docs/state-sys-services-repository/ class="flex align-center"><span>State Sys Services Repository</span>
+<img src=/docs/icons/forward.svg class=book-icon alt=Forward></a></span></div><script>(function(){document.querySelectorAll("pre:has(code)").forEach(e=>{e.addEventListener("click",e.focus),e.addEventListener("copy",function(t){if(t.preventDefault(),navigator.clipboard){const t=window.getSelection().toString()||e.textContent;navigator.clipboard.writeText(t)}})})})()</script></footer><label for=menu-control class="hidden book-menu-overlay"></label></div><aside class=book-toc><div class=book-toc-content><nav id=TableOfContents><ul><li><a href=#-repository-directory-structure>📂 Repository directory structure</a><ul><li><a href=#-main-or-master-branch>🌱 <code>main</code> (or <code>master</code>) branch</a></li><li><a href=#-deployment-branch>🚀 <code>deployment</code> branch</a></li></ul></li><li><a href=#-repository-usage-design>📚 Repository Usage Design</a><ul><li><a href=#-automatic-image-update>🔄 Automatic image update</a></li><li><a href=#-on-demand-deployments>🖐️ On demand deployments</a></li></ul></li><li><a href=#-branch-and-deployment-revision>🔧 Branch and Deployment Revision</a></li><li><a href=#-dynamic-application-deployment-with-applicationset>⚙️ Dynamic application deployment with ApplicationSet</a><ul><li><a href=#how-it-works>How It Works:</a></li></ul></li><li><a href=#-notification-system-with-argocd>🔔 Notification system with ArgoCD</a><ul><li><a href=#-how-it-works>🔨 How It Works</a></li><li><a href=#-setup>⚙️ Setup</a></li></ul></li><li><a href=#-platform-control-through-argo-project>🔒 Platform control through Argo Project</a></li></ul></nav></div></aside></main></body></html>
