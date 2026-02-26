@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.1](https://github.com/prefapp/features/compare/catalog_repo-v1.3.0...catalog_repo-v1.3.1) (2026-02-26)
+
+
+### Bug Fixes
+
+* auto-merge logic ([#878](https://github.com/prefapp/features/issues/878)) ([a83ada9](https://github.com/prefapp/features/commit/a83ada94069899ce0a17b06713f774adfbb6814d))
+
 ## [1.3.0](https://github.com/prefapp/features/compare/catalog_repo-v1.2.0...catalog_repo-v1.3.0) (2026-02-26)
 
 
