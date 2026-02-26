@@ -121,8 +121,8 @@
     {
       "name": "azure-backup-vault",
       "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-backup-vault/README.md",
-      "version": "0.1.6",
-      "source": "git::https://github.com/prefapp/tfm.git//modules/azure-backup-vault?ref=azure-backup-vault-v0.1.6"
+      "version": "0.1.7",
+      "source": "git::https://github.com/prefapp/tfm.git//modules/azure-backup-vault?ref=azure-backup-vault-v0.1.7"
     },
     {
       "name": "azure-customrole",
