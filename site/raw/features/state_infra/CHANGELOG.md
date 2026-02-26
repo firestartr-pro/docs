@@ -1,5 +1,20 @@
 # Changelog
 
+## [1.2.0](https://github.com/prefapp/features/compare/state_infra-v1.1.0...state_infra-v1.2.0) (2026-02-26)
+
+
+### Features
+
+* add actionlint to pr-verify ([#617](https://github.com/prefapp/features/issues/617)) ([31ad8fa](https://github.com/prefapp/features/commit/31ad8fa77c5957fc8d47f05bd1f1aac2ff0b8a92))
+* Add AUTO_MERGE control file support for state-infra, state-github, and catalog ([#856](https://github.com/prefapp/features/issues/856)) ([73ead5e](https://github.com/prefapp/features/commit/73ead5e8131c1aece8641984c74d00e260ff0866))
+* new validation structure ([#635](https://github.com/prefapp/features/issues/635)) ([7e3f1cb](https://github.com/prefapp/features/commit/7e3f1cbd35af1d333a7f965dcce965975c371f92))
+
+
+### Bug Fixes
+
+* Fixed tests in all modules ([#472](https://github.com/prefapp/features/issues/472)) ([c77267b](https://github.com/prefapp/features/commit/c77267b227ef5ebc4adf4f74fc26da3b5b96e226))
+* install latest features_renderer ([#582](https://github.com/prefapp/features/issues/582)) ([7944e51](https://github.com/prefapp/features/commit/7944e51e95d96dd03783a5be96e5ffeea2b5763f))
+
 ## [1.1.0](https://github.com/prefapp/features/compare/state_infra-v1.0.0...state_infra-v1.1.0) (2025-04-24)
 
 
