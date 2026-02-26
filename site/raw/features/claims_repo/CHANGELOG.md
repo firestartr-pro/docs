@@ -1,12 +1,5 @@
 # Changelog
 
-## [1.17.0](https://github.com/prefapp/features/compare/claims_repo-v1.16.3...claims_repo-v1.17.0) (2026-02-26)
-
-
-### Features
-
-* Add AUTO_MERGE control file support for state-infra, state-github, and catalog ([#856](https://github.com/prefapp/features/issues/856)) ([73ead5e](https://github.com/prefapp/features/commit/73ead5e8131c1aece8641984c74d00e260ff0866))
-
 ## [1.16.3](https://github.com/prefapp/features/compare/claims_repo-v1.16.2...claims_repo-v1.16.3) (2026-02-25)
 
 
