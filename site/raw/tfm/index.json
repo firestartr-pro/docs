@@ -9,8 +9,8 @@
     {
       "name": "aws-cloudfront-delivery",
       "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/aws-cloudfront-delivery/README.md",
-      "version": "0.2.5",
-      "source": "git::https://github.com/prefapp/tfm.git//modules/aws-cloudfront-delivery?ref=aws-cloudfront-delivery-v0.2.5"
+      "version": "0.2.6",
+      "source": "git::https://github.com/prefapp/tfm.git//modules/aws-cloudfront-delivery?ref=aws-cloudfront-delivery-v0.2.6"
     },
     {
       "name": "aws-ecr",
