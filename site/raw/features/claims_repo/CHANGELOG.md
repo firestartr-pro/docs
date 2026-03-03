@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.17.2](https://github.com/prefapp/features/compare/claims_repo-v1.17.1...claims_repo-v1.17.2) (2026-03-03)
+
+
+### Bug Fixes
+
+* Improved and normalized commit messages ([#882](https://github.com/prefapp/features/issues/882)) ([a4b2e0f](https://github.com/prefapp/features/commit/a4b2e0f70b69ab08867ca0425236468a16f150cc))
+* Lowercase organization name usage ([#886](https://github.com/prefapp/features/issues/886)) ([1824003](https://github.com/prefapp/features/commit/1824003ea5c9d678e607457ed26affe7f7ca5f9d))
+
 ## [1.17.1](https://github.com/prefapp/features/compare/claims_repo-v1.17.0...claims_repo-v1.17.1) (2026-02-26)
 
 
