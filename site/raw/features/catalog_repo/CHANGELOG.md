@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.2](https://github.com/prefapp/features/compare/catalog_repo-v1.3.1...catalog_repo-v1.3.2) (2026-03-03)
+
+
+### Bug Fixes
+
+* Lowercase organization name usage ([#886](https://github.com/prefapp/features/issues/886)) ([1824003](https://github.com/prefapp/features/commit/1824003ea5c9d678e607457ed26affe7f7ca5f9d))
+
 ## [1.3.1](https://github.com/prefapp/features/compare/catalog_repo-v1.3.0...catalog_repo-v1.3.1) (2026-02-26)
 
 
