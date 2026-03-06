@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Firestartr Documentation</title><link>https://docs.firestartr.dev/docs/features/features_repo/</link><description>Recent content on Firestartr Documentation</description><generator>Hugo</generator><language>en-us</language><atom:link href="https://docs.firestartr.dev/docs/features/features_repo/index.xml" rel="self" type="application/rss+xml"/><item><title/><link>https://docs.firestartr.dev/docs/features/features_repo/CHANGELOG/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.firestartr.dev/docs/features/features_repo/CHANGELOG/</guid><description>&lt;h1 id="changelog"&gt;Changelog&lt;a class="anchor" href="#changelog"&gt;#&lt;/a&gt;&lt;/h1&gt;
+&lt;h2 id="031-2026-02-26"&gt;&lt;a href="https://github.com/prefapp/features/compare/features_repo-v0.3.0...features_repo-v0.3.1"&gt;0.3.1&lt;/a&gt; (2026-02-26)&lt;a class="anchor" href="#031-2026-02-26"&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id="bug-fixes"&gt;Bug Fixes&lt;a class="anchor" href="#bug-fixes"&gt;#&lt;/a&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;use temporal mustache tags to scape block (&lt;a href="https://github.com/prefapp/features/commit/c18b4d104ea9c51313ec4820a1484df9e753ddc0"&gt;c18b4d1&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;use temporal mustache tags to scape block (&lt;a href="https://github.com/prefapp/features/issues/857"&gt;#857&lt;/a&gt;) (&lt;a href="https://github.com/prefapp/features/commit/c18b4d104ea9c51313ec4820a1484df9e753ddc0"&gt;c18b4d1&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="030-2026-02-25"&gt;&lt;a href="https://github.com/prefapp/features/compare/features_repo-v0.2.0...features_repo-v0.3.0"&gt;0.3.0&lt;/a&gt; (2026-02-25)&lt;a class="anchor" href="#030-2026-02-25"&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id="features"&gt;Features&lt;a class="anchor" href="#features"&gt;#&lt;/a&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;features_repo:&lt;/strong&gt; add doc about tests and update packages urls (&lt;a href="https://github.com/prefapp/features/issues/853"&gt;#853&lt;/a&gt;) (&lt;a href="https://github.com/prefapp/features/commit/6c3902bb0889d16933a38f8d32c48f52689a849d"&gt;6c3902b&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="020-2026-02-25"&gt;&lt;a href="https://github.com/prefapp/features/compare/features_repo-v0.1.0...features_repo-v0.2.0"&gt;0.2.0&lt;/a&gt; (2026-02-25)&lt;a class="anchor" href="#020-2026-02-25"&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id="features-1"&gt;Features&lt;a class="anchor" href="#features-1"&gt;#&lt;/a&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Add feature to create custom features repo (&lt;a href="https://github.com/prefapp/features/issues/846"&gt;#846&lt;/a&gt;) (&lt;a href="https://github.com/prefapp/features/commit/1971086fabdbb0312a451c793dd8ae4d91983fa9"&gt;1971086&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;</description></item></channel></rss>
