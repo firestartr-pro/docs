@@ -173,6 +173,12 @@
       "source": "git::https://github.com/prefapp/tfm.git//modules/azure-mi?ref=azure-mi-v1.3.1"
     },
     {
+      "name": "azure-nat-gateway",
+      "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-nat-gateway/README.md",
+      "version": "1.1.0",
+      "source": "git::https://github.com/prefapp/tfm.git//modules/azure-nat-gateway?ref=azure-nat-gateway-v1.1.0"
+    },
+    {
       "name": "azure-nsg-nsr",
       "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-nsg-nsr/README.md",
       "version": "0.2.3",
