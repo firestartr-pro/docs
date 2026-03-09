@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.8.0](https://github.com/prefapp/features/compare/terraform-infra-v1.7.1...terraform-infra-v1.8.0) (2026-03-09)
+
+
+### Features
+
+* add checkboxes to plan and destroy to the terraform destroy workflow ([#888](https://github.com/prefapp/features/issues/888)) ([8536d7d](https://github.com/prefapp/features/commit/8536d7d266bf5e8ea540361704d1ffd8a81e9b44))
+
 ## [1.7.1](https://github.com/prefapp/features/compare/terraform-infra-v1.7.0...terraform-infra-v1.7.1) (2026-01-23)
 
 
