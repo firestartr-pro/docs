@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.2.2](https://github.com/prefapp/features/compare/state_repo-v2.2.1...state_repo-v2.2.2) (2026-03-11)
+
+
+### Bug Fixes
+
+* Improved and normalized commit messages ([#882](https://github.com/prefapp/features/issues/882)) ([a4b2e0f](https://github.com/prefapp/features/commit/a4b2e0f70b69ab08867ca0425236468a16f150cc))
+
 ## [2.2.1](https://github.com/prefapp/features/compare/state_repo-v2.2.0...state_repo-v2.2.1) (2026-02-09)
 
 
