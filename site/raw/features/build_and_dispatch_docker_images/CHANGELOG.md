@@ -1,5 +1,19 @@
 # Changelog
 
+## [5.2.0](https://github.com/prefapp/features/compare/build_and_dispatch_docker_images-v5.1.4...build_and_dispatch_docker_images-v5.2.0) (2026-03-11)
+
+
+### Features
+
+* new build_and_dispatch use case ([#825](https://github.com/prefapp/features/issues/825)) ([6a247ce](https://github.com/prefapp/features/commit/6a247ce2942e22cde7859070cf97ab1ca2a6ae1f))
+
+
+### Bug Fixes
+
+* **build_and_dispatch_docker_images:** support config trigger filter env ([#889](https://github.com/prefapp/features/issues/889)) ([daada24](https://github.com/prefapp/features/commit/daada24e220ade888083d342bec7c669dc93a397))
+* Fixes suggested by copilot ([#830](https://github.com/prefapp/features/issues/830)) ([66ace19](https://github.com/prefapp/features/commit/66ace19e84e39cd8a11799e234c43c4e614d848c))
+* Remove incorrect token usage ([#895](https://github.com/prefapp/features/issues/895)) ([1daa44f](https://github.com/prefapp/features/commit/1daa44fc78f51b888c8c624893315b087db82646))
+
 ## [5.1.4](https://github.com/prefapp/features/compare/build_and_dispatch_docker_images-v5.1.3...build_and_dispatch_docker_images-v5.1.4) (2026-02-09)
 
 

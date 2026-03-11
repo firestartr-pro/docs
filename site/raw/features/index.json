@@ -2,7 +2,7 @@
   "features": [
     {
       "name": "build_and_dispatch_docker_images",
-      "version": "5.1.4",
+      "version": "5.2.0",
       "files": [
         {
           "name": "README.md",
