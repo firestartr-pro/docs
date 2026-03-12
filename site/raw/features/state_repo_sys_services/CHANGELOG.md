@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.3.8](https://github.com/prefapp/features/compare/state_repo_sys_services-v2.3.7...state_repo_sys_services-v2.3.8) (2026-03-12)
+
+
+### Bug Fixes
+
+* update GH_AUTH_TOKEN to use app-token output ([#900](https://github.com/prefapp/features/issues/900)) ([a0d62a3](https://github.com/prefapp/features/commit/a0d62a376f72a668c6dfe9cc914b923ff881ca44))
+
 ## [2.3.7](https://github.com/prefapp/features/compare/state_repo_sys_services-v2.3.6...state_repo_sys_services-v2.3.7) (2026-01-20)
 
 
