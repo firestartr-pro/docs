@@ -57,6 +57,16 @@
       ]
     },
     {
+      "name": "cloudfront_s3_build_and_deploy",
+      "version": "0.2.0",
+      "files": [
+        {
+          "name": "CHANGELOG.md",
+          "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/features/cloudfront_s3_build_and_deploy/CHANGELOG.md"
+        }
+      ]
+    },
+    {
       "name": "features_repo",
       "version": "0.3.1",
       "files": [
