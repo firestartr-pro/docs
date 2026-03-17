@@ -103,8 +103,8 @@
     {
       "name": "azure-aks",
       "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-aks/README.md",
-      "version": "1.9.3",
-      "source": "git::https://github.com/prefapp/tfm.git//modules/azure-aks?ref=azure-aks-v1.9.3"
+      "version": "2.0.0",
+      "source": "git::https://github.com/prefapp/tfm.git//modules/azure-aks?ref=azure-aks-v2.0.0"
     },
     {
       "name": "azure-app-gateway",
