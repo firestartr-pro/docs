@@ -71,6 +71,13 @@ Each flavor key can contain:
 - `platforms`: optional list of strings representing platforms for which to build the image. If unspecified, the image will be built for `linux/amd64` only. Currently, only `linux/amd64` and `linux/arm64` are supported. If specified, the image will be built only for the platform(s) listed.
 - `secrets`: optional key-value pairs specifying secrets to pass to the Docker build process. The values are resolved at runtime depending on their format (see [Build secrets](#build-secrets))
 
+Configuration variables (both optional):
+
+| Variable | Description |
+|----------|-------------|
+| `BUILD_DOCKER_IMAGES_AMD64_RUNS_ON` | Specifies the runner version that the images for `linux/amd64` will be built on, in the format '["runner1", "runner2", "runner3"...]'. If unset, it'll default to the feature variable RUNNER_VERSION |
+| `BUILD_DOCKER_IMAGES_ARM64_RUNS_ON` | Specifies the runner version that the images for `linux/arm64` will be built on, in the format '["runner1", "runner2", "runner3"...]'. If unset, images for this platform won't be built |
+
 ### Registry objects
 
 A registry object contains the following keys:

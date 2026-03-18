@@ -3,7 +3,7 @@
     "packages/issue_templates": "1.3.0",
     "packages/release_please": "1.4.1",
     "packages/state_repo": "2.2.2",
-    "packages/build_and_dispatch_docker_images": "5.2.0",
+    "packages/build_and_dispatch_docker_images": "5.3.0",
     "packages/state_infra": "1.2.0",
     "packages/state_repo_sys_services": "2.3.8",
     "packages/state_repo_apps": "3.8.2",

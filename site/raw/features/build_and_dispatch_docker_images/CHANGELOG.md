@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.3.0](https://github.com/prefapp/features/compare/build_and_dispatch_docker_images-v5.2.0...build_and_dispatch_docker_images-v5.3.0) (2026-03-18)
+
+
+### Features
+
+* Allow multiple images per job ([#904](https://github.com/prefapp/features/issues/904)) ([5525c8e](https://github.com/prefapp/features/commit/5525c8ec31b7f0323f0c8be589d29e6d24c79e50))
+
 ## [5.2.0](https://github.com/prefapp/features/compare/build_and_dispatch_docker_images-v5.1.4...build_and_dispatch_docker_images-v5.2.0) (2026-03-11)
 
 
