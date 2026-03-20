@@ -4,8 +4,6 @@ This feature is a collection of seven workflows (along with their configuration 
 
 The workflows `trigger_dispatch_on_releases.yaml`, `trigger_dispatch_on_pre-releases.yaml` and `trigger_dispatch_on_snapshot.yaml` only serve to trigger `make_dispatches.yaml` after a successful automated call to any of the `build_docker_<type>.yaml` workflows. They require no other explanation so they won't be discussed in this README
 
-
-
 ## Build images
 
 Composed of the workflows `.github/workflows/build_docker_releases.yaml`, `.github/workflows/build_docker_pre-releases.yaml` and `.github/workflows/build_docker_snapshots.yaml`.
@@ -44,7 +42,7 @@ snapshots:  # Configuration specific for snapshots, used by build_docker_pre-rel
     registry:  # The default registry can be overridden (see "Defaults" below)
       name: nondefault.registry.es
       repository: nondefault/repo
-      auth_strategy: azure_oidc  # Can be any of azure_oidc or aws_oidc
+      auth_strategy: azure_oidc  # Can be any of the supported auth strategies, not just azure_oidc, with the corresponding required variables for each strategy (see "Cloud provider setup to access Docker registries and secret managers" below)
 
 
 releases:  # Configuration specific for releases, used by build_docker_releases
@@ -75,8 +73,8 @@ Configuration variables (both optional):
 
 | Variable | Description |
 |----------|-------------|
-| `BUILD_DOCKER_IMAGES_AMD64_RUNS_ON` | Specifies the runner version that the images for `linux/amd64` will be built on, in the format '["runner1", "runner2", "runner3"...]'. If unset, it'll default to the feature variable RUNNER_VERSION |
-| `BUILD_DOCKER_IMAGES_ARM64_RUNS_ON` | Specifies the runner version that the images for `linux/arm64` will be built on, in the format '["runner1", "runner2", "runner3"...]'. If unset, images for this platform won't be built |
+| `BUILD_DOCKER_IMAGES_AMD64_RUNS_ON` | Specifies the runner version that the images for `linux/amd64` will be built on, in [the format supported by the GitHub runs-on setting](https://docs.github.com/en/actions/how-tos/manage-runners/self-hosted-runners/use-in-a-workflow). If unset, it'll default to the feature argument `RUNNER_VERSION` |
+| `BUILD_DOCKER_IMAGES_ARM64_RUNS_ON` | Specifies the runner version that the images for `linux/arm64` will be built on, in [the format supported by the GitHub runs-on setting](https://docs.github.com/en/actions/how-tos/manage-runners/self-hosted-runners/use-in-a-workflow). If unset, images for this platform won't be built |
 
 ### Registry objects
 
@@ -84,7 +82,7 @@ A registry object contains the following keys:
 
 - `name`: base URL of the registry. E.g. when uploading a image to `registry.com/image_repo/image_tag`, this key's value should be `registry.com`
 - `repository`: name of the repository inside of the registry `name` to where upload the image to. E.g. when uploading a image to `registry.com/image_repo/image_tag`, this key's value should be `image_repo`
-- `auth_strategy`: type of authentication to use for login, as different registries require different authentication methods. Though many are defined, currently only `azure_oidc` and `aws_oidc` are supported
+- `auth_strategy`: type of authentication to use for login, as different registries require different authentication methods. Currently `azure_oidc`, `aws_oidc`, `ghcr`, `dockerhub` and `generic` are supported. The first two use OIDC to authenticate, and thus require no credentials stored in GitHub secrets, but a set of vars to identify the integration. The last three require credentials stored in GitHub secrets. The `generic` strategy can be used to authenticate to any registry using credentials, but it requires manually logging in using the `DOCKER_REGISTRY_<TYPE>_CREDS` secrets (see [Cloud provider setup to access Docker registries and secret managers](#cloud-provider-setup-to-access-docker-registries-and-secret-managers) for more info on this)
 
 ### Inputs
 

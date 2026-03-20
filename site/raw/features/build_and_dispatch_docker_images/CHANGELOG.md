@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.3.1](https://github.com/prefapp/features/compare/build_and_dispatch_docker_images-v5.3.0...build_and_dispatch_docker_images-v5.3.1) (2026-03-20)
+
+
+### Bug Fixes
+
+* minor corrections ([#907](https://github.com/prefapp/features/issues/907)) ([3e004c9](https://github.com/prefapp/features/commit/3e004c98138e1d1aa15decd96efe33fa75ee9787))
+
 ## [5.3.0](https://github.com/prefapp/features/compare/build_and_dispatch_docker_images-v5.2.0...build_and_dispatch_docker_images-v5.3.0) (2026-03-18)
 
 
