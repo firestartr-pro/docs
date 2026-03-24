@@ -1031,6 +1031,12 @@ spec:
                         format: date-time
                       message:
                         type: string
+                      lastUpdateTime:
+                        type: string
+                        format: date-time
+                      observedGeneration:
+                        type: integer
+                        format: int64
                       reason:
                         type: string
                       status:
