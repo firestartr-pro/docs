@@ -1019,6 +1019,9 @@ spec:
                   type: array
                   items:
                     type: object
+                    required:
+                      - status
+                      - type
                     properties:
                       lastSyncTime:
                         type: string
@@ -1044,11 +1047,38 @@ spec:
                         enum: ['True', 'False', 'Unknown']
                       type:
                         type: string
+                  x-kubernetes-list-map-keys:
+                    - type
+                  x-kubernetes-list-type: map
                 syncedSecrets:
                   description: 'A list of secrets that have been successfully synchronized.'
                   type: array
                   items:
                     type: string
+                failedIssuanceAttempts:
+                  type: integer
+                lastFailureTime:
+                  type: string
+                  format: date-time
+                nextPrivateKeySecretName:
+                  type: string
+                notAfter:
+                  type: string
+                  format: date-time
+                notBefore:
+                  type: string
+                  format: date-time
+                renewalTime:
+                  type: string
+                  format: date-time
+                highPriorityState:
+                  type: string
+                  description: 'High priority state set by the controller.'
+                highPriorityReason:
+                  type: string
+                  description: 'Reason for the current high priority state.'
+                revision:
+                  type: integer
       additionalPrinterColumns:
         - name: STATE
           type: string
