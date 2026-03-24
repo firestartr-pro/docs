@@ -77,8 +77,8 @@
     {
       "name": "aws-secretsmanager-replication",
       "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/aws-secretsmanager-replication/README.md",
-      "version": "0.1.4",
-      "source": "git::https://github.com/prefapp/tfm.git//modules/aws-secretsmanager-replication?ref=aws-secretsmanager-replication-v0.1.4"
+      "version": "0.1.5",
+      "source": "git::https://github.com/prefapp/tfm.git//modules/aws-secretsmanager-replication?ref=aws-secretsmanager-replication-v0.1.5"
     },
     {
       "name": "aws-sso",
