@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.8.3](https://github.com/prefapp/features/compare/state_repo_apps-v3.8.2...state_repo_apps-v3.8.3) (2026-03-25)
+
+
+### Bug Fixes
+
+* Relaxed condition to automatically render kubernetes deployments ([#909](https://github.com/prefapp/features/issues/909)) ([8454d64](https://github.com/prefapp/features/commit/8454d649fc51e011a6de4e233c5c5783c4f47fe3))
+
 ## [3.8.2](https://github.com/prefapp/features/compare/state_repo_apps-v3.8.1...state_repo_apps-v3.8.2) (2026-03-11)
 
 
