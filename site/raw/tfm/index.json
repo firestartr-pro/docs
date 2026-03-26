@@ -181,8 +181,8 @@
     {
       "name": "azure-localnet-gateway",
       "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-localnet-gateway/README.md",
-      "version": "0.1.0",
-      "source": "git::https://github.com/prefapp/tfm.git//modules/azure-localnet-gateway?ref=azure-localnet-gateway-v0.1.0"
+      "version": "0.1.1",
+      "source": "git::https://github.com/prefapp/tfm.git//modules/azure-localnet-gateway?ref=azure-localnet-gateway-v0.1.1"
     },
     {
       "name": "azure-mi",
