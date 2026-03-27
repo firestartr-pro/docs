@@ -8,9 +8,7 @@
         "description": "An envelope for a any kind of claim",
         "properties": {
           "name": {
-            "type": "string",
-            "pattern": "^[a-z0-9]([a-z0-9._-]*[a-z0-9])?$",
-            "maxLength": 63
+            "$ref": "firestartr.dev://common/ClaimName"
           },
           "kind": {
             "type": "string"
@@ -74,6 +72,12 @@
           }
         },
         "additionalProperties": false
+      },
+      "ClaimName": {
+        "$id": "firestartr.dev://common/ClaimName",
+        "type": "string",
+        "pattern": "^[a-z0-9]([a-z0-9._-]*[a-z0-9])?$",
+        "maxLength": 63
       },
       "DomainReference": {
         "$id": "firestartr.dev://common/FirestartrDomainRef",
@@ -421,7 +425,7 @@
                   "type": "string"
                 },
                 "org": {
-                  "type": "string"
+                  "$ref": "firestartr.dev://common/ClaimName"
                 }
               },
               "required": [
@@ -456,7 +460,7 @@
                   ]
                 },
                 "org": {
-                  "type": "string"
+                  "$ref": "firestartr.dev://common/ClaimName"
                 }
               },
               "required": [
@@ -549,8 +553,7 @@
               "type": "object",
               "properties": {
                 "org": {
-                  "type": "string",
-                  "description": "The github organization name"
+                  "$ref": "firestartr.dev://common/ClaimName"
                 },
                 "name": {
                   "type": "string",
@@ -622,8 +625,7 @@
               "type": "object",
               "properties": {
                 "orgName": {
-                  "type": "string",
-                  "description": "Organization name on GitHub"
+                  "$ref": "firestartr.dev://common/ClaimName"
                 },
                 "webhook": {
                   "type": "object",
