@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.18.0](https://github.com/prefapp/features/compare/claims_repo-v1.17.2...claims_repo-v1.18.0) (2026-03-31)
+
+
+### Features
+
+* add flag for re-import removing previous tf state ([#910](https://github.com/prefapp/features/issues/910)) ([842a360](https://github.com/prefapp/features/commit/842a360db146ea3dd97c9737f940df9d9352f746))
+
 ## [1.17.2](https://github.com/prefapp/features/compare/claims_repo-v1.17.1...claims_repo-v1.17.2) (2026-03-03)
 
 
