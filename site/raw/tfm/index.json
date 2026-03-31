@@ -335,6 +335,12 @@
       "source": "git::https://github.com/prefapp/tfm.git//modules/github-files-set?ref=github-files-set-v0.1.0"
     },
     {
+      "name": "github-repo",
+      "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/github-repo/README.md",
+      "version": "0.1.0",
+      "source": "git::https://github.com/prefapp/tfm.git//modules/github-repo?ref=github-repo-v0.1.0"
+    },
+    {
       "name": "github-repo-secrets-section",
       "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/github-repo-secrets-section/README.md",
       "version": "0.1.0",
