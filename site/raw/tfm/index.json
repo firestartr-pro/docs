@@ -335,6 +335,12 @@
       "source": "git::https://github.com/prefapp/tfm.git//modules/github-files-set?ref=github-files-set-v0.1.0"
     },
     {
+      "name": "github-membership",
+      "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/github-membership/README.md",
+      "version": "0.2.0",
+      "source": "git::https://github.com/prefapp/tfm.git//modules/github-membership?ref=github-membership-v0.2.0"
+    },
+    {
       "name": "github-repo",
       "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/github-repo/README.md",
       "version": "0.1.0",
