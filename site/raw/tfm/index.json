@@ -329,12 +329,6 @@
       "source": "git::https://github.com/prefapp/tfm.git//modules/dummy?ref=dummy-v0.1.0"
     },
     {
-      "name": "gh-org-webhook",
-      "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/gh-org-webhook/README.md",
-      "version": "0.1.0",
-      "source": "git::https://github.com/prefapp/tfm.git//modules/gh-org-webhook?ref=gh-org-webhook-v0.1.0"
-    },
-    {
       "name": "github-files-set",
       "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/github-files-set/README.md",
       "version": "0.1.0",
@@ -345,6 +339,12 @@
       "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/github-membership/README.md",
       "version": "0.2.0",
       "source": "git::https://github.com/prefapp/tfm.git//modules/github-membership?ref=github-membership-v0.2.0"
+    },
+    {
+      "name": "github-org-webhook",
+      "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/github-org-webhook/README.md",
+      "version": "0.2.0",
+      "source": "git::https://github.com/prefapp/tfm.git//modules/github-org-webhook?ref=github-org-webhook-v0.2.0"
     },
     {
       "name": "github-repo",
