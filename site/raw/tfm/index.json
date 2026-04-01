@@ -329,6 +329,12 @@
       "source": "git::https://github.com/prefapp/tfm.git//modules/dummy?ref=dummy-v0.1.0"
     },
     {
+      "name": "gh-org-webhook",
+      "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/gh-org-webhook/README.md",
+      "version": "0.1.0",
+      "source": "git::https://github.com/prefapp/tfm.git//modules/gh-org-webhook?ref=gh-org-webhook-v0.1.0"
+    },
+    {
       "name": "github-files-set",
       "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/github-files-set/README.md",
       "version": "0.1.0",
