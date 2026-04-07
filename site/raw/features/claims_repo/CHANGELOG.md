@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.19.0](https://github.com/prefapp/features/compare/claims_repo-v1.18.0...claims_repo-v1.19.0) (2026-04-07)
+
+
+### Features
+
+* add status badge and scheduled validation ([#927](https://github.com/prefapp/features/issues/927)) ([21dcf9a](https://github.com/prefapp/features/commit/21dcf9aa9d8a74324ceb5bd4079e8399f1d831d4))
+
 ## [1.18.0](https://github.com/prefapp/features/compare/claims_repo-v1.17.2...claims_repo-v1.18.0) (2026-03-31)
 
 
