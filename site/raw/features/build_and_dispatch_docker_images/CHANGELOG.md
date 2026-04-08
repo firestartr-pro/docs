@@ -1,5 +1,13 @@
 # Changelog
 
+## [5.3.2](https://github.com/prefapp/features/compare/build_and_dispatch_docker_images-v5.3.1...build_and_dispatch_docker_images-v5.3.2) (2026-04-08)
+
+
+### Bug Fixes
+
+* **build_and_dispatch_docker_images:** support of filter paths and push events ([#933](https://github.com/prefapp/features/issues/933)) ([e530eb0](https://github.com/prefapp/features/commit/e530eb0db22fa906fb6c4b3aca9ada4d3fa9d677))
+* revert unintended change ([7b69504](https://github.com/prefapp/features/commit/7b695044a46fb304702d2016085695d49e25595e))
+
 ## [5.3.1](https://github.com/prefapp/features/compare/build_and_dispatch_docker_images-v5.3.0...build_and_dispatch_docker_images-v5.3.1) (2026-03-20)
 
 

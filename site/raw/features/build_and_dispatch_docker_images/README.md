@@ -13,42 +13,39 @@ Composed of the workflows `.github/workflows/build_docker_releases.yaml`, `.gith
 All build workflows use the same configuration file located at `.github/build_images.yaml`. Its format is as follows:
 
 ```yaml
-snapshots:  # Configuration specific for snapshots, used by build_docker_pre-releases and build_docker_snapshots
-  flavor:  # Flavor-specific configuration. A flavor can be named anything as long as it's a valid YAML key
-    dockerfile: path/to/dockerfile  # Path relative to the repo root folder
-    auto: false  # Whether or not to automatically build this flavor when the * input is specified (see "Inputs" below). Defaults to false
-    build_args:  # Environment variables to set during the image building process
+snapshots: # Configuration specific for snapshots, used by build_docker_pre-releases and build_docker_snapshots
+  flavor: # Flavor-specific configuration. A flavor can be named anything as long as it's a valid YAML key
+    dockerfile: path/to/dockerfile # Path relative to the repo root folder
+    auto: false # Whether or not to automatically build this flavor when the * input is specified (see "Inputs" below). Defaults to false
+    build_args: # Environment variables to set during the image building process
       #  ENV_VARIABLE_NAME: env_variable_value
       API_URL: https://api.com/url
-      UI_COLOR: '#125690'
-    extra_registries:  # List of registries, other than the default one (see "Defaults" below), where to upload the image
+      UI_COLOR: "#125690"
+    extra_registries: # List of registries, other than the default one (see "Defaults" below), where to upload the image
       - name: registry.azure.io
         repository: service/repo
         auth_strategy: azure_oidc
       # Multiple kinds of registries can be specified
       - name: aws.amazon.com
-        repository: programs/program-name  # Repository names can be different between registries
-        auth_strategy: aws_oidc  # Multiple auth strategies should be supported but they currently aren't
+        repository: programs/program-name # Repository names can be different between registries
+        auth_strategy: aws_oidc # Multiple auth strategies should be supported but they currently aren't
     extra_tags: # List of extra tags to publish the image as
       - latest
       - stable
-    platforms:  # List of platforms for which to build the image. If unspecified, the image will be built for linux/amd64 only
+    platforms: # List of platforms for which to build the image. If unspecified, the image will be built for linux/amd64 only
       # Only linux/amd64 and linux/arm64 are currently supported
       - linux/amd64
       - linux/arm64
 
   another-flavor:
     dockerfile: path/to/dockerfile
-    registry:  # The default registry can be overridden (see "Defaults" below)
+    registry: # The default registry can be overridden (see "Defaults" below)
       name: nondefault.registry.es
       repository: nondefault/repo
-      auth_strategy: azure_oidc  # Can be any of the supported auth strategies, not just azure_oidc, with the corresponding required variables for each strategy (see "Cloud provider setup to access Docker registries and secret managers" below)
+      auth_strategy: azure_oidc # Can be any of the supported auth strategies, not just azure_oidc, with the corresponding required variables for each strategy (see "Cloud provider setup to access Docker registries and secret managers" below)
 
-
-releases:  # Configuration specific for releases, used by build_docker_releases
-  release-flavor:
-    ...  # The same configuration parameters as snapshots can be used here
-
+releases: # Configuration specific for releases, used by build_docker_releases
+  release-flavor: ... # The same configuration parameters as snapshots can be used here
 ```
 
 - `snapshots`: all image flavors included within this key will count as a snapshot flavor, and thus will be built when the `build_docker_snapshots` or `build_docker_pre-releases` workflows are executed
@@ -63,18 +60,18 @@ Each flavor key can contain:
 - `dockerfile`: path to the dockerfile to use when building this image, relative to the repo root (i.e. if the dockerfile is located at `https://www.github.com/firestartr-test/code-repo/docker/Dockerfile`, this keys' value will be `docker/Dockerfile`)
 - `auto`: whether or not to build this flavor when the [`flavors` input](#inputs) equals \*. [Defaults to false](#defaults)
 - `build_args`: key-value pairs that are set as environment variables when building the image. The key is the environment value name, and the value its value, and any number of them can be specified.
-- `registry`: a [`registry` object](#registry-objects) that overrides the [default registry](#defaults). If this key is specified, ***no image will be uploaded to the [default registry](#defaults)***
-- `extra_registries`: a list of [`registry` object](#registry-objects) to where the image will be uploaded to, in addition to the [default registry](#defaults). If this key is specified, ***the image will still be uploaded to the [default registry](#defaults)***
+- `registry`: a [`registry` object](#registry-objects) that overrides the [default registry](#defaults). If this key is specified, **_no image will be uploaded to the [default registry](#defaults)_**
+- `extra_registries`: a list of [`registry` object](#registry-objects) to where the image will be uploaded to, in addition to the [default registry](#defaults). If this key is specified, **_the image will still be uploaded to the [default registry](#defaults)_**
 - `extra_tags`: optional list of strings representing extra tags to publish the image as. While the default tag is constructed as `<flavor>_<version>`, no extra info will be appended to these tags. E.g. if the flavor is `default` and the version is `v1.2.3`, the default tag will be `default_v1.2.3`, and if `latest` is specified as an extra tag, the image will also be tagged as `latest`. For this reason, all values listed as `extra_tags` must be unique across all flavors and types (i.e., two different flavors cannot both have `latest` as an extra tag, even if one is a snapshot and the other a release)
 - `platforms`: optional list of strings representing platforms for which to build the image. If unspecified, the image will be built for `linux/amd64` only. Currently, only `linux/amd64` and `linux/arm64` are supported. If specified, the image will be built only for the platform(s) listed.
 - `secrets`: optional key-value pairs specifying secrets to pass to the Docker build process. The values are resolved at runtime depending on their format (see [Build secrets](#build-secrets))
 
 Configuration variables (both optional):
 
-| Variable | Description |
-|----------|-------------|
+| Variable                            | Description                                                                                                                                                                                                                                                                                                 |
+| ----------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `BUILD_DOCKER_IMAGES_AMD64_RUNS_ON` | Specifies the runner version that the images for `linux/amd64` will be built on, in [the format supported by the GitHub runs-on setting](https://docs.github.com/en/actions/how-tos/manage-runners/self-hosted-runners/use-in-a-workflow). If unset, it'll default to the feature argument `RUNNER_VERSION` |
-| `BUILD_DOCKER_IMAGES_ARM64_RUNS_ON` | Specifies the runner version that the images for `linux/arm64` will be built on, in [the format supported by the GitHub runs-on setting](https://docs.github.com/en/actions/how-tos/manage-runners/self-hosted-runners/use-in-a-workflow). If unset, images for this platform won't be built |
+| `BUILD_DOCKER_IMAGES_ARM64_RUNS_ON` | Specifies the runner version that the images for `linux/arm64` will be built on, in [the format supported by the GitHub runs-on setting](https://docs.github.com/en/actions/how-tos/manage-runners/self-hosted-runners/use-in-a-workflow). If unset, images for this platform won't be built                |
 
 ### Registry objects
 
@@ -98,7 +95,6 @@ All build workflows use the same defaults. There are two types of defaults: envi
 - `DOCKER_REGISTRY_RELEASES`: base URL of the Docker registry for releases. Follows the same format as `extra_registries.name` and `registry.name` (e.g. `prefapp.azureacr.io`. See [Configuration](#configuration))
 - `DOCKER_REGISTRY_SNAPSHOTS`: base URL of the Docker registry for snapshots. Follows the same format as `extra_registries.name` and `registry.name` (e.g. `prefapp.azureacr.io`. See [Configuration](#configuration))
 
-
 The defaults defined by code are:
 
 - `registry.repository` defaults to the name of the repo the workflow is being executed on, including the owner. E.g. `prefapp/test-repo-rundagger`
@@ -112,19 +108,19 @@ Both providers share a set of common [GitHub repository variables](https://docs.
 
 **Common variables (always required):**
 
-| Variable | Description |
-|----------|-------------|
-| `DOCKER_REGISTRY_SNAPSHOTS` | Base URL of the Docker registry for snapshot images (e.g. `prefapp.azurecr.io`) |
-| `DOCKER_REGISTRY_RELEASES` | Base URL of the Docker registry for release images (e.g. `prefapp.azurecr.io`) |
+| Variable                       | Description                                                                                                                                  |
+| ------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------- |
+| `DOCKER_REGISTRY_SNAPSHOTS`    | Base URL of the Docker registry for snapshot images (e.g. `prefapp.azurecr.io`)                                                              |
+| `DOCKER_REGISTRY_RELEASES`     | Base URL of the Docker registry for release images (e.g. `prefapp.azurecr.io`)                                                               |
 | `DOCKER_REGISTRIES_BASE_PATHS` | JSON string mapping image types to service paths. E.g. `{"services":{"releases":"","snapshots":""},"charts":{"releases":"","snapshots":""}}` |
-| `FS_CHECKS_APP_ID` | GitHub App ID used to create check run summaries |
+| `FS_CHECKS_APP_ID`             | GitHub App ID used to create check run summaries                                                                                             |
 
 **Common secrets (always required):**
 
-| Secret | Description |
-|--------|-------------|
-| `FS_CHECKS_PEM_FILE` | PEM private key for the GitHub App used in check run management |
-| `GITHUB_DOCKER_REGISTRY_CREDS` | *(optional)* Credentials for authenticating against the GitHub Docker registry. Falls back to the default `GITHUB_TOKEN` if not set |
+| Secret                         | Description                                                                                                                         |
+| ------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------- |
+| `FS_CHECKS_PEM_FILE`           | PEM private key for the GitHub App used in check run management                                                                     |
+| `GITHUB_DOCKER_REGISTRY_CREDS` | _(optional)_ Credentials for authenticating against the GitHub Docker registry. Falls back to the default `GITHUB_TOKEN` if not set |
 
 #### Azure (`azure_oidc`)
 
@@ -136,15 +132,15 @@ When `auth_strategy` is set to `azure_oidc`, the workflows use [Azure OIDC feder
 2. Configure a federated credential for the GitHub OIDC provider on that App Registration, scoping it to the repository (or organization) that runs the workflows.
 3. Grant the service principal the necessary role assignments:
    - **ACR push/pull**: e.g. `AcrPush` on the Azure Container Registry resource, so the workflow can push built images.
-   - **Key Vault read** *(only if using Azure Key Vault secrets)*: e.g. `Key Vault Secrets User` on the Key Vault resource, so the workflow can fetch secrets at build time.
+   - **Key Vault read** _(only if using Azure Key Vault secrets)_: e.g. `Key Vault Secrets User` on the Key Vault resource, so the workflow can fetch secrets at build time.
 
 **Required GitHub variables:**
 
-| Variable | Description |
-|----------|-------------|
-| `AZURE_CLIENT_ID` | Client ID of the App Registration (service principal). Its presence also acts as a conditional to enable the Azure login step |
-| `AZURE_TENANT_ID` | Microsoft Entra ID (Azure AD) tenant ID |
-| `AZURE_SUBSCRIPTION_ID` | Azure subscription ID that contains the ACR and Key Vault resources |
+| Variable                | Description                                                                                                                   |
+| ----------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
+| `AZURE_CLIENT_ID`       | Client ID of the App Registration (service principal). Its presence also acts as a conditional to enable the Azure login step |
+| `AZURE_TENANT_ID`       | Microsoft Entra ID (Azure AD) tenant ID                                                                                       |
+| `AZURE_SUBSCRIPTION_ID` | Azure subscription ID that contains the ACR and Key Vault resources                                                           |
 
 **Build secrets from Azure Key Vault:**
 
@@ -169,7 +165,7 @@ When `auth_strategy` is set to `aws_oidc`, the workflows use [GitHub's OIDC prov
 2. Create an IAM role with a trust policy that allows the GitHub OIDC provider to assume it, scoped to the repository (or organization) that runs the workflows.
 3. Attach the necessary policies to the role:
    - **ECR push/pull**: e.g. `ecr:GetAuthorizationToken`, `ecr:BatchCheckLayerAvailability`, `ecr:PutImage`, `ecr:InitiateLayerUpload`, `ecr:UploadLayerPart`, `ecr:CompleteLayerUpload` on the ECR repository resource, so the workflow can push built images.
-   - **SSM Parameter Store read** *(only if using SSM secrets)*: e.g. `ssm:GetParameter` on the parameter resources, so the workflow can fetch secrets at build time.
+   - **SSM Parameter Store read** _(only if using SSM secrets)_: e.g. `ssm:GetParameter` on the parameter resources, so the workflow can fetch secrets at build time.
 
 <details>
 <summary><b>Full IAM role example</b></summary>
@@ -231,7 +227,7 @@ When `auth_strategy` is set to `aws_oidc`, the workflows use [GitHub's OIDC prov
 }
 ```
 
-**Inline policy — SSM read** *(only if using SSM secrets)* — grants read access to the parameters used as build secrets:
+**Inline policy — SSM read** _(only if using SSM secrets)_ — grants read access to the parameters used as build secrets:
 
 ```json
 {
@@ -257,10 +253,10 @@ When `auth_strategy` is set to `aws_oidc`, the workflows use [GitHub's OIDC prov
 
 **Required GitHub variables:**
 
-| Variable | Description |
-|----------|-------------|
+| Variable            | Description                                                                                                                                                          |
+| ------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `AWS_OIDC_ECR_ROLE` | ARN of the IAM role to assume via OIDC (e.g. `arn:aws:iam::123456789012:role/github-ecr-role`). Its presence also acts as a conditional to enable the AWS login step |
-| `AWS_REGION` | AWS region where the ECR registry and SSM parameters are located (e.g. `eu-west-1`) |
+| `AWS_REGION`        | AWS region where the ECR registry and SSM parameters are located (e.g. `eu-west-1`)                                                                                  |
 
 **Build secrets from AWS SSM Parameter Store:**
 
@@ -279,10 +275,10 @@ snapshots:
 
 If the target registry does not support OIDC authentication (e.g. DockerHub, a self-hosted registry, or any registry that requires username/password credentials), the workflows can authenticate using static credentials stored as GitHub secrets:
 
-| Secret | Description |
-|--------|-------------|
+| Secret                            | Description                                                          |
+| --------------------------------- | -------------------------------------------------------------------- |
 | `DOCKER_REGISTRY_SNAPSHOTS_CREDS` | Credentials for authenticating against the snapshots Docker registry |
-| `DOCKER_REGISTRY_RELEASES_CREDS` | Credentials for authenticating against the releases Docker registry |
+| `DOCKER_REGISTRY_RELEASES_CREDS`  | Credentials for authenticating against the releases Docker registry  |
 
 These secrets are passed to the build workflow and used during the registry login step. They are independent of the OIDC-based providers described above and can be used alongside them when pushing to multiple registries (e.g. pushing to both ACR via OIDC and DockerHub via credentials using `extra_registries`).
 
@@ -306,11 +302,11 @@ snapshots:
 
 Each flavor can specify a `secrets` key with key-value pairs. The secret values are resolved **at runtime** by a provider factory that auto-detects the backend based on the value format:
 
-| Value format | Provider | Example |
-|-------------|----------|---------|
-| Azure Key Vault URL | `AzureKeyVaultManager` | `https://my-vault.vault.azure.net/secrets/my-secret` |
-| AWS SSM Parameter Store ARN | `AwsSecretsManager` | `arn:aws:ssm:eu-west-1:123456789012:parameter/my/secret` |
-| Any other string | `GenericSecretManager` | Plain value, used as-is |
+| Value format                | Provider               | Example                                                  |
+| --------------------------- | ---------------------- | -------------------------------------------------------- |
+| Azure Key Vault URL         | `AzureKeyVaultManager` | `https://my-vault.vault.azure.net/secrets/my-secret`     |
+| AWS SSM Parameter Store ARN | `AwsSecretsManager`    | `arn:aws:ssm:eu-west-1:123456789012:parameter/my/secret` |
+| Any other string            | `GenericSecretManager` | Plain value, used as-is                                  |
 
 These resolved secrets are passed to the Docker build as [Dagger secrets](https://docs.dagger.io/api/reference/#definition-Secret), which can be consumed in the Dockerfile via `--mount=type=secret`. For example:
 
@@ -321,7 +317,6 @@ RUN --mount=type=secret,id=MAVEN_USERNAME \
     export MAVEN_PASSWORD=$(cat /run/secrets/MAVEN_PASSWORD) && \
     mvn package
 ```
-
 
 ## Make dispatches
 
@@ -441,5 +436,7 @@ For ease of use, the `tenant`, `platform` and `env` inputs have been made into c
 - `trigger_filter_by_env_snapshot`: value of the `filter_by_env` parameter passed to `make_dispatches.yaml` when triggered automatically after a snapshot build. Defaults to `dev`
 - `trigger_filter_by_env_pre_releases`: value of the `filter_by_env` parameter passed to `make_dispatches.yaml` when triggered automatically after a pre-release build. Defaults to `pre`
 - `trigger_filter_by_env_releases`: value of the `filter_by_env` parameter passed to `make_dispatches.yaml` when triggered automatically after a release build. Defaults to `pro`
+- `skip_commit_types`: comma-separated list of [conventional commit](https://www.conventionalcommits.org/) type prefixes to skip on `push` events in the `build_docker_snapshots` workflow. When ALL commits in a push match one of these types, the build is skipped. Only applies to `push` events, `workflow_dispatch` and `pull_request` always build. Wrapped in a try/catch so failures default to building. Defaults to `ci,docs,build,test`
+- `push_paths_ignore`: list of path patterns (in GitHub Actions `paths-ignore` format) to exclude from triggering the `build_docker_snapshots` workflow on `push` events. The value is rendered directly as YAML list items under `paths-ignore`. Defaults to `.github/**` and `docs/**`
 
 **NOTE**: `make_dispatches` downloads the `firestartr_config_repo` repository to access the configuration files via the `apps_folder_path`, `platform_folder_path` and `registries_folder_path` feature arguments. However, `firestartr_config_repo` is always downloaded under the `.firestartr` folder, regardless of what the actual name of the repository is, so the paths specified in the `*_folder_path` arguments should all start with `.firestartr/` (unless the folders are located in another repo)
