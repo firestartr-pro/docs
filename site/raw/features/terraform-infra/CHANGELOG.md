@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.8.2](https://github.com/prefapp/features/compare/terraform-infra-v1.8.1...terraform-infra-v1.8.2) (2026-04-10)
+
+
+### Bug Fixes
+
+* destructive workflows naming ([#940](https://github.com/prefapp/features/issues/940)) ([c5008b8](https://github.com/prefapp/features/commit/c5008b862b54a69aae46b23b89c09cdf45f9c4f8))
+
 ## [1.8.1](https://github.com/prefapp/features/compare/terraform-infra-v1.8.0...terraform-infra-v1.8.1) (2026-04-10)
 
 
