@@ -70,7 +70,47 @@ You can manually trigger the workflow from the GitHub Actions UI:
 
 - Invoked by the workflow to run `terraform plan` or `terraform apply` for the specified modules, using the logic defined in `functions.sh`.
 
-## Usage
+
+
+## Environment variables
+
+### Required variables for GitHub Actions Workflows and Manual Execution
+
+The scripts rely on several environment variables for Trrraform backend configuration. These variables should be defined in your GitHub repository settings as environment variables, or be defined as shell environment variables in case of manual execution.
+
+> [!TIP]
+>
+> Each GitHub Actions environment (e.g., `staging`, `production`) can define its own set of variables.
+
+| Variable                    | Description                                                  | Example value                                 |
+| --------------------------- | ------------------------------------------------------------ | --------------------------------------------- |
+| FIRESTARTR_BACKEND          | Name of the S3 bucket where the Terraform backend will reside | `example-tfstate-storage`                     |
+| FIRESTARTR_BACKEND_REGION   | AWS region where the Terraform backend will be stored        | `us-east-1`                                   |
+| FIRESTARTR_BACKEND_ROLE_ARN | IAM Role ARN for accessing backend resources                 | `arn:aws:iam::123456789012:role/example-role` |
+| FIRESTARTR_LOCK             | DynamoDB table name for state lock                           | `example-tf-lock`                             |
+
+### Additional variables for Manual Execution
+
+For manual use of `terrafire.sh`, you also need the following environment variables (in addition to the shared backend variables documented above):
+
+| Variable                    | Description                                                                                                 | Example value                          |
+| --------------------------- | ----------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| FIRESTARTR_BACKEND_PROFILE  | AWS profile used for local/manual backend access. Required for non-CI execution.                           | `default`                              |
+| FIRESTARTR_TENANTS_FOLDER   | Full path to the folder where tenant configuration directories reside. If unset, it defaults to `pwd`.     | `/home/path/to/your/project/accounts/` |
+
+
+
+### Initializing the Terraform backend
+
+The script `bootstrap/prepare.sh` initializes and configures the Terraform backend for its use. It generates the S3 bucket, the DynamoDB table for the Terraform backend, and the IAM role for accessing these resources. When it completes its execution, it will output all the values for these variables.
+
+> [!CAUTION]
+>
+> This script generates a new Terraform backend each time it is executed, so it must be **executed only once** to avoid **overwriting existing state**.
+
+
+
+## Usage in GitHub Actions
 
 ### Automatic
 
@@ -86,7 +126,6 @@ You can manually trigger the workflow from the GitHub Actions UI:
 ## Notes & Troubleshooting
 
 - **Labels and PR Merges**: The workflow checks for the `terraform/apply` label at the time the pull request is closed and merged. If the label is added too late (right before merging), GitHub's event payload may not include it, and the apply step may not trigger. To ensure reliable automation, add the label before merging.
-- **Environment Variables**: The workflows rely on several environment variables for backend configuration (see your workflow YAML for details).
 - **Logs and Feedback**: All Terraform output is posted as a PR comment and grouped in the Actions logs for easy review.
 
 ---

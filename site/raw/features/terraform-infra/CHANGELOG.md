@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.8.1](https://github.com/prefapp/features/compare/terraform-infra-v1.8.0...terraform-infra-v1.8.1) (2026-04-10)
+
+
+### Bug Fixes
+
+* update documentation for terraform-infra module ([#937](https://github.com/prefapp/features/issues/937)) ([e6cbd19](https://github.com/prefapp/features/commit/e6cbd19bf0083ef50accc40a60e4111ed9516da7))
+
 ## [1.8.0](https://github.com/prefapp/features/compare/terraform-infra-v1.7.1...terraform-infra-v1.8.0) (2026-03-09)
 
 
