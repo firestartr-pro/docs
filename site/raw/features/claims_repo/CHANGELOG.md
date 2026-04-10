@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.19.2](https://github.com/prefapp/features/compare/claims_repo-v1.19.1...claims_repo-v1.19.2) (2026-04-10)
+
+
+### Bug Fixes
+
+* destructive workflows naming ([#940](https://github.com/prefapp/features/issues/940)) ([c5008b8](https://github.com/prefapp/features/commit/c5008b862b54a69aae46b23b89c09cdf45f9c4f8))
+
 ## [1.19.1](https://github.com/prefapp/features/compare/claims_repo-v1.19.0...claims_repo-v1.19.1) (2026-04-10)
 
 

@@ -76,11 +76,13 @@ You can manually trigger the workflow from the GitHub Actions UI:
 
 ### Required variables for GitHub Actions Workflows and Manual Execution
 
-The scripts rely on several environment variables for Trrraform backend configuration. These variables should be defined in your GitHub repository settings as environment variables, or be defined as shell environment variables in case of manual execution.
+The scripts rely on several environment variables for Terraform backend configuration. These variables:
+- should be defined in your GitHub repository settings as environment variables.
+-  or be defined as shell environment variables in case of manual execution.
 
 > [!TIP]
 >
-> Each GitHub Actions environment (e.g., `staging`, `production`) can define its own set of variables.
+> Each GitHub Actions environment (e.g., `account1/staging`, `account2/production`) can define its own set of variables.
 
 | Variable                    | Description                                                  | Example value                                 |
 | --------------------------- | ------------------------------------------------------------ | --------------------------------------------- |
@@ -91,7 +93,7 @@ The scripts rely on several environment variables for Trrraform backend configur
 
 ### Additional variables for Manual Execution
 
-For manual use of `terrafire.sh`, you also need the following environment variables (in addition to the shared backend variables documented above):
+For manual use of `terrafire.sh`, you also **need the following environment variables** (in addition to the shared backend variables documented above):
 
 | Variable                    | Description                                                                                                 | Example value                          |
 | --------------------------- | ----------------------------------------------------------------------------------------------------------- | -------------------------------------- |
