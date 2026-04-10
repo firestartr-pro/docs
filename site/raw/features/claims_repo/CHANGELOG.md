@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.19.1](https://github.com/prefapp/features/compare/claims_repo-v1.19.0...claims_repo-v1.19.1) (2026-04-10)
+
+
+### Bug Fixes
+
+* Add wait time between hydrations ([#935](https://github.com/prefapp/features/issues/935)) ([4b87870](https://github.com/prefapp/features/commit/4b878705417e181c0f0767eb1400d50837cdf838))
+* Update workflow to check if PR exists first before creating a new one ([#925](https://github.com/prefapp/features/issues/925)) ([16f489a](https://github.com/prefapp/features/commit/16f489a45f4120f168b35c693e730de13542bd7b))
+
 ## [1.19.0](https://github.com/prefapp/features/compare/claims_repo-v1.18.0...claims_repo-v1.19.0) (2026-04-07)
 
 
