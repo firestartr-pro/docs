@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Firestartr Documentation</title><link>https://docs.firestartr.dev/docs/providers/terraform/</link><description>Recent content on Firestartr Documentation</description><generator>Hugo</generator><language>en-us</language><atom:link href="https://docs.firestartr.dev/docs/providers/terraform/index.xml" rel="self" type="application/rss+xml"/><item><title/><link>https://docs.firestartr.dev/docs/providers/terraform/workspace-policies/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.firestartr.dev/docs/providers/terraform/workspace-policies/</guid><description>&lt;h2 id="terraform-provider-policies--operation-security"&gt;Terraform Provider Policies &amp;amp; Operation Security&lt;a class="anchor" href="#terraform-provider-policies--operation-security"&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The &lt;code&gt;policy&lt;/code&gt; setting in the &lt;code&gt;providers.terraform&lt;/code&gt; block acts as the primary security gate for all infrastructure operations. Each policy defines the controller&amp;rsquo;s level of authority over the Terraform workspace through a set of &lt;strong&gt;allowed operations&lt;/strong&gt;.&lt;/p&gt;
+&lt;h3 id="policy-hierarchy"&gt;Policy Hierarchy&lt;a class="anchor" href="#policy-hierarchy"&gt;#&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Firestartr uses a hierarchical system to determine policy compatibility. Policies range from read-only observation to full lifecycle management.&lt;/p&gt;
+&lt;table&gt;
+ &lt;thead&gt;
+ &lt;tr&gt;
+ &lt;th style="text-align: left"&gt;Policy Name&lt;/th&gt;
+ &lt;th style="text-align: left"&gt;Aliases&lt;/th&gt;
+ &lt;th style="text-align: left"&gt;Allowed Operations&lt;/th&gt;
+ &lt;/tr&gt;
+ &lt;/thead&gt;
+ &lt;tbody&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;&lt;code&gt;full-control&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;N/A&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;&lt;code&gt;UPDATED&lt;/code&gt;, &lt;code&gt;CREATED&lt;/code&gt;, &lt;code&gt;RENAMED&lt;/code&gt;, &lt;code&gt;SYNC&lt;/code&gt;, &lt;code&gt;MARKED_TO_DELETION&lt;/code&gt;, &lt;code&gt;RETRY&lt;/code&gt;, &lt;code&gt;NOTHING&lt;/code&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;&lt;code&gt;apply&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;&lt;code&gt;create-update-only&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;&lt;code&gt;UPDATED&lt;/code&gt;, &lt;code&gt;CREATED&lt;/code&gt;, &lt;code&gt;RENAMED&lt;/code&gt;, &lt;code&gt;SYNC&lt;/code&gt;, &lt;code&gt;RETRY&lt;/code&gt;, &lt;code&gt;NOTHING&lt;/code&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;&lt;code&gt;observe&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;&lt;code&gt;observe-only&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;&lt;code&gt;SYNC&lt;/code&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;&lt;code&gt;create-only&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;N/A&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;&lt;code&gt;CREATED&lt;/code&gt;, &lt;code&gt;RETRY&lt;/code&gt;, &lt;code&gt;SYNC&lt;/code&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id="detailed-operation-mapping-for-terraform"&gt;Detailed Operation Mapping for Terraform&lt;a class="anchor" href="#detailed-operation-mapping-for-terraform"&gt;#&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Each policy explicitly enables a set of internal controller actions during a Terraform run:&lt;/p&gt;</description></item><item><title/><link>https://docs.firestartr.dev/docs/providers/terraform/workspace-sync/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.firestartr.dev/docs/providers/terraform/workspace-sync/</guid><description>&lt;h1 id="terraform-workspace-synchronization"&gt;Terraform Workspace Synchronization&lt;a class="anchor" href="#terraform-workspace-synchronization"&gt;#&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;The Terraform provider sync configuration allows you to control how and when Terraform workspaces are synchronized within TFWorkspaceClaim definitions.&lt;/p&gt;
+&lt;h2 id="overview"&gt;Overview&lt;a class="anchor" href="#overview"&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The sync section within &lt;code&gt;providers.terraform&lt;/code&gt; in a TFWorkspaceClaim enables automatic synchronization of Terraform state and resources at specified intervals or schedules.&lt;/p&gt;
+&lt;h2 id="configuration"&gt;Configuration&lt;a class="anchor" href="#configuration"&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id="tfworkspaceclaim-sync-configuration"&gt;TFWorkspaceClaim Sync Configuration&lt;a class="anchor" href="#tfworkspaceclaim-sync-configuration"&gt;#&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Configure synchronization in your TFWorkspaceClaim YAML file within the &lt;code&gt;providers.terraform.sync&lt;/code&gt; section:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-yaml" data-lang="yaml"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f92672"&gt;kind&lt;/span&gt;: &lt;span style="color:#ae81ff"&gt;TFWorkspaceClaim&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f92672"&gt;lifecycle&lt;/span&gt;: &lt;span style="color:#ae81ff"&gt;production&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f92672"&gt;name&lt;/span&gt;: &lt;span style="color:#ae81ff"&gt;example-workspace&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f92672"&gt;type&lt;/span&gt;: &lt;span style="color:#ae81ff"&gt;database&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f92672"&gt;owner&lt;/span&gt;: &lt;span style="color:#e6db74"&gt;&amp;#39;group:firestartr-team&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f92672"&gt;system&lt;/span&gt;: &lt;span style="color:#e6db74"&gt;&amp;#39;system:firestartr-system&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f92672"&gt;version&lt;/span&gt;: &lt;span style="color:#e6db74"&gt;&amp;#39;1.0&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f92672"&gt;providers&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#f92672"&gt;terraform&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#f92672"&gt;policy&lt;/span&gt;: &lt;span style="color:#ae81ff"&gt;full-control&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#f92672"&gt;tfStateKey&lt;/span&gt;: &lt;span style="color:#ae81ff"&gt;a1850b50-677d-4a81-92a4-1318503b5568&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#f92672"&gt;name&lt;/span&gt;: &lt;span style="color:#ae81ff"&gt;example-workspace&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#f92672"&gt;source&lt;/span&gt;: &lt;span style="color:#ae81ff"&gt;Inline&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#f92672"&gt;sync&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#f92672"&gt;enabled&lt;/span&gt;: &lt;span style="color:#66d9ef"&gt;true&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#f92672"&gt;period&lt;/span&gt;: &lt;span style="color:#e6db74"&gt;&amp;#34;5m&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#f92672"&gt;policy&lt;/span&gt;: &lt;span style="color:#e6db74"&gt;&amp;#34;apply&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#f92672"&gt;module&lt;/span&gt;: |&lt;span style="color:#e6db74"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#e6db74"&gt; # Your Terraform module content
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#e6db74"&gt; output &amp;#34;example&amp;#34; {
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#e6db74"&gt; value = &amp;#34;Hello World&amp;#34;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#e6db74"&gt; }&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#f92672"&gt;values&lt;/span&gt;: {}
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#f92672"&gt;context&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#f92672"&gt;providers&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; - &lt;span style="color:#f92672"&gt;name&lt;/span&gt;: &lt;span style="color:#ae81ff"&gt;provider-aws-workspaces&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#f92672"&gt;backend&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#f92672"&gt;name&lt;/span&gt;: &lt;span style="color:#ae81ff"&gt;firestartr-terraform-state&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id="sync-configuration-options"&gt;Sync Configuration Options&lt;a class="anchor" href="#sync-configuration-options"&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The sync configuration supports the following properties:&lt;/p&gt;</description></item></channel></rss>

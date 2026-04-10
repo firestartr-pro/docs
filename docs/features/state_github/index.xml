@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Firestartr Documentation</title><link>https://docs.firestartr.dev/docs/features/state_github/</link><description>Recent content on Firestartr Documentation</description><generator>Hugo</generator><language>en-us</language><atom:link href="https://docs.firestartr.dev/docs/features/state_github/index.xml" rel="self" type="application/rss+xml"/><item><title/><link>https://docs.firestartr.dev/docs/features/state_github/CHANGELOG/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.firestartr.dev/docs/features/state_github/CHANGELOG/</guid><description>&lt;h1 id="changelog"&gt;Changelog&lt;a class="anchor" href="#changelog"&gt;#&lt;/a&gt;&lt;/h1&gt;
+&lt;h2 id="120-2026-02-26"&gt;&lt;a href="https://github.com/prefapp/features/compare/state_github-v1.1.0...state_github-v1.2.0"&gt;1.2.0&lt;/a&gt; (2026-02-26)&lt;a class="anchor" href="#120-2026-02-26"&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id="features"&gt;Features&lt;a class="anchor" href="#features"&gt;#&lt;/a&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Add AUTO_MERGE control file support for state-infra, state-github, and catalog (&lt;a href="https://github.com/prefapp/features/issues/856"&gt;#856&lt;/a&gt;) (&lt;a href="https://github.com/prefapp/features/commit/73ead5e8131c1aece8641984c74d00e260ff0866"&gt;73ead5e&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="110-2026-02-20"&gt;&lt;a href="https://github.com/prefapp/features/compare/state_github-v1.0.0...state_github-v1.1.0"&gt;1.1.0&lt;/a&gt; (2026-02-20)&lt;a class="anchor" href="#110-2026-02-20"&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id="features-1"&gt;Features&lt;a class="anchor" href="#features-1"&gt;#&lt;/a&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;new validation structure (&lt;a href="https://github.com/prefapp/features/issues/635"&gt;#635&lt;/a&gt;) (&lt;a href="https://github.com/prefapp/features/commit/7e3f1cbd35af1d333a7f965dcce965975c371f92"&gt;7e3f1cb&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="bug-fixes"&gt;Bug Fixes&lt;a class="anchor" href="#bug-fixes"&gt;#&lt;/a&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Branch protection on expander_branch_strategies.yaml (&lt;a href="https://github.com/prefapp/features/issues/663"&gt;#663&lt;/a&gt;) (&lt;a href="https://github.com/prefapp/features/commit/1acf3c2a49fc123c3ee19e4c396d7e56ada02ea2"&gt;1acf3c2&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;Fixed tests in all modules (&lt;a href="https://github.com/prefapp/features/issues/472"&gt;#472&lt;/a&gt;) (&lt;a href="https://github.com/prefapp/features/commit/c77267b227ef5ebc4adf4f74fc26da3b5b96e226"&gt;c77267b&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;install latest features_renderer (&lt;a href="https://github.com/prefapp/features/issues/582"&gt;#582&lt;/a&gt;) (&lt;a href="https://github.com/prefapp/features/commit/7944e51e95d96dd03783a5be96e5ffeea2b5763f"&gt;7944e51&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="100-2025-04-24"&gt;1.0.0 (2025-04-24)&lt;a class="anchor" href="#100-2025-04-24"&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id="features-2"&gt;Features&lt;a class="anchor" href="#features-2"&gt;#&lt;/a&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Added new state_github feature (&lt;a href="https://github.com/prefapp/features/issues/436"&gt;#436&lt;/a&gt;) (&lt;a href="https://github.com/prefapp/features/commit/e8f379182418d1c7cb7bc11e9dc4661c48223033"&gt;e8f3791&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;</description></item></channel></rss>
