@@ -123,6 +123,57 @@
           }
         },
         "additionalProperties": false
+      },
+      "GithubRules": {
+        "$id": "firestartr.dev://common/FirestartrGithubRules",
+        "type": "object",
+        "properties": {
+          "path": {
+            "type": "string"
+          },
+          "owners": {
+            "type": "array",
+            "items": {
+              "$ref": "firestartr.dev://common/FirestartrOwnerRef"
+            }
+          }
+        },
+        "required": [
+          "path",
+          "owners"
+        ],
+        "additionalProperties": false
+      },
+      "GithubSync": {
+        "$id": "firestartr.dev://common/FirestartrGithubSync",
+        "type": "object",
+        "properties": {
+          "enabled": {
+            "type": "boolean"
+          },
+          "period": {
+            "type": "string",
+            "pattern": "^[0-9]+[smhd]$"
+          },
+          "policy": {
+            "type": "string"
+          },
+          "schedule": {
+            "type": "string"
+          },
+          "schedule_timezone": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "enabled"
+        ]
+      },
+      "TfStateKey": {
+        "$id": "firestartr.dev://common/TerraformStateKey",
+        "type": "string",
+        "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-4[0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12,}$"
       }
     }
   },
@@ -163,7 +214,8 @@
                   "github": {
                     "$ref": "firestartr.dev://github/GithubTeamClaim"
                   }
-                }
+                },
+                "additionalProperties": false
               }
             }
           }
@@ -193,7 +245,8 @@
                   "github": {
                     "$ref": "firestartr.dev://github/GithubUserClaim"
                   }
-                }
+                },
+                "additionalProperties": false
               }
             }
           }
@@ -241,7 +294,8 @@
                   "github": {
                     "$ref": "firestartr.dev://github/GithubComponentClaim"
                   }
-                }
+                },
+                "additionalProperties": false
               }
             },
             "required": [
@@ -346,6 +400,7 @@
                     "$ref": "firestartr.dev://terraform/TerraformProvider"
                   }
                 },
+                "additionalProperties": false,
                 "required": [
                   "terraform"
                 ]
@@ -388,6 +443,7 @@
                     "$ref": "firestartr.dev://argocd/ArgoCDProvider"
                   }
                 },
+                "additionalProperties": false,
                 "required": [
                   "argocd"
                 ]
@@ -414,6 +470,15 @@
             {
               "type": "object",
               "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "tfStateKey": {
+                  "$ref": "firestartr.dev://common/TerraformStateKey"
+                },
+                "sync": {
+                  "$ref": "firestartr.dev://common/FirestartrGithubSync"
+                },
                 "privacy": {
                   "type": "string",
                   "enum": [
@@ -428,6 +493,7 @@
                   "$ref": "firestartr.dev://common/ClaimName"
                 }
               },
+              "additionalProperties": false,
               "required": [
                 "org",
                 "privacy"
@@ -452,6 +518,15 @@
             {
               "type": "object",
               "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "tfStateKey": {
+                  "$ref": "firestartr.dev://common/TerraformStateKey"
+                },
+                "sync": {
+                  "$ref": "firestartr.dev://common/FirestartrGithubSync"
+                },
                 "role": {
                   "type": "string",
                   "enum": [
@@ -463,6 +538,7 @@
                   "$ref": "firestartr.dev://common/ClaimName"
                 }
               },
+              "additionalProperties": false,
               "required": [
                 "org",
                 "role"
@@ -559,13 +635,152 @@
                   "type": "string",
                   "description": "The github repo name"
                 },
+                "tfStateKey": {
+                  "$ref": "firestartr.dev://common/TerraformStateKey"
+                },
                 "orgPermissions": {
                   "type": "string",
                   "description": "The level of org Permission"
                 },
+                "sync": {
+                  "$ref": "firestartr.dev://common/FirestartrGithubSync"
+                },
+                "technology": {
+                  "type": "object",
+                  "properties": {
+                    "stack": {
+                      "type": "string"
+                    },
+                    "version": {
+                      "type": "string"
+                    }
+                  },
+                  "additionalProperties": false,
+                  "required": [
+                    "stack",
+                    "version"
+                  ]
+                },
+                "defaultBranch": {
+                  "type": "string"
+                },
+                "branchStrategy": {
+                  "type": "object",
+                  "description": "A branch strategy for a claim",
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    },
+                    "defaultBranch": {
+                      "type": "string"
+                    }
+                  },
+                  "additionalProperties": false,
+                  "required": [
+                    "name"
+                  ]
+                },
+                "additionalBranches": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string"
+                      },
+                      "orphan": {
+                        "type": "boolean"
+                      }
+                    },
+                    "additionalProperties": false,
+                    "required": [
+                      "name",
+                      "orphan"
+                    ]
+                  }
+                },
+                "actions": {
+                  "type": "object",
+                  "description": "Actions configuration",
+                  "properties": {
+                    "oidc": {
+                      "type": "object",
+                      "properties": {
+                        "useDefault": {
+                          "type": "boolean"
+                        },
+                        "includeClaimKeys": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "additionalProperties": false
+                    }
+                  },
+                  "additionalProperties": false,
+                  "required": [
+                    "oidc"
+                  ]
+                },
                 "archiveOnDestroy": {
                   "type": "boolean",
                   "description": "whether this repo should be archived when the claim is deleted"
+                },
+                "allowMergeCommit": {
+                  "type": "boolean"
+                },
+                "allowSquashMerge": {
+                  "type": "boolean"
+                },
+                "allowRebaseMerge": {
+                  "type": "boolean"
+                },
+                "allowAutoMerge": {
+                  "type": "boolean"
+                },
+                "deleteBranchOnMerge": {
+                  "type": "boolean"
+                },
+                "autoInit": {
+                  "type": "boolean"
+                },
+                "allowUpdateBranch": {
+                  "type": "boolean"
+                },
+                "hasIssues": {
+                  "type": "boolean"
+                },
+                "hasWiki": {
+                  "type": "boolean"
+                },
+                "pages": {
+                  "type": "object",
+                  "properties": {
+                    "cname": {
+                      "type": "string"
+                    },
+                    "source": {
+                      "type": "object",
+                      "properties": {
+                        "branch": {
+                          "type": "string"
+                        },
+                        "path": {
+                          "type": "string"
+                        }
+                      },
+                      "additionalProperties": false
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                "additionalRules": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "firestartr.dev://common/FirestartrGithubRules"
+                  }
                 },
                 "visibility": {
                   "type": "string",
@@ -598,11 +813,18 @@
                     "maxLength": 50,
                     "pattern": "^[a-z0-9][a-z0-9-]*$"
                   }
+                },
+                "overrides": {
+                  "type": "object",
+                  "properties": {},
+                  "additionalProperties": true
                 }
               },
+              "additionalProperties": false,
               "required": [
                 "visibility",
-                "org"
+                "org",
+                "branchStrategy"
               ]
             }
           ]
@@ -624,6 +846,12 @@
             {
               "type": "object",
               "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "tfStateKey": {
+                  "$ref": "firestartr.dev://common/TerraformStateKey"
+                },
                 "orgName": {
                   "$ref": "firestartr.dev://common/ClaimName"
                 },
@@ -657,6 +885,7 @@
                       }
                     }
                   },
+                  "additionalProperties": false,
                   "required": [
                     "url",
                     "contentType",
@@ -665,6 +894,7 @@
                   ]
                 }
               },
+              "additionalProperties": false,
               "required": [
                 "orgName",
                 "webhook"
@@ -816,6 +1046,9 @@
                 "name": {
                   "type": "string"
                 },
+                "tfStateKey": {
+                  "$ref": "firestartr.dev://common/TerraformStateKey"
+                },
                 "source": {
                   "type": "string",
                   "enum": [
@@ -924,6 +1157,7 @@
                   "additionalProperties": false
                 }
               },
+              "additionalProperties": false,
               "required": [
                 "values",
                 "context",
@@ -1068,6 +1302,7 @@
               ]
             }
           },
+          "additionalProperties": false,
           "required": [
             "name"
           ]
@@ -1119,6 +1354,15 @@
               "refreshInterval": {
                 "type": "string"
               },
+              "updatePolicy": {
+                "type": "string"
+              },
+              "deletionPolicy": {
+                "type": "string"
+              },
+              "conversionStrategy": {
+                "type": "string"
+              },
               "generator": {
                 "type": "object",
                 "properties": {
@@ -1153,11 +1397,13 @@
                     "type": "string"
                   }
                 },
+                "additionalProperties": false,
                 "required": [
                   "name"
                 ]
               }
             },
+            "additionalProperties": false,
             "required": [
               "secretName",
               "generator"
@@ -1235,6 +1481,7 @@
                     "$ref": "firestartr.dev://secrets/ExternalSecretsProvider"
                   }
                 },
+                "additionalProperties": false,
                 "required": [
                   "external_secrets"
                 ]
@@ -1276,7 +1523,8 @@
                   "github": {
                     "$ref": "firestartr.dev://github/GithubOrgWebhookClaim"
                   }
-                }
+                },
+                "additionalProperties": false
               }
             },
             "required": [
