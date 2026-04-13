@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.3.3](https://github.com/prefapp/features/compare/build_and_dispatch_docker_images-v5.3.2...build_and_dispatch_docker_images-v5.3.3) (2026-04-13)
+
+
+### Bug Fixes
+
+* **build_and_dispatch_docker_images:** add autodeploy option in manual build snapshot ([#944](https://github.com/prefapp/features/issues/944)) ([9434f5b](https://github.com/prefapp/features/commit/9434f5bc04d6cc34db573e5282a9c69a113f6d2d))
+
 ## [5.3.2](https://github.com/prefapp/features/compare/build_and_dispatch_docker_images-v5.3.1...build_and_dispatch_docker_images-v5.3.2) (2026-04-08)
 
 

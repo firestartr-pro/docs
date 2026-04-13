@@ -83,10 +83,14 @@ A registry object contains the following keys:
 
 ### Inputs
 
-All build workflows use the same inputs. They are:
+All build workflows share the following inputs:
 
 - `from`: point of the code history from which the image will be built. Can be a short or long commit SHA, a branch name or a tag name
 - `flavors`: which flavors to build. Each workflow will only look for flavors in their respective section (i.e., build_docker_releases will only build flavors from `releases`, while the other two will only build flavors from `snapshots`). Can be a single flavor, a list of comma separated flavors (spaces are trimmed) or \*. \* builds all flavors that are set as auto in `build_images.yaml` (see [Configuration](#configuration))
+
+`build_docker_snapshots` also includes this workflow-dispatch-only input:
+
+- `autodeploy`: boolean input (default: `false`) used by `build_docker_snapshots` when launched manually (`workflow_dispatch`). When `true`, the downstream `trigger_dispatch_on_snapshot` workflow will continue and trigger `make_dispatches.yaml`; when `false`, the trigger workflow skips the dispatch step.
 
 ### Defaults
 
@@ -436,7 +440,7 @@ For ease of use, the `tenant`, `platform` and `env` inputs have been made into c
 - `trigger_filter_by_env_snapshot`: value of the `filter_by_env` parameter passed to `make_dispatches.yaml` when triggered automatically after a snapshot build. Defaults to `dev`
 - `trigger_filter_by_env_pre_releases`: value of the `filter_by_env` parameter passed to `make_dispatches.yaml` when triggered automatically after a pre-release build. Defaults to `pre`
 - `trigger_filter_by_env_releases`: value of the `filter_by_env` parameter passed to `make_dispatches.yaml` when triggered automatically after a release build. Defaults to `pro`
-- `skip_commit_types`: comma-separated list of [conventional commit](https://www.conventionalcommits.org/) type prefixes to skip on `push` events in the `build_docker_snapshots` workflow. When ALL commits in a push match one of these types, the build is skipped. Only applies to `push` events, `workflow_dispatch` and `pull_request` always build. Wrapped in a try/catch so failures default to building. Defaults to `ci,docs,build,test`
+- `skip_commit_types`: comma-separated list of [conventional commit](https://www.conventionalcommits.org/) type prefixes to skip on `push` events in the `build_docker_snapshots` workflow. When ALL commits in a push match one of these types, the build is skipped. Only applies to `push` events, `workflow_dispatch` and `pull_request` always build. Wrapped in a try/catch so failures default to building. Defaults to `ci,docs,build,chore,test`
 - `push_paths_ignore`: list of path patterns (in GitHub Actions `paths-ignore` format) to exclude from triggering the `build_docker_snapshots` workflow on `push` events. The value is rendered directly as YAML list items under `paths-ignore`. Defaults to `.github/**` and `docs/**`
 
 **NOTE**: `make_dispatches` downloads the `firestartr_config_repo` repository to access the configuration files via the `apps_folder_path`, `platform_folder_path` and `registries_folder_path` feature arguments. However, `firestartr_config_repo` is always downloaded under the `.firestartr` folder, regardless of what the actual name of the repository is, so the paths specified in the `*_folder_path` arguments should all start with `.firestartr/` (unless the folders are located in another repo)
