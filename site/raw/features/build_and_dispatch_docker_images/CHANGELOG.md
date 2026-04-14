@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.3.5](https://github.com/prefapp/features/compare/build_and_dispatch_docker_images-v5.3.4...build_and_dispatch_docker_images-v5.3.5) (2026-04-14)
+
+
+### Bug Fixes
+
+* **build_and_dispatch_docker_images:** manual build snapshot autodeploy fix grep values ([#952](https://github.com/prefapp/features/issues/952)) ([806fd4b](https://github.com/prefapp/features/commit/806fd4b1b761cb895cac879645f11521ebe4c11b))
+
 ## [5.3.4](https://github.com/prefapp/features/compare/build_and_dispatch_docker_images-v5.3.3...build_and_dispatch_docker_images-v5.3.4) (2026-04-14)
 
 
