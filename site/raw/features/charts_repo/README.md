@@ -53,11 +53,11 @@ Validates chart changes before a Pull Request is merged.
 * **Runs on**: every PR that touches `charts/**` or manually via `workflow_dispatch`.
 * **Validation tasks**:
 
-  1. **Scope Check** — blocks PRs that modify more than one chart at a time.
-  2. **Dependency Update** — refreshes Helm dependencies, including local and remote subcharts.
-  3. **Linting & Template** — executes `helm lint --strict` and renders templates for inspection.
-  4. **Yamllint** — runs `yamllint` on rendered output and posts results in a persistent comment using *sticky‑pull‑request‑comment*.
-  5. Fails the workflow if lint errors are found.
+  1. **Change Detection** — identifies every chart modified in the PR.
+  2. **Dependency Update** — refreshes Helm dependencies, including local and remote subcharts, once per changed chart.
+  3. **Linting & Template** — executes `helm lint --strict` and renders templates for inspection for each changed chart.
+  4. **Yamllint** — runs `yamllint` on rendered output and posts one persistent comment per chart using *sticky‑pull‑request‑comment*.
+  5. Fails the workflow if any chart validation reports lint errors.
 
 ---
 
@@ -67,7 +67,7 @@ Validates chart changes before a Pull Request is merged.
 2. For each chart needing a release → `generate-artifact.yaml` publishes the new version.
 3. **Pull Request** cycle:
 
-   * `pr-verify.yaml` validates the PR and leaves feedback.
+   * `pr-verify.yaml` validates each changed chart and leaves per-chart feedback.
    * If on‑demand testing is needed, `generate-snapshot.yaml` builds and uploads a snapshot.
 
 
