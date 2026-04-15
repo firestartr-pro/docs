@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.19.3](https://github.com/prefapp/features/compare/claims_repo-v1.19.2...claims_repo-v1.19.3) (2026-04-15)
+
+
+### Bug Fixes
+
+* [`claims_repo`] add PREFAPP_BOT_PAT in importer ([#950](https://github.com/prefapp/features/issues/950)) ([82625f8](https://github.com/prefapp/features/commit/82625f814e73a619613e6d05ce39d86a55240ffa))
+
 ## [1.19.2](https://github.com/prefapp/features/compare/claims_repo-v1.19.1...claims_repo-v1.19.2) (2026-04-10)
 
 
