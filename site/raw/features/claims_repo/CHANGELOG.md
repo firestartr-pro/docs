@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.20.0](https://github.com/prefapp/features/compare/claims_repo-v1.19.3...claims_repo-v1.20.0) (2026-04-15)
+
+
+### Features
+
+* update docs ([#957](https://github.com/prefapp/features/issues/957)) ([ada15dc](https://github.com/prefapp/features/commit/ada15dcfda2536d7772a621f006c951a217c770e))
+
 ## [1.19.3](https://github.com/prefapp/features/compare/claims_repo-v1.19.2...claims_repo-v1.19.3) (2026-04-15)
 
 
