@@ -59,8 +59,8 @@
     {
       "name": "aws-parameter-store",
       "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/aws-parameter-store/README.md",
-      "version": "0.4.1",
-      "source": "git::https://github.com/prefapp/tfm.git//modules/aws-parameter-store?ref=aws-parameter-store-v0.4.1"
+      "version": "0.5.0",
+      "source": "git::https://github.com/prefapp/tfm.git//modules/aws-parameter-store?ref=aws-parameter-store-v0.5.0"
     },
     {
       "name": "aws-rds",
