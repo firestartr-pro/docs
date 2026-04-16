@@ -341,6 +341,18 @@
       "source": "git::https://github.com/prefapp/tfm.git//modules/github-membership?ref=github-membership-v0.2.0"
     },
     {
+      "name": "github-org-ruleset",
+      "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/github-org-ruleset/README.md",
+      "version": "0.1.0",
+      "source": "git::https://github.com/prefapp/tfm.git//modules/github-org-ruleset?ref=github-org-ruleset-v0.1.0"
+    },
+    {
+      "name": "github-org-rulesets",
+      "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/github-org-rulesets/README.md",
+      "version": "0.1.1",
+      "source": "git::https://github.com/prefapp/tfm.git//modules/github-org-rulesets?ref=github-org-rulesets-v0.1.1"
+    },
+    {
       "name": "github-org-webhook",
       "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/github-org-webhook/README.md",
       "version": "0.2.0",
