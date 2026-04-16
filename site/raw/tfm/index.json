@@ -343,8 +343,8 @@
     {
       "name": "github-org-ruleset",
       "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/github-org-ruleset/README.md",
-      "version": "0.1.0",
-      "source": "git::https://github.com/prefapp/tfm.git//modules/github-org-ruleset?ref=github-org-ruleset-v0.1.0"
+      "version": "0.1.1",
+      "source": "git::https://github.com/prefapp/tfm.git//modules/github-org-ruleset?ref=github-org-ruleset-v0.1.1"
     },
     {
       "name": "github-org-rulesets",
