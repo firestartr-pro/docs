@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.8.4](https://github.com/prefapp/features/compare/state_repo_apps-v3.8.3...state_repo_apps-v3.8.4) (2026-04-17)
+
+
+### Bug Fixes
+
+* update AUTH_OCI_VERSION to 1.3.0 in state_repo_apps and state_repo_sys_services ([#960](https://github.com/prefapp/features/issues/960)) ([a126307](https://github.com/prefapp/features/commit/a126307474e0fad18394c4f72688d93a61d90c0a))
+
 ## [3.8.3](https://github.com/prefapp/features/compare/state_repo_apps-v3.8.2...state_repo_apps-v3.8.3) (2026-03-25)
 
 
