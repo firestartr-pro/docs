@@ -5,7 +5,7 @@
     "packages/state_repo": "2.2.2",
     "packages/build_and_dispatch_docker_images": "5.3.5",
     "packages/state_infra": "1.2.0",
-    "packages/state_repo_sys_services": "2.3.8",
+    "packages/state_repo_sys_services": "2.3.9",
     "packages/state_repo_apps": "3.8.4",
     "packages/claims_repo": "1.20.0",
     "packages/state_github": "1.2.0",

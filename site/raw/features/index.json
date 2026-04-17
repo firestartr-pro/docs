@@ -192,7 +192,7 @@
     },
     {
       "name": "state_repo_sys_services",
-      "version": "2.3.8",
+      "version": "2.3.9",
       "files": [
         {
           "name": "README.md",
