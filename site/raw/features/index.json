@@ -110,7 +110,7 @@
     },
     {
       "name": "release_please",
-      "version": "1.4.1",
+      "version": "1.5.0",
       "files": [
         {
           "name": "README.md",

@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.5.0](https://github.com/prefapp/features/compare/release_please-v1.4.1...release_please-v1.5.0) (2026-04-20)
+
+
+### Features
+
+* add JSON files validation on release-please template ([#955](https://github.com/prefapp/features/issues/955)) ([167678b](https://github.com/prefapp/features/commit/167678bb7dd99c1514e11bce1ad39512cada84a8))
+
 ## [1.4.1](https://github.com/prefapp/features/compare/release_please-v1.4.0...release_please-v1.4.1) (2026-02-23)
 
 
