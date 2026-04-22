@@ -144,7 +144,31 @@ This workflow generates deployment files (CRs) for a Kubernetes workload based o
 - **Fails?** Look at the logs or summary in GitHub Actions. Verify your `platform` and `sys_service` inputs.
 - **No PR?** Ensure the inputs match a valid Kubernetes workload path (e.g., `kubernetes-sys-services/my-platform/my-sys_service`).
 
-***
+---
+
+## 2. 🤖 Automated Deployment
+
+The `auto-generate-deployments` workflow runs automatically on pushes to the repository default branch. Its job is to detect changes that affect Kubernetes sys-services and, for each affected sys-service, trigger a run of the `generate-deployment` workflow.
+
+How it works
+- Trigger: any push to the repository default branch (the workflow is configured with a push trigger).
+- Scan: the workflow inspects the set of changed files in the push and looks for changes under paths that match `kubernetes-sys-services/<platform>/<sys-service>/...`.
+- File types considered: only files with `.yaml` or `.yml` extensions are evaluated. Other file types (for example `.md`, `.txt`, or tooling files) are ignored.
+- Per-sys-service runs: if one or more YAML files changed inside a given sys-service directory (for example `kubernetes-sys-services/my-platform/my-sys-service/values.yaml`), the workflow invokes `generate-deployment` once for that particular sys-service.
+
+Examples
+- Single change: editing `kubernetes-sys-services/cluster-a/datadog/values.yaml` triggers one `generate-deployment` run for `cluster-a/datadog`.
+- Multiple services: changing `kubernetes-sys-services/cluster-a/datadog/values.yaml` and `kubernetes-sys-services/cluster-a/stakater/values.yaml` triggers two separate `generate-deployment` runs, one per sys-service.
+- Non-triggering change: editing `kubernetes-sys-services/cluster-a/README.md` or a top-level file under `kubernetes-sys-services/cluster-a/` that is not a `.yaml`/`.yml` will not trigger `generate-deployment`.
+
+What to expect
+- For each triggered `generate-deployment` run, deployment manifests (CRs) are rendered and a pull request is opened (or updated) against the `deployment` branch. The PR contains the generated artifacts for that sys-service.
+- Workflow logs will list which changed files caused the trigger and which sys-service runs were started.
+
+Troubleshooting
+- No runs: confirm your changes are pushed to the repository default branch and are under `kubernetes-sys-services/<platform>/<sys-service>/` and that at least one changed file has a `.yaml` or `.yml` extension.
+- Unexpected runs: verify the exact paths you changed. If you only want to update a single sys-service, avoid editing files for other services in the same push.
+
 
 ---
 

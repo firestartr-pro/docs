@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.5.0](https://github.com/prefapp/features/compare/charts_repo-v1.4.3...charts_repo-v1.5.0) (2026-04-22)
+
+
+### Features
+
+* **charts_repo:** allow PR verify for multiple charts ([#945](https://github.com/prefapp/features/issues/945)) ([b345fd0](https://github.com/prefapp/features/commit/b345fd0d090b6dd6acb4de2700144bbe7b9f1d02))
+
+
+### Bug Fixes
+
+* **charts_repo:** support library charts in PR verify ([#951](https://github.com/prefapp/features/issues/951)) ([bcd0cc2](https://github.com/prefapp/features/commit/bcd0cc2e6425139efd4cd9aae65f029ea673ad8f))
+* **release-please:** Avoid trigger other workflows ([#839](https://github.com/prefapp/features/issues/839)) ([5514867](https://github.com/prefapp/features/commit/5514867cd75881777a2cab2693b3f291162d1d29))
+
 ## [1.4.3](https://github.com/prefapp/features/compare/charts_repo-v1.4.2...charts_repo-v1.4.3) (2025-12-17)
 
 
