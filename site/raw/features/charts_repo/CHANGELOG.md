@@ -1,5 +1,21 @@
 # Changelog
 
+## [2.0.0](https://github.com/prefapp/features/compare/charts_repo-v1.5.0...charts_repo-v2.0.0) (2026-04-24)
+
+
+### ⚠ BREAKING CHANGES
+
+* decouple release publishing and add major rolling-tags ([#956](https://github.com/prefapp/features/issues/956))
+
+### Features
+
+* decouple release publishing and add major rolling-tags ([#956](https://github.com/prefapp/features/issues/956)) ([876095f](https://github.com/prefapp/features/commit/876095f15262fad23f452255c93a8fa92efffd85))
+
+
+### Bug Fixes
+
+* comment only on failure and delete comment on success ([#972](https://github.com/prefapp/features/issues/972)) ([0d56fb7](https://github.com/prefapp/features/commit/0d56fb71b65c9af41b7837f745d9fc65c7583b18))
+
 ## [1.5.0](https://github.com/prefapp/features/compare/charts_repo-v1.4.3...charts_repo-v1.5.0) (2026-04-22)
 
 
