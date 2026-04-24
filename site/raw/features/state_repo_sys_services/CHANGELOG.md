@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.3.10](https://github.com/prefapp/features/compare/state_repo_sys_services-v2.3.9...state_repo_sys_services-v2.3.10) (2026-04-24)
+
+
+### Bug Fixes
+
+* Add autodeployment workflow ([#917](https://github.com/prefapp/features/issues/917)) ([2afe7d8](https://github.com/prefapp/features/commit/2afe7d85d4b900bf08999489d500f6bfa968f964))
+
 ## [2.3.9](https://github.com/prefapp/features/compare/state_repo_sys_services-v2.3.8...state_repo_sys_services-v2.3.9) (2026-04-17)
 
 
