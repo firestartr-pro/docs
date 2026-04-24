@@ -11,7 +11,7 @@ The purpose of this document is to describe how to:
 
 ---
 
-## 🏷️ Tagging and Releasing Terraform Modules
+## 🏷️ Tagging and Releasing new versions
 
 `release-please` automatically creates releases based on **conventional commit messages**.
 
@@ -96,6 +96,32 @@ The file `.release-please-manifest.json` keeps track of the **current released v
   ".": "1.2.3"
 }
 ```
+
+### Helm charts monorepo example
+
+For a charts repository, `release_please` still needs to be configured with the chart package paths. A minimal example looks like this:
+
+```json
+{
+  "bootstrap-sha": "CHANGE_ME",
+  "release-type": "helm",
+  "packages": {
+    "charts/payments": {},
+    "charts/orders": {}
+  }
+}
+```
+
+And the matching manifest:
+
+```json
+{
+  "charts/payments": "1.4.2",
+  "charts/orders": "2.1.0"
+}
+```
+
+If you use custom component names in release tags, define them in `release-please-config.json`. Workflows such as `charts_repo` publication can use those component mappings to resolve tags back to chart directories.
 
 ---
 

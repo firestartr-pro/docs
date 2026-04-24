@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.5.1](https://github.com/prefapp/features/compare/release_please-v1.5.0...release_please-v1.5.1) (2026-04-24)
+
+
+### Bug Fixes
+
+* release-please docs ([#977](https://github.com/prefapp/features/issues/977)) ([020d79f](https://github.com/prefapp/features/commit/020d79f62e39317f778f4fe21d528fdaa6e0b359))
+
 ## [1.5.0](https://github.com/prefapp/features/compare/release_please-v1.4.1...release_please-v1.5.0) (2026-04-20)
 
 
