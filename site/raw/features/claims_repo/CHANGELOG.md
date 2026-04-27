@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.20.1](https://github.com/prefapp/features/compare/claims_repo-v1.20.0...claims_repo-v1.20.1) (2026-04-24)
+
+
+### Bug Fixes
+
+* **claims-repo:** respect automerge flag in hydration ([#966](https://github.com/prefapp/features/issues/966)) ([cc4c376](https://github.com/prefapp/features/commit/cc4c3761a29c90c827a011d0c2f99935ad2a7fec))
+
 ## [1.20.0](https://github.com/prefapp/features/compare/claims_repo-v1.19.3...claims_repo-v1.20.0) (2026-04-15)
 
 
