@@ -113,6 +113,12 @@
       "source": "git::https://github.com/prefapp/tfm.git//modules/azure-aks?ref=azure-aks-v2.0.0"
     },
     {
+      "name": "azure-alerts",
+      "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-alerts/README.md",
+      "version": "0.1.0",
+      "source": "git::https://github.com/prefapp/tfm.git//modules/azure-alerts?ref=azure-alerts-v0.1.0"
+    },
+    {
       "name": "azure-app-gateway",
       "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-app-gateway/README.md",
       "version": "0.8.1",
