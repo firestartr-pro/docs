@@ -258,6 +258,27 @@
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "$id": "ComponentClaim",
     "definitions": {
+      "ApiDefinition": {
+        "$id": "firestartr.dev://common/ComponentClaimApiDefinition",
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "definitionfile": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "name",
+          "definitionfile",
+          "type"
+        ],
+        "additionalProperties": false
+      },
       "ComponentClaim": {
         "$id": "firestartr.dev://common/ComponentClaim",
         "type": "object",
@@ -287,6 +308,28 @@
               },
               "subComponentOf": {
                 "$ref": "firestartr.dev://common/FirestartrComponentRef"
+              },
+              "providesApis": {
+                "anyOf": [
+                  {
+                    "type": "array",
+                    "items": {
+                      "$ref": "firestartr.dev://common/ComponentClaimApiDefinition"
+                    }
+                  },
+                  {
+                    "type": "object",
+                    "additionalProperties": {
+                      "$ref": "firestartr.dev://common/ComponentClaimApiDefinition"
+                    }
+                  }
+                ]
+              },
+              "consumesApis": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
               },
               "providers": {
                 "type": "object",
