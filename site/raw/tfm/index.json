@@ -83,8 +83,8 @@
     {
       "name": "aws-sso",
       "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/aws-sso/README.md",
-      "version": "0.6.1",
-      "source": "git::https://github.com/prefapp/tfm.git//modules/aws-sso?ref=aws-sso-v0.6.1"
+      "version": "0.7.0",
+      "source": "git::https://github.com/prefapp/tfm.git//modules/aws-sso?ref=aws-sso-v0.7.0"
     },
     {
       "name": "aws-terraform-backend",
