@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.3.6](https://github.com/prefapp/features/compare/build_and_dispatch_docker_images-v5.3.5...build_and_dispatch_docker_images-v5.3.6) (2026-04-30)
+
+
+### Bug Fixes
+
+* Add support for secrets in `build_docker_*` workflows ([#914](https://github.com/prefapp/features/issues/914)) ([e1cbaec](https://github.com/prefapp/features/commit/e1cbaec55499b92c7f6cb6ba08cf1c2fb9ecb2ac))
+
 ## [5.3.5](https://github.com/prefapp/features/compare/build_and_dispatch_docker_images-v5.3.4...build_and_dispatch_docker_images-v5.3.5) (2026-04-14)
 
 

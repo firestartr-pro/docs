@@ -21,6 +21,9 @@ snapshots: # Configuration specific for snapshots, used by build_docker_pre-rele
       #  ENV_VARIABLE_NAME: env_variable_value
       API_URL: https://api.com/url
       UI_COLOR: "#125690"
+    secrets: # Secrets to be set during the image building process
+      DB_PASSWORD: "arn:aws:ssm:region:account:parameter/dev/my-db-pass"  # Amazon SSM Parameter Store ARN
+      DB_USERNAME: "https://my-vault.vault.azure.net/secrets/my-db-username"  # Azure Key Vault URL
     extra_registries: # List of registries, other than the default one (see "Defaults" below), where to upload the image
       - name: registry.azure.io
         repository: service/repo
@@ -288,21 +291,9 @@ These secrets are passed to the build workflow and used during the registry logi
 
 #### How build secrets work
 
-The `secrets` key in the `build_images.yaml` flavor configuration allows passing secrets to the Docker build process. There are two mechanisms for injecting secrets:
+The `secrets` key in the `build_images.yaml` flavor configuration allows passing secrets to the Docker build process. Currently, the following mechanisms for injecting secrets are supported:
 
-**1. Secret references in `build_args`**
-
-Values inside `build_args` can reference GitHub Actions secrets using the `{{ secrets.SECRET_NAME }}` syntax. These references are resolved at configuration parsing time, before the build starts:
-
-```yaml
-snapshots:
-  my-flavor:
-    dockerfile: Dockerfile
-    build_args:
-      MY_TOKEN: "{{ secrets.MY_CUSTOM_TOKEN }}"
-```
-
-**2. Vault-resolved secrets via the `secrets` key**
+**1. Vault-resolved secrets via the `secrets` key**
 
 Each flavor can specify a `secrets` key with key-value pairs. The secret values are resolved **at runtime** by a provider factory that auto-detects the backend based on the value format:
 
@@ -322,6 +313,27 @@ RUN --mount=type=secret,id=MAVEN_USERNAME \
     mvn package
 ```
 
+### About GitHub secrets & vars
+
+The `build_docker_(snapshots, pre-releases, releases)` workflows all use the `build_images_reusable` workflow, which supports sending additional secrets and variables to the Dagger module. This is done by setting the `build_images_vars` and `build_images_secrets` feature parameters, as explained in the [Feature arguments](#feature-arguments) section below.
+Additionally, the workflow sets the `environment` job parameter, which can be either `snapshots` or `releases`, depending on the type of image that's being built (`snapshots` for non-production images, `releases` for production). This means that for a variable or secret, to be used, it must either:
+
+- Be defined at the organization or repository level (i.e. not tied to any environment)
+- Be defined within the `snapshots` environment, when using the `build_docker_snapshots` or `build_docker_pre-releases` workflows
+- Be defined within the `releases` environment, when using the `build_docker_releases` workflow
+
+The same variable or secret can be defined in multiple of these scopes, with the value defined within either environment having precedence over variables defined at the organization or repository level. You can read more about workflow environments and their variables and secrets [in the GitHub documentation](https://docs.github.com/en/actions/concepts/workflows-and-actions/deployment-environments).
+
+> [!NOTE]
+> Note that, apart from GitHub secrets and vars, in these fields you can also
+> define text variables and references to secrets in the AWS Parameter Store or
+> Azure Keyvault, which will be available in all image builds of all flavors
+> defined in your `.github/build_images.yml`.
+
+> [!WARNING]
+> Avoid defining secrets and references to secrets within the `build_image_vars` field, as they can end up populated in your Docker image layers.
+> Always use the `build_image_secrets` field to provide secrets, which will use [Dagger's secure mechanism](https://docs.dagger.io/extending/secrets/?sdk=System+shell)
+> to provide them to the build process without the risk of them being exfiltrated into the final image.
 ## Make dispatches
 
 Composed of the workflow `.github/workflows/make_dispatches.yaml`.
@@ -424,23 +436,50 @@ For ease of use, the `tenant`, `platform` and `env` inputs have been made into c
 
 ## Feature arguments
 
-- `build_snapshots_branch`: which branch triggers an automatic snapshot build when pushed to. Defaults to the default branch of the repository, specified under `providers.github.branchStrategy.defaultBranch` inside the claim (usually `main` or `master`)
-- `auth_strategy`: which authentication strategy to use when logging into the docker registries. Defaults to `azure_oidc`
-- `build_snapshots_filter`: filter to apply when automatically building snapshot images. Defaults to an empty string (no filter)
-- `build_pre_releases_filter`: filter to apply when automatically building pre-release images. Defaults to an empty string (no filter)
-- `build_releases_filter`: filter to apply when automatically building release images. Defaults to an empty string (no filter)
-- `default_snapshots_flavors_filter`: default filter shown in the UI when manually executing the build snapshots workflow. Defaults to `*`
-- `default_pre_releases_flavors_filter`: default filter shown in the UI when manually executing the build pre-releases workflow. Defaults to `*`
-- `default_releases_flavors_filter`: default filter shown in the UI when manually executing the build releases workflow. Defaults to `*`
-- `firestartr_config_repo`: name of the repository that houses all the config files used by the `make_dispatches` workflow. Defaults to `${{ github.repository_owner }}/.firestartr`
-- `make_dispatches_config_file_path`: path to the `make_dispatches` config file to be used by the `make_dispatches` workflow, relative to the root of the repository. Defaults to `.github/make_dispatches.yaml`
-- `apps_folder_path`: path to the `apps` folder to be used by the `make_dispatches` workflow. This is a path local to the runner, used after all the configuration repositories have been downloaded. Defaults to `.firestartr/apps`
-- `platform_folder_path`: path to the `platforms` folder to be used by the `make_dispatches` workflow. This is a path local to the runner, used after all the configuration repositories have been downloaded. Defaults to `.firestartr/platforms`
-- `registries_folder_path`: path to the `docker_registries` folder to be used by the `make_dispatches` workflow. This is a path local to the runner, used after all the configuration repositories have been downloaded. Defaults to `.firestartr/docker_registries`
-- `trigger_filter_by_env_snapshot`: value of the `filter_by_env` parameter passed to `make_dispatches.yaml` when triggered automatically after a snapshot build. Defaults to `dev`
-- `trigger_filter_by_env_pre_releases`: value of the `filter_by_env` parameter passed to `make_dispatches.yaml` when triggered automatically after a pre-release build. Defaults to `pre`
-- `trigger_filter_by_env_releases`: value of the `filter_by_env` parameter passed to `make_dispatches.yaml` when triggered automatically after a release build. Defaults to `pro`
-- `skip_commit_types`: comma-separated list of [conventional commit](https://www.conventionalcommits.org/) type prefixes to skip on `push` events in the `build_docker_snapshots` workflow. When ALL commits in a push match one of these types, the build is skipped. Only applies to `push` events, `workflow_dispatch` and `pull_request` always build. Wrapped in a try/catch so failures default to building. Defaults to `ci,docs,build,chore,test`
-- `push_paths_ignore`: list of path patterns (in GitHub Actions `paths-ignore` format) to exclude from triggering the `build_docker_snapshots` workflow on `push` events. The value is rendered directly as YAML list items under `paths-ignore`. Defaults to `.github/**` and `docs/**`
+The following feature arguments control behavior and defaults for the build and dispatch workflows.
+
+| Argument | Description | Default |
+| --- | --- | --- |
+| `build_snapshots_branch` | Branch that triggers automatic snapshot builds on push. Taken from the claim's `providers.github.branchStrategy.defaultBranch` when not specified. | repository default branch (e.g. `main` or `master`) |
+| `auth_strategy` | Authentication strategy for logging into Docker registries. Determines provider-specific steps (Azure, AWS, GHCR, etc.). | `azure_oidc` |
+| `build_snapshots_filter` | Filter applied when automatically building snapshot images. | empty string (no filter) |
+| `build_pre_releases_filter` | Filter applied when automatically building pre-release images. | empty string (no filter) |
+| `build_releases_filter` | Filter applied when automatically building release images. | empty string (no filter) |
+| `default_snapshots_flavors_filter` | Default flavors filter shown in the UI for manual snapshot builds. | `*` |
+| `default_pre_releases_flavors_filter` | Default flavors filter shown in the UI for manual pre-release builds. | `*` |
+| `default_releases_flavors_filter` | Default flavors filter shown in the UI for manual release builds. | `*` |
+| `firestartr_config_repo` | Repository that contains the `.firestartr` configuration used by `make_dispatches` (apps/platforms/registries). | `${{ github.repository_owner }}/.firestartr` |
+| `make_dispatches_config_file_path` | Path to the `make_dispatches` configuration file (relative to repo root). | `.github/make_dispatches.yaml` |
+| `apps_folder_path` | Local path on the runner to the `apps` folder after config repos are downloaded. | `.firestartr/apps` |
+| `platform_folder_path` | Local path on the runner to the `platforms` folder after config repos are downloaded. | `.firestartr/platforms` |
+| `registries_folder_path` | Local path on the runner to the `docker_registries` folder after config repos are downloaded. | `.firestartr/docker_registries` |
+| `trigger_filter_by_env_snapshot` | Value passed as `filter_by_env` to `make_dispatches.yaml` when triggered automatically after a snapshot build. | `dev` |
+| `trigger_filter_by_env_pre_releases` | Value passed as `filter_by_env` to `make_dispatches.yaml` when triggered automatically after a pre-release build. | `pre` |
+| `trigger_filter_by_env_releases` | Value passed as `filter_by_env` to `make_dispatches.yaml` when triggered automatically after a release build. | `pro` |
+| `skip_commit_types` | Comma-separated list of conventional commit type prefixes to ignore on `push` events for `build_docker_snapshots`. If ALL commits in a push match one of these types the build is skipped. Only applies to `push` events; `workflow_dispatch` and `pull_request` always build. Wrapped in try/catch so failures default to building. | `ci,docs,build,chore,test` |
+| `push_paths_ignore` | List of path patterns (GitHub Actions `paths-ignore` format) to exclude from triggering `build_docker_snapshots` on `push` events. Rendered directly under `paths-ignore`. | `.github/**`, `docs/**` |
+| `build_images_vars` | Array of TOML-formatted vars and plain text values passed to the Dagger module as the `additional_build_args` input in the `build_images_reusable` workflow call. | none |
+| `build_images_secrets` | Array of TOML-formatted secret (both GitHub secrets and external secrets) values passed to the Dagger module as the `secrets` input in the `build_images_reusable` workflow call. | none |
+
+Example of `build_images_vars` and `build_images_secrets` usage:
+
+```yaml
+...
+args:
+  ...
+  build_images_vars:
+    - value1="my value"
+    - value2="${{ vars.MY_VAR }}"
+  build_images_secrets:
+    - MY_SECRET_1="${{ secrets.GITHUB_SECRET_1 }}"
+
+    # For secrets whose value contains more than one line of text, use """
+    - MY_SECRET_2="""${{ secrets.GITHUB_SECRET_2 }}"""
+
+    # AWS Parameter Store ARN
+    - MY_SECRET_3="arn:aws:ssm:region:account:parameter/dev/my-postgres-pass"
+```
+
+Please note that `vars` and `secrets` referenced in both the `build_images_vars` and `build_images_secrets` arguments are subject to the environment set for the `build_images_reusable` workflow by the `build_docker_<type>` workflows, as explained in the [About workflow environments](#about-workflow-environments) section of the documentation.
 
 **NOTE**: `make_dispatches` downloads the `firestartr_config_repo` repository to access the configuration files via the `apps_folder_path`, `platform_folder_path` and `registries_folder_path` feature arguments. However, `firestartr_config_repo` is always downloaded under the `.firestartr` folder, regardless of what the actual name of the repository is, so the paths specified in the `*_folder_path` arguments should all start with `.firestartr/` (unless the folders are located in another repo)
