@@ -1,3 +1,81 @@
+<!-- BEGIN_TF_DOCS -->
+# Azure NSG + rules Terraform module (`azure-nsg-nsr`)
+
+## Overview
+
+This module creates one **network security group** (`azurerm_network_security_group`) and **security rules** (`azurerm_network_security_rule`, `for_each` over `rules`) in an existing resource group.
+
+Optional **tag merge** from the resource group uses `tags_from_rg` (default **`false`**).
+
+## Rule fields (prefix / range exclusivity)
+
+For each rule, Terraform enforces **not** setting both members of a pair at once. Omitting both is allowed by the module, but Azure typically needs at least one value per pair for the rule to apply correctly:
+
+- `source_port_range` **or** `source_port_ranges`
+- `destination_port_range` **or** `destination_port_ranges`
+- `source_address_prefix` **or** `source_address_prefixes`
+- `destination_address_prefix` **or** `destination_address_prefixes`
+
+Do not set both members of a pair on the same rule.
+
+## Prerequisites
+
+- Existing **resource group** (`nsg.resource_group_name`).
+- **azurerm** provider configured.
+
+## Basic usage
+
+```hcl
+module "nsg" {
+  source = "git::https://github.com/prefapp/tfm.git//modules/azure-nsg-nsr?ref=<version>"
+
+  tags_from_rg = false
+  tags = {
+    environment = "dev"
+  }
+
+  nsg = {
+    name                = "example-nsg"
+    location            = "westeurope"
+    resource_group_name = "example-rg"
+  }
+
+  rules = {
+    ssh = {
+      name                       = "AllowSSH"
+      priority                   = 100
+      direction                  = "Inbound"
+      access                     = "Allow"
+      protocol                   = "Tcp"
+      source_port_range          = "*"
+      destination_port_range     = "22"
+      source_address_prefix      = "10.0.0.0/24"
+      destination_address_prefix = "*"
+    }
+  }
+}
+```
+
+## File structure
+
+```
+.
+├── CHANGELOG.md
+├── main.tf
+├── locals.tf
+├── variables.tf
+├── versions.tf
+├── outputs.tf
+├── docs
+│   ├── footer.md
+│   └── header.md
+├── _examples
+│   ├── basic
+│   └── comprehensive
+├── README.md
+└── .terraform-docs.yml
+```
+
 ## Requirements
 
 | Name | Version |
@@ -5,135 +83,56 @@
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.7.0 |
 | <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | >= 4.16.0 |
 
----
-
 ## Providers
 
 | Name | Version |
 |------|---------|
 | <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | >= 4.16.0 |
 
----
+## Modules
+
+No modules.
 
 ## Resources
 
 | Name | Type |
 |------|------|
-| [azurerm_network_security_group.this](https://registry.terraform.io/providers/hashicorp/azurerm/4.16.0/docs/resources/network_security_group) | resource |
-| [azurerm_network_security_rule.this](https://registry.terraform.io/providers/hashicorp/azurerm/4.16.0/docs/resources/network_security_rule) | resource |
-
----
+| [azurerm_network_security_group.this](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/network_security_group) | resource |
+| [azurerm_network_security_rule.this](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/network_security_rule) | resource |
+| [azurerm_resource_group.this](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/resource_group) | data source |
 
 ## Inputs
 
-### Network Security Group Configuration
-
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| `name` | The name of the Network Security Group. | `string` | - | yes |
-| `location` | The Azure region where the NSG will be created. | `string` | - | yes |
-| `resource_group_name` | The name of the resource group in which to create the NSG. | `string` | - | yes |
-| `tags_from_rg` | Boolean to indicate if tags should be inherited from the resource group. | `bool` | `true` | no |
-| `tags` | A map of tags to assign to the NSG. | `map(string)` | `{}` | no |
+| <a name="input_nsg"></a> [nsg](#input\_nsg) | Network Security Group configuration | <pre>object({<br/>    name                = string<br/>    location            = string<br/>    resource_group_name = string<br/>  })</pre> | n/a | yes |
+| <a name="input_rules"></a> [rules](#input\_rules) | Network Security Rule configuration | <pre>map(object({<br/>    name                         = string<br/>    priority                     = number<br/>    direction                    = string<br/>    access                       = string<br/>    protocol                     = string<br/>    source_port_range            = optional(string)<br/>    source_port_ranges           = optional(list(string))<br/>    destination_port_range       = optional(string)<br/>    destination_port_ranges      = optional(list(string))<br/>    source_address_prefix        = optional(string)<br/>    source_address_prefixes      = optional(list(string))<br/>    destination_address_prefix   = optional(string)<br/>    destination_address_prefixes = optional(list(string))<br/>  }))</pre> | n/a | yes |
+| <a name="input_tags"></a> [tags](#input\_tags) | Tags to apply to resources | `map(string)` | `{}` | no |
+| <a name="input_tags_from_rg"></a> [tags\_from\_rg](#input\_tags\_from\_rg) | Use resource group tags as base for module tags | `bool` | `false` | no |
 
-### Network Security Rules
+## Outputs
 
-| Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:--------:|
-| `name` | The name of the security rule. | `string` | - | yes |
-| `priority` | The priority of the rule. | `number` | - | yes |
-| `direction` | The direction of the rule (Inbound/Outbound). | `string` | - | yes |
-| `access` | The access type (Allow/Deny). | `string` | - | yes |
-| `protocol` | The network protocol (Tcp, Udp, Icmp, etc.). | `string` | - | yes |
-| `source_port_range` | The source port range. | `string` | - | show bellow |
-| `source_port_ranges` | A list of source port ranges. | `list(string)` | - | show bellow |
-| `destination_port_range` | The destination port range. | `string` | - | show bellow |
-| `destination_port_ranges` | A list of destination port ranges. | `list(string)` | - | show bellow |
-| `source_address_prefix` | The source address prefix. | `string` | - | show bellow |
-| `source_address_prefixes` | A list of source address prefixes. | `list(string)` | - | show bellow |
-| `destination_address_prefix` | The destination address prefix. | `string` | - | show bellow |
-| `destination_address_prefixes` | A list of destination address prefixes. | `list(string)` | - | show bellow |
+| Name | Description |
+|------|-------------|
+| <a name="output_id"></a> [id](#output\_id) | Resource ID of the network security group. |
 
-**source_port_range** and **source_port_ranges** are required to have at least one of them but you can't have both at the same time.
+## Examples
 
-**destination_port_range** and **destination_port_ranges** are required to have at least one of them but you can't have both at the same time.
+For detailed examples, refer to the [module examples](https://github.com/prefapp/tfm/tree/main/modules/azure-nsg-nsr/_examples):
 
-**source_address_prefix** and **source_address_prefixes** are required to have at least one of them but you can't have both at the same time.
+- [basic](https://github.com/prefapp/tfm/tree/main/modules/azure-nsg-nsr/_examples/basic) — NSG with two inbound rules; set a real resource group before apply (see folder README).
+- [comprehensive](https://github.com/prefapp/tfm/tree/main/modules/azure-nsg-nsr/_examples/comprehensive) — Illustrative `values.reference.yaml` matching the HCL shape (see folder README).
 
-**destination_address_prefix** and **destination_address_prefixes** are required to have at least one of them but you can't have both at the same time.
+## Resources
 
-## Example Usage
+Terraform resource docs use **4.16.0** as a baseline aligned with the `azurerm` constraint in `versions.tf` (`>= 4.16.0`).
 
-### HCL
-```hcl
+- **Azure network security groups**: [https://learn.microsoft.com/azure/virtual-network/network-security-groups-overview](https://learn.microsoft.com/azure/virtual-network/network-security-groups-overview)
+- **azurerm\_network\_security\_group**: [https://registry.terraform.io/providers/hashicorp/azurerm/4.16.0/docs/resources/network_security_group](https://registry.terraform.io/providers/hashicorp/azurerm/4.16.0/docs/resources/network_security_group)
+- **azurerm\_network\_security\_rule**: [https://registry.terraform.io/providers/hashicorp/azurerm/4.16.0/docs/resources/network_security_rule](https://registry.terraform.io/providers/hashicorp/azurerm/4.16.0/docs/resources/network_security_rule)
+- **Terraform AzureRM provider**: [https://registry.terraform.io/providers/hashicorp/azurerm/4.16.0](https://registry.terraform.io/providers/hashicorp/azurerm/4.16.0)
 
-tags_from_rg        = false
-tags = {
-  env = "Production"
-}
+## Support
 
-nsg = { 
-  name                = "example-nsg"
-  location            = "East US"
-  resource_group_name = "example-rg"
-}
-
-rules = {
-  rule1 = {
-    name                       = "AllowSSH"
-    priority                   = 100
-    direction                  = "Inbound"
-    access                     = "Allow"
-    protocol                   = "Tcp"
-    source_port_range          = "*"
-    destination_port_range     = "22"
-    source_address_prefix      = "10.0.0.0/24"
-    destination_address_prefix = "*"
-  }
-  rule2 = {
-    name                       = "AllowHTTP"
-    priority                   = 200
-    direction                  = "Inbound"
-    access                     = "Allow"
-    protocol                   = "Tcp"
-    source_port_range          = "*"
-    destination_port_range     = "80"
-    source_address_prefix      = "0.0.0.0/0"
-    destination_address_prefix = "*"
-  }
-} 
-```
-
-### YAML
-```yaml
-values:
-  tags_from_rg: false
-  tags:
-    env: "Production"
-  nsg:
-    name: "example-nsg"
-    location: "East US"
-    resource_group_name: "example-rg"
-
-  rules:
-    rule1:
-      name: "AllowSSH"
-      priority: 100
-      direction: "Inbound"
-      access: "Allow"
-      protocol: "Tcp"
-      source_port_range: "*"
-      destination_port_range: "22"
-      source_address_prefix: "10.0.0.0/24"
-      destination_address_prefix: "*"
-    rule2:
-      name: "AllowHTTP"
-      priority: 200
-      direction: "Inbound"
-      access: "Allow"
-      protocol: "Tcp"
-      source_port_range: "*"
-      destination_port_range: "80"
-      source_address_prefix: "0.0.0.0/0"
-      destination_address_prefix: "*"
-```
+For issues, questions, or contributions related to this module, please visit the [repository's issue tracker](https://github.com/prefapp/tfm/issues).
+<!-- END_TF_DOCS -->
