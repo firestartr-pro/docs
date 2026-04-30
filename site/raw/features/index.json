@@ -205,6 +205,20 @@
       ]
     },
     {
+      "name": "state_secrets",
+      "version": "1.0.0",
+      "files": [
+        {
+          "name": "README.md",
+          "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/features/state_secrets/README.md"
+        },
+        {
+          "name": "CHANGELOG.md",
+          "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/features/state_secrets/CHANGELOG.md"
+        }
+      ]
+    },
+    {
       "name": "tech_docs",
       "version": "0.10.2",
       "files": [
