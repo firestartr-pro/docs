@@ -1209,6 +1209,30 @@ spec:
                         maxLength: 50
                         pattern: '^[a-z0-9][a-z0-9-]*$'
                       default: []
+                    labels:
+                      type: array
+                      default: []
+                      description: "Array of labels to create in GitHub"
+                      items:
+                        type: object
+                        required:
+                          - name
+                          - color
+                        properties:
+                          name:
+                            type: string
+                            minLength: 1
+                            maxLength: 50
+                            pattern: '^.*\S.*$'
+                            description: "Label name (1-50 characters, not only whitespace)"
+                          color:
+                            type: string
+                            pattern: '^[0-9a-fA-F]{6}$'
+                            description: "Hexadecimal color without # (6 characters)"
+                          description:
+                            type: string
+                            maxLength: 100
+                            description: "Optional label description (max 100 characters)"
                     visibility:
                       type: string
                       enum:
