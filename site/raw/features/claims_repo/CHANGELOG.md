@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.21.0](https://github.com/prefapp/features/compare/claims_repo-v1.20.1...claims_repo-v1.21.0) (2026-05-06)
+
+
+### Features
+
+* **claims-repo:** label state-github PRs for planning ([#986](https://github.com/prefapp/features/issues/986)) ([c18001f](https://github.com/prefapp/features/commit/c18001f44775bb80acad907307b388cebdec3b15))
+* omit hydratation pr of crs with no real changes ([#981](https://github.com/prefapp/features/issues/981)) ([d33f1f1](https://github.com/prefapp/features/commit/d33f1f121a28f3a6f7f4bb639ac36846e80ca615))
+
+
+### Bug Fixes
+
+* **claims_repo:** trim whitespace from claim name input in hydrate workflows ([#992](https://github.com/prefapp/features/issues/992)) ([599c54b](https://github.com/prefapp/features/commit/599c54b40fee8c6fc824ae955cd3a7afe639642c))
+
 ## [1.20.1](https://github.com/prefapp/features/compare/claims_repo-v1.20.0...claims_repo-v1.20.1) (2026-04-24)
 
 
