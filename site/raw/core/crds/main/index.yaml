@@ -1199,8 +1199,6 @@ spec:
                       type: boolean
                     hasWiki:
                       type: boolean
-                    pages:
-                      type: object
                     topics:
                       type: array
                       items:
