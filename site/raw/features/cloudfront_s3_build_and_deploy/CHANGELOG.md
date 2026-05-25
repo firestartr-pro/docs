@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.1](https://github.com/prefapp/features/compare/cloudfront_s3_build_and_deploy-v0.2.0...cloudfront_s3_build_and_deploy-v0.2.1) (2026-05-25)
+
+
+### Bug Fixes
+
+* **cloudfront_s3_build_and_deploy:** added risk controls and updated … ([#1008](https://github.com/prefapp/features/issues/1008)) ([4d4f91b](https://github.com/prefapp/features/commit/4d4f91b008081c53b09852770ab33a7e8121ce01))
+
 ## [0.2.0](https://github.com/prefapp/features/compare/cloudfront_s3_build_and_deploy-v0.1.0...cloudfront_s3_build_and_deploy-v0.2.0) (2026-03-12)
 
 
