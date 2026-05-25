@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.6.0](https://github.com/prefapp/features/compare/release_please-v1.5.1...release_please-v1.6.0) (2026-05-25)
+
+
+### Features
+
+* [`release-please`] Allow config file path customization ([#1004](https://github.com/prefapp/features/issues/1004)) ([d6eb410](https://github.com/prefapp/features/commit/d6eb410f974904307a98237735829a928ed64510))
+
 ## [1.5.1](https://github.com/prefapp/features/compare/release_please-v1.5.0...release_please-v1.5.1) (2026-04-24)
 
 
