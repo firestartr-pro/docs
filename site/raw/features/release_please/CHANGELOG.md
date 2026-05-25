@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.6.1](https://github.com/prefapp/features/compare/release_please-v1.6.0...release_please-v1.6.1) (2026-05-25)
+
+
+### Bug Fixes
+
+* Update release-please configuration for templates and file management ([#1006](https://github.com/prefapp/features/issues/1006)) ([d4204bb](https://github.com/prefapp/features/commit/d4204bbb7931d043156a3de525e767124ad676e2))
+
 ## [1.6.0](https://github.com/prefapp/features/compare/release_please-v1.5.1...release_please-v1.6.0) (2026-05-25)
 
 
