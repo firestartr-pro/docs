@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.21.1](https://github.com/prefapp/features/compare/claims_repo-v1.21.0...claims_repo-v1.21.1) (2026-05-26)
+
+
+### Bug Fixes
+
+* avoid line wrapping for the CODEOWNERS ([#1017](https://github.com/prefapp/features/issues/1017)) ([56ffac9](https://github.com/prefapp/features/commit/56ffac9c8551e32a6b68a6b89b5d70d8d2c5d20a))
+
 ## [1.21.0](https://github.com/prefapp/features/compare/claims_repo-v1.20.1...claims_repo-v1.21.0) (2026-05-06)
 
 
