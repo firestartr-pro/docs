@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.8.5](https://github.com/prefapp/features/compare/state_repo_apps-v3.8.4...state_repo_apps-v3.8.5) (2026-05-26)
+
+
+### Bug Fixes
+
+* Add .gitkeep files for deployment branch directories ([#1020](https://github.com/prefapp/features/issues/1020)) ([47c3ae3](https://github.com/prefapp/features/commit/47c3ae3a2e66afab12761e151558415c74a1376a))
+
 ## [3.8.4](https://github.com/prefapp/features/compare/state_repo_apps-v3.8.3...state_repo_apps-v3.8.4) (2026-04-17)
 
 
