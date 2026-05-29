@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.9.0](https://github.com/prefapp/features/compare/state_repo_apps-v3.8.5...state_repo_apps-v3.9.0) (2026-05-29)
+
+
+### Features
+
+* **state_repo_apps:** update actions 4 support node 24.x ([#1029](https://github.com/prefapp/features/issues/1029)) ([52d532c](https://github.com/prefapp/features/commit/52d532cd4cb523906b3c0498c052014ae7542684))
+
 ## [3.8.5](https://github.com/prefapp/features/compare/state_repo_apps-v3.8.4...state_repo_apps-v3.8.5) (2026-05-26)
 
 
