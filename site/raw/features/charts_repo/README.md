@@ -14,7 +14,7 @@ Publishes a released chart version.
   1. Checks out the exact released Git ref or the manually provided ref.
   2. Resolves which chart belongs to that release tag, using `release-please-config.json` when available for custom component mappings.
   3. Calls `generate-artifact.yaml` with `release_type: releases` to publish the immutable chart version.
-  4. For OCI registries, also refreshes the rolling major alias (for example `v1`).
+  4. For OCI registries, optionally refreshes the rolling major alias (for example `v1`) only when `HELM_CHARTS_ENABLE_OCI_ROLLING_MAJOR_TAGS=true`.
 
 ---
 
@@ -47,6 +47,7 @@ The following repository variables and secrets must be configured for artifact g
 | `HELM_CHARTS_PUBLICATION_TYPE` | **Yes** | Publication target: `oci` or `github_pages` |
 | `DOCKER_REGISTRY_RELEASES` | For OCI | Registry for releases (e.g., `ghcr.io` or `myregistry.azurecr.io`) |
 | `DOCKER_REGISTRY_SNAPSHOTS` | For OCI | Registry for snapshots (can be same as releases) |
+| `HELM_CHARTS_ENABLE_OCI_ROLLING_MAJOR_TAGS` | Optional | Set to `true` to publish/update OCI rolling major tags such as `v1` for releases. Disabled by default. |
 | `FS_STATE_APP_ID` | For non-ghcr OCI | GitHub App ID for accessing `.firestartr` registry metadata |
 | `DOCKER_REGISTRY_RELEASES_USERNAME` | Optional | Registry username for releases (default: `github.actor`) |
 | `DOCKER_REGISTRY_SNAPSHOTS_USERNAME` | Optional | Registry username for snapshots (default: `github.actor`) |
@@ -73,6 +74,12 @@ DOCKER_REGISTRY_RELEASES=ghcr.io
 DOCKER_REGISTRY_SNAPSHOTS=ghcr.io
 ```
 No additional secrets needed—uses `GITHUB_TOKEN` by default.
+
+To publish moving OCI major aliases such as `v1`, also set:
+```
+HELM_CHARTS_ENABLE_OCI_ROLLING_MAJOR_TAGS=true
+```
+Rolling major tags are disabled when this variable is unset, empty, or any value other than `true`.
 
 **For Azure Container Registry (via `.firestartr`):**
 ```
