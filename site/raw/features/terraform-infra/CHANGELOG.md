@@ -1,5 +1,16 @@
 # Changelog
 
+## [2.0.0](https://github.com/prefapp/features/compare/terraform-infra-v1.8.2...terraform-infra-v2.0.0) (2026-05-29)
+
+
+### ⚠ BREAKING CHANGES
+
+* Update all action dependencies to use node24. ([#1047](https://github.com/prefapp/features/issues/1047))
+
+### Bug Fixes
+
+* Update all action dependencies to use node24. ([#1047](https://github.com/prefapp/features/issues/1047)) ([cf5a62a](https://github.com/prefapp/features/commit/cf5a62a927743696cac9d5a7e4bf26b1a85881fa))
+
 ## [1.8.2](https://github.com/prefapp/features/compare/terraform-infra-v1.8.1...terraform-infra-v1.8.2) (2026-04-10)
 
 

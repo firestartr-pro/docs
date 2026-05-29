@@ -11,7 +11,7 @@
     "packages/claims_repo": "1.21.1",
     "packages/state_github": "1.2.0",
     "packages/firestartr_repo": "1.1.0",
-    "packages/terraform-infra": "1.8.2",
+    "packages/terraform-infra": "2.0.0",
     "packages/catalog_repo": "1.4.0",
     "packages/charts_repo": "2.0.1",
     "packages/features_repo": "0.3.1",
