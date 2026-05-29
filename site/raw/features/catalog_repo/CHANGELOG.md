@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.4.0](https://github.com/prefapp/features/compare/catalog_repo-v1.3.2...catalog_repo-v1.4.0) (2026-05-29)
+
+
+### Features
+
+* **catalog_repo:** update action versions ([#1034](https://github.com/prefapp/features/issues/1034)) ([d09ddcb](https://github.com/prefapp/features/commit/d09ddcb07af6c6ba3c4d7fda3af71dd31e89553f))
+
 ## [1.3.2](https://github.com/prefapp/features/compare/catalog_repo-v1.3.1...catalog_repo-v1.3.2) (2026-03-03)
 
 
