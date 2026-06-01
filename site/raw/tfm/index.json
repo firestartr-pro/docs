@@ -121,8 +121,8 @@
     {
       "name": "azure-app-gateway",
       "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-app-gateway/README.md",
-      "version": "0.8.1",
-      "source": "git::https://github.com/prefapp/tfm.git//modules/azure-app-gateway?ref=azure-app-gateway-v0.8.1"
+      "version": "0.9.0",
+      "source": "git::https://github.com/prefapp/tfm.git//modules/azure-app-gateway?ref=azure-app-gateway-v0.9.0"
     },
     {
       "name": "azure-application",
