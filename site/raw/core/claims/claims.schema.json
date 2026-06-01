@@ -1062,6 +1062,7 @@
             },
             "color": {
               "type": "string",
+              "pattern": "^[0-9a-fA-F]{6}$",
               "description": "Color in hexadecimal without # (6 chars)"
             },
             "description": {
