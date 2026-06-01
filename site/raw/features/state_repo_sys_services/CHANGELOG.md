@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.3.11](https://github.com/prefapp/features/compare/state_repo_sys_services-v2.3.10...state_repo_sys_services-v2.3.11) (2026-06-01)
+
+
+### Bug Fixes
+
+* **state_repo_sys_services:** worflow validations for node24 ([#1050](https://github.com/prefapp/features/issues/1050)) ([d7e96d8](https://github.com/prefapp/features/commit/d7e96d8cd96bc06e402f721f172614803ac946c8))
+
 ## [2.3.10](https://github.com/prefapp/features/compare/state_repo_sys_services-v2.3.9...state_repo_sys_services-v2.3.10) (2026-04-24)
 
 
