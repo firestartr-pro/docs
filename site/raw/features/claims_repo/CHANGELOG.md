@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.22.1](https://github.com/prefapp/features/compare/claims_repo-v1.22.0...claims_repo-v1.22.1) (2026-06-01)
+
+
+### Bug Fixes
+
+* **claims_repo:** update versions for the deprecated node20 on github actions ([#1052](https://github.com/prefapp/features/issues/1052)) ([c2fbab0](https://github.com/prefapp/features/commit/c2fbab0166af2cee5494d5efc538b065fd5e1ca7))
+
 ## [1.22.0](https://github.com/prefapp/features/compare/claims_repo-v1.21.1...claims_repo-v1.22.0) (2026-06-01)
 
 

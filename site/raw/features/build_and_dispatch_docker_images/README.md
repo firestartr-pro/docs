@@ -346,7 +346,7 @@ The `make_dispatches` workflow uses the configuration file located at `.github/m
 deployments:  # Has a list of configurations
   - tenant: prefapp
     platform: az-cluster  # Platform where we want to dispatch changes to
-    type: snapshots  # Either snapshots or releases
+    type: snapshots  # Either snapshots, releases or any
     flavor: flavor1  # Flavor to dispatch for this deployment. Must have the same name as a flavor defined in build_images.yaml, under the chosen type (see "Build images -> Configuration" above)
     version: $branch_dev  # See "About the version field" below
     registry: prefapp.azureacr.io  # Optional. Registry where the image was uploaded to (see "Defaults" below)
@@ -382,8 +382,8 @@ deployments:  # Has a list of configurations
 Each deployment contains:
 
 - `tenant`: name of the tenant that will be used for this deployment. Used to determine which file to update when dispatching, and also for validation: the tenant must be specified in the list of valid tenants in the platform configuration of the `.firestartr` repo
-- `platform`: name of the platform that will be used for this deployment. Used to determine which file to update when dispatching, and also for validation: the specified platform must have an associated configuration file. From the platform configuration file, it's `type` will also be used when determining which file to update.
-- `type`: deployment type, can be either of `snapshots` or `releases`. Used when calling the dispatch workflow to filter which dispatches to make.
+- `platform`: name of the platform that will be used for this deployment. Used to determine which file to update when dispatching, and also for validation: the specified platform must have an associated configuration file. From the platform configuration file, its `type` will also be used when determining which file to update.
+- `type`: deployment type, can be one of `snapshots`, `releases`, or `any`. Used when calling the dispatch workflow to filter which dispatches to make. `any` is a value for this deployment configuration field and means this deployment can be dispatched with both `snapshots` and `releases` type images. When using workflow inputs to build or dispatch both image types, use `image_type: '*'`, not `any`. More about how it works [here](#about-the-any-image-type).
 - `flavor`: name of the flavor that will be used for this deployment. Used to compose the image tag, which will be written to the corresponding deployment files and must have been built beforehand.
 - `version`: version of the code used in the image. Used to compose the image tag, which will be written to the corresponding deployment manifests and must have been built beforehand. See [About the version field](#about-the-version-field) for more info on the possible values this parameter could have.
 - `registry`: registry to where the image has been uploaded to. This parameter is optional, and the registry specified in either the `DOCKER_REGISTRY_RELEASES` and `DOCKER_REGISTRY_SNAPSHOTS` variables will be used by default (see [Defaults](#defaults-1)).
@@ -412,6 +412,10 @@ The defaults are defined as environment variables and are:
 
 - `DOCKER_REGISTRY_RELEASES`: base URL of the Docker registry for releases. Follows the same format as `extra_registries.name` and `registry.name` (e.g. `prefapp.azureacr.io`. See [Build Images -> Configuration](#configuration))
 - `DOCKER_REGISTRY_SNAPSHOTS`: base URL of the Docker registry for snapshots. Follows the same format as `extra_registries.name` and `registry.name` (e.g. `prefapp.azureacr.io`. See [Build Images -> Configuration](#configuration))
+
+### About the `any` image type
+
+When a deployment configuration has `type: any`, it means that this deployment can be dispatched with both `snapshots` and `releases` type images. However, in addition to this value, users may want to set either the `registry` or `image_repository` fields, or both, to be more specific about which image to dispatch. This restricts the build summary filtering process to select only entries with the specified `registry` and/or `image_repository`. If neither `registry` or `image_repository` are set, all of `image_type`, `registry` and `image_repository` will be ignored. This means that images will efectively be filtered by `flavor` and `version` only, and if two or more build summary entries have the same `flavor` and `version`, the first one will be selected. The `registry` and `image_repository` values of the chosen build summary entry will be used for the dispatch in this case.
 
 ### About the `version` field
 
