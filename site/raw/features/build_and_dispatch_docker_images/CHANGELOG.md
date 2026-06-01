@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.4.0](https://github.com/prefapp/features/compare/build_and_dispatch_docker_images-v5.3.6...build_and_dispatch_docker_images-v5.4.0) (2026-06-01)
+
+
+### Features
+
+* **build_and_dispatch_docker_images:** added new vars and update actions ([#1031](https://github.com/prefapp/features/issues/1031)) ([38340a7](https://github.com/prefapp/features/commit/38340a77e52f0e6b584812db0694d4eb2b67059e))
+
 ## [5.3.6](https://github.com/prefapp/features/compare/build_and_dispatch_docker_images-v5.3.5...build_and_dispatch_docker_images-v5.3.6) (2026-04-30)
 
 
