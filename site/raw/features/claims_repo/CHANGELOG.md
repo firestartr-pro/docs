@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.22.0](https://github.com/prefapp/features/compare/claims_repo-v1.21.1...claims_repo-v1.22.0) (2026-06-01)
+
+
+### Features
+
+* **claims-repo:** add icons and organize workflows ([#983](https://github.com/prefapp/features/issues/983)) ([5a0788b](https://github.com/prefapp/features/commit/5a0788b885db45fdcdc37521c5a286f8e5a5957a))
+
 ## [1.21.1](https://github.com/prefapp/features/compare/claims_repo-v1.21.0...claims_repo-v1.21.1) (2026-05-26)
 
 
