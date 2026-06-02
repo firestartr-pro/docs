@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.0.2](https://github.com/prefapp/features/compare/charts_repo-v2.0.1...charts_repo-v2.0.2) (2026-06-02)
+
+
+### Bug Fixes
+
+* **charts_repo:** publication type ([#1061](https://github.com/prefapp/features/issues/1061)) ([586c0c3](https://github.com/prefapp/features/commit/586c0c3f0e32526e7bdabb2a68a933cdfbdf0f43))
+
 ## [2.0.1](https://github.com/prefapp/features/compare/charts_repo-v2.0.0...charts_repo-v2.0.1) (2026-05-29)
 
 

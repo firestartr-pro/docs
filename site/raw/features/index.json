@@ -30,7 +30,7 @@
     },
     {
       "name": "charts_repo",
-      "version": "2.0.1",
+      "version": "2.0.2",
       "files": [
         {
           "name": "README.md",

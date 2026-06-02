@@ -44,7 +44,7 @@ The following repository variables and secrets must be configured for artifact g
 
 | Variable | Required | Description |
 |----------|----------|-------------|
-| `HELM_CHARTS_PUBLICATION_TYPE` | **Yes** | Publication target: `oci` or `github_pages` |
+| `HELM_CHARTS_PUBLICATION_TYPE` | **Yes** | Publication target: `oci` or `github_pages` (case-insensitive) |
 | `DOCKER_REGISTRY_RELEASES` | For OCI | Registry for releases (e.g., `ghcr.io` or `myregistry.azurecr.io`) |
 | `DOCKER_REGISTRY_SNAPSHOTS` | For OCI | Registry for snapshots (can be same as releases) |
 | `HELM_CHARTS_ENABLE_OCI_ROLLING_MAJOR_TAGS` | Optional | Set to `true` to publish/update OCI rolling major tags such as `v1` for releases. Disabled by default. |
