@@ -166,7 +166,7 @@
     },
     {
       "name": "state_repo",
-      "version": "2.2.2",
+      "version": "2.2.3",
       "files": [
         {
           "name": "README.md",

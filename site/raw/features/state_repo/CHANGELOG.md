@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.2.3](https://github.com/prefapp/features/compare/state_repo-v2.2.2...state_repo-v2.2.3) (2026-06-02)
+
+
+### Bug Fixes
+
+* pin versions for GitHub Actions in configuration files ([#1060](https://github.com/prefapp/features/issues/1060)) ([bbd3db5](https://github.com/prefapp/features/commit/bbd3db5cff307d7487af6391a591aadb7e040092))
+* update GitHub Actions to Node.js 24 ([#1018](https://github.com/prefapp/features/issues/1018)) ([e83c66f](https://github.com/prefapp/features/commit/e83c66fd6777e75b7036289c2fce70613c80c8f8))
+
 ## [2.2.2](https://github.com/prefapp/features/compare/state_repo-v2.2.1...state_repo-v2.2.2) (2026-03-11)
 
 
