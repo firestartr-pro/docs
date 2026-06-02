@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.6.2](https://github.com/prefapp/features/compare/release_please-v1.6.1...release_please-v1.6.2) (2026-06-02)
+
+
+### Bug Fixes
+
+* **release_please:** add support of rolling tag ([#1066](https://github.com/prefapp/features/issues/1066)) ([bbbee98](https://github.com/prefapp/features/commit/bbbee98125af500579628168635e180f20c7db2c))
+
 ## [1.6.1](https://github.com/prefapp/features/compare/release_please-v1.6.0...release_please-v1.6.1) (2026-05-25)
 
 
