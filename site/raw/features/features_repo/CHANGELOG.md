@@ -1,5 +1,16 @@
 # Changelog
 
+## [1.0.0](https://github.com/prefapp/features/compare/features_repo-v0.3.1...features_repo-v1.0.0) (2026-06-02)
+
+
+### ⚠ BREAKING CHANGES
+
+* **features_repo:** update versions for the deprecated nodejs 20 ([#1065](https://github.com/prefapp/features/issues/1065))
+
+### Features
+
+* **features_repo:** update versions for the deprecated nodejs 20 ([#1065](https://github.com/prefapp/features/issues/1065)) ([b0f757d](https://github.com/prefapp/features/commit/b0f757da318c0a04240e58510cb9c70777d98157))
+
 ## [0.3.1](https://github.com/prefapp/features/compare/features_repo-v0.3.0...features_repo-v0.3.1) (2026-02-26)
 
 

@@ -16,7 +16,22 @@ This repository is a **monorepo** that holds all custom Firestartr features for 
 
 Every feature lives under `packages/`, uses **Mustache** templating, and is defined via a powerful `config.yaml` (file rendering + JSON Patch support for Backstage catalog, etc.).
 
-Features are automatically versioned with **Release Please** using Conventional Commits.
+Features are automatically versioned using **Conventional Commits** via the `release_please` companion feature (see [Required companion features](#required-companion-features)).
+
+---
+
+## Required companion features
+
+The `release_please` feature must be applied to this repository alongside `features_repo`. It handles automated versioning and changelog generation for each package under `packages/` using Conventional Commits.
+
+Add it to your repository's feature list with the following configuration:
+
+```yaml
+- name: release_please
+  ref: release_please-v1 # Use the latest stable version
+  args:
+    release_type: node
+```
 
 ---
 
@@ -34,7 +49,7 @@ Features are automatically versioned with **Release Please** using Conventional 
 ├── .release-please-manifest.json
 ├── release-please-config.json
 ├── .github/
-│   └── workflows/                 # Optional CI/release workflows
+│   └── workflows/                 # CI/release workflows (managed by features)
 └── README.md
 ```
 
@@ -46,7 +61,7 @@ Features are automatically versioned with **Release Please** using Conventional 
 - Create a new folder in packages/ with the name of the feature (kebab-case recommended).
 - Create a templates/ folder inside it.
 - Create a config.yaml file using the structure below.
-- Add the new feature to .release-please-manifest.json and release-please-config.json.
+- Add the new package to `.release-please-manifest.json` and `release-please-config.json` (these files are created/managed by the `release_please` feature).
 - Create a package.json file using npm init.
 
 config.yaml structure
@@ -102,14 +117,14 @@ You can add logic with conditionals:
 
 - Create a new branch from main.
 - Modify the feature inside packages/<feature-name>/.
-- Merge the branch using a [Conventional Commit](https://www.conventionalcommits.org/en/v1.0.0/) → Release Please will automatically create a new release.
+- Merge the branch using a [Conventional Commit](https://www.conventionalcommits.org/en/v1.0.0/) → `release_please` will automatically create a new release.
 
 ### Removing an existing feature
 
 - Create a new branch from `main`.
 - Remove the feature directory under `packages/`.
-- Remove the feature from `.release-please-manifest.json`.
-- Merge the branch using a Conventional Commit → new release is created without the feature.
+- Remove the feature from `.release-please-manifest.json` and `release-please-config.json`.
+- Merge the branch using a Conventional Commit → `release_please` creates a new release without the feature.
 
 ---
 
