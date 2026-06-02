@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.23.0](https://github.com/prefapp/features/compare/claims_repo-v1.22.1...claims_repo-v1.23.0) (2026-06-02)
+
+
+### Features
+
+* **claims-repo:** enhance PR import on state github ([#1055](https://github.com/prefapp/features/issues/1055)) ([1e29cb5](https://github.com/prefapp/features/commit/1e29cb5f2fa7e1ece3853bd4a8c52d98219aad43))
+
+
+### Bug Fixes
+
+* **claims-repo:** fallback to default filter when SKIP is passed for members/group filters ([#1051](https://github.com/prefapp/features/issues/1051)) ([cb93b79](https://github.com/prefapp/features/commit/cb93b79a7157c21b9e41aa2867962f27f7eb5728))
+
 ## [1.22.1](https://github.com/prefapp/features/compare/claims_repo-v1.22.0...claims_repo-v1.22.1) (2026-06-01)
 
 
