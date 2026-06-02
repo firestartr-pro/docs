@@ -1,6 +1,6 @@
 {
     "packages/tech_docs": "0.10.2",
-    "packages/issue_templates": "1.3.0",
+    "packages/issue_templates": "1.4.0",
     "packages/release_please": "1.6.1",
     "packages/state_repo": "2.2.3",
     "packages/state_argocd": "1.0.0",
