@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.4.1](https://github.com/prefapp/features/compare/build_and_dispatch_docker_images-v5.4.0...build_and_dispatch_docker_images-v5.4.1) (2026-06-02)
+
+
+### Bug Fixes
+
+* `build_dockers_images` error on merge summaries ([#1067](https://github.com/prefapp/features/issues/1067)) ([417add9](https://github.com/prefapp/features/commit/417add9dd26ecca6d55b1ea8cdf4b89b09e5c84d))
+
 ## [5.4.0](https://github.com/prefapp/features/compare/build_and_dispatch_docker_images-v5.3.6...build_and_dispatch_docker_images-v5.4.0) (2026-06-01)
 
 
