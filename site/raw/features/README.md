@@ -1,69 +1,186 @@
-# 📖 Introduction
+# Firestartr Features Repository
 
-We have developed a variety of features that can be installed with `firestartr`. The ones that have documentation are documented within our `features` repo, but for convenience they will all be listed here with a link to their docs if they have any.
+<p align="center">
+  <img src="https://docs.firestartr.dev/docs/favicon.png" alt="Firestartr" width="320">
+</p>
 
-## 🌟 Build and dispatch Docker images
+<p align="center">
+  <strong>Your organization’s private registry of reusable Firestartr features</strong>
+</p>
 
-- [Latest](https://github.com/prefapp/features/blob/main/packages/build_and_dispatch_docker_images/templates/docs/RELEASE_PLEASE_DEPLOY_README.md)
-- [v3](https://github.com/prefapp/features/blob/8c93943d936606e546f23a1a788665eb12155caa/packages/build_and_dispatch_docker_images/templates/.github/BUILD_AND_DISPATCH_DOCKER_IMAGES_README.md)
-- [v2](https://github.com/prefapp/features/blob/355d1e5f8230a8b4e286b36fc269d5e2cf87c0c3/packages/build_and_dispatch_docker_images/templates/.github/BUILD_AND_DISPATCH_DOCKER_IMAGES_README.md)
+---
 
-## 🌟 Claims repo
+## About
 
-- [Latest](https://github.com/prefapp/features/blob/main/packages/claims_repo/templates/docs/README_CLAIMS_REPO.md)
+This repository is a **monorepo** that holds all custom Firestartr features for your organization.
 
-## 🌟 Issue templates
+Every feature lives under `packages/`, uses **Mustache** templating, and is defined via a powerful `config.yaml` (file rendering + JSON Patch support for Backstage catalog, etc.).
 
-This feature only adds templates for Github issues, and thus has no documentation. You can see the templates here:
+Features are automatically versioned using **Conventional Commits** via the `release_please` companion feature (see [Required companion features](#required-companion-features)).
 
-- [Bug report (latest)](https://github.com/prefapp/features/blob/main/packages/issue_templates/templates/bug_report.md)
-- [Feature request (latest)](https://github.com/prefapp/features/blob/main/packages/issue_templates/templates/feature_request.md)
+---
 
-## 🌟 Release please
+## Required companion features
 
-This feature uses the `release-please-action` action and configures it to manage releases, in a GitHub repository. It also accepts monorepos.
+The `release_please` feature must be applied to this repository alongside `features_repo`. It handles automated versioning and changelog generation for each package under `packages/` using Conventional Commits.
 
-- [Release Please docs (latest)](https://github.com/prefapp/features/blob/main/packages/release_please/templates/docs/RELEASE_PLEASE_DEPLOY_README.md)
+Add it to your repository's feature list with the following configuration:
 
-## 🌟 State infra
+```yaml
+- name: release_please
+  ref: release_please-v1 # Use the latest stable version
+  args:
+    release_type: node
+```
 
-- [Latest](https://github.com/prefapp/features/blob/main/packages/state_infra/templates/docs/README.md)
+---
 
-## 🌟 State repo (legacy)
+## Repository structure
 
-This is a legacy feature, replaced by the new [state repo apps](#state-repo-apps) and [state repo sys services](#state-repo-sys-services) features
+```bash
+.
+├── packages/
+│   ├── my-awesome-feature/
+│   │   ├── templates/             # Mustache templates go here
+│   │   ├── config.yaml            # Feature definition
+│   │   ├── package.json
+│   │   └── README.md
+│   └── another-feature/
+├── .release-please-manifest.json
+├── release-please-config.json
+├── .github/
+│   └── workflows/                 # CI/release workflows (managed by features)
+└── README.md
+```
 
-- [Latest](https://github.com/prefapp/features/blob/main/packages/state_repo/templates/docs/STATE_REPO_DEPLOY_README.md)
+## Contributing to Features
 
-## 🌟 State Repo Apps
+### Creating a new feature
 
-**Description**:
+- Create a new branch from main with the name of the feature you want to create.
+- Create a new folder in packages/ with the name of the feature (kebab-case recommended).
+- Create a templates/ folder inside it.
+- Create a config.yaml file using the structure below.
+- Add the new package to `.release-please-manifest.json` and `release-please-config.json` (these files are created/managed by the `release_please` feature).
+- Create a package.json file using npm init.
 
-State Repo Apps puts you in charge of manual deployments in your GitOps repo! 🚀 With this feature, you can manage infrastructure (`TFWorkspace`), Kubernetes workloads, and secrets—all from one spot. 🌍 Start by tweaking the "values" in your main/master branch with a commit or PR. 📝 Then, fire up GitHub Actions workflows to whip up deployment files (CRs) that land in a PR against `deployment`, ready for ArgoCD to sync.
+config.yaml structure
 
-**What’s Included**:
-1. **TFWorkspace Deployment** 🛠️: Deploy infrastructure resources with a `claim_name`.
-2. **Kubernetes Deployment** ☸️: Set up Kubernetes workloads using `platform`, `tenant`, and `environment`.
-3. **Secrets Deployment** 🔐: Add secrets for a specific `tenant` and `environment`.
+```
+feature_name: example
 
-**How It Works** 🔄:
-- Update the "values" in main/master (commit directly or via PR). ✏️
-- Run the corresponding workflow from the "Actions" tab. ▶️
-- Get a PR with CRs against `deployment`. 📦
-- Merge it, and ArgoCD takes it from there! ✅
+# The following are the args that will be used to render the templates.
+# There are two types of args:
+# $ref: replaced by the value from the metadata section of the config.yaml file
+# $lit: literal value
+args:
+  ORG:
+    $ref: [spec, org]
+  REPO_NAME:
+    $ref: [metadata, name]
 
-**Usage by deployment kind**
-1. **Kubernetes Deployment**: https://github.com/prefapp/features/blob/main/packages/state_repo_apps/templates/docs/KUBERNETES_README.md
-2. **TFWorkspace Deployment**: https://github.com/prefapp/features/blob/main/packages/state_repo_apps/templates/docs/TFWORKSPACES_README.md
-3. **Secrets Deployment**: https://github.com/prefapp/features/blob/main/packages/state_repo_apps/templates/docs/SECRETS_README.md
+# Files to render from the templates/ folder
+files:
+  - src: mkdocs.yaml
+    dest: mkdocs.yaml
+    # If upgradable is true, the user can modify it. It will not be overridden or deleted on update/uninstall.
+    upgradable: true
+  - src: docs/index.md
+    dest: docs/index.md
+    upgradable: true
 
+# Patches to apply in the component catalog file using JSON Patch (RFC 6902) when the feature is installed
+patches:
+  - name: "add_annotation"
+    op: "add"
+    path: "/metadata/annotations/backstage.io~1techdocs-ref"
+    # Values can use Mustache syntax with 
+    value: "url:https://github.com/prefapp/features/tree/main"
+```
 
+### Template syntax
 
-## 🌟 State repo sys services
-This feature manages system services for your Kubernetes clusters (sys-services). It organizes critical components like ingress controllers and configuration utilities in a structured repository.
-- [Latest](https://github.com/prefapp/features/blob/main/packages/state_repo_sys_services/templates/docs/README.md)
-## 🌟 Tech docs
+We use the [Mustache](https://mustache.github.io/mustache.5.html) template engine.
+You can add logic with conditionals:
 
-This features uses `mkdocs` to ease in documentation creation
+```mustache
 
-- [MkDocs documentation](https://www.mkdocs.org/)
+  In case the condition is false
+```
+
+### Updating an existing feature
+
+- Create a new branch from main.
+- Modify the feature inside packages/<feature-name>/.
+- Merge the branch using a [Conventional Commit](https://www.conventionalcommits.org/en/v1.0.0/) → `release_please` will automatically create a new release.
+
+### Removing an existing feature
+
+- Create a new branch from `main`.
+- Remove the feature directory under `packages/`.
+- Remove the feature from `.release-please-manifest.json` and `release-please-config.json`.
+- Merge the branch using a Conventional Commit → `release_please` creates a new release without the feature.
+
+---
+
+## Testing Features
+
+### Using generic-fixtures/cr.yaml
+
+The `generic-fixtures/cr.yaml` file provides a reusable Custom Resource (CR) fixture for testing feature rendering. This fixture contains a complete example of a `FirestartrGithubRepository` resource with all common fields populated.
+
+#### How to use it
+
+Each feature package includes a `render_tests.yaml` file that defines test cases. To use the generic fixture:
+
+```yaml
+# packages/<feature-name>/render_tests.yaml
+tests:
+  - name: test1
+    cr: "../../generic-fixtures/cr.yaml"
+```
+
+#### What the fixture provides
+
+The generic CR fixture includes:
+
+- **Metadata**: annotations, labels, and resource name
+- **Spec.org**: Organization name (`firestartr-test`)
+- **Spec.context**: Backend and provider references
+- **Spec.firestartr**: Technology stack and state key configuration
+- **Spec.repo**: Repository settings (visibility, branches, merge options, etc.)
+- **Spec.actions**: OIDC configuration
+- **Spec.permissions**: Team/group permissions
+- **Spec.branchProtections**: Branch protection rules
+
+#### Creating custom fixtures
+
+If your feature requires specific CR fields not covered by the generic fixture, you can:
+
+1. Create a custom fixture in your feature's `__tests__/` folder:
+
+   ```yaml
+   # packages/<feature-name>/__tests__/custom-cr.yaml
+   apiVersion: firestartr.dev/v1
+   kind: FirestartrGithubRepository
+   metadata:
+     name: my-custom-resource
+   spec:
+     # ... your custom fields
+   ```
+
+2. Reference it in your `render_tests.yaml`:
+   ```yaml
+   tests:
+     - name: custom-test
+       cr: "./__tests__/custom-cr.yaml"
+   ```
+
+---
+
+## Links
+
+- [Firestartr Documentation](https://docs.firestartr.dev)
+- [All Official Features](https://docs.firestartr.dev/docs/features/)
+
+Built with ❤️ using Firestartr

@@ -95,6 +95,20 @@
       ]
     },
     {
+      "name": "hello-world",
+      "version": "0.1.1",
+      "files": [
+        {
+          "name": "README.md",
+          "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/features/hello-world/README.md"
+        },
+        {
+          "name": "CHANGELOG.md",
+          "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/features/hello-world/CHANGELOG.md"
+        }
+      ]
+    },
+    {
       "name": "issue_templates",
       "version": "1.4.0",
       "files": [
