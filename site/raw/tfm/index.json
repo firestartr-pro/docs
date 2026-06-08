@@ -367,8 +367,8 @@
     {
       "name": "github-repo",
       "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/github-repo/README.md",
-      "version": "0.5.1",
-      "source": "git::https://github.com/prefapp/tfm.git//modules/github-repo?ref=github-repo-v0.5.1"
+      "version": "0.5.2",
+      "source": "git::https://github.com/prefapp/tfm.git//modules/github-repo?ref=github-repo-v0.5.2"
     },
     {
       "name": "github-repo-secrets-section",
