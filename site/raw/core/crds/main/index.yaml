@@ -196,6 +196,13 @@ spec:
                 renewalTime:
                   type: string
                   format: date-time
+                retryCount:
+                  type: integer
+                  description: "Number of retry attempts since last successful operation"
+                nextRetryTime:
+                  type: string
+                  format: date-time
+                  description: "Scheduled time for the next retry attempt"
                 revision:
                   type: integer
       additionalPrinterColumns:
@@ -376,6 +383,13 @@ spec:
                 renewalTime:
                   type: string
                   format: date-time
+                retryCount:
+                  type: integer
+                  description: "Number of retry attempts since last successful operation"
+                nextRetryTime:
+                  type: string
+                  format: date-time
+                  description: "Scheduled time for the next retry attempt"
                 revision:
                   type: integer
       additionalPrinterColumns:
@@ -654,6 +668,13 @@ spec:
                 renewalTime:
                   type: string
                   format: date-time
+                retryCount:
+                  type: integer
+                  description: "Number of retry attempts since last successful operation"
+                nextRetryTime:
+                  type: string
+                  format: date-time
+                  description: "Scheduled time for the next retry attempt"
                 revision:
                   type: integer
       additionalPrinterColumns:
@@ -867,6 +888,13 @@ spec:
                 renewalTime:
                   type: string
                   format: date-time
+                retryCount:
+                  type: integer
+                  description: "Number of retry attempts since last successful operation"
+                nextRetryTime:
+                  type: string
+                  format: date-time
+                  description: "Scheduled time for the next retry attempt"
                 revision:
                   type: integer
       additionalPrinterColumns:
@@ -1066,6 +1094,13 @@ spec:
                 renewalTime:
                   type: string
                   format: date-time
+                retryCount:
+                  type: integer
+                  description: "Number of retry attempts since last successful operation"
+                nextRetryTime:
+                  type: string
+                  format: date-time
+                  description: "Scheduled time for the next retry attempt"
                 revision:
                   type: integer
       additionalPrinterColumns:
@@ -1355,6 +1390,13 @@ spec:
                 highPriorityReason:
                   type: string
                   description: 'Reason for the current high priority state.'
+                retryCount:
+                  type: integer
+                  description: "Number of retry attempts since last successful operation"
+                nextRetryTime:
+                  type: string
+                  format: date-time
+                  description: "Scheduled time for the next retry attempt"
                 revision:
                   type: integer
       additionalPrinterColumns:
@@ -1726,6 +1768,13 @@ spec:
                 renewalTime:
                   type: string
                   format: date-time
+                retryCount:
+                  type: integer
+                  description: "Number of retry attempts since last successful operation"
+                nextRetryTime:
+                  type: string
+                  format: date-time
+                  description: "Scheduled time for the next retry attempt"
                 revision:
                   type: integer
       additionalPrinterColumns:
@@ -1856,6 +1905,13 @@ spec:
                 renewalTime:
                   type: string
                   format: date-time
+                retryCount:
+                  type: integer
+                  description: "Number of retry attempts since last successful operation"
+                nextRetryTime:
+                  type: string
+                  format: date-time
+                  description: "Scheduled time for the next retry attempt"
                 revision:
                   type: integer
 ---
@@ -2040,6 +2096,13 @@ spec:
                 renewalTime:
                   type: string
                   format: date-time
+                retryCount:
+                  type: integer
+                  description: "Number of retry attempts since last successful operation"
+                nextRetryTime:
+                  type: string
+                  format: date-time
+                  description: "Scheduled time for the next retry attempt"
                 revision:
                   type: integer
       additionalPrinterColumns:
@@ -2262,6 +2325,13 @@ spec:
                 renewalTime:
                   type: string
                   format: date-time
+                retryCount:
+                  type: integer
+                  description: "Number of retry attempts since last successful operation"
+                nextRetryTime:
+                  type: string
+                  format: date-time
+                  description: "Scheduled time for the next retry attempt"
                 revision:
                   type: integer
       additionalPrinterColumns:
@@ -2329,6 +2399,10 @@ spec:
                 lastUpdateTime:
                   type: string
                   format: date-time
+                retryCount:
+                  type: integer
+                  description: "Number of retry attempts for this operation"
+                  default: 0
       additionalPrinterColumns:       # Makes kubectl get / k9s beautiful
         - name: STATUS
           type: integer
@@ -2338,3 +2412,7 @@ spec:
           type: date
           description: Last time the TFResult status was updated
           jsonPath: .status.lastUpdateTime
+        - name: RETRIES
+          type: integer
+          description: Number of retry attempts
+          jsonPath: .status.retryCount
