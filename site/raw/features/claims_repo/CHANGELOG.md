@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.24.0](https://github.com/prefapp/features/compare/claims_repo-v1.23.0...claims_repo-v1.24.0) (2026-06-08)
+
+
+### Features
+
+* **claims-repo:** add last-state-pr to import and reimport workflows ([#1072](https://github.com/prefapp/features/issues/1072)) ([9f9c0b3](https://github.com/prefapp/features/commit/9f9c0b3ddf4903ad7f89537279750109fac4486c))
+* **claims-repo:** enhance PR reimport on state github ([#1081](https://github.com/prefapp/features/issues/1081)) ([20d9b68](https://github.com/prefapp/features/commit/20d9b6896833deb09b2e7eee53f76aea42148328))
+
+
+### Bug Fixes
+
+* Incorrect input info ([#998](https://github.com/prefapp/features/issues/998)) ([5e1dc8b](https://github.com/prefapp/features/commit/5e1dc8b2db34606934299ab90e431e2bb6d66119))
+
 ## [1.23.0](https://github.com/prefapp/features/compare/claims_repo-v1.22.1...claims_repo-v1.23.0) (2026-06-02)
 
 
