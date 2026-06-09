@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.1.0](https://github.com/prefapp/features/compare/terraform-infra-v2.0.0...terraform-infra-v2.1.0) (2026-06-09)
+
+
+### Features
+
+* **terraform-infra:** convert vars TF_VAR intro environment vars ([#1087](https://github.com/prefapp/features/issues/1087)) ([d0cbaed](https://github.com/prefapp/features/commit/d0cbaed14593ecd9e42f0f5df3461cbad19247a1))
+
 ## [2.0.0](https://github.com/prefapp/features/compare/terraform-infra-v1.8.2...terraform-infra-v2.0.0) (2026-05-29)
 
 
