@@ -48,16 +48,22 @@ A detailed explanation of each configuration file will be provided below.
 ```yaml
 name: app1
 state_repo: "firestartr-test/state-app-sample-app"
+platforms: [cluster-name]
 services:
   - repo: firestartr-test/build-and-dispatch-images-react
+    service_names: [micro-a, micro-b]
+  - repo: firestartr-test/another-build-and-dispatch-images-react
+    platforms: [cluster-name-2]
     service_names: [micro-a, micro-b]
 ```
 
 - **name**: the name of the application for which this configuration will be applied. This value is used in the `make_dispatches.yaml` file ([more info here](https://github.com/prefapp/features/blob/main/packages/build_and_dispatch_docker_images/templates/docs/README.md#make-dispatches))
 - **state_repo**: the state repo related to the application (each application should have its own state repo).
+- **platforms**: (optional) a list of platforms where this app is deployed. These platform names should match the ones defined in the platforms configuration files.
 - **services**: a list of service objects. Each of them contains:
   1. **repo**: the repository where objects will be uploaded. If they are prefixed by whether they are a docker image or a helm chart, this field's value should be only the last part of the repo name (i.e., if images are prefixed with `service/` and a image is uploaded as `service/client/service-name`, this fields value should be `client/service-name`). See the [registry configuration files](#-registry-configuration-example-and-field-description) for more info on how to set the prefix.
-  2. **service_names**: names of the services allowed to be saved for this app. These service names are the ones that are later written to the `images.yaml` file.
+  2. **platforms**: (optional) a list of platforms where this service is ALLOWED TO deploy. If not specified, it will be allowed to deploy to all platforms defined in the `platforms` field of this app configuration file. If the global field is also missing, it'll be treated the same as setting it as `[]`. These platform names should match the ones defined in the platforms configuration files. This field overrides the global `platforms` field, i.e. if this field is specified, the platforms defined in the global `platforms` field will be ignored for this service.
+  3. **service_names**: names of the services allowed to be saved for this app. These service names are the ones that are later written to the `images.yaml` file.
 
 ### 🔧 Registry configuration example and field description
 
@@ -83,6 +89,8 @@ base_paths:
 
 ### 🔧 Platform configuration example and field description
 
+`kubernetes` platform example:
+
 ```yaml
 type: kubernetes
 name: cluster-name
@@ -90,10 +98,30 @@ tenants: [test-tenant]
 envs: [dev, pre]
 ```
 
-- **type**: describes the technology this platform uses. Allowed values are `kubernetes` or `vmss`.
+`tfworkspaces` platform example:
+
+```yaml
+type: tfworkspaces
+name: my-cloud-account
+tenants: [my-tenant]
+envs: [dev, pre]
+allowedClaims:
+  - resourceTypes:
+      - az-vmss
+      - az-aks
+    providers:
+      - azure-predev-account
+    backend: terraform-backend-azure
+```
+
+- **type**: describes the technology this platform uses. Allowed values are `kubernetes`, `tfworkspaces` or `vmss`.
 - **name**: the name of this platform. This value is used in the `make_dispatches.yaml` file ([more info here](https://github.com/prefapp/features/blob/main/packages/build_and_dispatch_docker_images/templates/docs/README.md#make-dispatches)).
 - **tenants**: A list of strings, used when this platform is set as a configuration value alongside one or multiple tenants for validation.
 - **envs**: A list of strings, used when this platform is set as a configuration value alongside one or multiple environments for validation.
+- **allowedClaims**: A list of objects describing which TFWorkspace claims are allowed to be deployed to this platform, and which providers and backends they should use. This field should only be set when `type: tfworkspaces`. Each object has the following fields:
+  1. **resourceTypes**: a list of strings, each of which is the name of a resource type. Any TFWorkspace claims that have any of these values set as their `resourceType` will be allowed by this platform.
+  2. **providers**: a list of strings, each of which is the name of a provider defined in the providers configuration files. If a claim uses one of these providers, it'll be allowed to be deployed to this platform.
+  3. **backend**: a string describing the name of the backend configuration that should be used for claims matching this condition.
 
 ### 🔧 Providers configuration example and field description
 
