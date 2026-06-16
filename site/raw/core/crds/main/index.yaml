@@ -1605,6 +1605,11 @@ spec:
                           type: string
                         path:
                           type: string
+                    buildType:
+                      type: string
+                      enum:
+                        - workflow
+                        - legacy
                 permissions:
                   type: array
                   items:
