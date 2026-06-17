@@ -1519,6 +1519,8 @@ spec:
                       type: boolean
                     hasWiki:
                       type: boolean
+                    hasDiscussions:
+                      type: boolean
                     topics:
                       type: array
                       items:
