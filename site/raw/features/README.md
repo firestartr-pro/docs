@@ -20,6 +20,22 @@ Features are automatically versioned using **Conventional Commits** via the `rel
 
 ---
 
+## Local Installation
+
+To install dependencies locally, you need a GitHub token with `package:read` permissions to authenticate against the GitHub npm registry.
+
+1. Create a [GitHub personal access token](https://github.com/settings/tokens) with the `package:read` scope.
+2. Save the token in a `.token` file at the root of this repository:
+   ```bash
+   echo "ghp_your_token_here" > .token
+   ```
+3. Run the Makefile to configure pnpm and install dependencies:
+   ```bash
+   make init
+   ```
+
+---
+
 ## Required companion features
 
 The `release_please` feature must be applied to this repository alongside `features_repo`. It handles automated versioning and changelog generation for each package under `packages/` using Conventional Commits.

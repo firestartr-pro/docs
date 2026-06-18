@@ -91,6 +91,17 @@ The scripts rely on several environment variables for Terraform backend configur
 | FIRESTARTR_BACKEND_ROLE_ARN | IAM Role ARN for accessing backend resources                 | `arn:aws:iam::123456789012:role/example-role` |
 | FIRESTARTR_LOCK             | DynamoDB table name for state lock                           | `example-tf-lock`                             |
 
+### TF_VAR_* variables from GitHub Environments
+
+Any variable defined in a GitHub Actions environment *variable* (i.e., from the `vars` context) whose name starts with `TF_VAR_` is automatically exported as an environment variable before running Terraform (environment **secrets** are not exported this way).
+
+Terraform automatically loads these `TF_VAR_*` environment variables, so they are available as input variables without extra wiring.
+
+To reduce confusion and improve troubleshooting, the workflow also appends a "TF_VAR variables passed to Terraform" table to the GitHub Actions job summary when these variables exist (values may be masked when the variable name looks sensitive; avoid putting secrets in `vars`):
+- Variable name
+- Value (masked when the name looks sensitive)
+- Target environment
+
 ### Additional variables for Manual Execution
 
 For manual use of `terrafire.sh`, you also **need the following environment variables** (in addition to the shared backend variables documented above):

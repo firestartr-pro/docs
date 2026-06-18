@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.1](https://github.com/prefapp/features/compare/features_repo-v1.0.0...features_repo-v1.0.1) (2026-06-18)
+
+
+### Bug Fixes
+
+* add new pnpm auth system for pnpm &gt; 1.5 ([#1100](https://github.com/prefapp/features/issues/1100)) ([24dcb64](https://github.com/prefapp/features/commit/24dcb64087ae49e33b5aefc284665cfd5934544c))
+
 ## [1.0.0](https://github.com/prefapp/features/compare/features_repo-v0.3.1...features_repo-v1.0.0) (2026-06-02)
 
 
