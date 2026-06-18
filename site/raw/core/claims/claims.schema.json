@@ -798,11 +798,21 @@
                 "hasWiki": {
                   "type": "boolean"
                 },
+                "hasDiscussions": {
+                  "type": "boolean"
+                },
                 "pages": {
                   "type": "object",
                   "properties": {
                     "cname": {
                       "type": "string"
+                    },
+                    "buildType": {
+                      "type": "string",
+                      "enum": [
+                        "workflow",
+                        "legacy"
+                      ]
                     },
                     "source": {
                       "type": "object",
@@ -1058,7 +1068,7 @@
               "type": "string",
               "minLength": 1,
               "maxLength": 50,
-              "pattern": "^(?!\\s+$)[^\"\\\\]+$",
+              "pattern": "^[^\"\\\\\\s]+(?: +[^\"\\\\\\s]+)*$",
               "description": "Label name (1-50 chars, no \" or \\ characters)"
             },
             "color": {
