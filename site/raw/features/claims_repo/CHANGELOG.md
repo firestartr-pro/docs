@@ -1,5 +1,16 @@
 # Changelog
 
+## [2.0.0](https://github.com/prefapp/features/compare/claims_repo-v1.24.0...claims_repo-v2.0.0) (2026-06-22)
+
+
+### ⚠ BREAKING CHANGES
+
+* Support new `state-secrets` repository ([#979](https://github.com/prefapp/features/issues/979))
+
+### Features
+
+* Support new `state-secrets` repository ([#979](https://github.com/prefapp/features/issues/979)) ([57c625e](https://github.com/prefapp/features/commit/57c625e887243dbb99bb252221fbd2e6917a31bd))
+
 ## [1.24.0](https://github.com/prefapp/features/compare/claims_repo-v1.23.0...claims_repo-v1.24.0) (2026-06-08)
 
 

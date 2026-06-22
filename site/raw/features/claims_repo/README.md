@@ -21,7 +21,10 @@ This feature installs the workflows necessary for manually hydrating and deletin
 ![Hydrating a TFWorkspace claim](./images/claims_repo-example_1-3.jpg)
 *Hydrating a TFWorkspace claim*
 
-5. Press the green button and wait for the workflow to finish. When it's done, click its entry in the list and there'll be a link to the `state-github` or `state-infra` repo PR. You can use it to review the PR and merge it if everything is correct.
+![Hydrating a Secrets claim](./images/claims_repo-example_1-3.1.jpg)
+*Hydrating a Secrets claim*
+
+5. Press the green button and wait for the workflow to finish. When it's done, click its entry in the list and there'll be a link to the `state-github`, `state-infra` or `state-secrets` repo PR. You can use it to review the PR and merge it if everything is correct.
 
 ![The action summary](./images/claims_repo-example_1-4.jpg)
 *The action summary with a link to the state repo*
@@ -41,7 +44,10 @@ This feature installs the workflows necessary for manually hydrating and deletin
 ![Deleting a TFWorkspace claim](./images/claims_repo-example_2-3.jpg)
 *Deleting a TFWorkspace claim*
 
-3. Press the green button and wait for the workflow to finish. When it's done, click its entry in the list and there'll be two links: one to the `state-github` or `state-infra` repo PR, deleting the CR file, and another to the `claims` repo PR, deleting the claim file. You can use them to review both PRs and merge them if everything is correct.
+![Deleting a Secrets claim](./images/claims_repo-example_2-3.1.jpg)
+*Deleting a Secrets claim*
+
+3. Press the green button and wait for the workflow to finish. When it's done, click its entry in the list and there'll be two links: one to the `state-github`, `state-infra` or `state-secrets` repo PR, deleting the CR file, and another to the `claims` repo PR, deleting the claim file. You can use them to review both PRs and merge them if everything is correct.
 
 ![The action summary](./images/claims_repo-example_2-4.jpg)
 *The action summary with two links to the state and claims repo*
@@ -106,5 +112,6 @@ This workflow can also be executed manually if needed.
 ## Feature arguments
 
 - `state_github_repo`: the name of the repository where the GitHub related CRs are stored. Defaults to `state-github`
-- `state_infra_repo`: the name of the repository where the Terraform and ExternalSecrets related CRs are stored. Defaults to `state-infra`
+- `state_infra_repo`: the name of the repository where the Terraform related CRs are stored. Defaults to `state-infra`
+- `state_secrets_repo`: the name of the repository where the ExternalSecrets related CRs are stored. Defaults to `state-secrets`
 - `catalog_repo`: the name of the repository where the Backstage catalog related CRs are stored. Defaults to `catalog`
