@@ -965,6 +965,122 @@
     },
     {
       "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "$id": "GithubOrgSettingsClaim",
+      "definitions": {
+        "GithubOrgSettingsClaim": {
+          "$id": "firestartr.dev://github/GithubOrgSettingsClaim",
+          "type": "object",
+          "description": "A Github Organization Settings claim",
+          "allOf": [
+            {
+              "$ref": "firestartr.dev://common/ClaimProviderEnvelope"
+            },
+            {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "tfStateKey": {
+                  "$ref": "firestartr.dev://common/TerraformStateKey"
+                },
+                "org": {
+                  "$ref": "firestartr.dev://common/ClaimName"
+                },
+                "billing_email": {
+                  "type": "string"
+                },
+                "twitter_username": {
+                  "type": "string"
+                },
+                "company": {
+                  "type": "string"
+                },
+                "blog": {
+                  "type": "string"
+                },
+                "email": {
+                  "type": "string"
+                },
+                "location": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                },
+                "has_organization_projects": {
+                  "type": "boolean"
+                },
+                "has_repository_projects": {
+                  "type": "boolean"
+                },
+                "default_repository_permission": {
+                  "type": "string",
+                  "enum": [
+                    "read",
+                    "write",
+                    "admin",
+                    "none"
+                  ]
+                },
+                "members_can_create_repositories": {
+                  "type": "boolean"
+                },
+                "members_can_create_public_repositories": {
+                  "type": "boolean"
+                },
+                "members_can_create_private_repositories": {
+                  "type": "boolean"
+                },
+                "members_can_create_internal_repositories": {
+                  "type": "boolean"
+                },
+                "members_can_create_pages": {
+                  "type": "boolean"
+                },
+                "members_can_create_public_pages": {
+                  "type": "boolean"
+                },
+                "members_can_create_private_pages": {
+                  "type": "boolean"
+                },
+                "members_can_fork_private_repositories": {
+                  "type": "boolean"
+                },
+                "web_commit_signoff_required": {
+                  "type": "boolean"
+                },
+                "advanced_security_enabled_for_new_repositories": {
+                  "type": "boolean"
+                },
+                "dependabot_alerts_enabled_for_new_repositories": {
+                  "type": "boolean"
+                },
+                "dependabot_security_updates_enabled_for_new_repositories": {
+                  "type": "boolean"
+                },
+                "dependency_graph_enabled_for_new_repositories": {
+                  "type": "boolean"
+                },
+                "secret_scanning_enabled_for_new_repositories": {
+                  "type": "boolean"
+                },
+                "secret_scanning_push_protection_enabled_for_new_repositories": {
+                  "type": "boolean"
+                }
+              },
+              "additionalProperties": false,
+              "required": [
+                "org",
+                "billing_email"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
       "$id": "GithubComponentClaimVarsAndSecrets",
       "definitions": {
         "GithubComponentClaimVars": {
@@ -1623,6 +1739,37 @@
             "required": [
               "owner"
             ]
+          }
+        ]
+      }
+    }
+  },
+  {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "OrgSettingsClaim",
+    "definitions": {
+      "OrgSettingsClaim": {
+        "$id": "firestartr.dev://common/OrgSettingsClaim",
+        "type": "object",
+        "description": "A GitHub organization settings claim",
+        "unevaluatedProperties": false,
+        "allOf": [
+          {
+            "$ref": "firestartr.dev://common/ClaimEnvelope"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "providers": {
+                "type": "object",
+                "properties": {
+                  "github": {
+                    "$ref": "firestartr.dev://github/GithubOrgSettingsClaim"
+                  }
+                },
+                "additionalProperties": false
+              }
+            }
           }
         ]
       }
