@@ -359,6 +359,12 @@
       "source": "git::https://github.com/prefapp/tfm.git//modules/github-org-rulesets?ref=github-org-rulesets-v0.1.1"
     },
     {
+      "name": "github-org-settings",
+      "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/github-org-settings/README.md",
+      "version": "unknown",
+      "source": "unknown"
+    },
+    {
       "name": "github-org-webhook",
       "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/github-org-webhook/README.md",
       "version": "0.2.0",
