@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Firestartr Documentation</title><link>https://docs.firestartr.dev/docs/features/state_argocd/</link><description>Recent content on Firestartr Documentation</description><generator>Hugo</generator><language>en-us</language><atom:link href="https://docs.firestartr.dev/docs/features/state_argocd/index.xml" rel="self" type="application/rss+xml"/><item><title/><link>https://docs.firestartr.dev/docs/features/state_argocd/CHANGELOG/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.firestartr.dev/docs/features/state_argocd/CHANGELOG/</guid><description>&lt;h1 id="changelog"&gt;Changelog&lt;a class="anchor" href="#changelog"&gt;#&lt;/a&gt;&lt;/h1&gt;
+&lt;h2 id="100-2026-05-27"&gt;1.0.0 (2026-05-27)&lt;a class="anchor" href="#100-2026-05-27"&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id="bug-fixes"&gt;Bug Fixes&lt;a class="anchor" href="#bug-fixes"&gt;#&lt;/a&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;state_argocd:&lt;/strong&gt; dummy change to publish version (&lt;a href="https://github.com/prefapp/features/issues/1025"&gt;#1025&lt;/a&gt;) (&lt;a href="https://github.com/prefapp/features/commit/7dc164bc6ea561e9b422d65132df6aebc1fe82ab"&gt;7dc164b&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="changelog-1"&gt;Changelog&lt;a class="anchor" href="#changelog-1"&gt;#&lt;/a&gt;&lt;/h2&gt;</description></item></channel></rss>
