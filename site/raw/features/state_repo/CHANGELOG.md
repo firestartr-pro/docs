@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.3.0](https://github.com/prefapp/features/compare/state_repo-v2.2.3...state_repo-v2.3.0) (2026-07-01)
+
+
+### Features
+
+* add timeout configuration for dispatch image workflow and update action-state-repo-update-image ([#1089](https://github.com/prefapp/features/issues/1089)) ([ba1289b](https://github.com/prefapp/features/commit/ba1289b48c0880e491f96748779da47854575d51))
+
 ## [2.2.3](https://github.com/prefapp/features/compare/state_repo-v2.2.2...state_repo-v2.2.3) (2026-06-02)
 
 

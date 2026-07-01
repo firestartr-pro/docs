@@ -436,7 +436,7 @@ A second workflow, `Trigger deployment` (with filename `trigger_deployment.yaml`
 - `platform`: equivalent to the `filter_by_platform` input of the normal `make_dispatches` workflow. Mandatory
 - `env`: equivalent to the `filter_by_env` input of the normal `make_dispatches` workflow. Mandatory
 
-For ease of use, the `tenant`, `platform` and `env` inputs have been made into choice dropdowns, populated from the configuration files in the `.firestartr` repository. This population is done automatically via the `update-features-with-dot-firestartr-info.yaml` workflow from the [`claims_repo` feature](https://docs.firestartr.dev/docs/features/#-claims-repo). When this feature is installed for the first time, it's needed to either launch that workflow manually or wait until it automatically runs at midnight UTC, so that the dropdowns get populated with the correct values.
+Valid `tenant`, `platform` and `env` values are determined by the existing deployment configurations in `make_dispatches.yaml`, so only combinations of these three parameters that already exist in the configuration file can be used to trigger deployments.
 
 ## Feature arguments
 
