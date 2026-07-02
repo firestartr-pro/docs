@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.2.0](https://github.com/prefapp/features/compare/terraform-infra-v2.1.0...terraform-infra-v2.2.0) (2026-07-02)
+
+
+### Features
+
+* **terraform-infra:** change terraform-plan-apply WF to detect changes based on conventional commits ([#1110](https://github.com/prefapp/features/issues/1110)) ([3cdc07c](https://github.com/prefapp/features/commit/3cdc07ceeeb40869114e0f3a5192d95fd1191551))
+
 ## [2.1.0](https://github.com/prefapp/features/compare/terraform-infra-v2.0.0...terraform-infra-v2.1.0) (2026-06-09)
 
 

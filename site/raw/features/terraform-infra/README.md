@@ -58,7 +58,45 @@ You can manually trigger the workflow from the GitHub Actions UI:
   - The workflow is manually triggered with `run_plan: true`, **or**
   - A pull request is open or updated (not closed).
 
+## Skipping runs by commit type
+
+Pull requests that only contain "noise" commits (such as documentation or CI
+tweaks) can be prevented from triggering a Terraform plan/apply.
+
+The behaviour is controlled by the `skip_commit_types` feature argument
+(rendered into the workflow as `SKIP_COMMIT_TYPES`). It is configurable
+per-repository: each repository that consumes this feature can override
+`skip_commit_types` in its feature args, and when it is not set the default is
+used.
+
+- **Default:** `docs,ci`
+- **Format:** a comma-separated list of [conventional commit](https://www.conventionalcommits.org/) type prefixes. You can add more, e.g. `docs,ci,build,test,chore`.
+- **Value rules:**
+  - Use the bare type only (for example `docs`, not `docs:`); the trailing `:` and any `(scope)` / `!` are handled automatically by the matcher.
+  - The value is sanitized before use: entries are lowercased, surrounding whitespace is trimmed, and empty entries are ignored. So `docs,ci`, `docs, ci`, and ` Docs , CI ,, ` are all equivalent, and commit types are matched case-insensitively (`Docs: ...` matches `docs`).
+  - An empty (or whitespace-only) value disables skipping entirely (every run proceeds).
+
+A commit is considered *skippable* when its subject matches one of the
+configured types, using the pattern `^(type)(\(scope\))?(!)?:`. For example,
+with the default `docs,ci` the following subjects are skippable:
+
+- `docs: update readme`
+- `ci(deps): bump action`
+- `docs!: drop legacy guide`
+
+The run is skipped **only when every non-merge commit** in the pull request is skippable (merge commits are ignored). If there are no non-merge commits, the workflow fails safe to running. The moment a single commit does not match (for example `feat:`, `fix:`, `chore:`), the plan/apply proceeds as normal. This applies both to the plan on open/synchronize/reopen and to the apply on merge.
+
+> [!NOTE]
+>
+> Manual runs (`workflow_dispatch`) are never affected by `skip_commit_types`.
+
 ## Supporting Scripts
+
+### `.github/scripts/validate_tenant_changes.sh`
+
+- Determines which tenant modules are affected by a pull request and builds the job matrix consumed by the plan/apply job.
+- Detects changed modules by **directory**, not by file type: a change to *any* file inside a module directory (for example an external AWS policy `.json`, a `.tf`, a `.tfvars`, or an `init-from-module` file) marks that module as changed. `providers.tf` is still ignored.
+- Skips the run entirely when every commit in the pull request matches one of the configured skip commit types (see [Skipping runs by commit type](#skipping-runs-by-commit-type)).
 
 ### `.github/scripts/functions.sh`
 
