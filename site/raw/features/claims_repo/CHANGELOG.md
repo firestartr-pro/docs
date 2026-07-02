@@ -1,5 +1,19 @@
 # Changelog
 
+## [2.1.0](https://github.com/prefapp/features/compare/claims_repo-v2.0.0...claims_repo-v2.1.0) (2026-07-01)
+
+
+### Features
+
+* **claims_repo:** support GitHub organization settings claims ([#1085](https://github.com/prefapp/features/issues/1085)) ([2fd0941](https://github.com/prefapp/features/commit/2fd0941626841f537f3fc78050247546a723225e))
+* **claims-repo:** auto-hydrate on PR label ([#1102](https://github.com/prefapp/features/issues/1102)) ([e8b686e](https://github.com/prefapp/features/commit/e8b686e1464b11106143b67959ddf1c9a5f8ca7f))
+
+
+### Bug Fixes
+
+* `trigger_deployment` improvements ([#1091](https://github.com/prefapp/features/issues/1091)) ([d04bd28](https://github.com/prefapp/features/commit/d04bd28d6215d59d13d9fc8135b6c1ba2a55bb30))
+* **claims_repo:** add explicit ref to claims repository checkout in delete-tfworkspace-claim ([#1105](https://github.com/prefapp/features/issues/1105)) ([bcabb69](https://github.com/prefapp/features/commit/bcabb69e59d1a5361d309fb9577634fdca80f2df))
+
 ## [2.0.0](https://github.com/prefapp/features/compare/claims_repo-v1.24.0...claims_repo-v2.0.0) (2026-06-22)
 
 

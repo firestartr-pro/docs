@@ -15,6 +15,13 @@ This feature installs the workflows necessary for manually hydrating and deletin
 
 4. Select `Run workflow` on the right hand side of the screen, introduce the name of the claim to be hydrated and select the claim type (if it is a GitHub claim). NOTE: the name of the claim should be the value of the field `name` inside the claim YAML. Setting this value to the file name may result in the workflow not working as expected.
 
+Available GitHub claim types:
+- `ComponentClaim` — hydrates `FirestartrGithubRepository`, `FirestartrGithubRepositoryFeature`, and `FirestartrGithubRepositorySecretsSection` CRs.
+- `UserClaim` — hydrates `FirestartrGithubMembership` CRs.
+- `GroupClaim` — hydrates `FirestartrGithubGroup` CRs.
+- `OrgWebhookClaim` — hydrates `FirestartrGithubOrgWebhook` CRs.
+- `GitHubOrgClaim` — hydrates `FirestartrGithubOrganizationSettings` CRs.
+
 ![Hydrating a GitHub claim](./images/claims_repo-example_1-2.jpg)
 *Hydrating a GitHub claim*
 
@@ -37,6 +44,8 @@ This feature installs the workflows necessary for manually hydrating and deletin
 *The Actions tabs*
 
 2. Select `Run workflow` on the right hand side of the screen, introduce the name of the claim to be deleted and select the claim type (if it is a GitHub claim). NOTE: the name of the claim should be the value of the field `name` inside the claim YAML. Setting this value to the file name may result in the workflow not working as expected.
+
+The same claim types listed for [hydrating](#hydrating-claims) are available for deletion.
 
 ![Deleting a GitHub claim](./images/claims_repo-example_2-2.jpg)
 *Deleting a GitHub claim*
