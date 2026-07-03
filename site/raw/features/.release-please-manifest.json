@@ -4,7 +4,7 @@
     "packages/release_please": "1.6.2",
     "packages/state_repo": "2.3.0",
     "packages/state_argocd": "1.0.0",
-    "packages/build_and_dispatch_docker_images": "5.4.2",
+    "packages/build_and_dispatch_docker_images": "5.4.3",
     "packages/state_infra": "1.2.0",
     "packages/state_repo_sys_services": "2.3.11",
     "packages/state_repo_apps": "3.9.0",

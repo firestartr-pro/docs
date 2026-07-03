@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.4.3](https://github.com/prefapp/features/compare/build_and_dispatch_docker_images-v5.4.2...build_and_dispatch_docker_images-v5.4.3) (2026-07-03)
+
+
+### Bug Fixes
+
+* `trigger_deployment` improvements ([#1091](https://github.com/prefapp/features/issues/1091)) ([d04bd28](https://github.com/prefapp/features/commit/d04bd28d6215d59d13d9fc8135b6c1ba2a55bb30))
+
 ## [5.4.2](https://github.com/prefapp/features/compare/build_and_dispatch_docker_images-v5.4.1...build_and_dispatch_docker_images-v5.4.2) (2026-06-03)
 
 
