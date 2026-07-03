@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.1.1](https://github.com/prefapp/features/compare/claims_repo-v2.1.0...claims_repo-v2.1.1) (2026-07-03)
+
+
+### Bug Fixes
+
+* **claims_repo:** remove tfstatekey from hydrated branch name ([#1113](https://github.com/prefapp/features/issues/1113)) ([07f5ced](https://github.com/prefapp/features/commit/07f5ceda4fed2067bf64a7fc2fb0cdf7e4ae1878))
+
 ## [2.1.0](https://github.com/prefapp/features/compare/claims_repo-v2.0.0...claims_repo-v2.1.0) (2026-07-01)
 
 
