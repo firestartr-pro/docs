@@ -343,8 +343,8 @@
     {
       "name": "github-files-set",
       "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/github-files-set/README.md",
-      "version": "0.1.1",
-      "source": "git::https://github.com/prefapp/tfm.git//modules/github-files-set?ref=github-files-set-v0.1.1"
+      "version": "0.1.2",
+      "source": "git::https://github.com/prefapp/tfm.git//modules/github-files-set?ref=github-files-set-v0.1.2"
     },
     {
       "name": "github-membership",
