@@ -220,7 +220,7 @@
     },
     {
       "name": "state_repo_sys_services",
-      "version": "2.3.11",
+      "version": "2.3.12",
       "files": [
         {
           "name": "README.md",
