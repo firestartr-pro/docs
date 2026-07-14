@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.3.1](https://github.com/prefapp/features/compare/state_repo-v2.3.0...state_repo-v2.3.1) (2026-07-07)
+
+
+### Bug Fixes
+
+* github.token usage ([#1118](https://github.com/prefapp/features/issues/1118)) ([f1d826f](https://github.com/prefapp/features/commit/f1d826f0b71cadb06a1050385edfe3c8dd28bf3b))
+
 ## [2.3.0](https://github.com/prefapp/features/compare/state_repo-v2.2.3...state_repo-v2.3.0) (2026-07-01)
 
 
