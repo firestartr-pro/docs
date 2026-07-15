@@ -1,5 +1,19 @@
 # Changelog
 
+## [2.4.0](https://github.com/prefapp/features/compare/state_repo-v2.3.1...state_repo-v2.4.0) (2026-07-15)
+
+
+### Features
+
+* **state_repo:** update to node24 ([#1129](https://github.com/prefapp/features/issues/1129)) ([58fbc02](https://github.com/prefapp/features/commit/58fbc024739a5f97903739c1fd0265e9866bb432))
+
+## [2.3.1](https://github.com/prefapp/features/compare/state_repo-v2.3.0...state_repo-v2.3.1) (2026-07-14)
+
+
+### Bug Fixes
+
+* github.token usage ([#1118](https://github.com/prefapp/features/issues/1118)) ([f1d826f](https://github.com/prefapp/features/commit/f1d826f0b71cadb06a1050385edfe3c8dd28bf3b))
+
 ## [2.3.1](https://github.com/prefapp/features/compare/state_repo-v2.3.0...state_repo-v2.3.1) (2026-07-07)
 
 
