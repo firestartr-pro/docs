@@ -35,8 +35,8 @@
     {
       "name": "aws-eks",
       "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/aws-eks/README.md",
-      "version": "1.5.3",
-      "source": "git::https://github.com/prefapp/tfm.git//modules/aws-eks?ref=aws-eks-v1.5.3"
+      "version": "1.5.4",
+      "source": "git::https://github.com/prefapp/tfm.git//modules/aws-eks?ref=aws-eks-v1.5.4"
     },
     {
       "name": "aws-kms",
