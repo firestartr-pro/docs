@@ -337,8 +337,8 @@
     {
       "name": "dummy",
       "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/dummy/README.md",
-      "version": "0.1.0",
-      "source": "git::https://github.com/prefapp/tfm.git//modules/dummy?ref=dummy-v0.1.0"
+      "version": "0.2.0",
+      "source": "git::https://github.com/prefapp/tfm.git//modules/dummy?ref=dummy-v0.2.0"
     },
     {
       "name": "github-files-set",
