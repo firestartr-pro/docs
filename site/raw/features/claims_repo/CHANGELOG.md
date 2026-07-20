@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.2.0](https://github.com/prefapp/features/compare/claims_repo-v2.1.2...claims_repo-v2.2.0) (2026-07-20)
+
+
+### Features
+
+* add provision workflow ([#1112](https://github.com/prefapp/features/issues/1112)) ([1892c21](https://github.com/prefapp/features/commit/1892c21b457609ba86763ae6909274d9fce7c86d))
+
 ## [2.1.2](https://github.com/prefapp/features/compare/claims_repo-v2.1.1...claims_repo-v2.1.2) (2026-07-07)
 
 
