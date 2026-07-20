@@ -22,9 +22,6 @@ Complete guide to the `.firestartr` configuration repository that every Firestar
 
 ## Repository Structures
 
-### [GitHub Pages Support](./github-pages-support.md)
-Complete guide to configuring GitHub Pages for your repositories using Firestartr component claims. Covers configuration options, custom domains, directory publishing, branch requirements, and troubleshooting common issues.
-
 ### [State Apps Repository](./state-apps-repository.md)
 Documentation on application repositories for deploying workloads in Kubernetes. Covers the directory structure for both `main` and `deployment` branches, automatic image updates, on-demand deployments, ArgoCD integration with ApplicationSet, notification system setup, and platform control through Argo Projects.
 
@@ -48,7 +45,6 @@ For internal development documentation and architecture details, see the `../int
 
 - **Features Documentation**: [Our Features](./Our-features.md)
 - **.firestartr Config**: [The .firestartr Repository](./The-dot-firestartr-repository.md)
-- **GitHub Pages**: [GitHub Pages Support](./github-pages-support.md)
 - **App Deployments**: [State Apps Repository](./state-apps-repository.md)
 - **Sys Services**: [State Sys-Services Repository](./state-sys-services-repository.md)
 - **Migration Guide**: [Migrating to New Structure](./Migrating-to-our-new-app-state-repo-structure.md)
