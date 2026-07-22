@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.5.0](https://github.com/prefapp/features/compare/build_and_dispatch_docker_images-v5.4.3...build_and_dispatch_docker_images-v5.5.0) (2026-07-22)
+
+
+### Features
+
+* add json-schema per feature ([#1131](https://github.com/prefapp/features/issues/1131)) ([2c3e1c9](https://github.com/prefapp/features/commit/2c3e1c9bbfc402c170448581e52a326e744270f0))
+
 ## [5.4.3](https://github.com/prefapp/features/compare/build_and_dispatch_docker_images-v5.4.2...build_and_dispatch_docker_images-v5.4.3) (2026-07-03)
 
 
