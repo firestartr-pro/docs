@@ -10,7 +10,7 @@
     "packages/state_repo_apps": "3.10.0",
     "packages/claims_repo": "2.3.0",
     "packages/state_github": "1.3.0",
-    "packages/firestartr_repo": "1.1.0",
+    "packages/firestartr_repo": "1.2.0",
     "packages/terraform-infra": "2.3.0",
     "packages/catalog_repo": "1.5.0",
     "packages/charts_repo": "2.1.0",
