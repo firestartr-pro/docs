@@ -58,7 +58,7 @@
     },
     {
       "name": "cloudfront_s3_build_and_deploy",
-      "version": "0.2.1",
+      "version": "0.3.0",
       "files": [
         {
           "name": "CHANGELOG.md",

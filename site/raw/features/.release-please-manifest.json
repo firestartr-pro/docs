@@ -15,7 +15,7 @@
     "packages/catalog_repo": "1.5.0",
     "packages/charts_repo": "2.1.0",
     "packages/features_repo": "1.1.0",
-    "packages/cloudfront_s3_build_and_deploy": "0.2.1",
+    "packages/cloudfront_s3_build_and_deploy": "0.3.0",
     "packages/state_secrets": "1.1.0",
     "packages/hello-world": "0.1.1"
 }
