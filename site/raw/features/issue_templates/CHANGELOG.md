@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.5.0](https://github.com/prefapp/features/compare/issue_templates-v1.4.0...issue_templates-v1.5.0) (2026-07-22)
+
+
+### Features
+
+* add json-schema per feature ([#1131](https://github.com/prefapp/features/issues/1131)) ([2c3e1c9](https://github.com/prefapp/features/commit/2c3e1c9bbfc402c170448581e52a326e744270f0))
+
 ## [1.4.0](https://github.com/prefapp/features/compare/issue_templates-v1.3.0...issue_templates-v1.4.0) (2026-06-02)
 
 
