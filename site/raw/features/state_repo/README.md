@@ -82,7 +82,7 @@ sys-services/
      │  ├── cluster.yaml
      │  ├── secrets.yaml
      │  └── values.yaml
-     └── helmfile.yaml(.gotmpl) # helmfile for the sys-service
+     └── helmfile.yaml(.gotmpl) # helmfile for the system service
 ```
 
 Example:
@@ -93,8 +93,11 @@ sys-services/
      │  ├── cluster.yaml
      │  ├── secrets.yaml
      │  └── values.yaml
-     └── helmfile.yaml(.gotmpl) #  the cert-manager sys-service installation chart
+     └── helmfile.yaml(.gotmpl) # helmfile for the cert-manager system service installation
 ```
+
+> [!NOTE]
+> For legacy purpose, both paths are currently supported: `sys-services/` and `sys_services/`
 
 ## Configuration
 

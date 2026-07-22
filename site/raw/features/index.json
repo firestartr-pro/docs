@@ -16,7 +16,7 @@
     },
     {
       "name": "catalog_repo",
-      "version": "1.4.0",
+      "version": "1.5.0",
       "files": [
         {
           "name": "README.md",
