@@ -166,7 +166,7 @@
     },
     {
       "name": "state_infra",
-      "version": "1.2.0",
+      "version": "1.3.0",
       "files": [
         {
           "name": "README.md",
@@ -194,7 +194,7 @@
     },
     {
       "name": "state_repo_apps",
-      "version": "3.9.1",
+      "version": "3.10.0",
       "files": [
         {
           "name": "KUBERNETES_README.md",
