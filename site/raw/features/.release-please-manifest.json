@@ -17,5 +17,5 @@
     "packages/features_repo": "1.1.0",
     "packages/cloudfront_s3_build_and_deploy": "0.3.0",
     "packages/state_secrets": "1.1.0",
-    "packages/hello-world": "0.1.1"
+    "packages/hello-world": "0.2.0"
 }
