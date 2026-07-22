@@ -1,5 +1,5 @@
 {
-    "packages/tech_docs": "0.10.3",
+    "packages/tech_docs": "0.11.0",
     "packages/issue_templates": "1.5.0",
     "packages/release_please": "1.7.0",
     "packages/state_repo": "2.4.0",
