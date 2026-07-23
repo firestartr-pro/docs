@@ -1,0 +1,52 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "charts_repo args",
+  "type": "object",
+  "properties": {
+    "feature_name": {
+      "const": "charts_repo"
+    },
+    "charts_dir": {
+      "type": "string",
+      "description": "The directory where Helm charts are stored.",
+      "default": "charts",
+      "examples": [
+        "charts"
+      ]
+    }
+  },
+  "fileManifest": [
+    {
+      "src": ".github/workflows/generate-artifact.yaml",
+      "dest": ".github/workflows/generate-artifact.yaml",
+      "user_managed": false
+    },
+    {
+      "src": ".github/workflows/generate-snapshot.yaml",
+      "dest": ".github/workflows/generate-snapshot.yaml",
+      "user_managed": false
+    },
+    {
+      "src": ".github/workflows/publish-release.yaml",
+      "dest": ".github/workflows/publish-release.yaml",
+      "user_managed": false
+    },
+    {
+      "src": ".github/workflows/pr-verify.yaml",
+      "dest": ".github/workflows/pr-verify.yaml",
+      "user_managed": false
+    },
+    {
+      "src": "docs/README.md",
+      "dest": ".github/CHARTS_REPO_README.md",
+      "user_managed": false
+    },
+    {
+      "src": ".github/.yamllint.conf",
+      "dest": ".github/.yamllint.conf",
+      "user_managed": true
+    }
+  ],
+  "description": "no description",
+  "version": "2.1.0"
+}
