@@ -1,0 +1,124 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "state_repo_apps args",
+  "type": "object",
+  "properties": {
+    "feature_name": {
+      "const": "state_repo_apps"
+    }
+  },
+  "fileManifest": [
+    {
+      "src": ".github/workflows/validate-pr.yml",
+      "dest": ".github/workflows/validate-pr.yml",
+      "user_managed": false
+    },
+    {
+      "src": ".github/workflows/delete-deployment-kubernetes.yml",
+      "dest": ".github/workflows/delete-deployment-kubernetes.yml",
+      "user_managed": false
+    },
+    {
+      "src": ".github/workflows/delete-deployment-tfworkspaces.yml",
+      "dest": ".github/workflows/delete-deployment-tfworkspaces.yml",
+      "user_managed": false
+    },
+    {
+      "src": ".github/workflows/delete-deployment-secrets.yml",
+      "dest": ".github/workflows/delete-deployment-secrets.yml",
+      "user_managed": false
+    },
+    {
+      "src": ".github/workflows/generate-deployment-kubernetes.yml",
+      "dest": ".github/workflows/generate-deployment-kubernetes.yml",
+      "user_managed": false
+    },
+    {
+      "src": ".github/workflows/generate-deployment-tfworkspaces.yml",
+      "dest": ".github/workflows/generate-deployment-tfworkspaces.yml",
+      "user_managed": false
+    },
+    {
+      "src": ".github/workflows/dispatch-image-kubernetes.yml",
+      "dest": ".github/workflows/dispatch-image-kubernetes.yml",
+      "user_managed": false
+    },
+    {
+      "src": ".github/workflows/generate-deployment-secrets.yml",
+      "dest": ".github/workflows/generate-deployment-secrets.yml",
+      "user_managed": false
+    },
+    {
+      "src": ".github/workflows/dispatch-image-tfworkspaces.yml",
+      "dest": ".github/workflows/dispatch-image-tfworkspaces.yml",
+      "user_managed": false
+    },
+    {
+      "src": ".github/workflows/auto-generate-deployments.yml",
+      "dest": ".github/workflows/auto-generate-deployments.yml",
+      "user_managed": false
+    },
+    {
+      "src": "docs/TFWORKSPACES_README.md",
+      "dest": "tfworkspaces/README.md",
+      "user_managed": false
+    },
+    {
+      "src": "docs/SECRETS_README.md",
+      "dest": "secrets/README.md",
+      "user_managed": false
+    },
+    {
+      "src": "docs/KUBERNETES_README.md",
+      "dest": "kubernetes/README.md",
+      "user_managed": false
+    },
+    {
+      "src": "docs/README.md",
+      "dest": "README.md",
+      "user_managed": false
+    },
+    {
+      "src": ".github/hydrate_k8s_config.yaml",
+      "dest": ".github/hydrate_k8s_config.yaml",
+      "user_managed": true
+    },
+    {
+      "src": ".github/hydrate_tfworkspaces_config.yaml",
+      "dest": ".github/hydrate_tfworkspaces_config.yaml",
+      "user_managed": true
+    },
+    {
+      "src": ".gitkeep",
+      "dest": ".gitkeep",
+      "user_managed": false,
+      "target_branch": "deployment"
+    },
+    {
+      "src": ".gitkeep",
+      "dest": "kubernetes/.gitkeep",
+      "user_managed": false,
+      "target_branch": "deployment"
+    },
+    {
+      "src": ".gitkeep",
+      "dest": "secrets/.gitkeep",
+      "user_managed": false,
+      "target_branch": "deployment"
+    },
+    {
+      "src": ".gitkeep",
+      "dest": "tfworkspaces/.gitkeep",
+      "user_managed": false,
+      "target_branch": "deployment"
+    },
+    {
+      "src": ".github/workflows/summarize-changes.yml",
+      "dest": ".github/workflows/summarize-changes.yml",
+      "user_managed": false,
+      "target_branch": "deployment"
+    }
+  ],
+  "description": "The `state_repo_apps` feature installs GitHub Actions workflows that manage an application state repository, enabling three types of deployments:",
+  "version": "3.10.0"
+}
