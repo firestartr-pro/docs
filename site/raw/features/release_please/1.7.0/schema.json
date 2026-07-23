@@ -1,0 +1,53 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "release_please args",
+  "type": "object",
+  "properties": {
+    "feature_name": {
+      "const": "release_please"
+    },
+    "release_type": {
+      "type": "string",
+      "description": "The type of release to use (e.g., node, python, go).",
+      "default": "node",
+      "examples": [
+        "node"
+      ]
+    },
+    "release_please_config_file": {
+      "type": "string",
+      "description": "The path to the release-please configuration file.",
+      "default": "release-please-config.json",
+      "examples": [
+        "release-please-config.json"
+      ]
+    },
+    "release_please_manifest_file": {
+      "type": "string",
+      "description": "The path to the release-please manifest file.",
+      "default": ".release-please-manifest.json",
+      "examples": [
+        ".release-please-manifest.json"
+      ]
+    },
+    "release_please_generate_rolling_tag": {
+      "type": "string",
+      "description": "Whether to generate a rolling tag for releases.",
+      "default": "false",
+      "examples": [
+        "false"
+      ]
+    },
+    "release_please_rolling_tag_name_pattern": {
+      "type": "string",
+      "description": "The pattern for the rolling tag name.",
+      "default": "${release/*\\//}-v${major}",
+      "examples": [
+        "${release/*\\//}-v${major}"
+      ]
+    }
+  },
+  "fileManifest": [],
+  "description": "This repository is managed with [**release-please**](https://github.com/googleapis/release-please), a tool that automates the creation of release PRs and GitHub tags based on [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/).",
+  "version": "1.7.0"
+}
