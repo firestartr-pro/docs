@@ -1,0 +1,24 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "tech_docs args",
+  "type": "object",
+  "properties": {
+    "feature_name": {
+      "const": "tech_docs"
+    }
+  },
+  "fileManifest": [
+    {
+      "src": "mkdocs.yaml",
+      "dest": "mkdocs.yaml",
+      "user_managed": true
+    },
+    {
+      "src": "docs/README.md",
+      "dest": "docs/index.md",
+      "user_managed": true
+    }
+  ],
+  "description": "no description",
+  "version": "0.11.0"
+}
