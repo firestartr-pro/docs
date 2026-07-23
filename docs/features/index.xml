@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Firestartr Documentation</title><link>https://docs.firestartr.dev/docs/features/</link><description>Recent content on Firestartr Documentation</description><generator>Hugo</generator><language>en-us</language><atom:link href="https://docs.firestartr.dev/docs/features/index.xml" rel="self" type="application/rss+xml"/><item><title/><link>https://docs.firestartr.dev/docs/features/cloudfront_s3_build_and_deploy/CHANGELOG/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.firestartr.dev/docs/features/cloudfront_s3_build_and_deploy/CHANGELOG/</guid><description>&lt;h1 id="changelog"&gt;Changelog&lt;a class="anchor" href="#changelog"&gt;#&lt;/a&gt;&lt;/h1&gt;
+&lt;h2 id="030-2026-07-22"&gt;&lt;a href="https://github.com/prefapp/features/compare/cloudfront_s3_build_and_deploy-v0.2.1...cloudfront_s3_build_and_deploy-v0.3.0"&gt;0.3.0&lt;/a&gt; (2026-07-22)&lt;a class="anchor" href="#030-2026-07-22"&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id="features"&gt;Features&lt;a class="anchor" href="#features"&gt;#&lt;/a&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;add json-schema per feature (&lt;a href="https://github.com/prefapp/features/issues/1131"&gt;#1131&lt;/a&gt;) (&lt;a href="https://github.com/prefapp/features/commit/2c3e1c9bbfc402c170448581e52a326e744270f0"&gt;2c3e1c9&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="021-2026-05-25"&gt;&lt;a href="https://github.com/prefapp/features/compare/cloudfront_s3_build_and_deploy-v0.2.0...cloudfront_s3_build_and_deploy-v0.2.1"&gt;0.2.1&lt;/a&gt; (2026-05-25)&lt;a class="anchor" href="#021-2026-05-25"&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id="bug-fixes"&gt;Bug Fixes&lt;a class="anchor" href="#bug-fixes"&gt;#&lt;/a&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;cloudfront_s3_build_and_deploy:&lt;/strong&gt; added risk controls and updated … (&lt;a href="https://github.com/prefapp/features/issues/1008"&gt;#1008&lt;/a&gt;) (&lt;a href="https://github.com/prefapp/features/commit/4d4f91b008081c53b09852770ab33a7e8121ce01"&gt;4d4f91b&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="020-2026-03-12"&gt;&lt;a href="https://github.com/prefapp/features/compare/cloudfront_s3_build_and_deploy-v0.1.0...cloudfront_s3_build_and_deploy-v0.2.0"&gt;0.2.0&lt;/a&gt; (2026-03-12)&lt;a class="anchor" href="#020-2026-03-12"&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id="features-1"&gt;Features&lt;a class="anchor" href="#features-1"&gt;#&lt;/a&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;add new build and dispatch to cloudfront feature (&lt;a href="https://github.com/prefapp/features/issues/837"&gt;#837&lt;/a&gt;) (&lt;a href="https://github.com/prefapp/features/commit/2d64659abed459ac30d9532edbfa3542e4b690e1"&gt;2d64659&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;</description></item></channel></rss>
