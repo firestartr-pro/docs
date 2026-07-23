@@ -1,0 +1,39 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "firestartr_repo args",
+  "type": "object",
+  "properties": {
+    "feature_name": {
+      "const": "firestartr_repo"
+    }
+  },
+  "fileManifest": [
+    {
+      "src": "apps/.gitkeep",
+      "dest": "apps/.gitkeep",
+      "user_managed": false
+    },
+    {
+      "src": "docker_registries/.gitkeep",
+      "dest": "docker_registries/.gitkeep",
+      "user_managed": false
+    },
+    {
+      "src": "platforms/.gitkeep",
+      "dest": "platforms/.gitkeep",
+      "user_managed": false
+    },
+    {
+      "src": "providers/.gitkeep",
+      "dest": "providers/.gitkeep",
+      "user_managed": false
+    },
+    {
+      "src": "validations/.gitkeep",
+      "dest": "validations/.gitkeep",
+      "user_managed": false
+    }
+  ],
+  "description": "no description",
+  "version": "1.2.0"
+}
