@@ -1,0 +1,44 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "state_github args",
+  "type": "object",
+  "properties": {
+    "feature_name": {
+      "const": "state_github"
+    }
+  },
+  "fileManifest": [
+    {
+      "src": ".config/resources/defaults_github_group.yaml",
+      "dest": ".config/resources/defaults_github_group.yaml",
+      "user_managed": true
+    },
+    {
+      "src": ".config/resources/defaults_github_membership.yaml",
+      "dest": ".config/resources/defaults_github_membership.yaml",
+      "user_managed": true
+    },
+    {
+      "src": ".config/resources/defaults_github_repository.yaml",
+      "dest": ".config/resources/defaults_github_repository.yaml",
+      "user_managed": true
+    },
+    {
+      "src": ".config/branch_strategies.yaml",
+      "dest": ".config/branch_strategies.yaml",
+      "user_managed": true
+    },
+    {
+      "src": ".config/expander_branch_strategies.yaml",
+      "dest": ".config/expander_branch_strategies.yaml",
+      "user_managed": true
+    },
+    {
+      "src": ".github/workflows/auto-merge.yaml",
+      "dest": ".github/workflows/auto-merge.yaml",
+      "user_managed": false
+    }
+  ],
+  "description": "no description",
+  "version": "1.3.0"
+}
