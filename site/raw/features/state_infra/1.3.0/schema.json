@@ -1,0 +1,24 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "state_infra args",
+  "type": "object",
+  "properties": {
+    "feature_name": {
+      "const": "state_infra"
+    }
+  },
+  "fileManifest": [
+    {
+      "src": ".config/.gitkeep",
+      "dest": ".config/.gitkeep",
+      "user_managed": false
+    },
+    {
+      "src": ".github/workflows/auto-merge.yaml",
+      "dest": ".github/workflows/auto-merge.yaml",
+      "user_managed": false
+    }
+  ],
+  "description": "no description",
+  "version": "1.3.0"
+}
