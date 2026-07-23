@@ -1,0 +1,265 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "build_and_dispatch_docker_images args",
+  "type": "object",
+  "properties": {
+    "feature_name": {
+      "const": "build_and_dispatch_docker_images"
+    },
+    "build_snapshots_branch": {
+      "type": "string",
+      "description": "The branch used for building snapshot Docker images.",
+      "default": [
+        "spec",
+        "repo",
+        "defaultBranch"
+      ],
+      "examples": [
+        "main"
+      ]
+    },
+    "auth_strategy": {
+      "type": "string",
+      "description": "The authentication strategy for container registries.",
+      "default": "azure_oidc",
+      "examples": [
+        "azure_oidc"
+      ]
+    },
+    "build_snapshots_filter": {
+      "type": "string",
+      "description": "The filter for snapshot builds (empty means all branches).",
+      "default": "",
+      "examples": [
+        ""
+      ]
+    },
+    "build_pre_releases_filter": {
+      "type": "string",
+      "description": "The filter for pre-release builds (empty means all branches).",
+      "default": "",
+      "examples": [
+        ""
+      ]
+    },
+    "build_releases_filter": {
+      "type": "string",
+      "description": "The filter for release builds (empty means all branches).",
+      "default": "",
+      "examples": [
+        ""
+      ]
+    },
+    "default_snapshots_flavors_filter": {
+      "type": "string",
+      "description": "The default filter for snapshot image flavors (glob pattern).",
+      "default": "*",
+      "examples": [
+        "*"
+      ]
+    },
+    "default_pre_releases_flavors_filter": {
+      "type": "string",
+      "description": "The default filter for pre-release image flavors (glob pattern).",
+      "default": "*",
+      "examples": [
+        "*"
+      ]
+    },
+    "default_releases_flavors_filter": {
+      "type": "string",
+      "description": "The default filter for release image flavors (glob pattern).",
+      "default": "*",
+      "examples": [
+        "*"
+      ]
+    },
+    "firestartr_config_repo": {
+      "type": "string",
+      "description": "The Firestartr configuration repository.",
+      "default": "${{ github.repository_owner }}/.firestartr",
+      "examples": [
+        "my-org/.firestartr"
+      ]
+    },
+    "make_dispatches_config_file_path": {
+      "type": "string",
+      "description": "The path to the make dispatches configuration file.",
+      "default": ".github/make_dispatches.yaml",
+      "examples": [
+        ".github/make_dispatches.yaml"
+      ]
+    },
+    "build_images_config_file_path": {
+      "type": "string",
+      "description": "The path to the build images configuration file.",
+      "default": ".github/build_images.yaml",
+      "examples": [
+        ".github/build_images.yaml"
+      ]
+    },
+    "apps_folder_path": {
+      "type": "string",
+      "description": "The path to the apps folder in the Firestartr configuration.",
+      "default": ".firestartr/apps",
+      "examples": [
+        ".firestartr/apps"
+      ]
+    },
+    "platform_folder_path": {
+      "type": "string",
+      "description": "The path to the platforms folder in the Firestartr configuration.",
+      "default": ".firestartr/platforms",
+      "examples": [
+        ".firestartr/platforms"
+      ]
+    },
+    "registries_folder_path": {
+      "type": "string",
+      "description": "The path to the docker registries folder in the Firestartr configuration.",
+      "default": ".firestartr/docker_registries",
+      "examples": [
+        ".firestartr/docker_registries"
+      ]
+    },
+    "trigger_filter_by_env_snapshot": {
+      "type": "string",
+      "description": "The environment filter for snapshot build triggers.",
+      "default": "dev",
+      "examples": [
+        "dev"
+      ]
+    },
+    "trigger_filter_by_env_pre_releases": {
+      "type": "string",
+      "description": "The environment filter for pre-release build triggers.",
+      "default": "pre",
+      "examples": [
+        "pre"
+      ]
+    },
+    "trigger_filter_by_env_releases": {
+      "type": "string",
+      "description": "The environment filter for release build triggers.",
+      "default": "pro",
+      "examples": [
+        "pro"
+      ]
+    },
+    "skip_commit_types": {
+      "type": "string",
+      "description": "A comma-separated list of commit types to skip when triggering builds.",
+      "default": "ci,docs,build,chore,test",
+      "examples": [
+        "ci,docs,build,chore,test"
+      ]
+    },
+    "push_paths_ignore": {
+      "type": "string",
+      "description": "Path patterns to ignore for push events.",
+      "default": "- .github/**\n      - docs/**",
+      "examples": [
+        "- .github/**\n      - docs/**"
+      ]
+    },
+    "build_images_vars": {
+      "type": "string",
+      "description": "Build variables for Docker images.",
+      "default": [],
+      "examples": [
+        [
+          "MY_VAR=value"
+        ]
+      ]
+    },
+    "build_images_secrets": {
+      "type": "string",
+      "description": "Build secrets for Docker images.",
+      "default": [],
+      "examples": [
+        [
+          "MY_SECRET=value"
+        ]
+      ]
+    }
+  },
+  "fileManifest": [
+    {
+      "src": ".github/workflows/build_docker_pre-releases.yaml",
+      "dest": ".github/workflows/build_docker_pre-releases.yaml",
+      "user_managed": false
+    },
+    {
+      "src": ".github/workflows/build_docker_releases.yaml",
+      "dest": ".github/workflows/build_docker_releases.yaml",
+      "user_managed": false
+    },
+    {
+      "src": ".github/workflows/build_docker_snapshots.yaml",
+      "dest": ".github/workflows/build_docker_snapshots.yaml",
+      "user_managed": false
+    },
+    {
+      "src": ".github/workflows/make_dispatches.yaml",
+      "dest": ".github/workflows/make_dispatches.yaml",
+      "user_managed": false
+    },
+    {
+      "src": ".github/workflows/trigger_deployment.yaml",
+      "dest": ".github/workflows/trigger_deployment.yaml",
+      "user_managed": false
+    },
+    {
+      "src": ".github/workflows/trigger_dispatch_on_pre-releases.yaml",
+      "dest": ".github/workflows/trigger_dispatch_on_pre-releases.yaml",
+      "user_managed": false
+    },
+    {
+      "src": ".github/workflows/trigger_dispatch_on_releases.yaml",
+      "dest": ".github/workflows/trigger_dispatch_on_releases.yaml",
+      "user_managed": false
+    },
+    {
+      "src": ".github/workflows/trigger_dispatch_on_snapshot.yaml",
+      "dest": ".github/workflows/trigger_dispatch_on_snapshot.yaml",
+      "user_managed": false
+    },
+    {
+      "src": ".github/workflows/verify_build_and_dispatch_docker_images_config_files.yaml",
+      "dest": ".github/workflows/verify_build_and_dispatch_docker_images_config_files.yaml",
+      "user_managed": false
+    },
+    {
+      "src": ".github/workflows/build_images_reusable.yaml",
+      "dest": ".github/workflows/build_images_reusable.yaml",
+      "user_managed": false
+    },
+    {
+      "src": ".github/workflows/build_images_summary_reusable.yaml",
+      "dest": ".github/workflows/build_images_summary_reusable.yaml",
+      "user_managed": false
+    },
+    {
+      "src": ".github/make_dispatches.yaml",
+      "dest": ".github/make_dispatches.yaml",
+      "user_managed": true
+    },
+    {
+      "src": ".github/build_images.yaml",
+      "dest": ".github/build_images.yaml",
+      "user_managed": true
+    },
+    {
+      "src": "docs/README.md",
+      "dest": ".github/BUILD_AND_DISPATCH_DOCKER_IMAGES_README.md",
+      "user_managed": false
+    },
+    {
+      "src": ".github/.yamllint.conf",
+      "dest": ".github/.yamllint.conf",
+      "user_managed": true
+    }
+  ],
+  "description": "no description",
+  "version": "5.5.0"
+}
