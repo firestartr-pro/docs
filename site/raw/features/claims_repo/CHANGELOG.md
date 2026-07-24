@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.4.0](https://github.com/prefapp/features/compare/claims_repo-v2.3.0...claims_repo-v2.4.0) (2026-07-24)
+
+
+### Features
+
+* **claims_repo:** add claims map generator ([#1136](https://github.com/prefapp/features/issues/1136)) ([92f0b0a](https://github.com/prefapp/features/commit/92f0b0abed59c3203de6d1e11b4733f479605393))
+
 ## [2.3.0](https://github.com/prefapp/features/compare/claims_repo-v2.2.0...claims_repo-v2.3.0) (2026-07-22)
 
 
