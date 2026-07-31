@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.5.0](https://github.com/prefapp/features/compare/claims_repo-v2.4.0...claims_repo-v2.5.0) (2026-07-31)
+
+
+### Features
+
+* **claims_repo:** hydrate variant CRs as separate PRs ([#1137](https://github.com/prefapp/features/issues/1137)) ([90f0bf4](https://github.com/prefapp/features/commit/90f0bf43d94b14445943a202bb7b76e11b0aa8ed))
+
 ## [2.4.0](https://github.com/prefapp/features/compare/claims_repo-v2.3.0...claims_repo-v2.4.0) (2026-07-24)
 
 
