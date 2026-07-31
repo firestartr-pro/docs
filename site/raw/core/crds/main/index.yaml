@@ -1690,6 +1690,36 @@ spec:
                         type: boolean
                       requireConversationResolution:
                         type: boolean
+                      bypassPullRequestAllowances:
+                        type: object
+                        properties:
+                          apps:
+                            type: array
+                            items:
+                              type: string
+                          teams:
+                            type: array
+                            items:
+                              type: string
+                          users:
+                            type: array
+                            items:
+                              type: string
+                      pushAllowances:
+                        type: object
+                        properties:
+                          apps:
+                            type: array
+                            items:
+                              type: string
+                          teams:
+                            type: array
+                            items:
+                              type: string
+                          users:
+                            type: array
+                            items:
+                              type: string
                     required:
                       - branch
                 writeConnectionSecretToRef:
