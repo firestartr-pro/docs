@@ -1335,6 +1335,13 @@
                 "module": {
                   "type": "string"
                 },
+                "variants": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "firestartr.dev://terraform/TerraformProviderVariant"
+                  },
+                  "description": "variant clones of this workspace — stripped before parent claim validation"
+                },
                 "context": {
                   "type": "object",
                   "properties": {
@@ -1374,6 +1381,109 @@
                 "name"
               ]
             }
+          ]
+        },
+        "TerraformProviderVariantOverride": {
+          "$id": "firestartr.dev://terraform/TerraformProviderVariantOverride",
+          "description": "Override fields for a variant of a TFWorkspaceClaim",
+          "type": "object",
+          "properties": {
+            "values": {
+              "type": "object",
+              "additionalProperties": true,
+              "description": "override values"
+            },
+            "context": {
+              "type": "object",
+              "properties": {
+                "providers": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string"
+                      }
+                    },
+                    "additionalProperties": false
+                  }
+                },
+                "backend": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    }
+                  },
+                  "additionalProperties": false
+                }
+              },
+              "additionalProperties": false,
+              "description": "override context"
+            },
+            "files": {
+              "$ref": "firestartr.dev://terraform/TerraformProviderFiles"
+            },
+            "policy": {
+              "type": "string",
+              "enum": [
+                "apply",
+                "create-only",
+                "create-update-only",
+                "full-control",
+                "observe",
+                "observe-only"
+              ]
+            },
+            "tfStateKey": {
+              "$ref": "firestartr.dev://common/TerraformStateKey"
+            },
+            "sync": {
+              "type": "object",
+              "properties": {
+                "enabled": {
+                  "type": "boolean"
+                },
+                "period": {
+                  "type": "string",
+                  "pattern": "^[0-9]+[smhd]$"
+                },
+                "schedule": {
+                  "type": "string"
+                },
+                "schedule_timezone": {
+                  "type": "string"
+                },
+                "policy": {
+                  "type": "string"
+                }
+              },
+              "additionalProperties": false
+            },
+            "valuesSchema": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false
+        },
+        "TerraformProviderVariant": {
+          "$id": "firestartr.dev://terraform/TerraformProviderVariant",
+          "description": "A single variant of a TFWorkspace",
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "maxLength": 10,
+              "description": "shorthand suffix — composed with main tf name to form the final CR name"
+            },
+            "overrides": {
+              "$ref": "firestartr.dev://terraform/TerraformProviderVariantOverride"
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "name",
+            "overrides"
           ]
         }
       }
