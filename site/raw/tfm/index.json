@@ -367,8 +367,8 @@
     {
       "name": "github-org-settings",
       "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/github-org-settings/README.md",
-      "version": "unknown",
-      "source": "unknown"
+      "version": "0.1.0",
+      "source": "git::https://github.com/prefapp/tfm.git//modules/github-org-settings?ref=github-org-settings-v0.1.0"
     },
     {
       "name": "github-org-webhook",
