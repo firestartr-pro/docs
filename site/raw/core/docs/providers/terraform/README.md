@@ -4,6 +4,9 @@ This section contains documentation for the Firestartr Pro Terraform provider.
 
 ## Features
 
+### Workspace Variants
+- [TFWorkspaceClaim Variants](./variants.md) - Declare and manage variant Terraform workspaces derived from a single parent claim — ideal for disaster recovery and multi-region deployments.
+
 ### Workspace Synchronization
 - [Terraform Workspace Policies](./workspace-policies.md) - Configure the policies and operations in Terraform workspaces.
 - [Terraform Workspace Sync](./workspace-sync.md) - Configure synchronization for Terraform workspaces.
