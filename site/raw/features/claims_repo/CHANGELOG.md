@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.5.2](https://github.com/prefapp/features/compare/claims_repo-v2.5.1...claims_repo-v2.5.2) (2026-08-04)
+
+
+### Bug Fixes
+
+* **claims_repo:** fail hydrate workflow with clear error when claim doesn't exist ([#1125](https://github.com/prefapp/features/issues/1125)) ([f6117dd](https://github.com/prefapp/features/commit/f6117dd193cdabe7c7c0e8306e4122737bdfd585))
+
 ## [2.5.1](https://github.com/prefapp/features/compare/claims_repo-v2.5.0...claims_repo-v2.5.1) (2026-08-04)
 
 
