@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.5.1](https://github.com/prefapp/features/compare/claims_repo-v2.5.0...claims_repo-v2.5.1) (2026-08-04)
+
+
+### Bug Fixes
+
+* Indentation regression ([#1186](https://github.com/prefapp/features/issues/1186)) ([622e20d](https://github.com/prefapp/features/commit/622e20d8f81a33116873be522551ee6653e8a486))
+* Stale file reliabiltiy ([#1179](https://github.com/prefapp/features/issues/1179)) ([2fb8550](https://github.com/prefapp/features/commit/2fb8550a0d3b61c4c7bf9b59349444429c9f7a3a))
+
 ## [2.5.0](https://github.com/prefapp/features/compare/claims_repo-v2.4.0...claims_repo-v2.5.0) (2026-07-31)
 
 
