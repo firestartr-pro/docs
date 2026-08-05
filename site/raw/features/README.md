@@ -44,8 +44,13 @@ Add it to your repository's feature list with the following configuration:
 │   │   ├── templates/             # Mustache templates go here
 │   │   ├── config.yaml            # Feature definition
 │   │   ├── package.json
-│   │   └── README.md
+│   │   ├── README.md
+│   │   ├── CONTEXT.md             # Package glossary (context-modeling)
+│   │   └── docs/adr/              # Package-scoped architecture decisions
 │   └── another-feature/
+├── CONTEXT-MAP.md                 # Points at each package's CONTEXT.md
+├── docs/adr/                      # System-wide architecture decisions
+├── AGENTS.md                      # Agent instructions (design memory + workflow)
 ├── .release-please-manifest.json
 ├── release-please-config.json
 ├── .github/

@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.5.3](https://github.com/prefapp/features/compare/claims_repo-v2.5.2...claims_repo-v2.5.3) (2026-08-05)
+
+
+### Bug Fixes
+
+* **claims_repo:** always wait for wet-pr checks and opt-in claim-verify ([#1175](https://github.com/prefapp/features/issues/1175)) ([b572ab2](https://github.com/prefapp/features/commit/b572ab2aede30a14400f0a6b30d958aa028fb5dc))
+
 ## [2.5.2](https://github.com/prefapp/features/compare/claims_repo-v2.5.1...claims_repo-v2.5.2) (2026-08-04)
 
 
