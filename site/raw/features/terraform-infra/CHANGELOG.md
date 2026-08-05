@@ -1,5 +1,16 @@
 # Changelog
 
+## [3.0.0](https://github.com/prefapp/features/compare/terraform-infra-v2.3.0...terraform-infra-v3.0.0) (2026-08-05)
+
+
+### ⚠ BREAKING CHANGES
+
+* **terraform-infra:** add copy workspaces and ref-sync ([#1170](https://github.com/prefapp/features/issues/1170))
+
+### Features
+
+* **terraform-infra:** add copy workspaces and ref-sync ([#1170](https://github.com/prefapp/features/issues/1170)) ([8cbd3d4](https://github.com/prefapp/features/commit/8cbd3d4d8e010a302687cc66c934a84d1e937ed1))
+
 ## [2.3.0](https://github.com/prefapp/features/compare/terraform-infra-v2.2.0...terraform-infra-v2.3.0) (2026-07-22)
 
 

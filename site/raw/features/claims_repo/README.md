@@ -2,6 +2,17 @@
 
 This feature installs the workflows necessary for manually hydrating and deleting GitHub and TFWorkspace claims, plus two additional workflows to import manually created GitHub resources into GitHub claims and a `pr-verify` workflow.
 
+## Local claims runner
+
+Use the provided `docker-compose.yaml` when you want to run Firestartr CLI commands against a local checkout of the claims repo.
+
+1. Set the image tag you want to run, if needed, with `FIRESTART_CLI_IMAGE_TAG`.
+2. Set `TF_CMD` to the command you want the container to execute.
+3. Set `CLAIM` to the TFWorkspace claim name you want to target.
+4. Run `docker compose up` from the claims repo root.
+
+The compose service mounts your local claims repo checkout (including the `claims/` directory) plus your `~/.kube` and `~/.azure` directories so the CLI can reach local credentials and repository files. The image comes from `ghcr.io/prefapp/gitops-k8s`, so picking the right tag matters when you need a specific CLI build or plan behavior.
+
 ## Hydrating claims
 
 1. Create a PR with the desired changes. Check the changes that have been commited are the changes you've actually done.

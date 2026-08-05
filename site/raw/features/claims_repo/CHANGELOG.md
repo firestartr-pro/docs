@@ -1,5 +1,20 @@
 # Changelog
 
+## [2.6.1](https://github.com/prefapp/features/compare/claims_repo-v2.6.0...claims_repo-v2.6.1) (2026-08-05)
+
+
+### Bug Fixes
+
+* **claims_repo:** document local runner ([#1199](https://github.com/prefapp/features/issues/1199)) ([ccaa52f](https://github.com/prefapp/features/commit/ccaa52fa09af8b2e54ba10b8b02489b46c25b8c3))
+* **claims_repo:** skip claims-map regeneration when no claim files change ([#1201](https://github.com/prefapp/features/issues/1201)) ([a6d3107](https://github.com/prefapp/features/commit/a6d31079bb3c8c40057c5e0557094aa290c9f878))
+
+## [2.6.0](https://github.com/prefapp/features/compare/claims_repo-v2.5.3...claims_repo-v2.6.0) (2026-08-05)
+
+
+### Features
+
+* **claims_repo:** add unprovision-claim orchestrator workflow ([#1196](https://github.com/prefapp/features/issues/1196)) ([71c7d61](https://github.com/prefapp/features/commit/71c7d61cb93c05d79b870e3883cf44606fe0395c))
+
 ## [2.5.3](https://github.com/prefapp/features/compare/claims_repo-v2.5.2...claims_repo-v2.5.3) (2026-08-05)
 
 
