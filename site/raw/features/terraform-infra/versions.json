@@ -1,5 +1,10 @@
 [
   {
+    "version": "3.0.0",
+    "date": "2026-08-05T10:58:03+02:00",
+    "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/features/terraform-infra/3.0.0/schema.json"
+  },
+  {
     "version": "2.3.0",
     "date": "2026-07-22T17:54:22+02:00",
     "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/features/terraform-infra/2.3.0/schema.json"
