@@ -90,6 +90,10 @@ All build workflows share the following inputs:
 
 - `from`: point of the code history from which the image will be built. Can be a short or long commit SHA, a branch name or a tag name
 - `flavors`: which flavors to build. Each workflow will only look for flavors in their respective section (i.e., build_docker_releases will only build flavors from `releases`, while the other two will only build flavors from `snapshots`). Can be a single flavor, a list of comma separated flavors (spaces are trimmed) or \*. \* builds all flavors that are set as auto in `build_images.yaml` (see [Configuration](#configuration))
+- `dereference_enabled`: boolean input that enables dereference of tags when building images. Defaults to `true` in `build_docker_snapshots` and to the value of the `prereleases_dereference_enabled` feature arg (default: `true`) in `build_docker_pre-releases`.
+
+> [!WARNING]
+> Enabling `prereleases_dereference_enabled` may cause image tags to be overwritten if your snapshots/pre-releases and releases share the same registry. Keep the `DOCKER_REGISTRY_SNAPSHOTS` and `DOCKER_REGISTRY_RELEASES` vars pointing at separate registries when enabling this parameter.
 
 `build_docker_snapshots` also includes this workflow-dispatch-only input:
 

@@ -1,5 +1,19 @@
 # Changelog
 
+## [5.6.1](https://github.com/prefapp/features/compare/build_and_dispatch_docker_images-v5.6.0...build_and_dispatch_docker_images-v5.6.1) (2026-08-10)
+
+
+### Bug Fixes
+
+* Default value for `prereleases_dereference_enabled` ([#1220](https://github.com/prefapp/features/issues/1220)) ([3a55aa7](https://github.com/prefapp/features/commit/3a55aa7073f8ffeaf92333fa839de3a163ae8fbf))
+
+## [5.6.0](https://github.com/prefapp/features/compare/build_and_dispatch_docker_images-v5.5.0...build_and_dispatch_docker_images-v5.6.0) (2026-08-10)
+
+
+### Features
+
+* Add new dereference_enabled checkbox for build workflows ([#1207](https://github.com/prefapp/features/issues/1207)) ([3a30536](https://github.com/prefapp/features/commit/3a30536048d7d6c6c3f188bc89c18dee5ba13dcc))
+
 ## [5.5.0](https://github.com/prefapp/features/compare/build_and_dispatch_docker_images-v5.4.3...build_and_dispatch_docker_images-v5.5.0) (2026-07-22)
 
 

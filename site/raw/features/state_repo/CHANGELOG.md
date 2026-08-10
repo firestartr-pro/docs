@@ -1,5 +1,19 @@
 # Changelog
 
+## [2.6.1](https://github.com/prefapp/features/compare/state_repo-v2.6.0...state_repo-v2.6.1) (2026-08-07)
+
+
+### Bug Fixes
+
+* set correct paths ([#1213](https://github.com/prefapp/features/issues/1213)) ([f71d06f](https://github.com/prefapp/features/commit/f71d06fa358abcfb5470110fc1ffb23d4cf30a3f))
+
+## [2.6.0](https://github.com/prefapp/features/compare/state_repo-v2.5.0...state_repo-v2.6.0) (2026-08-07)
+
+
+### Features
+
+* add upload file for large diffs ([#1211](https://github.com/prefapp/features/issues/1211)) ([6cb15ab](https://github.com/prefapp/features/commit/6cb15ab8659d4181c68b7a08b9ea1a0a28fb45d8))
+
 ## [2.5.0](https://github.com/prefapp/features/compare/state_repo-v2.4.0...state_repo-v2.5.0) (2026-07-22)
 
 
