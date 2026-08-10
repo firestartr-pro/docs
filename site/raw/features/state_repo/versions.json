@@ -1,5 +1,10 @@
 [
   {
+    "version": "2.6.2",
+    "date": "2026-08-10T14:40:46+02:00",
+    "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/features/state_repo/2.6.2/schema.json"
+  },
+  {
     "version": "2.6.1",
     "date": "2026-08-07T15:19:17+02:00",
     "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/features/state_repo/2.6.1/schema.json"
