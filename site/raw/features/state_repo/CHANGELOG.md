@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.6.2](https://github.com/prefapp/features/compare/state_repo-v2.6.1...state_repo-v2.6.2) (2026-08-10)
+
+
+### Bug Fixes
+
+* update default state-repo-update-image sha versions ([#1222](https://github.com/prefapp/features/issues/1222)) ([e713089](https://github.com/prefapp/features/commit/e7130891a2636e74193e7baf647d00da19084146))
+
 ## [2.6.1](https://github.com/prefapp/features/compare/state_repo-v2.6.0...state_repo-v2.6.1) (2026-08-07)
 
 
