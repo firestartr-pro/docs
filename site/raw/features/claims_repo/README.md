@@ -127,3 +127,9 @@ The same claim types listed for [hydrating](#hydrating-claims) are available for
 - `state_infra_repo`: the name of the repository where the Terraform related CRs are stored. Defaults to `state-infra`
 - `state_secrets_repo`: the name of the repository where the ExternalSecrets related CRs are stored. Defaults to `state-secrets`
 - `catalog_repo`: the name of the repository where the Backstage catalog related CRs are stored. Defaults to `catalog`
+
+## CLI version requirements
+
+The workflows in this feature rely on the Firestartr CLI (`@firestartr/cli`) to render and import claims. Before running, they check that the CLI version pinned by the `FIRESTARTR_CLI_VERSION` repository variable satisfies the `>=2.9.0` constraint. Set that variable to a release that satisfies the constraint. Snapshot builds (non-canonical semver versions) can skip the check via the `--ignore-snapshots` flag.
+
+The check can be tuned with the `cli_version_constraint` argument (the minimum CLI version, defaults to `>=2.9.0`) and disabled entirely by setting `cli_version_check_enabled` to `false` (defaults to `true`).

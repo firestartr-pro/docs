@@ -183,6 +183,31 @@ If your feature requires specific CR fields not covered by the generic fixture, 
 
 ---
 
+## Schema promotion
+
+Each feature package has a `schema.json` that documents its user-feedable arguments and file manifest. It is generated from `config.yaml` with:
+
+```bash
+pnpm generate:schemas
+```
+
+and kept in sync by the `pr_verify` workflow.
+
+On every feature release, the **Promote Schemas to Docs Repo** workflow promotes the generated schemas to the objective docs repository `{{| DOCS_ORG |}}/{{| DOCS_REPO_NAME |}}` (defaults: `${{ github.repository_owner }}/docs`). For each feature and version it writes:
+
+- `site/raw/features/<feature>/<version>/schema.json`
+- an updated `site/raw/features/versions.json`
+
+### Arguments
+
+- `docs_org`: the GitHub organization that owns the docs repository (default: `${{ github.repository_owner }}`).
+- `docs_repo_name`: the repository that receives the generated feature schemas (default: `docs`).
+- `disable_promote_schemas`: set it to disable the schema promotion workflow.
+
+The workflow authenticates with a GitHub App that has write access to the docs repository. Configure it in the repository settings with the `FIRESTARTER_DOCS_APP_ID` variable and the `FIRESTARTR_DOCS_APP_PEM_FILE` secret.
+
+---
+
 ## Links
 
 - [Firestartr Documentation](https://docs.firestartr.dev)

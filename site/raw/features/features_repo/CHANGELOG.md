@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.0](https://github.com/prefapp/features/compare/features_repo-v1.1.0...features_repo-v1.2.0) (2026-08-11)
+
+
+### Features
+
+* feature_repo machinery generalization ([#1177](https://github.com/prefapp/features/issues/1177)) ([fc85e44](https://github.com/prefapp/features/commit/fc85e44941748b32c5e0adcb15f4eb5e2df4eef5))
+
 ## [1.1.0](https://github.com/prefapp/features/compare/features_repo-v1.0.1...features_repo-v1.1.0) (2026-07-22)
 
 

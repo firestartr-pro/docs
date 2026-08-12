@@ -13,6 +13,12 @@ This repository stores the rendered Custom Resources (CRs) that represent the or
 
 - **Hydrate** (`hydrate.yaml`) - Renders all claims into catalog CRs and opens a pull request with the changes. Runs on a schedule (configurable via `crontab` argument, defaults to every 6 hours) and can also be triggered manually. Supports automatic merging via the `AUTO_MERGE` control file.
 
+## CLI Version Requirements
+
+This feature relies on the Firestartr CLI (`@firestartr/cli`) to render claims. The workflows check the CLI version pinned by the `FIRESTARTR_CLI_VERSION` repository variable against the `>=2.9.0` constraint before running; set it to a release that satisfies the constraint. Snapshot builds (non-canonical semver versions) can skip the check via the `--ignore-snapshots` flag.
+
+The check can be tuned with the `cli_version_constraint` argument (the minimum CLI version, defaults to `>=2.9.0`) and disabled entirely by setting `cli_version_check_enabled` to `false` (defaults to `true`).
+
 ## Auto-Merge Hydration PRs
 
 Hydration pull-requests can be automatically merged by adding an empty **`AUTO_MERGE`** file to the **root** of this repository, in the **default branch**.

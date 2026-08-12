@@ -130,6 +130,8 @@ You can add logic with conditionals:
 
 ## Testing Features
 
+For testing features against the renderer source locally with Docker (no rebuilds), see [docs/local-testing.md](docs/local-testing.md).
+
 ### Using generic-fixtures/cr.yaml
 
 The `generic-fixtures/cr.yaml` file provides a reusable Custom Resource (CR) fixture for testing feature rendering. This fixture contains a complete example of a `FirestartrGithubRepository` resource with all common fields populated.
@@ -180,6 +182,17 @@ If your feature requires specific CR fields not covered by the generic fixture, 
      - name: custom-test
        cr: "./__tests__/custom-cr.yaml"
    ```
+
+---
+
+## Agent Skills
+
+This repo includes two agent skills under `.agents/skills/`:
+
+| Skill | Description |
+|-------|-------------|
+| `maintain-feature-schema` | Generate or enrich per-feature JSON Schemas (`schema.json`) from `config.yaml`, `package.json`, and `README.md`, adding descriptions and examples to every property. Run `pnpm generate:schemas` then `pnpm test:schemas` to sync. |
+| `rollout-feature` | End-to-end test or debug a feature against a live Firestartr platform. Test mode does a read-only verify; loop mode does edit-fix-retry up to 5 iterations, auto-committing template fixes. |
 
 ---
 
