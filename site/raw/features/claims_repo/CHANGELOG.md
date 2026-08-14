@@ -1,5 +1,19 @@
 # Changelog
 
+## [2.7.0](https://github.com/prefapp/features/compare/claims_repo-v2.6.1...claims_repo-v2.7.0) (2026-08-14)
+
+
+### Features
+
+* Add CLI version check to features ([#1183](https://github.com/prefapp/features/issues/1183)) ([66bc1fd](https://github.com/prefapp/features/commit/66bc1fdffa5d2e5f90fd330c12412f39fce42dee))
+* feature_repo machinery generalization ([#1177](https://github.com/prefapp/features/issues/1177)) ([fc85e44](https://github.com/prefapp/features/commit/fc85e44941748b32c5e0adcb15f4eb5e2df4eef5))
+
+
+### Bug Fixes
+
+* **`claims_repo`:** Show links for created PRs even when a step fails ([#1205](https://github.com/prefapp/features/issues/1205)) ([1c83de9](https://github.com/prefapp/features/commit/1c83de9f97bae9a0d91995dcba3c7169a7234dcc))
+* **claims_repo:** distinguish render failure from claim not found in hydrate workflows ([#1218](https://github.com/prefapp/features/issues/1218)) ([ba26caa](https://github.com/prefapp/features/commit/ba26caa24b07519f4e9ba5fb0aa3d6592bef81db))
+
 ## [2.6.1](https://github.com/prefapp/features/compare/claims_repo-v2.6.0...claims_repo-v2.6.1) (2026-08-05)
 
 

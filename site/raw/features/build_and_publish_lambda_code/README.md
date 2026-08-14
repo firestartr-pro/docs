@@ -94,7 +94,7 @@ metadata:
 spec:
   feature: build_and_publish_lambda_code
   variables:
-    s3_bucket: "zepo-lambda-sources"
+    s3_bucket: "my-company-lambda-artifacts"
     # Must match the exact uppercase GitHub repository variable name.
     aws_oidc_s3_role_var_name: "AWS_OIDC_S3_ROLE"
     aws_region: "eu-west-3"
@@ -108,7 +108,7 @@ spec:
 
 | Variable | Default | Description |
 |---|---|---|
-| `s3_bucket` | `zepo-lambda-sources` | S3 bucket for Lambda zip artifacts |
+| `s3_bucket` | Required | S3 bucket for Lambda zip artifacts |
 | `aws_oidc_s3_role_var_name` | `AWS_OIDC_S3_ROLE` | Exact uppercase GitHub Actions repository variable name containing the IAM role ARN for OIDC authentication |
 | `aws_region` | `eu-west-3` | AWS region of the S3 bucket |
 | `handler_path` | `src/handler.ts` | esbuild entry point; applied to all services |

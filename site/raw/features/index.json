@@ -16,7 +16,7 @@
     },
     {
       "name": "build_and_publish_lambda_code",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "files": [
         {
           "name": "README.md",
@@ -58,7 +58,7 @@
     },
     {
       "name": "claims_repo",
-      "version": "2.6.1",
+      "version": "2.7.0",
       "files": [
         {
           "name": "README.md",
