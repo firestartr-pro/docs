@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.8.0](https://github.com/prefapp/features/compare/release_please-v1.7.0...release_please-v1.8.0) (2026-08-12)
+
+
+### Features
+
+* feature_repo machinery generalization ([#1177](https://github.com/prefapp/features/issues/1177)) ([fc85e44](https://github.com/prefapp/features/commit/fc85e44941748b32c5e0adcb15f4eb5e2df4eef5))
+
 ## [1.7.0](https://github.com/prefapp/features/compare/release_please-v1.6.2...release_please-v1.7.0) (2026-07-22)
 
 
