@@ -223,8 +223,8 @@
     {
       "name": "azure-policy-assignments",
       "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-policy-assignments/README.md",
-      "version": "0.2.1",
-      "source": "git::https://github.com/prefapp/tfm.git//modules/azure-policy-assignments?ref=azure-policy-assignments-v0.2.1"
+      "version": "0.2.2",
+      "source": "git::https://github.com/prefapp/tfm.git//modules/azure-policy-assignments?ref=azure-policy-assignments-v0.2.2"
     },
     {
       "name": "azure-policy-definitions",
