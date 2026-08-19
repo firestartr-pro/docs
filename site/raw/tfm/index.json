@@ -211,8 +211,8 @@
     {
       "name": "azure-nsg-nsr",
       "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-nsg-nsr/README.md",
-      "version": "0.2.3",
-      "source": "git::https://github.com/prefapp/tfm.git//modules/azure-nsg-nsr?ref=azure-nsg-nsr-v0.2.3"
+      "version": "0.2.4",
+      "source": "git::https://github.com/prefapp/tfm.git//modules/azure-nsg-nsr?ref=azure-nsg-nsr-v0.2.4"
     },
     {
       "name": "azure-oidc",
