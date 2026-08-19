@@ -169,8 +169,8 @@
     {
       "name": "azure-event-hub",
       "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-event-hub/README.md",
-      "version": "0.1.1",
-      "source": "git::https://github.com/prefapp/tfm.git//modules/azure-event-hub?ref=azure-event-hub-v0.1.1"
+      "version": "0.1.2",
+      "source": "git::https://github.com/prefapp/tfm.git//modules/azure-event-hub?ref=azure-event-hub-v0.1.2"
     },
     {
       "name": "azure-flexible-server-postgresql",
