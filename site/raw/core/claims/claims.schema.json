@@ -1067,6 +1067,64 @@
                 },
                 "secret_scanning_push_protection_enabled_for_new_repositories": {
                   "type": "boolean"
+                },
+                "actions_variables": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string",
+                        "pattern": "^[A-Za-z0-9_]+$"
+                      },
+                      "value": {
+                        "type": "string"
+                      },
+                      "visibility": {
+                        "type": "string",
+                        "enum": [
+                          "all",
+                          "private",
+                          "selected"
+                        ]
+                      },
+                      "selected_repositories": {
+                        "type": "array",
+                        "items": {
+                          "$ref": "firestartr.dev://common/FirestartrComponentRef"
+                        }
+                      }
+                    },
+                    "required": [
+                      "name",
+                      "value",
+                      "visibility"
+                    ],
+                    "additionalProperties": false,
+                    "allOf": [
+                      {
+                        "if": {
+                          "properties": {
+                            "visibility": {
+                              "const": "selected"
+                            }
+                          },
+                          "required": [
+                            "visibility"
+                          ]
+                        },
+                        "then": {},
+                        "else": {
+                          "properties": {
+                            "selected_repositories": {
+                              "type": "array",
+                              "maxItems": 0
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  }
                 }
               },
               "additionalProperties": false,
