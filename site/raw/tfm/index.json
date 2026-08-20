@@ -265,8 +265,8 @@
     {
       "name": "azure-role-assignment",
       "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-role-assignment/README.md",
-      "version": "0.2.0",
-      "source": "git::https://github.com/prefapp/tfm.git//modules/azure-role-assignment?ref=azure-role-assignment-v0.2.0"
+      "version": "0.2.1",
+      "source": "git::https://github.com/prefapp/tfm.git//modules/azure-role-assignment?ref=azure-role-assignment-v0.2.1"
     },
     {
       "name": "azure-sa",
