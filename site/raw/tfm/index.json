@@ -151,8 +151,8 @@
     {
       "name": "azure-disks",
       "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-disks/README.md",
-      "version": "1.2.0",
-      "source": "git::https://github.com/prefapp/tfm.git//modules/azure-disks?ref=azure-disks-v1.2.0"
+      "version": "1.2.1",
+      "source": "git::https://github.com/prefapp/tfm.git//modules/azure-disks?ref=azure-disks-v1.2.1"
     },
     {
       "name": "azure-disks-backup",
