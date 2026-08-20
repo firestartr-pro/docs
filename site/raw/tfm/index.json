@@ -157,8 +157,8 @@
     {
       "name": "azure-disks-backup",
       "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-disks-backup/README.md",
-      "version": "1.2.3",
-      "source": "git::https://github.com/prefapp/tfm.git//modules/azure-disks-backup?ref=azure-disks-backup-v1.2.3"
+      "version": "1.2.4",
+      "source": "git::https://github.com/prefapp/tfm.git//modules/azure-disks-backup?ref=azure-disks-backup-v1.2.4"
     },
     {
       "name": "azure-dns-zone",
