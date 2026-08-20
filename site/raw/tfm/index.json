@@ -205,8 +205,8 @@
     {
       "name": "azure-nat-gateway",
       "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-nat-gateway/README.md",
-      "version": "1.1.0",
-      "source": "git::https://github.com/prefapp/tfm.git//modules/azure-nat-gateway?ref=azure-nat-gateway-v1.1.0"
+      "version": "1.1.1",
+      "source": "git::https://github.com/prefapp/tfm.git//modules/azure-nat-gateway?ref=azure-nat-gateway-v1.1.1"
     },
     {
       "name": "azure-nsg-nsr",
