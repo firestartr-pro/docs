@@ -145,8 +145,8 @@
     {
       "name": "azure-customrole",
       "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-customrole/README.md",
-      "version": "0.2.1",
-      "source": "git::https://github.com/prefapp/tfm.git//modules/azure-customrole?ref=azure-customrole-v0.2.1"
+      "version": "0.2.2",
+      "source": "git::https://github.com/prefapp/tfm.git//modules/azure-customrole?ref=azure-customrole-v0.2.2"
     },
     {
       "name": "azure-disks",
