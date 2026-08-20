@@ -319,8 +319,8 @@
     {
       "name": "azuread-group",
       "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azuread-group/README.md",
-      "version": "1.2.0",
-      "source": "git::https://github.com/prefapp/tfm.git//modules/azuread-group?ref=azuread-group-v1.2.0"
+      "version": "1.2.1",
+      "source": "git::https://github.com/prefapp/tfm.git//modules/azuread-group?ref=azuread-group-v1.2.1"
     },
     {
       "name": "cloudamqp-cluster",
