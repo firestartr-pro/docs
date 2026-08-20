@@ -295,14 +295,14 @@
     {
       "name": "azure-vnet-gateway",
       "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-vnet-gateway/README.md",
-      "version": "0.1.0",
-      "source": "git::https://github.com/prefapp/tfm.git//modules/azure-vnet-gateway?ref=azure-vnet-gateway-v0.1.0"
+      "version": "0.1.1",
+      "source": "git::https://github.com/prefapp/tfm.git//modules/azure-vnet-gateway?ref=azure-vnet-gateway-v0.1.1"
     },
     {
       "name": "azure-vnet-gateway-connection",
       "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-vnet-gateway-connection/README.md",
-      "version": "0.1.0",
-      "source": "git::https://github.com/prefapp/tfm.git//modules/azure-vnet-gateway-connection?ref=azure-vnet-gateway-connection-v0.1.0"
+      "version": "0.1.1",
+      "source": "git::https://github.com/prefapp/tfm.git//modules/azure-vnet-gateway-connection?ref=azure-vnet-gateway-connection-v0.1.1"
     },
     {
       "name": "azure-vnet-peering",
