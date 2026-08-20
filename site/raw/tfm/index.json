@@ -235,8 +235,8 @@
     {
       "name": "azure-private-dns-zone",
       "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-private-dns-zone/README.md",
-      "version": "0.2.1",
-      "source": "git::https://github.com/prefapp/tfm.git//modules/azure-private-dns-zone?ref=azure-private-dns-zone-v0.2.1"
+      "version": "0.2.2",
+      "source": "git::https://github.com/prefapp/tfm.git//modules/azure-private-dns-zone?ref=azure-private-dns-zone-v0.2.2"
     },
     {
       "name": "azure-public-ip",
