@@ -283,8 +283,8 @@
     {
       "name": "azure-vmss",
       "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-vmss/README.md",
-      "version": "0.3.2",
-      "source": "git::https://github.com/prefapp/tfm.git//modules/azure-vmss?ref=azure-vmss-v0.3.2"
+      "version": "0.3.3",
+      "source": "git::https://github.com/prefapp/tfm.git//modules/azure-vmss?ref=azure-vmss-v0.3.3"
     },
     {
       "name": "azure-vnet-and-subnet",
