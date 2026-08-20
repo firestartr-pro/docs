@@ -115,8 +115,8 @@
     {
       "name": "azure-aks",
       "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-aks/README.md",
-      "version": "2.0.3",
-      "source": "git::https://github.com/prefapp/tfm.git//modules/azure-aks?ref=azure-aks-v2.0.3"
+      "version": "2.0.4",
+      "source": "git::https://github.com/prefapp/tfm.git//modules/azure-aks?ref=azure-aks-v2.0.4"
     },
     {
       "name": "azure-alerts",
