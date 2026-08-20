@@ -133,8 +133,8 @@
     {
       "name": "azure-application",
       "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-application/README.md",
-      "version": "1.0.1",
-      "source": "git::https://github.com/prefapp/tfm.git//modules/azure-application?ref=azure-application-v1.0.1"
+      "version": "1.0.2",
+      "source": "git::https://github.com/prefapp/tfm.git//modules/azure-application?ref=azure-application-v1.0.2"
     },
     {
       "name": "azure-backup-vault",
