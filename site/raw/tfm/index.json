@@ -403,8 +403,8 @@
     {
       "name": "mongodb-atlas-azure-privatelink",
       "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/mongodb-atlas-azure-privatelink/README.md",
-      "version": "0.2.2",
-      "source": "git::https://github.com/prefapp/tfm.git//modules/mongodb-atlas-azure-privatelink?ref=mongodb-atlas-azure-privatelink-v0.2.2"
+      "version": "0.2.3",
+      "source": "git::https://github.com/prefapp/tfm.git//modules/mongodb-atlas-azure-privatelink?ref=mongodb-atlas-azure-privatelink-v0.2.3"
     },
     {
       "name": "mongodb-atlas-cluster",
