@@ -217,8 +217,8 @@
     {
       "name": "azure-oidc",
       "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-oidc/README.md",
-      "version": "1.4.2",
-      "source": "git::https://github.com/prefapp/tfm.git//modules/azure-oidc?ref=azure-oidc-v1.4.2"
+      "version": "1.4.3",
+      "source": "git::https://github.com/prefapp/tfm.git//modules/azure-oidc?ref=azure-oidc-v1.4.3"
     },
     {
       "name": "azure-policy-assignments",
