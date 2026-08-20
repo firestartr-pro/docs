@@ -259,8 +259,8 @@
     {
       "name": "azure-resource-group",
       "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-resource-group/README.md",
-      "version": "1.5.1",
-      "source": "git::https://github.com/prefapp/tfm.git//modules/azure-resource-group?ref=azure-resource-group-v1.5.1"
+      "version": "1.5.2",
+      "source": "git::https://github.com/prefapp/tfm.git//modules/azure-resource-group?ref=azure-resource-group-v1.5.2"
     },
     {
       "name": "azure-role-assignment",
