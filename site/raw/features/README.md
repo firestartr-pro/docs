@@ -44,13 +44,8 @@ Add it to your repository's feature list with the following configuration:
 │   │   ├── templates/             # Mustache templates go here
 │   │   ├── config.yaml            # Feature definition
 │   │   ├── package.json
-│   │   ├── README.md
-│   │   ├── CONTEXT.md             # Package glossary (context-modeling)
-│   │   └── docs/adr/              # Package-scoped architecture decisions
+│   │   └── README.md
 │   └── another-feature/
-├── CONTEXT-MAP.md                 # Points at each package's CONTEXT.md
-├── docs/adr/                      # System-wide architecture decisions
-├── AGENTS.md                      # Agent instructions (design memory + workflow)
 ├── .release-please-manifest.json
 ├── release-please-config.json
 ├── .github/
@@ -130,8 +125,6 @@ You can add logic with conditionals:
 
 ## Testing Features
 
-For testing features against the renderer source locally with Docker (no rebuilds), see [docs/local-testing.md](docs/local-testing.md).
-
 ### Using generic-fixtures/cr.yaml
 
 The `generic-fixtures/cr.yaml` file provides a reusable Custom Resource (CR) fixture for testing feature rendering. This fixture contains a complete example of a `FirestartrGithubRepository` resource with all common fields populated.
@@ -185,14 +178,28 @@ If your feature requires specific CR fields not covered by the generic fixture, 
 
 ---
 
-## Agent Skills
+## Schema promotion
 
-This repo includes two agent skills under `.agents/skills/`:
+Each feature package has a `schema.json` that documents its user-feedable arguments and file manifest. It is generated from `config.yaml` with:
 
-| Skill | Description |
-|-------|-------------|
-| `maintain-feature-schema` | Generate or enrich per-feature JSON Schemas (`schema.json`) from `config.yaml`, `package.json`, and `README.md`, adding descriptions and examples to every property. Run `pnpm generate:schemas` then `pnpm test:schemas` to sync. |
-| `rollout-feature` | End-to-end test or debug a feature against a live Firestartr platform. Test mode does a read-only verify; loop mode does edit-fix-retry up to 5 iterations, auto-committing template fixes. |
+```bash
+pnpm generate:schemas
+```
+
+and kept in sync by the `pr_verify` workflow.
+
+On every feature release, the **Promote Schemas to Docs Repo** workflow promotes the generated schemas to the objective docs repository `${{ github.repository_owner }}/docs` (defaults: `${{ github.repository_owner }}/docs`). For each feature and version it writes:
+
+- `site/raw/features/<feature>/<version>/schema.json`
+- an updated `site/raw/features/versions.json`
+
+### Arguments
+
+- `docs_org`: the GitHub organization that owns the docs repository (default: `${{ github.repository_owner }}`).
+- `docs_repo_name`: the repository that receives the generated feature schemas (default: `docs`).
+- `disable_promote_schemas`: set it to disable the schema promotion workflow.
+
+The workflow authenticates with a GitHub App that has write access to the docs repository. Configure it in the repository settings with the `FIRESTARTER_DOCS_APP_ID` variable and the `FIRESTARTR_DOCS_APP_PEM_FILE` secret.
 
 ---
 

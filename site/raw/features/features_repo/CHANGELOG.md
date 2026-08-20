@@ -1,5 +1,24 @@
 # Changelog
 
+## [1.3.0](https://github.com/prefapp/features/compare/features_repo-v1.2.1...features_repo-v1.3.0) (2026-08-20)
+
+
+### Features
+
+* `$format` parameter and feature arg validation ([#1230](https://github.com/prefapp/features/issues/1230)) ([5c71032](https://github.com/prefapp/features/commit/5c71032f07c3f9eabaf2751d100104e5d04416bc))
+
+
+### Bug Fixes
+
+* **features_repo:** bump features_renderer to 1.17.1 and add ajv to rendered repo for lockfile parity ([#1254](https://github.com/prefapp/features/issues/1254)) ([34582db](https://github.com/prefapp/features/commit/34582db35b02c24792a013543c5d9be0861a63c8))
+
+## [1.2.1](https://github.com/prefapp/features/compare/features_repo-v1.2.0...features_repo-v1.2.1) (2026-08-18)
+
+
+### Bug Fixes
+
+* Docs and features_repo pnpm-lock statle file ([#1245](https://github.com/prefapp/features/issues/1245)) ([d0e58f8](https://github.com/prefapp/features/commit/d0e58f8f60b90cb7d917c9b8808ab2edd9aa7534))
+
 ## [1.2.0](https://github.com/prefapp/features/compare/features_repo-v1.1.0...features_repo-v1.2.0) (2026-08-11)
 
 

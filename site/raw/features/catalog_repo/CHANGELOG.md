@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.6.0](https://github.com/prefapp/features/compare/catalog_repo-v1.5.0...catalog_repo-v1.6.0) (2026-08-14)
+
+
+### Features
+
+* Add CLI version check to features ([#1183](https://github.com/prefapp/features/issues/1183)) ([66bc1fd](https://github.com/prefapp/features/commit/66bc1fdffa5d2e5f90fd330c12412f39fce42dee))
+
 ## [1.5.0](https://github.com/prefapp/features/compare/catalog_repo-v1.4.0...catalog_repo-v1.5.0) (2026-07-22)
 
 

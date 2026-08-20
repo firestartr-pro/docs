@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.7.1](https://github.com/prefapp/features/compare/claims_repo-v2.7.0...claims_repo-v2.7.1) (2026-08-19)
+
+
+### Bug Fixes
+
+* **claims_repo:** use GITHUB_TOKEN for auto-hydrate dispatch ([#1251](https://github.com/prefapp/features/issues/1251)) ([44394d6](https://github.com/prefapp/features/commit/44394d644e0f0e8c9933c5d5330fb1a9698ae579))
+
 ## [2.7.0](https://github.com/prefapp/features/compare/claims_repo-v2.6.1...claims_repo-v2.7.0) (2026-08-14)
 
 
