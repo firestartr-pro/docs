@@ -325,8 +325,8 @@
     {
       "name": "cloudamqp-cluster",
       "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/cloudamqp-cluster/README.md",
-      "version": "1.1.1",
-      "source": "git::https://github.com/prefapp/tfm.git//modules/cloudamqp-cluster?ref=cloudamqp-cluster-v1.1.1"
+      "version": "1.1.2",
+      "source": "git::https://github.com/prefapp/tfm.git//modules/cloudamqp-cluster?ref=cloudamqp-cluster-v1.1.2"
     },
     {
       "name": "cloudamqp-vpc",
