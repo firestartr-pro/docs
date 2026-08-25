@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.1.0](https://github.com/prefapp/features/compare/terraform-infra-v3.0.0...terraform-infra-v3.1.0) (2026-08-25)
+
+
+### Features
+
+* update ref-sync with modules skiping ([65bc050](https://github.com/prefapp/features/commit/65bc0500356d5e45b3fe78696c6f4f2f144bc217))
+
 ## [3.0.0](https://github.com/prefapp/features/compare/terraform-infra-v2.3.0...terraform-infra-v3.0.0) (2026-08-05)
 
 

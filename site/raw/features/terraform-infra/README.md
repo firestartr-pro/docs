@@ -52,6 +52,23 @@ You can manually trigger the workflow from the GitHub Actions UI:
 
 A periodic (cron) workflow that detects when a ref-source has changed since the last time its ref-targets were applied, and triggers the configured action for each out-of-sync target.
 
+The workflow is controlled by these feature arguments:
+
+| Argument | Description | Default |
+|---|---|---|
+| `ref_sync_enabled` | Enables or disables the ref-sync workflow job. | `true` |
+| `terraform_sync_cron` | Cron expression used by the scheduled ref-sync workflow. | `0 2 * * 1-5` |
+
+#### Team notifications
+
+The ref-sync workflow can mention a GitHub team in drift and error issues. Configure the optional global GitHub Actions variable below:
+
+| Variable | Location | Example value |
+|---|---|---|
+| `REF_SYNC_NOTIFY_TEAM` | **Settings > Secrets and variables > Actions > Variables**, at repository or organization level | `@prefapp/platform` |
+
+The value must be a valid GitHub team mention, such as `@organization/team`. If the variable is not defined or is empty, issues are created without a team mention.
+
 #### End-to-end flow
 
 ```mermaid
@@ -60,7 +77,7 @@ flowchart TD
     TRIGGER --> DISCOVER["discover · scan .tf-ref files under accounts/"]
     DISCOVER --> CHECK{"check · global_sha == HEAD?"}
     CHECK -- unchanged --> EXIT["Fast exit — nothing to do"]
-    CHECK -- changed --> FILTER["filter · keep only targets whose target_sha / upstream_shas changed"]
+    CHECK -- changed --> FILTER["filter · keep only modules whose paths or ref chain changed"]
     FILTER --> SYNC["sync job · one matrix leg per account/env<br/>loops over its module targets (fail-fast: false)"]
     SYNC --> MODE{"mode from .tf-ref"}
     MODE -- off / disabled --> SKIP["Skip — not discovered/tracked"]
@@ -84,9 +101,9 @@ flowchart TD
 
 - **discover** — scans all `.tf-ref` files under `accounts/` (at module, environment, or account level) and builds the job matrix.
 - **check** — fast skip. Compares `global_sha` (the repo HEAD recorded in `.github/ref-sync-state.yaml` at the last run) against current HEAD; if unchanged, the run exits immediately.
-- **filter** — if HEAD changed, diffs the `accounts/` folder between the recorded SHA and HEAD and keeps only targets whose source chain (`upstream_shas`) or local directory (`target_sha`) changed.
+- **filter** — if HEAD changed, diffs the `accounts/` folder between the recorded SHA and HEAD and keeps only modules whose source module, effective ref-chain module, local directory, shared account/environment input, or ref manifest changed. New `.tf-ref` paths are included even when they are not yet present in the state file. A change to one source module therefore does not plan its unchanged siblings.
 - **sync** — one matrix leg per account/environment (with `fail-fast: false`), looping over the modules of that account/env. For each module target it reads the mode from its `.tf-ref`, runs `terraform plan`, and acts on the result.
-- **update-state** — after the run, targets that synced successfully advance their state; failing targets are left out of the updated state so they are retried on the next scheduled run.
+- **update-state** — after the run, the state records failed modules as `pending_targets`. Pending modules force a retry on the next run, while successful sibling modules can advance normally.
 
 **Sync modes (per target, read from the defining `.tf-ref` file):**
 - `issue` (default) — open or update a GitHub issue mentioning maintainers; never apply automatically.
@@ -190,6 +207,27 @@ The run is skipped **only when every non-merge commit** in the pull request is s
 
 - Manages the ref-sync state file (`.github/ref-sync-state.yaml`) that tracks `global_sha` and per-target source SHAs.
 - Fast-exits when HEAD is unchanged; runs `git diff` filtered to `accounts/` when HEAD changed.
+
+### `.github/scripts/ref_sync_local.sh`
+
+- Runs the same `discover -> check -> filter -> sync` pipeline locally using the current AWS profile.
+- For targets with `.tf-ref` `mode: sync`, applies automatically with `-auto-approve` after the plan detects drift. For other applicable modes, displays the plan and asks the operator for `y` before applying without `-auto-approve`.
+- A confirmation other than `y`/`yes`, or an unavailable interactive terminal, leaves the target pending and exits with an error so it can be reviewed and retried.
+- By default, the script updates `.github/ref-sync-state.yaml`; use `--no-state` to run without modifying the state file. It does not commit or push changes.
+- Local runs do not create or update GitHub issues. The required AWS/backend variables and `FIRESTARTR_TENANTS_FOLDER` still apply.
+
+Run it from the repository root:
+
+```bash
+export FIRESTARTR_BACKEND_PROFILE=default
+./.github/scripts/ref_sync_local.sh
+```
+
+To avoid updating the state file:
+
+```bash
+./.github/scripts/ref_sync_local.sh --no-state
+```
 
 ## Ref-source: Sharing Terraform code across accounts
 
@@ -385,3 +423,4 @@ The script `bootstrap/prepare.sh` initializes and configures the Terraform backe
 ---
 
 For more details, see the workflow file at `.github/workflows/terraform-plan-apply.yaml` and the scripts in `.github/scripts/`.
+
