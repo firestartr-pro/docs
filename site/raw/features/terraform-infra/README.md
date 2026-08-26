@@ -213,6 +213,8 @@ The run is skipped **only when every non-merge commit** in the pull request is s
 - Runs the same `discover -> check -> filter -> sync` pipeline locally using the current AWS profile.
 - For targets with `.tf-ref` `mode: sync`, applies automatically with `-auto-approve` after the plan detects drift. For other applicable modes, displays the plan and asks the operator for `y` before applying without `-auto-approve`.
 - A confirmation other than `y`/`yes`, or an unavailable interactive terminal, leaves the target pending and exits with an error so it can be reviewed and retried.
+- Before each target, it can import the `TF_VAR_*` environment *variables* defined in the target's GitHub environment (`<tenant>/<env>`), mirroring what the workflows export in CI. The script asks `[y/N]` (default: no) before running; set `REF_SYNC_LOCAL_FETCH_TF_VARS=true|false` to skip or force the prompt.
+- Imported values override same-named `TF_VAR_*` variables exported in your shell, and each target runs only with its own environment's variables plus your original shell values — a variable defined in one environment never reaches another target's run. Requires `gh` authenticated with permission to read repository environment *variables* (environment secrets are never imported).
 - By default, the script updates `.github/ref-sync-state.yaml`; use `--no-state` to run without modifying the state file. It does not commit or push changes.
 - Local runs do not create or update GitHub issues. The required AWS/backend variables and `FIRESTARTR_TENANTS_FOLDER` still apply.
 
@@ -227,6 +229,12 @@ To avoid updating the state file:
 
 ```bash
 ./.github/scripts/ref_sync_local.sh --no-state
+```
+
+To import the GitHub environments' `TF_VAR_*` variables without being asked:
+
+```bash
+REF_SYNC_LOCAL_FETCH_TF_VARS=true ./.github/scripts/ref_sync_local.sh
 ```
 
 ## Ref-source: Sharing Terraform code across accounts
@@ -383,6 +391,8 @@ To reduce confusion and improve troubleshooting, the workflow also appends a "TF
 - Variable name
 - Value (masked when the name looks sensitive)
 - Target environment
+
+The same import is available locally through `ref_sync_local.sh` (see its section above): with your confirmation, each target runs with the `TF_VAR_*` variables of its own GitHub environment `<tenant>/<env>`, overriding same-named values exported in your shell.
 
 ### Additional variables for Manual Execution
 

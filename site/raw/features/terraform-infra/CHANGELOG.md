@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.1.1](https://github.com/prefapp/features/compare/terraform-infra-v3.1.0...terraform-infra-v3.1.1) (2026-08-26)
+
+
+### Bug Fixes
+
+* add read TF_VAR from environment ([#1265](https://github.com/prefapp/features/issues/1265)) ([2728297](https://github.com/prefapp/features/commit/2728297b7643a24a0366ad4545bdd4617a7b82ed))
+
 ## [3.1.0](https://github.com/prefapp/features/compare/terraform-infra-v3.0.0...terraform-infra-v3.1.0) (2026-08-25)
 
 
