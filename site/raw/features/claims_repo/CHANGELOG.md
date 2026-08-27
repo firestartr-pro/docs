@@ -1,5 +1,17 @@
 # Changelog
 
+## [2.8.0](https://github.com/prefapp/features/compare/claims_repo-v2.7.1...claims_repo-v2.8.0) (2026-08-27)
+
+
+### Features
+
+* **claims_repo:** route provision hydration by claim type ([#1247](https://github.com/prefapp/features/issues/1247)) ([f446a36](https://github.com/prefapp/features/commit/f446a3607d8781d3c345bbd02b2358aceb566675))
+
+
+### Bug Fixes
+
+* **claims_repo:** add OrgSettingsClaim with FirestartrGithubOrganizationVariableSection and FirestartrGithubOrganizationSecretsSection support ([#1216](https://github.com/prefapp/features/issues/1216)) ([c110f50](https://github.com/prefapp/features/commit/c110f5020607acedc09ac459d1d398fa956ee280))
+
 ## [2.7.1](https://github.com/prefapp/features/compare/claims_repo-v2.7.0...claims_repo-v2.7.1) (2026-08-19)
 
 
