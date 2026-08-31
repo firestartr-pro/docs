@@ -1796,6 +1796,10 @@ spec:
                   properties:
                     cname:
                       type: string
+                    public:
+                      type: boolean
+                    https_enforced:
+                      type: boolean
                     source:
                       type: object
                       properties:
@@ -1803,11 +1807,23 @@ spec:
                           type: string
                         path:
                           type: string
+                          enum:
+                            - "/"
+                            - "/docs"
                     buildType:
                       type: string
                       enum:
                         - workflow
                         - legacy
+                  oneOf:
+                    - not:
+                        required:
+                          - https_enforced
+                    - allOf:
+                      - required:
+                          - https_enforced
+                      - required:
+                          - cname
                 permissions:
                   type: array
                   items:
