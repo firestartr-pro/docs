@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.1.2](https://github.com/prefapp/features/compare/terraform-infra-v3.1.1...terraform-infra-v3.1.2) (2026-08-31)
+
+
+### Bug Fixes
+
+* discover ref modules when had local modules ([#1276](https://github.com/prefapp/features/issues/1276)) ([928c6a3](https://github.com/prefapp/features/commit/928c6a3f6776f8b40be1e59b8193a3538cc643d1))
+
 ## [3.1.1](https://github.com/prefapp/features/compare/terraform-infra-v3.1.0...terraform-infra-v3.1.1) (2026-08-26)
 
 
