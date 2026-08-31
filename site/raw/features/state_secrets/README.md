@@ -1,5 +1,9 @@
 # State Secrets
 
+## Overview
+
+This feature provides the initial setup for the secrets state repository, which stores the rendered Custom Resources for the `SecretsClaim` claim kind, hydrated by the claims repository workflows.
+
 The `state_secrets` feature provides the initial setup for the secrets state repository (generally named `state-secrets`).
 
 This repository stores the rendered Custom Resources (CRs) for the `SecretsClaim` claim kind. The CRs in this repository are generated (*hydrated*) by the claims repository workflows and managed through pull requests.

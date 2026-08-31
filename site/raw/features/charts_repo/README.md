@@ -1,5 +1,9 @@
 # GitHub Actions Workflows Overview
 
+## Overview
+
+This feature provides the GitHub Actions workflows that validate, build, and publish Helm charts as release or snapshot artifacts to OCI registries or GitHub Pages.
+
 This repository uses **four main workflows** to automate Helm chart validation and publication. Automated release creation is intentionally handled by the separate `release_please` feature when needed. This feature no longer scaffolds `release-please-config.json` or `.release-please-manifest.json` for new repositories. The following sections provide a concise description of what each workflow does without delving into implementation details.
 
 ---

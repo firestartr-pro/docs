@@ -1,5 +1,9 @@
 # State Infra
 
+## Overview
+
+This feature provides the initial setup for the infrastructure state repository, which stores the rendered Custom Resources for the `TFWorkspaceClaim` claim, hydrated by the claims repository workflows.
+
 The `state_infra` feature provides the initial setup for the infrastructure state repository (generally named `state-infra`).
 
 This repository stores the rendered Custom Resources (CRs) for the infrastructure-related claim `TFWorkspaceClaim`. The CRs in this repository are generated (*hydrated*) by the claims repository workflows and managed through pull requests.

@@ -1,5 +1,9 @@
 # ☸️ How to Deploy a Kubernetes Workload
 
+## Overview
+
+This feature allows deploying cluster-level Kubernetes system services (operators and controllers) via GitOps with ArgoCD, rendering Helm-based workloads from Helmfile and values definitions.
+
 This feature allows to deploy Kubernetes sys-services, i.e. operators and controllers needed in the cluster, at cluster level, and managed by the platform team.
 
 *The deployment is done via GitOps, using ArgoCD. This means that the deployment is done when new changes arrive to the `deployment` branch in the state GitHub repository, which is then automatically picked up by ArgoCD and deployed to the destination Kubernetes cluster.*

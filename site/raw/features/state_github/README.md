@@ -1,5 +1,9 @@
 # State GitHub
 
+## Overview
+
+This feature provides the initial setup for the GitHub state repository, which stores the rendered Custom Resources for GitHub-related claims such as repositories, teams, memberships, and organization webhooks.
+
 The `state_github` feature provides the initial setup for the GitHub state repository (generally named `state-github`).
 
 This repository stores the rendered Custom Resources (CRs) for GitHub-related claims such as `ComponentClaim` (repositories), `GroupClaim` (teams), `UserClaim` (memberships), and `OrgWebhookClaim` (organization webhooks). The CRs in this repository are generated (*hydrated*) by the claims repository workflows and managed through pull requests.

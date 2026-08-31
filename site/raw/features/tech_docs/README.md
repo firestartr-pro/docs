@@ -1,5 +1,9 @@
 # TechDocs
 
+## Overview
+
+This feature provides the initial setup for project technical documentation built with MkDocs, where you author Markdown pages that are rendered into a TechDocs site.
+
 Custom documentation
 
 ## Getting started

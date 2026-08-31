@@ -1,5 +1,9 @@
 # State ArgoCD
 
+## Overview
+
+This feature provides the initial setup for the ArgoCD state repository, where Applications and ApplicationSets are deployed within your namespace in a managed ArgoCD environment.
+
 This repository is used to install **Applications** and **ApplicationSets** within your namespace in a managed ArgoCD environment.
 
 ## Configuration Scope

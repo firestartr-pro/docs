@@ -1,5 +1,9 @@
 # Claims repo feature
 
+## Overview
+
+This feature installs the workflows used to manually hydrate and delete GitHub and Terraform Workspace claims, import existing GitHub resources into claims, and keep claims' features up to date.
+
 This feature installs the workflows necessary for manually hydrating and deleting GitHub and TFWorkspace claims, plus two additional workflows to import manually created GitHub resources into GitHub claims and a `pr-verify` workflow.
 
 ## Local claims runner
