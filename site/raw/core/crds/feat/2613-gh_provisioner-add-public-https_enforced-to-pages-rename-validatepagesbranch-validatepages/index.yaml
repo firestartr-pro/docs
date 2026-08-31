@@ -1819,8 +1819,11 @@ spec:
                     - not:
                         required:
                           - https_enforced
-                    - required:
-                        - cname
+                    - allOf:
+                      - required:
+                          - https_enforced
+                      - required:
+                          - cname
                 permissions:
                   type: array
                   items:
