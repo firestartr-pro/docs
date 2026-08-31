@@ -1815,6 +1815,12 @@ spec:
                       enum:
                         - workflow
                         - legacy
+                  oneOf:
+                    - not:
+                        required:
+                          - https_enforced
+                    - required:
+                        - cname
                 permissions:
                   type: array
                   items:
