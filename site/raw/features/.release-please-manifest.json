@@ -18,5 +18,5 @@
     "packages/cloudfront_s3_build_and_deploy": "0.3.0",
     "packages/build_and_publish_lambda_code": "1.0.1",
     "packages/state_secrets": "1.2.0",
-    "packages/hello-world": "0.2.0"
+    "packages/hello-world": "0.3.0"
 }
