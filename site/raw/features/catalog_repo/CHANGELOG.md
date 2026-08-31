@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.7.0](https://github.com/prefapp/features/compare/catalog_repo-v1.6.0...catalog_repo-v1.7.0) (2026-08-31)
+
+
+### Features
+
+* **schema:** add top-level description to all features ([#1281](https://github.com/prefapp/features/issues/1281)) ([b3df3de](https://github.com/prefapp/features/commit/b3df3de88f4f27320a9152d7d7728d9dbebec6d1))
+
 ## [1.6.0](https://github.com/prefapp/features/compare/catalog_repo-v1.5.0...catalog_repo-v1.6.0) (2026-08-14)
 
 
