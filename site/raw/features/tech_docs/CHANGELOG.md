@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.12.0](https://github.com/prefapp/features/compare/tech_docs-v0.11.0...tech_docs-v0.12.0) (2026-08-31)
+
+
+### Features
+
+* **schema:** add top-level description to all features ([#1281](https://github.com/prefapp/features/issues/1281)) ([b3df3de](https://github.com/prefapp/features/commit/b3df3de88f4f27320a9152d7d7728d9dbebec6d1))
+
 ## [0.11.0](https://github.com/prefapp/features/compare/tech_docs-v0.10.3...tech_docs-v0.11.0) (2026-07-22)
 
 
