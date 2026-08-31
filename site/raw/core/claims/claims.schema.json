@@ -802,32 +802,7 @@
                   "type": "boolean"
                 },
                 "pages": {
-                  "type": "object",
-                  "properties": {
-                    "cname": {
-                      "type": "string"
-                    },
-                    "buildType": {
-                      "type": "string",
-                      "enum": [
-                        "workflow",
-                        "legacy"
-                      ]
-                    },
-                    "source": {
-                      "type": "object",
-                      "properties": {
-                        "branch": {
-                          "type": "string"
-                        },
-                        "path": {
-                          "type": "string"
-                        }
-                      },
-                      "additionalProperties": false
-                    }
-                  },
-                  "additionalProperties": false
+                  "$ref": "firestartr.dev://github/GithubPages"
                 },
                 "additionalRules": {
                   "type": "array",
@@ -1257,6 +1232,71 @@
             }
           },
           "additionalProperties": false
+        }
+      }
+    },
+    {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "$id": "GithubPages",
+      "definitions": {
+        "GithubPages": {
+          "$id": "firestartr.dev://github/GithubPages",
+          "type": "object",
+          "description": "GitHub Pages configuration shared across component and repository claims",
+          "properties": {
+            "cname": {
+              "type": "string"
+            },
+            "public": {
+              "type": "boolean"
+            },
+            "https_enforced": {
+              "type": "boolean"
+            },
+            "buildType": {
+              "type": "string",
+              "enum": [
+                "workflow",
+                "legacy"
+              ]
+            },
+            "source": {
+              "type": "object",
+              "required": [
+                "branch",
+                "path"
+              ],
+              "properties": {
+                "branch": {
+                  "type": "string"
+                },
+                "path": {
+                  "type": "string",
+                  "enum": [
+                    "/",
+                    "/docs"
+                  ]
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "additionalProperties": false,
+          "if": {
+            "required": [
+              "https_enforced"
+            ],
+            "properties": {
+              "https_enforced": {
+                "const": true
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "cname"
+            ]
+          }
         }
       }
     }
