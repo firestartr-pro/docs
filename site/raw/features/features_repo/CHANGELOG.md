@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.4.1](https://github.com/prefapp/features/compare/features_repo-v1.4.0...features_repo-v1.4.1) (2026-09-01)
+
+
+### Bug Fixes
+
+* **features_repo:** resolve correct org for docs repo in promote-schemas workflow ([#1297](https://github.com/prefapp/features/issues/1297)) ([3f8591c](https://github.com/prefapp/features/commit/3f8591c01bedd5aeac7331d614b6449ff72cbad7))
+
 ## [1.4.0](https://github.com/prefapp/features/compare/features_repo-v1.3.0...features_repo-v1.4.0) (2026-08-31)
 
 

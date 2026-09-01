@@ -188,14 +188,14 @@ pnpm generate:schemas
 
 and kept in sync by the `pr_verify` workflow.
 
-On every feature release, the **Promote Schemas to Docs Repo** workflow promotes the generated schemas to the objective docs repository `${{ github.repository_owner }}/docs` (defaults: `${{ github.repository_owner }}/docs`). For each feature and version it writes:
+On every feature release, the **Promote Schemas to Docs Repo** workflow promotes the generated schemas to the objective docs repository `firestartr-pro/docs` (defaults: `firestartr-pro/docs`). For each feature and version it writes:
 
 - `site/raw/features/<feature>/<version>/schema.json`
 - an updated `site/raw/features/versions.json`
 
 ### Arguments
 
-- `docs_org`: the GitHub organization that owns the docs repository (default: `${{ github.repository_owner }}`).
+- `docs_org`: the GitHub organization that owns the docs repository (default: `firestartr-pro`).
 - `docs_repo_name`: the repository that receives the generated feature schemas (default: `docs`).
 - `disable_promote_schemas`: set it to disable the schema promotion workflow.
 
