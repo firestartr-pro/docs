@@ -1,0 +1,24 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "tech_docs args",
+  "type": "object",
+  "description": "This feature provides the initial setup for project technical documentation built with MkDocs, where you author Markdown pages that are rendered into a TechDocs site.",
+  "properties": {
+    "feature_name": {
+      "const": "tech_docs"
+    }
+  },
+  "fileManifest": [
+    {
+      "src": "mkdocs.yaml",
+      "dest": "mkdocs.yaml",
+      "user_managed": true
+    },
+    {
+      "src": "docs/README.md",
+      "dest": "docs/index.md",
+      "user_managed": true
+    }
+  ],
+  "version": "0.12.0"
+}
