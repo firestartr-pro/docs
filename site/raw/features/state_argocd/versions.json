@@ -1,5 +1,10 @@
 [
   {
+    "version": "1.2.0",
+    "date": "2026-08-31T18:39:26+02:00",
+    "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/features/state_argocd/1.2.0/schema.json"
+  },
+  {
     "version": "1.1.0",
     "date": "2026-07-22T17:47:06+02:00",
     "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/features/state_argocd/1.1.0/schema.json"
