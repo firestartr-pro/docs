@@ -1,5 +1,10 @@
 [
   {
+    "version": "2.9.0",
+    "date": "2026-08-31T19:00:34+02:00",
+    "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/features/claims_repo/2.9.0/schema.json"
+  },
+  {
     "version": "2.7.1",
     "date": "2026-08-19T18:18:01+02:00",
     "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/features/claims_repo/2.7.1/schema.json"
