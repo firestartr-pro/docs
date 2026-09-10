@@ -58,7 +58,7 @@
     },
     {
       "name": "claims_repo",
-      "version": "2.9.0",
+      "version": "2.10.0",
       "files": [
         {
           "name": "README.md",

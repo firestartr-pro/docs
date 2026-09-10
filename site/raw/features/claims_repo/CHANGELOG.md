@@ -1,5 +1,19 @@
 # Changelog
 
+## [2.10.0](https://github.com/prefapp/features/compare/claims_repo-v2.9.0...claims_repo-v2.10.0) (2026-09-10)
+
+
+### Features
+
+* add concurrency guard to the provision-workflow ([#1306](https://github.com/prefapp/features/issues/1306)) ([b108195](https://github.com/prefapp/features/commit/b108195b8004b829ba4584ef1d4a8f02d7444bc8))
+* claims map triggers catalog hydratation ([#1304](https://github.com/prefapp/features/issues/1304)) ([4b93581](https://github.com/prefapp/features/commit/4b93581eaca8ae47a2c650c2c4d248493be54b40))
+* claims repo skip provision hydration for catalog only claims systemsdomains ([#1302](https://github.com/prefapp/features/issues/1302)) ([0138426](https://github.com/prefapp/features/commit/0138426d41b4bb628b6ea79702d1e25a842ab36c))
+
+
+### Bug Fixes
+
+* **claims_repo:** auto-hydrate now dispatches correctly for TFWorkspace and Secrets claims ([#1312](https://github.com/prefapp/features/issues/1312)) ([c77944f](https://github.com/prefapp/features/commit/c77944f8413d5a1c0d32998d28c2494839c69866))
+
 ## [2.9.0](https://github.com/prefapp/features/compare/claims_repo-v2.8.0...claims_repo-v2.9.0) (2026-08-31)
 
 

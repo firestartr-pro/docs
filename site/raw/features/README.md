@@ -1,5 +1,9 @@
 # Firestartr Features Repository
 
+## Overview
+
+This feature provides the initial setup for the Firestartr features monorepo, your organization's private registry of reusable, Mustache-templated Firestartr features.
+
 <p align="center">
   <img src="https://docs.firestartr.dev/docs/favicon.png" alt="Firestartr" width="320">
 </p>
