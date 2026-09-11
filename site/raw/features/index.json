@@ -72,7 +72,7 @@
     },
     {
       "name": "cloudfront_s3_build_and_deploy",
-      "version": "0.3.3",
+      "version": "0.3.4",
       "files": [
         {
           "name": "README.md",

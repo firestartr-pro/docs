@@ -46,9 +46,9 @@ spec:
     deployment_aws_role: "arn:aws:iam::123456789012:role/deploy"
     deployment_aws_cloudfront_distribution_id: "E1234567890"
 ```
-```
 
 The platform system will use these values to render the `.github/cloudfront_deployments.yaml` template, replacing each `{{| VAR |}}` (or `{{| &VAR |}}`) with the corresponding value.
+
 ---
 ## How Static Files Are Built and Deployed
 
@@ -82,9 +82,11 @@ This process is fully automated via the provided CI/CD templates (e.g., GitHub A
 The provided workflows are designed to work out-of-the-box for most CloudFront/S3 deployment scenarios. No manual modification of workflow logic is required for standard use cases.
 
 ### Supported Configuration Knobs
-    - **Build Command**: You can override the default build command (e.g., use a different build tool or directory).
-    - **Tenants and Environments**: Specify multiple tenants and environments via claim variables.
-    - **Registry and AWS Settings**: Configure S3 bucket, prefix, AWS account, region, role, and CloudFront distribution ID through claim variables.
 
-    ### Optional Customization
-    If your project has unique requirements not covered by the configuration options above, you may optionally adapt the dispatch logic in `.github/cloudfront_deployments.yaml` and related workflows. For most users, the default implementation will be sufficient and fully automated.
+- **Build Command**: You can override the default build command (e.g., use a different build tool or directory).
+- **Tenants and Environments**: Specify multiple tenants and environments via claim variables.
+- **Registry and AWS Settings**: Configure S3 bucket, prefix, AWS account, region, role, and CloudFront distribution ID through claim variables.
+
+### Optional Customization
+
+If your project has unique requirements not covered by the configuration options above, you may optionally adapt the dispatch logic in `.github/cloudfront_deployments.yaml` and related workflows. For most users, the default implementation will be sufficient and fully automated.

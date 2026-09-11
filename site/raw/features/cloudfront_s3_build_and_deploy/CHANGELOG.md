@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.3.4](https://github.com/prefapp/features/compare/cloudfront_s3_build_and_deploy-v0.3.3...cloudfront_s3_build_and_deploy-v0.3.4) (2026-09-11)
+
+
+### Bug Fixes
+
+* **cloudfront_s3_build_and_deploy:** updated README file ([876773a](https://github.com/prefapp/features/commit/876773aa2ad06e798b7375ba186d8aadd3ed335d))
+* **cloudfront_s3_build_and_deploy:** updated README md file ([3399843](https://github.com/prefapp/features/commit/3399843cb51103d01b01da0811f08a527a9bc69f))
+
 ## [0.3.3](https://github.com/prefapp/features/compare/cloudfront_s3_build_and_deploy-v0.3.2...cloudfront_s3_build_and_deploy-v0.3.3) (2026-09-11)
 
 
