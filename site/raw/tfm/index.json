@@ -199,8 +199,8 @@
     {
       "name": "azure-managed-redis",
       "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-managed-redis/README.md",
-      "version": "1.1.0",
-      "source": "git::https://github.com/prefapp/tfm.git//modules/azure-managed-redis?ref=azure-managed-redis-v1.1.0"
+      "version": "2.0.0",
+      "source": "git::https://github.com/prefapp/tfm.git//modules/azure-managed-redis?ref=azure-managed-redis-v2.0.0"
     },
     {
       "name": "azure-mi",
