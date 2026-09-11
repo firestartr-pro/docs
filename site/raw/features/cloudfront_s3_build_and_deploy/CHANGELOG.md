@@ -1,5 +1,20 @@
 # Changelog
 
+## [0.3.2](https://github.com/prefapp/features/compare/cloudfront_s3_build_and_deploy-v0.3.1...cloudfront_s3_build_and_deploy-v0.3.2) (2026-09-10)
+
+
+### Bug Fixes
+
+* **cloudfront_s3_build_and_deploy:** solved pagination summary result ([#1320](https://github.com/prefapp/features/issues/1320)) ([18680aa](https://github.com/prefapp/features/commit/18680aa59e2307c5098af636302cd40f6f9b3d9f))
+
+## [0.3.1](https://github.com/prefapp/features/compare/cloudfront_s3_build_and_deploy-v0.3.0...cloudfront_s3_build_and_deploy-v0.3.1) (2026-09-10)
+
+
+### Bug Fixes
+
+* **cloudfront_s3_build_and_deploy:** set render testing right config ([#1319](https://github.com/prefapp/features/issues/1319)) ([e273ca8](https://github.com/prefapp/features/commit/e273ca8597db37b7413be4f99b7078025e38b6ad))
+* **cloudfront_s3_build_and_deploy:** set right permissions and env gh token ([#1317](https://github.com/prefapp/features/issues/1317)) ([7b9502e](https://github.com/prefapp/features/commit/7b9502eb8c14098ba162587145700a44457c0769))
+
 ## [0.3.0](https://github.com/prefapp/features/compare/cloudfront_s3_build_and_deploy-v0.2.1...cloudfront_s3_build_and_deploy-v0.3.0) (2026-07-22)
 
 
