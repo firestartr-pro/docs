@@ -259,8 +259,8 @@
     {
       "name": "azure-redis-cache",
       "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-redis-cache/README.md",
-      "version": "0.3.0",
-      "source": "git::https://github.com/prefapp/tfm.git//modules/azure-redis-cache?ref=azure-redis-cache-v0.3.0"
+      "version": "1.0.0",
+      "source": "git::https://github.com/prefapp/tfm.git//modules/azure-redis-cache?ref=azure-redis-cache-v1.0.0"
     },
     {
       "name": "azure-resource-group",
