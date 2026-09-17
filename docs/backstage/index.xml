@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Firestartr Portal on Firestartr Documentation</title><link>https://docs.firestartr.dev/docs/backstage/</link><description>Recent content in Firestartr Portal on Firestartr Documentation</description><generator>Hugo</generator><language>en-us</language><atom:link href="https://docs.firestartr.dev/docs/backstage/index.xml" rel="self" type="application/rss+xml"/><item><title/><link>https://docs.firestartr.dev/docs/backstage/batch-actions/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.firestartr.dev/docs/backstage/batch-actions/</guid><description>&lt;h1 id="batch-actions"&gt;Batch Actions&lt;a class="anchor" href="#batch-actions"&gt;#&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;Batch actions let you apply the same set of changes to a group of
+resources in one go. Use &lt;strong&gt;Batch Executor&lt;/strong&gt; from the sidebar.&lt;/p&gt;
+&lt;h2 id="step-1--open-batch-executor"&gt;Step 1 — Open Batch Executor&lt;a class="anchor" href="#step-1--open-batch-executor"&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Open &lt;strong&gt;Batch Executor&lt;/strong&gt; in the sidebar.&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://docs.firestartr.dev/docs/images/backstage-batch-actions-01-batch-ops-menu.png" alt="Batch Executor item in the sidebar" /&gt;&lt;/p&gt;
+&lt;h2 id="step-2--choose-the-type-of-action"&gt;Step 2 — Choose the type of action&lt;a class="anchor" href="#step-2--choose-the-type-of-action"&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Batch Executor offers three action types: &lt;strong&gt;Install&lt;/strong&gt;, &lt;strong&gt;Modify&lt;/strong&gt;, and
+&lt;strong&gt;Remove&lt;/strong&gt;. By default the &lt;em&gt;Install&lt;/em&gt; tab is displayed, where you can select a
+feature to install on a group of resources.&lt;/p&gt;</description></item><item><title/><link>https://docs.firestartr.dev/docs/backstage/features-control/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.firestartr.dev/docs/backstage/features-control/</guid><description>&lt;h1 id="features-control"&gt;Features Control&lt;a class="anchor" href="#features-control"&gt;#&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;The features subsystem has its own control forms and surfaces. The catalog
+menu bar includes a &lt;strong&gt;Features&lt;/strong&gt; tab on &lt;strong&gt;service&lt;/strong&gt; and &lt;strong&gt;website&lt;/strong&gt;
+components only. Components of other types, and all other entity kinds, do
+not have this tab.&lt;/p&gt;
+&lt;h2 id="step-1--open-the-features-tab"&gt;Step 1 — Open the Features tab&lt;a class="anchor" href="#step-1--open-the-features-tab"&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Open your component in the catalog and click &lt;strong&gt;Features&lt;/strong&gt; in the menu bar.
+The wizard shows two views: &lt;em&gt;Select&lt;/em&gt;, with the catalog of available features,
+and &lt;em&gt;Installed&lt;/em&gt;, with the features already installed on the component.&lt;/p&gt;</description></item><item><title/><link>https://docs.firestartr.dev/docs/backstage/resource-edition/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.firestartr.dev/docs/backstage/resource-edition/</guid><description>&lt;h1 id="resource-edition"&gt;Resource Edition&lt;a class="anchor" href="#resource-edition"&gt;#&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;Once your resource is created, you can manage it from the catalog screen.
+The surfaces you see depend on the entity kind; do not expect a User or
+Group to look like a Component.&lt;/p&gt;
+&lt;h2 id="step-1--open-the-catalog"&gt;Step 1 — Open the catalog&lt;a class="anchor" href="#step-1--open-the-catalog"&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Open &lt;strong&gt;Home&lt;/strong&gt; in the sidebar to see the catalog with all the resources of the
+organization.&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://docs.firestartr.dev/docs/images/backstage-resource-edition-01-catalog-menu.png" alt="Catalog in the sidebar" /&gt;&lt;/p&gt;
+&lt;h2 id="step-2--find-your-resource"&gt;Step 2 — Find your resource&lt;a class="anchor" href="#step-2--find-your-resource"&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;You can filter the catalog by kind and by name to quickly find the resource
+you want to manage.&lt;/p&gt;</description></item><item><title/><link>https://docs.firestartr.dev/docs/backstage/resources-provisioning/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.firestartr.dev/docs/backstage/resources-provisioning/</guid><description>&lt;h1 id="resources-provisioning"&gt;Resources Provisioning&lt;a class="anchor" href="#resources-provisioning"&gt;#&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;The portal lets you provision new resources from ready-made blueprints, called
+&lt;strong&gt;templates&lt;/strong&gt;. Instead of setting everything up by hand, you pick the resource
+you want, answer a few guided questions, review the result, and the portal
+takes care of the rest.&lt;/p&gt;
+&lt;p&gt;Which path you are on depends on the template you choose. Know this before
+you press &lt;strong&gt;CREATE&lt;/strong&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Component, User, and Group&lt;/strong&gt; follow the automated provisioning flow. After
+you create, the portal commits the claim, runs provisioning, and waits until
+the resource is ready. Follow progress on the creation screen or from
+&lt;strong&gt;Tasks&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;System and Domain&lt;/strong&gt; follow the pull-request flow. After you create, the
+portal opens a claim pull request. There is no automated Custom Resource
+convergence for these kinds; finish the request in GitHub.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Terraform Workspace&lt;/strong&gt; (&lt;em&gt;Create Infrastructure Resource&lt;/em&gt;) is automated, but
+it is not a Component or System wizard. Its steps are &lt;em&gt;Module Source&lt;/em&gt;,
+&lt;em&gt;Variables&lt;/em&gt;, &lt;em&gt;Configuration&lt;/em&gt;, and &lt;em&gt;Metadata&lt;/em&gt;, then the same automated
+provision-and-wait path as Component, User, and Group.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="step-1--open-the-create-menu"&gt;Step 1 — Open the Create menu&lt;a class="anchor" href="#step-1--open-the-create-menu"&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;In the sidebar on the left, click &lt;strong&gt;Create&amp;hellip;&lt;/strong&gt;.&lt;/p&gt;</description></item></channel></rss>
