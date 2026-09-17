@@ -14,6 +14,7 @@
 #   /deploying-resources/   core deployment guides
 #   /providers/             provider documentation (incl. nested pages)
 #   /features/              feature documentation (incl. nested pages)
+#   /backstage/             Firestartr Portal guide (when promoted)
 #
 # This is the single migration path used by CI
 # (.github/workflows/deploy-docs.yml), local contributors (CONTRIBUTING.md),
@@ -33,6 +34,7 @@ CORE_DOCS_DIR="${RAW_DIR}/core/docs"
 DEPLOYING_RESOURCES_DIR="${WEB_CONTENT_DIR}/deploying-resources"
 PROVIDERS_DIR="${WEB_CONTENT_DIR}/providers"
 FEATURES_DIR="${WEB_CONTENT_DIR}/features"
+BACKSTAGE_DIR="${WEB_CONTENT_DIR}/backstage"
 
 # GNU sed and BSD/macOS sed disagree about in-place editing flags.
 if sed --version >/dev/null 2>&1; then
@@ -77,12 +79,13 @@ write_page "${CORE_DOCS_DIR}/README.md" "${DEPLOYING_RESOURCES_DIR}/_index.md" \
   "title = 'Deploying resources'" 'weight = 1' 'bookCollapseSection = true'
 echo "    ✓ core/docs/README.md → deploying-resources/_index.md"
 
-# Every core doc except the section README and the providers subtree is a
-# deployment guide. Promotions must never write to content/_index.md.
+# Every core doc except the section README, the providers subtree, and the
+# Backstage-owned portal subtree is a deployment guide. Promotions must never
+# write to content/_index.md.
 while IFS= read -r -d '' file; do
   rel_path="${file#"${CORE_DOCS_DIR}/"}"
   case "${rel_path}" in
-    README.md|providers/*) continue ;;
+    README.md|providers/*|backstage/*) continue ;;
   esac
   write_page "${file}" "${DEPLOYING_RESOURCES_DIR}/${rel_path}" 'weight = 1'
   echo "    ✓ ${rel_path}"
@@ -137,6 +140,34 @@ while IFS= read -r -d '' feature_dir; do
     esac
   done < <(find "${feature_dir}" -maxdepth 1 -type f -name '*.md' -print0)
 done < <(find "${RAW_DIR}/features" -mindepth 1 -maxdepth 1 -type d -print0)
+
+echo "==> Migrating Firestartr Portal"
+# The Backstage-owned subtree is optional: it exists only after a portal
+# promotion. When absent, the section is not published at all.
+if [ -d "${CORE_DOCS_DIR}/backstage" ]; then
+  mkdir -p "${BACKSTAGE_DIR}"
+  while IFS= read -r -d '' file; do
+    rel_path="${file#"${CORE_DOCS_DIR}/backstage/"}"
+    case "${rel_path}" in
+      README.md)
+        write_page "${file}" "${BACKSTAGE_DIR}/_index.md" \
+          "title = 'Firestartr Portal'" 'weight = 4' 'bookCollapseSection = true'
+        echo "    ✓ backstage/README.md → backstage/_index.md"
+        ;;
+      */README.md)
+        write_page "${file}" "${BACKSTAGE_DIR}/$(dirname "${rel_path}")/_index.md" \
+          'bookCollapseSection = true' 'weight = 1'
+        echo "    ✓ backstage/${rel_path} → backstage/$(dirname "${rel_path}")/_index.md"
+        ;;
+      *)
+        write_page "${file}" "${BACKSTAGE_DIR}/${rel_path}" 'weight = 1'
+        echo "    ✓ backstage/${rel_path}"
+        ;;
+    esac
+  done < <(find "${CORE_DOCS_DIR}/backstage" -type f -name '*.md' -print0)
+else
+  echo "    (skipped: no ${CORE_DOCS_DIR}/backstage/ promotion)"
+fi
 
 echo "==> Migrating static assets"
 if [ -f "logos/logo.png" ]; then

@@ -1,6 +1,6 @@
 # Keep source-push aggregation with a Backstage-owned core/docs subtree
 
-The central Firestartr documentation repository remains an aggregation target using the established source-push model. Backstage owns `site/raw/core/docs/backstage/` for its public guide, sourced only from `prefapp-backstage/docs/public/**`, and places image assets in the shared `site/raw/images` directory with deterministic category-qualified names of the form `backstage-<category>-<basename>`. This gives a distinct `/docs/backstage/` section through the existing recursive Hugo migration while minimizing cross-repository changes and preserving existing URLs.
+The central Firestartr documentation repository remains an aggregation target using the established source-push model. Backstage owns `site/raw/core/docs/backstage/` for its public guide, sourced only from `prefapp-backstage/docs/public/**`, and places image assets in the shared `site/raw/images` directory with deterministic category-qualified names of the form `backstage-<category>-<basename>`. This gives a distinct `/docs/backstage/` section, published by `scripts/migrate-content.sh` as the audience-facing Firestartr Portal section, while minimizing cross-repository changes and preserving existing URLs.
 
 ## Considered Options
 

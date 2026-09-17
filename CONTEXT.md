@@ -27,6 +27,10 @@ development workflow; it lists shared terms only and is not a specification.
   Terraform provider pages.
 - **Features** — Top-level published area for the feature documentation sourced from
   `site/raw/features/`, including each feature's nested pages.
+- **Firestartr Portal** — Top-level published area for the Backstage-owned portal guide,
+  sourced from `site/raw/core/docs/backstage/` when that optional promotion is present.
+  The audience-facing label is Firestartr Portal; the folder and URL namespace remain
+  `backstage` (`/docs/backstage/`).
 
 ## Not to be confused
 

@@ -14,7 +14,7 @@ docs/
 │   │   └── images/             # Homepage image assets
 │   ├── raw/                    # SOURCE - promoted from other repositories
 │   │   ├── core/               # Core Firestartr documentation
-│   │   │   ├── docs/           # Deployment guides and providers/
+│   │   │   ├── docs/           # Deployment guides, providers/, and backstage/
 │   │   │   ├── crds/           # Custom Resource Definitions (versioned)
 │   │   │   └── claims/         # Claims JSON schema
 │   │   ├── features/           # Individual feature documentation
@@ -156,8 +156,8 @@ You can now browse the documentation site exactly as it will appear after deploy
   bookCollapseSection = true
   +++
   ```
-- Every other `.md` file except the `providers/` subtree → copied under
-  `content/deploying-resources/` with front matter `weight = 1`.
+- Every other `.md` file except the `providers/` and `backstage/` subtrees → copied
+  under `content/deploying-resources/` with front matter `weight = 1`.
 
 ### Providers (`site/raw/core/docs/providers/`)
 - `README.md` → `content/providers/_index.md` with `title = 'Providers'`, `weight = 2`,
@@ -176,6 +176,14 @@ You can now browse the documentation site exactly as it will appear after deploy
   +++
   ```
 - `CHANGELOG.md` → copied as-is (no front matter).
+- Other `.md` files → copied with front matter `weight = 1`.
+
+### Firestartr Portal (`site/raw/core/docs/backstage/`)
+- Optional: the section is published only when the Backstage-owned subtree is present
+  (promoted from `prefapp-backstage`).
+- `README.md` → `content/backstage/_index.md` with `title = 'Firestartr Portal'`,
+  `weight = 4`, `bookCollapseSection = true`.
+- Nested `README.md` files → the directory's `_index.md` with `bookCollapseSection = true`.
 - Other `.md` files → copied with front matter `weight = 1`.
 
 ### Static Assets

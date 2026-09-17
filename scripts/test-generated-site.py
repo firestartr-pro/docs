@@ -14,6 +14,7 @@ Set HUGO_BIN to point at a specific Hugo binary (default: hugo on PATH).
 from __future__ import annotations
 
 import argparse
+import base64
 import os
 import re
 import shutil
@@ -39,6 +40,8 @@ GUIDES = {
     "Migrating-to-our-new-app-state-repo-structure": "the migration guide",
 }
 TOP_LEVEL_SECTIONS = {"deploying-resources", "providers", "features"}
+BACKSTAGE_SOURCE = ROOT / "site" / "raw" / "core" / "docs" / "backstage"
+PORTAL_FIXTURE_IMAGE = ROOT / "site" / "raw" / "images" / "backstage-test-fixture.png"
 
 failures: list[str] = []
 checks = 0
@@ -137,23 +140,119 @@ def check_navigation(index: str) -> None:
     menu = book_menu(index)
     check(bool(menu), "book menu is rendered")
 
+    expected = set(TOP_LEVEL_SECTIONS)
+    expected_labels = ["Deploying resources", "Providers", "Features"]
+    if BACKSTAGE_SOURCE.is_dir():
+        expected.add("backstage")
+        expected_labels.append("Firestartr Portal")
     segments = set(re.findall(r'href=/docs/([^/>"]+)', menu))
     check(
-        segments == TOP_LEVEL_SECTIONS,
-        "top-level destinations are exactly Deploying resources, Providers, and Features",
+        segments == expected,
+        "top-level destinations are exactly " + ", ".join(expected_labels),
     )
-    if segments != TOP_LEVEL_SECTIONS:
+    if segments != expected:
         print(f"      found: {sorted(segments)}")
 
-    for href, label in (
+    destinations = [
         ("/docs/deploying-resources/", "Deploying resources"),
         ("/docs/providers/", "Providers"),
         ("/docs/features/", "Features"),
-    ):
+    ]
+    if BACKSTAGE_SOURCE.is_dir():
+        destinations.append(("/docs/backstage/", "Firestartr Portal"))
+    for href, label in destinations:
         check(f"href={href}>{label}</a>" in menu, f"menu links {label} to {href}")
 
     for slug in GUIDES:
         check(f"href=/docs/deploying-resources/{slug}/" in menu, f"menu nests {slug} under Deploying resources")
+
+
+PORTAL_FIXTURE_PAGES = {
+    "resources-provisioning": "Fixture marker: provisioning guide",
+    "resource-edition": "Fixture marker: nested section home",
+    "features-control": "Fixture marker: features control guide",
+    "batch-actions": "Fixture marker: batch actions guide",
+}
+PORTAL_FIXTURE_IMAGE_BYTES = base64.b64decode(
+    "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="
+)
+
+
+def create_portal_fixture() -> None:
+    """Write a temporary Backstage-owned promotion under site/raw/core/docs/backstage."""
+    (BACKSTAGE_SOURCE / "resource-edition").mkdir(parents=True)
+    (BACKSTAGE_SOURCE / "README.md").write_text(
+        "# Firestartr Portal\n\nFixture marker: portal section home.\n"
+    )
+    (BACKSTAGE_SOURCE / "resources-provisioning.md").write_text(
+        "# Resources provisioning\n\nFixture marker: provisioning guide.\n\n"
+        "![Portal fixture image](./images/backstage-test-fixture.png)\n"
+    )
+    (BACKSTAGE_SOURCE / "features-control.md").write_text(
+        "# Features control\n\nFixture marker: features control guide.\n"
+    )
+    (BACKSTAGE_SOURCE / "batch-actions.md").write_text(
+        "# Batch actions\n\nFixture marker: batch actions guide.\n"
+    )
+    (BACKSTAGE_SOURCE / "resource-edition" / "README.md").write_text(
+        "# Resource edition\n\nFixture marker: nested section home.\n"
+    )
+    PORTAL_FIXTURE_IMAGE.write_bytes(PORTAL_FIXTURE_IMAGE_BYTES)
+
+
+def remove_portal_fixture() -> None:
+    shutil.rmtree(BACKSTAGE_SOURCE, ignore_errors=True)
+    PORTAL_FIXTURE_IMAGE.unlink(missing_ok=True)
+
+
+def check_portal_fixture() -> None:
+    """Publish a temporary portal promotion and assert the /backstage/ section."""
+    print("Firestartr Portal (temporary Backstage promotion fixture)")
+    if BACKSTAGE_SOURCE.exists() or PORTAL_FIXTURE_IMAGE.exists():
+        print("  skip: a Backstage promotion is already present in git")
+        return
+
+    try:
+        create_portal_fixture()
+        build_site()
+
+        check((PUBLIC_DIR / "backstage" / "index.html").is_file(), "/backstage/ section home is published")
+        home = read(PUBLIC_DIR / "backstage" / "index.html")
+        check("Fixture marker: portal section home" in home, "/backstage/ renders the section README")
+
+        for route, marker in PORTAL_FIXTURE_PAGES.items():
+            page = PUBLIC_DIR / "backstage" / route / "index.html"
+            check(page.is_file(), f"/backstage/{route}/ is published")
+            if page.is_file():
+                check(marker in read(page), f"/backstage/{route}/ renders its source page")
+
+        check(
+            not (PUBLIC_DIR / "deploying-resources" / "backstage").exists(),
+            "Firestartr Portal is not nested under Deploying resources",
+        )
+
+        index = read(HOMEPAGE)
+        check_navigation(index)
+        check(">Backstage</a>" not in book_menu(index), "menu does not label the section 'Backstage'")
+
+        provisioning = read(PUBLIC_DIR / "backstage" / "resources-provisioning" / "index.html")
+        match = re.search(
+            r'src=("([^"]*backstage-test-fixture[^"]*)"|([^ >]*backstage-test-fixture[^ >]*))',
+            provisioning,
+        )
+        image_src = (match.group(2) or match.group(3)) if match else ""
+        check(
+            image_src == "/docs/images/backstage-test-fixture.png",
+            "portal image resolves under /docs/images/backstage-*",
+        )
+        if image_src != "/docs/images/backstage-test-fixture.png":
+            print(f"      found image src: {image_src!r}")
+        check(
+            (PUBLIC_DIR / "images" / "backstage-test-fixture.png").is_file(),
+            "portal image is published",
+        )
+    finally:
+        remove_portal_fixture()
 
 
 def check_guides() -> None:
@@ -271,6 +370,9 @@ def main() -> int:
 
     if not args.no_build:
         try:
+            # The portal promotion is optional in git. Exercise it with a
+            # temporary fixture, then rebuild the committed state below.
+            check_portal_fixture()
             build_site()
         except subprocess.CalledProcessError as error:
             print(f"build failed: {error}", file=sys.stderr)
