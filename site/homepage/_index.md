@@ -72,8 +72,8 @@ already use:
 
 - **GitHub** — where code, reviews, and workflows live.
 - **Backstage** — where the catalog of services and ownership is browsed.
-- **Skill** — the conversational surface that turns a request into Firestartr
-  instructions.
+- **[Skill](https://github.com/prefapp/skills)** — the conversational surface that turns
+  a request into Firestartr instructions.
 
 ![GitHub, Backstage, and Skill feed instructions into a central Firestartr card as its three control surfaces](./images/firestartr-control-surfaces.png)
 
@@ -82,7 +82,7 @@ same model.
 
 ## How the Skill carries instructions
 
-The Skill does not act directly. An instruction travels a path of three stages:
+The [Skill](https://github.com/prefapp/skills) does not act directly. An instruction travels a path of three stages:
 
 1. **fs-forge** — the step that issues the instruction to Firestartr.
 2. **agent** — interprets the instruction against the map and works out what must
