@@ -17,9 +17,6 @@ concurrency:
 
 jobs:
   deploy:
-    env:
-      WEB_CONTENT_DIR: "site/web/content"
-      WEB_FEATURES_DIR: "site/web/content/features"
     runs-on: ubuntu-24.04
     steps:
       - name: Checkout repository
@@ -27,171 +24,8 @@ jobs:
         with:
           submodules: true
 
-      - name: Migrate content from site/raw to site/web/content
-        run: |
-          mkdir -p "${WEB_CONTENT_DIR}"
-          mkdir -p "${WEB_FEATURES_DIR}"
-          echo "✓ Content directory created"
-
-          # Copy core docs (with nested directory support)
-          echo ""
-          echo "Copying core documentation files..."
-
-          # Create directory structure first
-          find site/raw/core/docs -mindepth 1 -type d | while read -r dir; do
-            rel_path="${dir#site/raw/core/docs/}"
-            mkdir -p "${WEB_CONTENT_DIR}/${rel_path}"
-            echo "  Created directory: ${rel_path}"
-          done
-
-          # Process root README.md first (becomes root _index.md without frontmatter)
-          if [ -f "site/raw/core/docs/README.md" ]; then
-            cp "site/raw/core/docs/README.md" "${WEB_CONTENT_DIR}/_index.md"
-            echo "  ✓ README.md → _index.md (root)"
-          fi
-
-          # Process all subdirectory README.md files (become _index.md with bookCollapseSection)
-          find site/raw/core/docs -mindepth 2 -type f -name "README.md" | while read -r file; do
-            dir_path="$(dirname "$file")"
-            rel_dir="${dir_path#site/raw/core/docs/}"
-            dest_file="${WEB_CONTENT_DIR}/${rel_dir}/_index.md"
-
-            {
-              echo "+++"
-              echo "bookCollapseSection = true"
-              echo "weight = 1"
-              echo "+++"
-              echo ""
-              cat "$file"
-            } > "$dest_file"
-            echo "  ✓ ${rel_dir}/README.md → _index.md (collapsible)"
-          done
-
-          # Process all other markdown files (non-README files)
-          find site/raw/core/docs -type f -name "*.md" ! -name "README.md" | while read -r file; do
-            rel_path="${file#site/raw/core/docs/}"
-            dest_file="${WEB_CONTENT_DIR}/${rel_path}"
-
-            {
-              echo "+++"
-              echo "weight = 1"
-              echo "+++"
-              echo ""
-              cat "$file"
-            } > "$dest_file"
-            echo "  ✓ ${rel_path}"
-          done
-
-          echo "✓ Core documentation migration complete"
-
-      - name: Migrate features to ${{ env.WEB_FEATURES_DIR }}
-        run: |
-          # Copy features README.md to _index.md WITHOUT frontmatter
-          echo "Copying features index..."
-          {
-            echo "+++"
-            echo "bookCollapseSection = true"
-            echo "weight = 2"
-            echo "+++"
-            echo ""
-            cat "site/raw/features/README.md"
-          } > "${WEB_FEATURES_DIR}/_index.md"
-          echo "✓ Features index copied"
-
-          # Process each feature directory
-          echo ""
-          echo "Processing individual features..."
-          find site/raw/features -mindepth 1 -maxdepth 1 -type d | while read -r feature_dir; do
-            if [ -d "$feature_dir" ]; then
-              feature_name=$(basename "$feature_dir")
-              mkdir -p "${WEB_FEATURES_DIR}/$feature_name"
-              echo "  Processing feature: $feature_name"
-
-              for file in "$feature_dir"/*.md; do
-                if [ ! -f "$file" ]; then
-                  continue
-                fi
-
-                filename=$(basename "$file")
-                dest_file="${WEB_FEATURES_DIR}/${feature_name}/${filename}"
-
-                if [ "$filename" = "README.md" ]; then
-                  dest_file="${WEB_FEATURES_DIR}/${feature_name}/_index.md"
-                  {
-                    echo "+++"
-                    echo "bookCollapseSection = true"
-                    echo "weight = 1"
-                    echo "+++"
-                    echo ""
-                    cat "${file}"
-                  } > "${dest_file}"
-
-                  echo "    ✓ README.md → _index.md"
-                  continue
-                fi
-
-                if [ "$filename" != "CHANGELOG.md" ]; then
-                  {
-                    echo "+++"
-                    echo "weight = 1"
-                    echo "+++"
-                    cat "${file}"
-                  } > "${dest_file}"
-                else
-                  # Only CHANGELOG.md
-                  cp "${file}" "${dest_file}"
-                fi
-
-                echo "    ✓ ${filename}"
-              done
-            fi
-          done
-
-      - name: Migrate static assets
-        run: |
-          mkdir -p site/web/static
-
-          # Copy logo as favicon
-          if [ -f "logos/logo.png" ]; then
-            cp logos/logo.png site/web/static/favicon.png
-            echo "✓ Logo copied as favicon"
-          else
-            echo "✗ No logo.png found"
-          fi
-
-          # Copy all images from site/raw/images (core + features)
-          mkdir -p site/web/assets/images/
-
-          if [ -d "site/raw/images" ]; then
-            cp -r site/raw/images/* site/web/assets/images/
-            echo "✓ Copied images from site/raw/images"
-          fi
-
-          echo "✓ Static assets migration complete"
-
-      - name: Rewrite README.md links for Hugo compatibility
-        run: |
-          echo "Rewriting README.md links in generated content..."
-          # Find all markdown files and replace /README.md) with /)
-          find site/web/content -type f -name "*.md" -exec sed -i 's|/README\.md)|/)|g' {} +
-          # Also handle ./README.md) -> ./)
-          find site/web/content -type f -name "*.md" -exec sed -i 's|(\.*/\?\([^)]*\)/README\.md)|(./\1/)|g' {} +
-          echo "✓ README.md links rewritten for Hugo"
-
-      - name: Rewrite GitHub feature links to Hugo URLs
-        run: |
-          echo "Rewriting GitHub feature repository links to Hugo-compatible URLs..."
-          
-          # Two-pass approach:
-          # 1. README.md files → features/{feature}/[#{anchor}]
-          # 2. Other .md files → features/{feature}/{filename}/[#{anchor}]
-          
-          find site/web/content -type f -name "*.md" -exec sed -i -E \
-            -e 's|https://github\.com/prefapp/features/blob/[^/]+/packages/([^/]+)/templates/[^/]*/README\.md(#[^)]+)?\)|features/\1/\2)|g' \
-            -e 's|https://github\.com/prefapp/features/blob/[^/]+/packages/([^/]+)/templates/[^/]*/([^/]+)\.md(#[^)]+)?\)|features/\1/\2/\3)|g' \
-            {} +
-          
-          echo "✓ GitHub feature links rewritten to Hugo URLs"
+      - name: Migrate documentation into the Hugo content tree
+        run: bash scripts/migrate-content.sh
 
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@75d2e84710de30f6ff7268e08f310b60ef14033f # v3
@@ -199,10 +33,8 @@ jobs:
           hugo-version: '0.152.2'
           extended: true
 
-      - name: Build Hugo site
-        working-directory: site/web
-        run: |
-          hugo --minify
+      - name: Test generated site (migrate, build, assert)
+        run: python3 scripts/test-generated-site.py
 
       - name: Prepare deployment with root redirect
         run: |
