@@ -20,6 +20,7 @@ import re
 import shutil
 import subprocess
 import sys
+import tempfile
 import urllib.parse
 from pathlib import Path
 
@@ -130,22 +131,37 @@ def check_homepage() -> None:
         check(forbidden.lower() not in lowered, f"homepage does not contain demo content {forbidden!r}")
 
 
-def book_menu(index: str) -> str:
-    match = re.search(r"<aside[^>]*book-menu[^>]*>(.*?)</aside>", index, re.S)
+def element_with_class(html: str, tag: str, class_name: str) -> str:
+    match = re.search(
+        rf'<{tag}[^>]*class=(?:"[^"]*\b{re.escape(class_name)}\b[^"]*"|[^ >]*\b{re.escape(class_name)}\b[^ >]*)[^>]*>(.*?)</{tag}>',
+        html,
+        re.S,
+    )
     return match.group(1) if match else ""
 
 
+def has_labeled_link(html: str, href: str, label: str) -> bool:
+    for match in re.finditer(r"<a\b([^>]*)>(.*?)</a>", html, re.S):
+        attributes, body = match.groups()
+        target = re.search(r'href=(?:"([^"]*)"|\'([^\']*)\'|([^ >]*))', attributes)
+        if target and next(value for value in target.groups() if value is not None) == href:
+            text = re.sub(r"<[^>]+>", "", body).strip()
+            if text == label:
+                return True
+    return False
+
+
 def check_navigation(index: str) -> None:
-    print("Navigation (site/web/public book menu)")
-    menu = book_menu(index)
-    check(bool(menu), "book menu is rendered")
+    print("Navigation (Hextra navbar and section sidebar)")
+    navbar = element_with_class(index, "nav", "hextra-max-navbar-width")
+    check(bool(navbar), "Hextra navbar is rendered")
 
     expected = set(TOP_LEVEL_SECTIONS)
     expected_labels = ["Deploying resources", "Providers", "Features"]
     if BACKSTAGE_SOURCE.is_dir():
         expected.add("backstage")
         expected_labels.append("Firestartr Portal")
-    segments = set(re.findall(r'href=/docs/([^/>"]+)', menu))
+    segments = set(re.findall(r'href=(?:"|\')?/docs/([^/>"\']+)/', navbar))
     check(
         segments == expected,
         "top-level destinations are exactly " + ", ".join(expected_labels),
@@ -161,10 +177,48 @@ def check_navigation(index: str) -> None:
     if BACKSTAGE_SOURCE.is_dir():
         destinations.append(("/docs/backstage/", "Firestartr Portal"))
     for href, label in destinations:
-        check(f"href={href}>{label}</a>" in menu, f"menu links {label} to {href}")
+        check(has_labeled_link(navbar, href, label), f"navbar links {label} to {href}")
+
+    check("/docs/images/logo.png" in navbar, "navbar renders the Firestartr logo")
+    check("Firestartr Documentation" in navbar, "navbar renders the Firestartr title")
+    check("hextra-search-wrapper" in navbar, "navbar renders FlexSearch")
+    check("hextra-theme-toggle" in navbar, "navbar renders the theme toggle")
+
+    desktop_sidebars = {}
+    for section in expected:
+        section_page = read(PUBLIC_DIR / section / "index.html")
+        sidebar = element_with_class(section_page, "aside", "hextra-sidebar-container")
+        desktop_sidebar = element_with_class(sidebar, "ul", "hx:max-md:hidden")
+        desktop_sidebars[section] = desktop_sidebar
+        check(bool(desktop_sidebar), f"{section} desktop sidebar is rendered")
+        for other_section in expected - {section}:
+            check(
+                f"/docs/{other_section}/" not in desktop_sidebar,
+                f"{section} desktop sidebar excludes {other_section}",
+            )
 
     for slug in GUIDES:
-        check(f"href=/docs/deploying-resources/{slug}/" in menu, f"menu nests {slug} under Deploying resources")
+        href = f"/docs/deploying-resources/{slug}/"
+        check(
+            href in desktop_sidebars["deploying-resources"],
+            f"sidebar nests {slug} under Deploying resources",
+        )
+
+
+def check_theme_chrome(index: str) -> None:
+    print("Hextra page chrome")
+    homepage_sidebar = element_with_class(index, "aside", "hextra-sidebar-container")
+    desktop_sidebar = element_with_class(homepage_sidebar, "ul", "hx:max-md:hidden")
+    check(not desktop_sidebar, "homepage has no desktop documentation sidebar navigation")
+    check("data-theme=light" in index, "light is the default theme")
+
+    docs_page = read(PUBLIC_DIR / "deploying-resources" / "index.html")
+    check("hextra-toc" in docs_page, "documentation pages render a table of contents")
+    check("Edit this page" not in docs_page, "documentation pages omit edit links")
+    check("Last updated on" not in docs_page, "documentation pages omit last-modified dates")
+
+    mermaid_page = read(PUBLIC_DIR / "features" / "release_please" / "index.html")
+    check('<pre class="mermaid ' in mermaid_page, "Mermaid diagrams are enabled")
 
 
 PORTAL_FIXTURE_PAGES = {
@@ -206,53 +260,70 @@ def remove_portal_fixture() -> None:
 
 
 def check_portal_fixture() -> None:
-    """Publish a temporary portal promotion and assert the /backstage/ section."""
+    """Exercise both the present and absent states of the optional portal promotion."""
     print("Firestartr Portal (temporary Backstage promotion fixture)")
-    if BACKSTAGE_SOURCE.exists() or PORTAL_FIXTURE_IMAGE.exists():
-        print("  skip: a Backstage promotion is already present in git")
-        return
+    if PORTAL_FIXTURE_IMAGE.exists():
+        raise RuntimeError(f"fixture path already exists: {PORTAL_FIXTURE_IMAGE}")
 
-    try:
-        create_portal_fixture()
-        build_site()
+    with tempfile.TemporaryDirectory(prefix="firestartr-portal-source-") as temp_dir:
+        backup = Path(temp_dir) / "backstage"
+        had_promotion = BACKSTAGE_SOURCE.is_dir()
+        if had_promotion:
+            shutil.copytree(BACKSTAGE_SOURCE, backup)
+            shutil.rmtree(BACKSTAGE_SOURCE)
 
-        check((PUBLIC_DIR / "backstage" / "index.html").is_file(), "/backstage/ section home is published")
-        home = read(PUBLIC_DIR / "backstage" / "index.html")
-        check("Fixture marker: portal section home" in home, "/backstage/ renders the section README")
+        try:
+            create_portal_fixture()
+            build_site()
 
-        for route, marker in PORTAL_FIXTURE_PAGES.items():
-            page = PUBLIC_DIR / "backstage" / route / "index.html"
-            check(page.is_file(), f"/backstage/{route}/ is published")
-            if page.is_file():
-                check(marker in read(page), f"/backstage/{route}/ renders its source page")
+            check((PUBLIC_DIR / "backstage" / "index.html").is_file(), "/backstage/ section home is published")
+            home = read(PUBLIC_DIR / "backstage" / "index.html")
+            check("Fixture marker: portal section home" in home, "/backstage/ renders the section README")
 
-        check(
-            not (PUBLIC_DIR / "deploying-resources" / "backstage").exists(),
-            "Firestartr Portal is not nested under Deploying resources",
-        )
+            for route, marker in PORTAL_FIXTURE_PAGES.items():
+                page = PUBLIC_DIR / "backstage" / route / "index.html"
+                check(page.is_file(), f"/backstage/{route}/ is published")
+                if page.is_file():
+                    check(marker in read(page), f"/backstage/{route}/ renders its source page")
 
-        index = read(HOMEPAGE)
-        check_navigation(index)
-        check(">Backstage</a>" not in book_menu(index), "menu does not label the section 'Backstage'")
+            check(
+                not (PUBLIC_DIR / "deploying-resources" / "backstage").exists(),
+                "Firestartr Portal is not nested under Deploying resources",
+            )
 
-        provisioning = read(PUBLIC_DIR / "backstage" / "resources-provisioning" / "index.html")
-        match = re.search(
-            r'src=("([^"]*backstage-test-fixture[^"]*)"|([^ >]*backstage-test-fixture[^ >]*))',
-            provisioning,
-        )
-        image_src = (match.group(2) or match.group(3)) if match else ""
-        check(
-            image_src == "/docs/images/backstage-test-fixture.png",
-            "portal image resolves under /docs/images/backstage-*",
-        )
-        if image_src != "/docs/images/backstage-test-fixture.png":
-            print(f"      found image src: {image_src!r}")
-        check(
-            (PUBLIC_DIR / "images" / "backstage-test-fixture.png").is_file(),
-            "portal image is published",
-        )
-    finally:
-        remove_portal_fixture()
+            index = read(HOMEPAGE)
+            check_navigation(index)
+            navbar = element_with_class(index, "nav", "hextra-max-navbar-width")
+            check(
+                not has_labeled_link(navbar, "/docs/backstage/", "Backstage"),
+                "navbar does not label the section 'Backstage'",
+            )
+
+            provisioning = read(PUBLIC_DIR / "backstage" / "resources-provisioning" / "index.html")
+            match = re.search(
+                r'src=("([^"]*backstage-test-fixture[^"]*)"|([^ >]*backstage-test-fixture[^ >]*))',
+                provisioning,
+            )
+            image_src = (match.group(2) or match.group(3)) if match else ""
+            check(
+                image_src == "/docs/images/backstage-test-fixture.png",
+                "portal image resolves under /docs/images/backstage-*",
+            )
+            if image_src != "/docs/images/backstage-test-fixture.png":
+                print(f"      found image src: {image_src!r}")
+            check(
+                (PUBLIC_DIR / "images" / "backstage-test-fixture.png").is_file(),
+                "portal image is published",
+            )
+
+            remove_portal_fixture()
+            build_site()
+            check(not (PUBLIC_DIR / "backstage").exists(), "/backstage/ is absent without a portal promotion")
+            check_navigation(read(HOMEPAGE))
+        finally:
+            remove_portal_fixture()
+            if had_promotion:
+                shutil.copytree(backup, BACKSTAGE_SOURCE)
 
 
 def check_guides() -> None:
@@ -385,6 +456,7 @@ def main() -> int:
     index = read(HOMEPAGE)
     check_homepage()
     check_navigation(index)
+    check_theme_chrome(index)
     check_guides()
     check_providers_and_features()
     check_internal_links()
