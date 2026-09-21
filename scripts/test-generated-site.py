@@ -225,6 +225,11 @@ def check_theme_chrome(index: str) -> None:
         "homepage has no desktop documentation sidebar chrome",
     )
     check("data-theme=light" in index, "light is the default theme")
+    check(
+        'href="/docs/favicon.png"' in index,
+        "favicon is the Firestartr logo at /docs/favicon.png",
+    )
+    check('href="/docs/favicon.svg"' not in index, "Hextra default favicon.svg is not used")
 
     docs_page = read(PUBLIC_DIR / "deploying-resources" / "index.html")
     check("hextra-toc" in docs_page, "documentation pages render a table of contents")
