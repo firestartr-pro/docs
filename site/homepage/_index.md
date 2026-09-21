@@ -1,5 +1,7 @@
 +++
 title = 'Firestartr'
+[sidebar]
+hide = true
 +++
 
 # Firestartr

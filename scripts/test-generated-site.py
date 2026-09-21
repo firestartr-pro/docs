@@ -140,6 +140,14 @@ def element_with_class(html: str, tag: str, class_name: str) -> str:
     return match.group(1) if match else ""
 
 
+def opening_tag_with_class(html: str, tag: str, class_name: str) -> str:
+    match = re.search(
+        rf'<{tag}[^>]*class=(?:"[^"]*\b{re.escape(class_name)}\b[^"]*"|[^ >]*\b{re.escape(class_name)}\b[^ >]*)[^>]*>',
+        html,
+    )
+    return match.group(0) if match else ""
+
+
 def has_labeled_link(html: str, href: str, label: str) -> bool:
     for match in re.finditer(r"<a\b([^>]*)>(.*?)</a>", html, re.S):
         attributes, body = match.groups()
@@ -184,23 +192,23 @@ def check_navigation(index: str) -> None:
     check("hextra-search-wrapper" in navbar, "navbar renders FlexSearch")
     check("hextra-theme-toggle" in navbar, "navbar renders the theme toggle")
 
-    desktop_sidebars = {}
+    section_sidebars = {}
     for section in expected:
         section_page = read(PUBLIC_DIR / section / "index.html")
         sidebar = element_with_class(section_page, "aside", "hextra-sidebar-container")
-        desktop_sidebar = element_with_class(sidebar, "ul", "hx:max-md:hidden")
-        desktop_sidebars[section] = desktop_sidebar
-        check(bool(desktop_sidebar), f"{section} desktop sidebar is rendered")
+        section_sidebars[section] = sidebar
+        check(bool(sidebar), f"{section} sidebar is rendered")
+        check(f"/docs/{section}/" in sidebar, f"{section} sidebar contains its own area tree")
         for other_section in expected - {section}:
             check(
-                f"/docs/{other_section}/" not in desktop_sidebar,
-                f"{section} desktop sidebar excludes {other_section}",
+                f"/docs/{other_section}/" not in sidebar,
+                f"{section} sidebar excludes {other_section}",
             )
 
     for slug in GUIDES:
         href = f"/docs/deploying-resources/{slug}/"
         check(
-            href in desktop_sidebars["deploying-resources"],
+            href in section_sidebars["deploying-resources"],
             f"sidebar nests {slug} under Deploying resources",
         )
 
@@ -208,8 +216,14 @@ def check_navigation(index: str) -> None:
 def check_theme_chrome(index: str) -> None:
     print("Hextra page chrome")
     homepage_sidebar = element_with_class(index, "aside", "hextra-sidebar-container")
-    desktop_sidebar = element_with_class(homepage_sidebar, "ul", "hx:max-md:hidden")
-    check(not desktop_sidebar, "homepage has no desktop documentation sidebar navigation")
+    homepage_sidebar_tag = opening_tag_with_class(index, "aside", "hextra-sidebar-container")
+    check(
+        "hx:md:hidden" in homepage_sidebar_tag
+        and "hx:xl:block" not in homepage_sidebar_tag
+        and "hx:md:sticky" not in homepage_sidebar_tag
+        and "hx:max-md:hidden" not in homepage_sidebar,
+        "homepage has no desktop documentation sidebar chrome",
+    )
     check("data-theme=light" in index, "light is the default theme")
 
     docs_page = read(PUBLIC_DIR / "deploying-resources" / "index.html")
