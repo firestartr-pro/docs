@@ -9,6 +9,8 @@ Group to look like a Component.
 Open **Home** in the sidebar to see the catalog with all the resources of the
 organization.
 
+The catalog is Backstage's [Software Catalog](https://backstage.io/docs/features/software-catalog/).
+
 ![Catalog in the sidebar](./images/backstage-resource-edition-01-catalog-menu.png)
 
 ## Step 2 — Find your resource
@@ -27,7 +29,7 @@ appear depends on the kind:
   *Code Insights*, *Pull Requests*, *Dependencies*, and, only when the
   component consumes or provides APIs, *API*. *Kubernetes* appears only
   when Kubernetes is set up for the component, and *Docs* only when it has
-  TechDocs documentation.
+  [TechDocs](https://backstage.io/docs/features/techdocs/) documentation.
 - **Component (website):** *Overview*, *Features*, *Settings*, *CI/CD*,
   and *Dependencies* (no *Code Insights*, *Pull Requests*, or *API*), with
   the same conditional *Kubernetes* and *Docs* tabs as service components.

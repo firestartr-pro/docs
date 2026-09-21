@@ -3,6 +3,8 @@
 Welcome to the Firestartr Portal documentation. Here you will find guides
 for the day-to-day features available to every user of the portal.
 
+The Firestartr Portal is built on [Backstage](https://backstage.io/).
+
 ## Contents
 
 - [Resources Provisioning](./resources-provisioning.md) — create new resources

@@ -1,7 +1,7 @@
 # Resources Provisioning
 
 The portal lets you provision new resources from ready-made blueprints, called
-**templates**. Instead of setting everything up by hand, you pick the resource
+**templates**. Templates are Backstage [Software Templates](https://backstage.io/docs/features/software-templates/). Instead of setting everything up by hand, you pick the resource
 you want, answer a few guided questions, review the result, and the portal
 takes care of the rest.
 
