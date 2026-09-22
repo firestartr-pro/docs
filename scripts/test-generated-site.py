@@ -269,7 +269,15 @@ def check_theme_chrome(index: str) -> None:
         and "hx:max-md:hidden" not in homepage_sidebar,
         "homepage has no desktop documentation sidebar chrome",
     )
-    check("data-theme=light" in index, "light is the default theme")
+    # Hextra's theme-toggle markup hard-codes data-theme="light"; the
+    # configured default only appears as the fallback in the head theme script.
+    head_scripts = sorted((PUBLIC_DIR / "js").glob("main-head*.js"))
+    head_script = read(head_scripts[0]) if head_scripts else ""
+    check(
+        bool(head_scripts)
+        and re.search(r'''getItem\("color-theme"\)\s*:\s*['"]light['"]''', head_script) is not None,
+        "first-paint theme script falls back to light",
+    )
     check(
         'href="/docs/favicon.png"' in index,
         "favicon is the Firestartr logo at /docs/favicon.png",
