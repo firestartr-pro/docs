@@ -278,11 +278,12 @@ def check_theme_chrome(index: str) -> None:
         and re.search(r'''getItem\("color-theme"\)\s*:\s*['"]light['"]''', head_script) is not None,
         "first-paint theme script falls back to light",
     )
+    # The test build runs `hugo --minify`, which strips attribute quotes.
     check(
-        'href="/docs/favicon.png"' in index,
+        "href=/docs/favicon.png" in index,
         "favicon is the Firestartr logo at /docs/favicon.png",
     )
-    check('href="/docs/favicon.svg"' not in index, "Hextra default favicon.svg is not used")
+    check("href=/docs/favicon.svg" not in index, "Hextra default favicon.svg is not used")
 
     docs_page = read(PUBLIC_DIR / "deploying-resources" / "index.html")
     check("hextra-toc" in docs_page, "documentation pages render a table of contents")
