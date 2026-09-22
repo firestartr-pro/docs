@@ -4,8 +4,6 @@
 
 This feature provides the initial setup for the Firestartr features monorepo, your organization's private registry of reusable, Mustache-templated Firestartr features.
 
----
-
 ## About
 
 This repository is a **monorepo** that holds all custom Firestartr features for your organization.
@@ -204,4 +202,4 @@ The workflow authenticates with a GitHub App that has write access to the docs r
 - [Firestartr Documentation](https://docs.firestartr.dev)
 - [All Official Features](https://docs.firestartr.dev/docs/features/)
 
-Built with ❤️ using Firestartr
+Built with ❤️ using 🔥firestartr
