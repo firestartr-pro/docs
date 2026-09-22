@@ -148,6 +148,21 @@ def opening_tag_with_class(html: str, tag: str, class_name: str) -> str:
     return match.group(0) if match else ""
 
 
+def split_sidebar_trees(sidebar: str) -> tuple[str, str]:
+    """Split a sidebar into its mobile-drawer and desktop-tree regions.
+
+    The hamburger drawer and the desktop tree sit side by side and both hold
+    nested lists, so the desktop tree's unique class is the only reliable
+    boundary for link assertions.
+    """
+    mobile_start = sidebar.find("<ul")
+    desktop_marker = sidebar.find("hx:max-md:hidden")
+    if mobile_start < 0 or desktop_marker < 0:
+        return "", ""
+    desktop_start = sidebar.rfind("<ul", 0, desktop_marker)
+    return sidebar[mobile_start:desktop_start], sidebar[desktop_start:]
+
+
 def has_labeled_link(html: str, href: str, label: str) -> bool:
     for match in re.finditer(r"<a\b([^>]*)>(.*?)</a>", html, re.S):
         attributes, body = match.groups()
@@ -198,11 +213,22 @@ def check_navigation(index: str) -> None:
         sidebar = element_with_class(section_page, "aside", "hextra-sidebar-container")
         section_sidebars[section] = sidebar
         check(bool(sidebar), f"{section} sidebar is rendered")
-        check(f"/docs/{section}/" in sidebar, f"{section} sidebar contains its own area tree")
+        mobile_tree, desktop_tree = split_sidebar_trees(sidebar)
+        check(
+            f"/docs/{section}/" in desktop_tree,
+            f"{section} sidebar contains its own area tree",
+        )
         for other_section in expected - {section}:
             check(
-                f"/docs/{other_section}/" not in sidebar,
+                f"/docs/{other_section}/" not in desktop_tree,
                 f"{section} sidebar excludes {other_section}",
+            )
+        # The navbar hides its links on narrow screens, so the hamburger
+        # drawer is the only cross-area navigation there.
+        for other_section in expected:
+            check(
+                f"/docs/{other_section}/" in mobile_tree,
+                f"{section} mobile drawer links to {other_section}",
             )
 
     for slug in GUIDES:
