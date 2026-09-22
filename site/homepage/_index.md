@@ -72,7 +72,7 @@ already use:
 
 - **GitHub** — where code, reviews, and workflows live.
 - **Backstage** — where the catalog of services and ownership is browsed.
-- **[Skill](https://github.com/prefapp/skills)** — the conversational surface that turns
+- **[Skill](https://github.com/prefapp/skills/tree/main/skills/firestartr/firestartr-operation)** — the conversational surface that turns
   a request into Firestartr instructions.
 
 ![GitHub, Backstage, and Skill feed instructions into a central Firestartr card as its three control surfaces](./images/firestartr-control-surfaces.png)
