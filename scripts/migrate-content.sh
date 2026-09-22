@@ -46,16 +46,31 @@ fi
 write_page() {
   local source="$1" destination="$2"
   shift 2
+  local line first_line='' strip_title_h1=false
+  for line in "$@"; do
+    case "${line}" in
+      title\ =*) strip_title_h1=true ;;
+    esac
+  done
+  IFS= read -r first_line < "${source}" || true
   mkdir -p "$(dirname "${destination}")"
   {
     echo '+++'
-    local line
     for line in "$@"; do
       echo "${line}"
     done
     echo '+++'
     echo ''
-    cat "${source}"
+    # Hextra renders the front-matter title as the page's <h1>. When a title
+    # is set, drop a duplicate leading source heading so only one H1 remains.
+    if ${strip_title_h1}; then
+      case "${first_line}" in
+        '# '*) tail -n +2 "${source}" ;;
+        *) cat "${source}" ;;
+      esac
+    else
+      cat "${source}"
+    fi
   } > "${destination}"
 }
 

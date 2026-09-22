@@ -239,6 +239,25 @@ def check_navigation(index: str) -> None:
         )
 
 
+def check_page_headings() -> None:
+    print("Page headings (a single H1 per page)")
+    pages = [
+        "index.html",
+        "deploying-resources/index.html",
+        "providers/index.html",
+        "features/index.html",
+        "deploying-resources/state-apps-repository/index.html",
+        "providers/terraform/workspace-sync/index.html",
+        "features/charts_repo/index.html",
+        "features/charts_repo/CHANGELOG/index.html",
+    ]
+    if BACKSTAGE_SOURCE.is_dir():
+        pages.append("backstage/index.html")
+    for page in pages:
+        h1_count = len(re.findall(r"<h1[ >]", read(PUBLIC_DIR / page)))
+        check(h1_count == 1, f"{page} renders exactly one H1")
+
+
 def check_theme_chrome(index: str) -> None:
     print("Hextra page chrome")
     homepage_sidebar = element_with_class(index, "aside", "hextra-sidebar-container")
@@ -501,6 +520,7 @@ def main() -> int:
     index = read(HOMEPAGE)
     check_homepage()
     check_navigation(index)
+    check_page_headings()
     check_theme_chrome(index)
     check_guides()
     check_providers_and_features()
