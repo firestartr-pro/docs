@@ -1,5 +1,20 @@
 # Changelog
 
+## [2.10.2](https://github.com/prefapp/features/compare/claims_repo-v2.10.1...claims_repo-v2.10.2) (2026-09-21)
+
+
+### Bug Fixes
+
+* **claims_repo:** make tfwp and secrets hydrate run-name unique per dispatch ([#1275](https://github.com/prefapp/features/issues/1275)) ([f5de09c](https://github.com/prefapp/features/commit/f5de09ce0362828a433c2bda739a9e45e4453275))
+* **claims_repo:** unprovision discovers PRs from a delete-result artifact ([#1332](https://github.com/prefapp/features/issues/1332)) ([74535f9](https://github.com/prefapp/features/commit/74535f99b6894abc5994d686ac8d94b0a6b55572))
+
+## [2.10.1](https://github.com/prefapp/features/compare/claims_repo-v2.10.0...claims_repo-v2.10.1) (2026-09-17)
+
+
+### Bug Fixes
+
+* **`claims_repo`:** Wrong token being used in `update-component-features.yaml` ([#1316](https://github.com/prefapp/features/issues/1316)) ([6f7990e](https://github.com/prefapp/features/commit/6f7990e664a2ca121deebc696d6a9840ddeb3876))
+
 ## [2.10.0](https://github.com/prefapp/features/compare/claims_repo-v2.9.0...claims_repo-v2.10.0) (2026-09-10)
 
 
