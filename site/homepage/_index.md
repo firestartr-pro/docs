@@ -1,8 +1,8 @@
 +++
 title = 'Firestartr'
+[sidebar]
+hide = true
 +++
-
-# Firestartr
 
 Firestartr is an internal developer platform. It gives an organization one explicit map
 of its software — and of the people responsible for it — and then acts on that map to

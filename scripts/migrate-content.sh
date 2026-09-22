@@ -26,7 +26,6 @@ ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "${ROOT_DIR}"
 
 WEB_CONTENT_DIR="site/web/content"
-WEB_ASSETS_DIR="site/web/assets"
 WEB_STATIC_DIR="site/web/static"
 HOMEPAGE_DIR="site/homepage"
 RAW_DIR="site/raw"
@@ -47,16 +46,31 @@ fi
 write_page() {
   local source="$1" destination="$2"
   shift 2
+  local line first_line='' strip_title_h1=false
+  for line in "$@"; do
+    case "${line}" in
+      title\ =*) strip_title_h1=true ;;
+    esac
+  done
+  IFS= read -r first_line < "${source}" || true
   mkdir -p "$(dirname "${destination}")"
   {
     echo '+++'
-    local line
     for line in "$@"; do
       echo "${line}"
     done
     echo '+++'
     echo ''
-    cat "${source}"
+    # Hextra renders the front-matter title as the page's <h1>. When a title
+    # is set, drop a duplicate leading source heading so only one H1 remains.
+    if ${strip_title_h1}; then
+      case "${first_line}" in
+        '# '*) tail -n +2 "${source}" ;;
+        *) cat "${source}" ;;
+      esac
+    else
+      cat "${source}"
+    fi
   } > "${destination}"
 }
 
@@ -66,9 +80,9 @@ if [ ! -f "${HOMEPAGE_DIR}/_index.md" ]; then
 fi
 
 echo "==> Cleaning generated content"
-rm -rf "${WEB_CONTENT_DIR}" "${WEB_STATIC_DIR}" "${WEB_ASSETS_DIR}/images"
+rm -rf "${WEB_CONTENT_DIR}" "${WEB_STATIC_DIR}" "site/web/assets/images"
 mkdir -p "${DEPLOYING_RESOURCES_DIR}" "${PROVIDERS_DIR}" "${FEATURES_DIR}" \
-  "${WEB_STATIC_DIR}" "${WEB_ASSETS_DIR}/images"
+  "${WEB_STATIC_DIR}/images"
 
 echo "==> Copying destination-owned homepage"
 cp "${HOMEPAGE_DIR}/_index.md" "${WEB_CONTENT_DIR}/_index.md"
@@ -76,7 +90,7 @@ echo "    ✓ ${HOMEPAGE_DIR}/_index.md → ${WEB_CONTENT_DIR}/_index.md"
 
 echo "==> Migrating deploying resources"
 write_page "${CORE_DOCS_DIR}/README.md" "${DEPLOYING_RESOURCES_DIR}/_index.md" \
-  "title = 'Deploying resources'" 'weight = 1' 'bookCollapseSection = true'
+  "title = 'Deploying resources'" 'weight = 1' "menus = ['main']" '[cascade]' "type = 'docs'"
 echo "    ✓ core/docs/README.md → deploying-resources/_index.md"
 
 # Every core doc except the section README, the providers subtree, and the
@@ -98,12 +112,12 @@ while IFS= read -r -d '' file; do
   case "${rel_path}" in
     README.md)
       write_page "${file}" "${PROVIDERS_DIR}/_index.md" \
-        "title = 'Providers'" 'weight = 2' 'bookCollapseSection = true'
+        "title = 'Providers'" 'weight = 2' "menus = ['main']" '[cascade]' "type = 'docs'"
       echo "    ✓ providers/README.md → providers/_index.md"
       ;;
     */README.md)
       write_page "${file}" "${PROVIDERS_DIR}/$(dirname "${rel_path}")/_index.md" \
-        'bookCollapseSection = true' 'weight = 1'
+        'weight = 1'
       echo "    ✓ providers/${rel_path} → providers/$(dirname "${rel_path}")/_index.md"
       ;;
     *)
@@ -115,7 +129,7 @@ done < <(find "${CORE_DOCS_DIR}/providers" -type f -name '*.md' -print0)
 
 echo "==> Migrating features"
 write_page "${RAW_DIR}/features/README.md" "${FEATURES_DIR}/_index.md" \
-  "title = 'Features'" 'weight = 3' 'bookCollapseSection = true'
+  "title = 'Features'" 'weight = 3' "menus = ['main']" '[cascade]' "type = 'docs'"
 echo "    ✓ features/README.md → features/_index.md"
 
 while IFS= read -r -d '' feature_dir; do
@@ -126,7 +140,7 @@ while IFS= read -r -d '' feature_dir; do
     case "${filename}" in
       README.md)
         write_page "${file}" "${FEATURES_DIR}/${feature_name}/_index.md" \
-          'bookCollapseSection = true' 'weight = 1'
+          'weight = 1'
         echo "    ✓ features/${feature_name}/README.md"
         ;;
       CHANGELOG.md)
@@ -151,12 +165,12 @@ if [ -d "${CORE_DOCS_DIR}/backstage" ]; then
     case "${rel_path}" in
       README.md)
         write_page "${file}" "${BACKSTAGE_DIR}/_index.md" \
-          "title = 'Firestartr Portal'" 'weight = 4' 'bookCollapseSection = true'
+          "title = 'Firestartr Portal'" 'weight = 4' "menus = ['main']" '[cascade]' "type = 'docs'"
         echo "    ✓ backstage/README.md → backstage/_index.md"
         ;;
       */README.md)
         write_page "${file}" "${BACKSTAGE_DIR}/$(dirname "${rel_path}")/_index.md" \
-          'bookCollapseSection = true' 'weight = 1'
+          'weight = 1'
         echo "    ✓ backstage/${rel_path} → backstage/$(dirname "${rel_path}")/_index.md"
         ;;
       *)
@@ -172,18 +186,17 @@ fi
 echo "==> Migrating static assets"
 if [ -f "logos/logo.png" ]; then
   cp "logos/logo.png" "${WEB_STATIC_DIR}/favicon.png"
-  echo "    ✓ logos/logo.png → static/favicon.png"
+  cp "logos/logo.png" "${WEB_STATIC_DIR}/images/logo.png"
+  echo "    ✓ logos/logo.png → static/favicon.png and static/images/logo.png"
 fi
 
-# Assets (not static) so the portable image render hook resolves relative
-# ./images/... references from the moved pages against site/web/assets/images.
 if [ -d "${RAW_DIR}/images" ]; then
-  cp -R "${RAW_DIR}/images/." "${WEB_ASSETS_DIR}/images/"
-  echo "    ✓ site/raw/images → assets/images"
+  cp -R "${RAW_DIR}/images/." "${WEB_STATIC_DIR}/images/"
+  echo "    ✓ site/raw/images → static/images"
 fi
 if [ -d "${HOMEPAGE_DIR}/images" ]; then
-  cp -R "${HOMEPAGE_DIR}/images/." "${WEB_ASSETS_DIR}/images/"
-  echo "    ✓ site/homepage/images → assets/images"
+  cp -R "${HOMEPAGE_DIR}/images/." "${WEB_STATIC_DIR}/images/"
+  echo "    ✓ site/homepage/images → static/images"
 fi
 
 echo "==> Rewriting links for Hugo"
@@ -192,6 +205,23 @@ while IFS= read -r -d '' file; do
   sed_inplace 's|/README\.md)|/)|g' "${file}"
   sed_inplace 's|(\.*/\?\([^)]*\)/README\.md)|(./\1/)|g' "${file}"
 
+  # Markdown page links resolve to Hugo's directory-style output URLs. Regular
+  # pages need to step out of their own pretty-URL directory; section indexes do not.
+  link_prefix='./'
+  if [ "$(basename "${file}")" != '_index.md' ]; then
+    link_prefix='../'
+  fi
+  sed_inplace -E \
+    -e "s|\]\(\./([^\)#]+)\.md(#[^)]+)?\)|](${link_prefix}\\1/\\2)|g" \
+    "${file}"
+
+  # Shared images live at the site-wide /images/ path under the configured
+  # base URL, regardless of the page's section depth.
+  sed_inplace -E \
+    -e 's|\]\(\./images/|](/images/|g' \
+    -e 's|\]\(images/|](/images/|g' \
+    "${file}"
+
   # GitHub feature repository links resolve to the published feature pages.
   # Root-absolute so they work from any section depth.
   sed_inplace -E \
@@ -199,6 +229,6 @@ while IFS= read -r -d '' file; do
     -e 's|https://github\.com/prefapp/features/blob/[^/]+/packages/([^/]+)/templates/[^/]*/([^/]+)\.md(#[^)]+)?\)|/features/\1/\2/\3)|g' \
     "${file}"
 done < <(find "${WEB_CONTENT_DIR}" -type f -name '*.md' -print0)
-echo "    ✓ README and feature links rewritten"
+echo "    ✓ README, image, and feature links rewritten"
 
 echo "Migration complete."
