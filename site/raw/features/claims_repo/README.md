@@ -131,6 +131,7 @@ The same claim types listed for [hydrating](#hydrating-claims) are available for
 - `state_infra_repo`: the name of the repository where the Terraform related CRs are stored. Defaults to `state-infra`
 - `state_secrets_repo`: the name of the repository where the ExternalSecrets related CRs are stored. Defaults to `state-secrets`
 - `catalog_repo`: the name of the repository where the Backstage catalog related CRs are stored. Defaults to `catalog`
+- `custom_features_repo_owner`: the GitHub user or organization that owns the custom features repository from which claim features are fetched. The GitHub App token used for that repository is minted against this owner. Defaults to the owner of the claims repository.
 
 ## CLI version requirements
 
