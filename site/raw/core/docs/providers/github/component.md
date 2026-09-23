@@ -1,7 +1,7 @@
 # ComponentClaim (GitHub repository)
 
 A `ComponentClaim` provisions a GitHub repository and related configuration. The
-same claim also feeds the Backstage catalog (see [Catalog](../catalog/README.md)).
+same claim also feeds the Backstage catalog (see [Catalog](/docs/providers/catalog/)).
 
 Rendered resources:
 

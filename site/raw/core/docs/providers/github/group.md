@@ -2,7 +2,7 @@
 
 A `GroupClaim` provisions a GitHub team and its direct members. It also carries
 the group identity used by the Backstage catalog (see
-[Catalog](../catalog/README.md)).
+[Catalog](/docs/providers/catalog/)).
 
 Rendered CR: `FirestartrGithubGroup` (`firestartr.dev/v1`).
 Default module: `github-team`.

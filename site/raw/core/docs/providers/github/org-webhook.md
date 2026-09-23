@@ -48,7 +48,7 @@ providers:
 - `spec.orgName`, `spec.webhook.{url, contentType, events, active, secretRef}`.
 - `spec.webhook.secretRef` is resolved to a `Secret` reference (`name` + `key`).
   The referenced Secret normally comes from an `ExternalSecret` rendered by a
-  [SecretsClaim](../external_secrets/README.md).
+  [SecretsClaim](/docs/providers/external_secrets/).
 - `insecureSsl` is always the entity default (`false`); it is not a claim-level
   field, so it cannot be supplied here.
 

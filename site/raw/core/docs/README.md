@@ -43,7 +43,7 @@ For internal development documentation and architecture details, see the `../int
 
 ## Quick Links
 
-- **Features Documentation**: [Our Features](./Our-features.md)
+- **Features Documentation**: [Our Features](/docs/features/)
 - **.firestartr Config**: [The .firestartr Repository](./The-dot-firestartr-repository.md)
 - **App Deployments**: [State Apps Repository](./state-apps-repository.md)
 - **Sys Services**: [State Sys-Services Repository](./state-sys-services-repository.md)
