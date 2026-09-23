@@ -146,7 +146,7 @@ NOTES:
   - `default_snapshots_flavors_filter: '*'`
   - `default_pre_releases_flavors_filter: '*'`
   - `default_releases_flavors_filter: '*'`
-  - `firestartr_config_repo: 'org/.firestartr'` # Where org is the organization of the firestartr configuration repository.
+  - `firestartr_config_repo: 'org/.firestartr'` # Where org is the organization of the Firestartr configuration repository.
 - If the branch set in `build_snapshots_branch` is not the default branch of the service code repository, once the `build_and_dispatch_docker_images` feature has been updated and the `make_dispatches.yaml` file has been migrated to the new model, bring the content of the main branch (where everything described above has been applied) to the `build_snapshots_branch` so that the new dispatch model is available.
 - Take advantage of the changes promoted in the code repository claim to update and add the necessary permissions, in effect, those of `platformOwner` that concern us and that you can find in the files of the `groups` directory of the same claims repository. Eventually like this: `platformOwner: group:infra`.
 
