@@ -52,18 +52,18 @@ providers:
 | `schedule_timezone` | string | Timezone for the cron schedule. | No | IANA timezone (e.g., `UTC`, `America/New_York`) |
 | `policy` | string | Sync policy determining allowed operations. | No | Free string; recognized values are `observe`, `apply`, `create-only`, `full-control`, plus the aliases `observe-only` and `create-update-only` |
 
-> **Caveat — cadence is optional.** You may set `period`, `schedule`, or
+> **Cadence — optional.** You may set `period`, `schedule`, or
 > **neither**. With `enabled: true` and no cadence, the controller silently uses
 > a **1 minute** period. Set an explicit cadence unless a one-minute sync is
 > intended. When both are set, they are mutually exclusive.
 
-> **Caveat — timezone defaults to `Europe/Madrid`.** If `schedule_timezone` is
+> **Timezone default — `Europe/Madrid`.** If `schedule_timezone` is
 > omitted for a cron `schedule`, both the renderer and the operator default to
 > `Europe/Madrid`, not UTC. Always set it explicitly when the schedule must be
 > timezone-stable.
 
-> **Caveat — the sync policy is a free string, but unknown values fail.** The
-> schema does not enumerate `policy`. When a sync policy is set, the renderer
+> **Sync policy validation — unknown values fail.** The schema does not
+> enumerate `policy`. When a sync policy is set, the renderer
 > runs a recognized-policy check against the general policy (which is always
 > present, defaulting to `observe`); an unknown value fails that check with
 > `Policy {syncPolicy} or {generalPolicy} not found`. Only
@@ -251,7 +251,7 @@ Sync events execute one of two code paths:
 | absent | Plan only. |
 | anything else (including `full-control`, `create-only`, `create-update-only`, `observe-only`) | Plan only. |
 
-> **Caveat — only `apply` mutates during sync.** Although the policy table lists
+> **Sync behavior — only `apply` mutates during sync.** Although the policy table lists
 > `full-control` and `create-only` as policies, the sync executor switches on the
 > literal value `apply` for mutation and the literal value `observe` for a plan;
 > every other value falls through to plan-only. If you need scheduled changes,
@@ -259,7 +259,7 @@ Sync events execute one of two code paths:
 > permissive). `full-control` and `create-only` as sync policies do not create,
 > update, or delete anything.
 
-> **Caveat — `apply` does not prevent deletes.** A sync with `policy: apply`
+> **Deletion behavior — `apply` does not prevent deletes.** A sync with `policy: apply`
 > runs an unrestricted auto-approved apply. If the module drift removes a
 > resource, the sync can delete it. See
 > [Workspace Policies](./workspace-policies.md).
@@ -374,8 +374,8 @@ The sync configuration follows this JSON schema:
 4. `period` must match `^[0-9]+[smhd]$`.
 5. `schedule` uses cron-parser format with an optional seconds field.
 6. `policy` is an unconstrained string in the schema, but when it is set an
-   unknown value fails the recognized-policy check at render time (see the caveat
-   above); only recognized values reach execution.
+   unknown value fails the recognized-policy check at render time (see the sync
+   policy validation note above); only recognized values reach execution.
 7. `schedule_timezone` is not coupled to `schedule` by the schema.
 
 ## Migration Guide

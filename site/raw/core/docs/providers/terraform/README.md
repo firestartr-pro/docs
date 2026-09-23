@@ -69,7 +69,7 @@ The `providers.terraform` block supports:
 | `policy` | No | General operation policy. Defaults to `observe`. See [Workspace Policies](./workspace-policies.md). |
 | `tfStateKey` | No | Explicit UUID state key. Generated and preserved when omitted. |
 | `files` | No | Additional files to write into the workspace, each with `source` and `destination`. |
-| `valuesSchema` | No | Schema locator. **Not currently enforced** — see Caveats. |
+| `valuesSchema` | No | Schema locator. **Not currently enforced** — see Operational notes. |
 | `sync` | No | Synchronization schedule and policy. See [Workspace Sync](./workspace-sync.md). |
 | `variants` | No | Derived workspaces. See [Variants](./variants.md). |
 
@@ -193,7 +193,7 @@ blob under the `outputs` key.
 and the exit code. `FirestartrTerraformWorkspace` and
 `FirestartrTerraformWorkspacePlan` both expose `/status`.
 
-> **Caveat:** the CRDs expose `spec.writeConnectionSecretToRef`, but the
+> **Output behavior:** the CRDs expose `spec.writeConnectionSecretToRef`, but the
 > workspace flow does not honor a custom name or output list. Outputs always land
 > in the derived Secret described above.
 
@@ -212,7 +212,7 @@ workspace runs `tofu destroy`. See [Workspace Policies](./workspace-policies.md)
 for the operation matrix and [Workspace Sync](./workspace-sync.md) for scheduled
 reconciliation.
 
-## Caveats
+## Operational notes
 
 - **OpenTofu, not Terraform.** Only the `tofu` binary is executed.
 - **`source: Remote` still needs a module.** A claim without `module` renders but

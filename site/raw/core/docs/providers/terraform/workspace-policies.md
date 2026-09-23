@@ -36,7 +36,7 @@ Each policy enables a set of internal controller actions during a Terraform run:
 * **`NOTHING`**: Allows the controller to run and perform no operation. Only
   `full-control` and `apply` list it; `observe` and `create-only` do not.
 
-> **Caveat — `apply` does not stop deletes.** The `apply` policy blocks the
+> **Deletion behavior — `apply` does not stop deletes.** The `apply` policy blocks the
 > controller's explicit `MARKED_TO_DELETION` operation, so Firestartr itself will
 > not run a `destroy`. It does **not** inspect the OpenTofu plan for removals. An
 > allowed create/update/sync runs `tofu apply -auto-approve` unrestricted, so a
@@ -115,10 +115,10 @@ To maintain flexibility and backward compatibility in `TFWorkspaceClaim`
 definitions, the following aliases are resolved internally:
 
 1. **`create-update-only`**: Maps to **`apply`**. Prevents explicit destroys;
-   see the caveat above about deletes inside apply.
+   see the deletion behavior above for deletes inside apply.
 2. **`observe-only`**: Maps to **`observe`**. Read-only monitoring.
 
-> **Caveat — sync policy values are free strings, but unknown values fail.** The
+> **Sync policy validation — values are free strings, but unknown values fail.** The
 > claim schema accepts any string for `sync.policy`. When a sync policy is set,
 > the renderer runs a recognized-policy check against the general policy (always
 > present, defaulting to `observe`); an unknown value fails with

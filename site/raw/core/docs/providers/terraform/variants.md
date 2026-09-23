@@ -95,14 +95,14 @@ cannot be overridden.
 Overrides use **deep merge**: change a single key inside `values` or a single tag
 without re-declaring everything else.
 
-> **Caveat — the merge is a leaf merge, not a block replacement.** Nested blocks,
+> **Merge behavior — leaf merge, not block replacement.** Nested blocks,
 > including `sync`, are merged key by key, so you do **not** need to re-declare
 > the whole block. Arrays are merged by index, so an override list replaces
 > entries positionally rather than wholesale — a shorter list does not remove
 > trailing parent entries. Prefer overriding whole scalar values or re-declaring
 > complete arrays with every element you want.
 
-> **Caveat — structural validation is not enforced at load time.** The schema
+> **Validation — structural checks are not enforced at load time.** The schema
 > describes a maximum variant-name length and rejects unknown/nested override
 > fields, but the production loader removes the `variants` block before schema
 > validation and does not re-validate synthesized variants. Only `name` and

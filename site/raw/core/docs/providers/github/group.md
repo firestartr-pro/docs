@@ -73,7 +73,7 @@ providers:
 - `github_team_membership.members["<username>"]` with ID `<team-id>:<username>`
   for each emitted member.
 
-## Caveats
+## Operational notes
 
 - `spec.org` is not copied into the module config; the GitHub provider owner
   selects the organization.
