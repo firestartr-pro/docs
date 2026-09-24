@@ -4,9 +4,10 @@ title = 'Firestartr'
 hide = true
 +++
 
-Firestartr is an internal developer platform. It gives an organization one explicit map
-of its software — and of the people responsible for it — and then acts on that map to
-create and maintain the repositories, pipelines, and infrastructure the software needs.
+Firestartr is an open source framework to build internal developer platforms tailored
+to your needs. It gives an organization one explicit map of its software — and of the
+people responsible for it — and then acts on that map to create and maintain the
+repositories, pipelines, and infrastructure the software needs.
 
 ## When software outgrows the organization
 
