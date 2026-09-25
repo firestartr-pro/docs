@@ -295,6 +295,16 @@
           "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/features/terraform-infra/CHANGELOG.md"
         }
       ]
+    },
+    {
+      "name": "test_arg_formats",
+      "version": "0.1.0",
+      "files": [
+        {
+          "name": "CHANGELOG.md",
+          "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/features/test_arg_formats/CHANGELOG.md"
+        }
+      ]
     }
   ]
 }

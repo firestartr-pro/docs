@@ -1,8 +1,8 @@
 # Terraform Infra workflows
 
-This feature contains GitHub Actions workflows and supporting scripts to automate the planning and application of Terraform infrastructure changes across multiple accounts, environments, and modules.
-
 ## Overview
+
+This feature contains GitHub Actions workflows and supporting scripts to automate the planning and application of Terraform infrastructure changes across multiple accounts, environments, and modules.
 
 The automation is designed to:
 - Validate changes to Terraform modules on pull requests.
