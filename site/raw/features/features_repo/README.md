@@ -74,14 +74,32 @@ config.yaml structure
 feature_name: example
 
 # The following are the args that will be used to render the templates.
-# There are two types of args:
 # $ref: replaced by the value from the metadata section of the config.yaml file
 # $lit: literal value
+# $arg: The name of the argument as consumed by the claim (each $arg becomes a schema property)
+# $default: The default value for the argument
+# $format: Optional named value type resolved from the registry in scripts/arg-formats.js
+#          (string, int, bool, semver, semver-range, string-list). It controls the JSON
+#          type emitted for the argument in schema.json:
+#            string         -> { type: "string" } (no pattern)
+#            int            -> { type: "integer" }
+#            bool           -> { type: "boolean" }
+#            semver         -> { type: "string", pattern: <semver regexp> }
+#            semver-range   -> { type: "string", pattern: <npm semver range regexp> }
+#            string-list    -> { type: "array", items: { type: "string" } }
+#          The generated schema.json validates claimed values against these native
+#          types; only $defaults are checked at schema generation and emitted as native
+#          types (a quoted "8080" becomes the integer 8080). Unknown formats fail
+#          schema generation.
 args:
   ORG:
     $ref: [spec, org]
   REPO_NAME:
     $ref: [metadata, name]
+  APP_NAME:
+    $default: "my-app"
+    $arg: app_name
+    $format: string
 
 # Files to render from the templates/ folder
 files:
