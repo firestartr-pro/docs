@@ -37,10 +37,6 @@ Step-by-step migration guide for transitioning old state repositories to the new
 
 ---
 
-## Additional Resources
-
-For internal development documentation and architecture details, see the `../internal` directory.
-
 ## Quick Links
 
 - **Features Documentation**: [Our Features](/docs/features/)
