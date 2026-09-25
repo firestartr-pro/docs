@@ -1,0 +1,79 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "test_arg_formats args",
+  "type": "object",
+  "properties": {
+    "feature_name": {
+      "const": "test_arg_formats"
+    },
+    "string_value": {
+      "type": "string",
+      "description": "Text to print for the string argument format.",
+      "examples": [
+        "hello world"
+      ]
+    },
+    "int_value": {
+      "type": "integer",
+      "minimum": -9007199254740991,
+      "maximum": 9007199254740991,
+      "description": "Integer to print for the int argument format.",
+      "examples": [
+        0
+      ]
+    },
+    "bool_value": {
+      "type": "boolean",
+      "description": "Boolean to print for the bool argument format.",
+      "examples": [
+        false
+      ]
+    },
+    "semver_value": {
+      "type": "string",
+      "pattern": "^(?:0|[1-9]\\d*)\\.(?:0|[1-9]\\d*)\\.(?:0|[1-9]\\d*)(?:-(?:0|[1-9]\\d*|\\d*[A-Za-z-][0-9A-Za-z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[A-Za-z-][0-9A-Za-z-]*))*)?(?:\\+[0-9A-Za-z-]+(?:\\.[0-9A-Za-z-]+)*)?$",
+      "description": "Semantic version to print for the semver argument format.",
+      "examples": [
+        "1.2.3"
+      ]
+    },
+    "semver_range_value": {
+      "type": "string",
+      "pattern": "^\\s*(?:(?:v)?(?:[xX*](?:\\.[xX*](?:\\.[xX*])?)?|(?:0|[1-9]\\d{0,15})(?:\\.[xX*](?:\\.[xX*])?)?|(?:0|[1-9]\\d{0,15})\\.(?:0|[1-9]\\d{0,15})(?:\\.[xX*])?|(?:0|[1-9]\\d{0,15})\\.(?:0|[1-9]\\d{0,15})\\.(?:0|[1-9]\\d{0,15})(?:-(?:0|[1-9]\\d*|\\d*[A-Za-z-][0-9A-Za-z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[A-Za-z-][0-9A-Za-z-]*))*)??(?:\\+[0-9A-Za-z-]+(?:\\.[0-9A-Za-z-]+)*)??)\\s*-\\s*(?:v)?(?:[xX*](?:\\.[xX*](?:\\.[xX*])?)?|(?:0|[1-9]\\d{0,15})(?:\\.[xX*](?:\\.[xX*])?)?|(?:0|[1-9]\\d{0,15})\\.(?:0|[1-9]\\d{0,15})(?:\\.[xX*])?|(?:0|[1-9]\\d{0,15})\\.(?:0|[1-9]\\d{0,15})\\.(?:0|[1-9]\\d{0,15})(?:-(?:0|[1-9]\\d*|\\d*[A-Za-z-][0-9A-Za-z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[A-Za-z-][0-9A-Za-z-]*))*)??(?:\\+[0-9A-Za-z-]+(?:\\.[0-9A-Za-z-]+)*)??)|(?:>=|<=|>|<|=|~>|~|\\^)?\\s*(?:v)?(?:[xX*](?:\\.[xX*](?:\\.[xX*])?)?|(?:0|[1-9]\\d{0,15})(?:\\.[xX*](?:\\.[xX*])?)?|(?:0|[1-9]\\d{0,15})\\.(?:0|[1-9]\\d{0,15})(?:\\.[xX*])?|(?:0|[1-9]\\d{0,15})\\.(?:0|[1-9]\\d{0,15})\\.(?:0|[1-9]\\d{0,15})(?:-(?:0|[1-9]\\d*|\\d*[A-Za-z-][0-9A-Za-z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[A-Za-z-][0-9A-Za-z-]*))*)??(?:\\+[0-9A-Za-z-]+(?:\\.[0-9A-Za-z-]+)*)??)(?:\\s+(?:>=|<=|>|<|=|~>|~|\\^)?\\s*(?:v)?(?:[xX*](?:\\.[xX*](?:\\.[xX*])?)?|(?:0|[1-9]\\d{0,15})(?:\\.[xX*](?:\\.[xX*])?)?|(?:0|[1-9]\\d{0,15})\\.(?:0|[1-9]\\d{0,15})(?:\\.[xX*])?|(?:0|[1-9]\\d{0,15})\\.(?:0|[1-9]\\d{0,15})\\.(?:0|[1-9]\\d{0,15})(?:-(?:0|[1-9]\\d*|\\d*[A-Za-z-][0-9A-Za-z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[A-Za-z-][0-9A-Za-z-]*))*)??(?:\\+[0-9A-Za-z-]+(?:\\.[0-9A-Za-z-]+)*)??))*)(?:\\s*\\|\\|\\s*(?:(?:v)?(?:[xX*](?:\\.[xX*](?:\\.[xX*])?)?|(?:0|[1-9]\\d{0,15})(?:\\.[xX*](?:\\.[xX*])?)?|(?:0|[1-9]\\d{0,15})\\.(?:0|[1-9]\\d{0,15})(?:\\.[xX*])?|(?:0|[1-9]\\d{0,15})\\.(?:0|[1-9]\\d{0,15})\\.(?:0|[1-9]\\d{0,15})(?:-(?:0|[1-9]\\d*|\\d*[A-Za-z-][0-9A-Za-z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[A-Za-z-][0-9A-Za-z-]*))*)??(?:\\+[0-9A-Za-z-]+(?:\\.[0-9A-Za-z-]+)*)??)\\s*-\\s*(?:v)?(?:[xX*](?:\\.[xX*](?:\\.[xX*])?)?|(?:0|[1-9]\\d{0,15})(?:\\.[xX*](?:\\.[xX*])?)?|(?:0|[1-9]\\d{0,15})\\.(?:0|[1-9]\\d{0,15})(?:\\.[xX*])?|(?:0|[1-9]\\d{0,15})\\.(?:0|[1-9]\\d{0,15})\\.(?:0|[1-9]\\d{0,15})(?:-(?:0|[1-9]\\d*|\\d*[A-Za-z-][0-9A-Za-z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[A-Za-z-][0-9A-Za-z-]*))*)??(?:\\+[0-9A-Za-z-]+(?:\\.[0-9A-Za-z-]+)*)??)|(?:>=|<=|>|<|=|~>|~|\\^)?\\s*(?:v)?(?:[xX*](?:\\.[xX*](?:\\.[xX*])?)?|(?:0|[1-9]\\d{0,15})(?:\\.[xX*](?:\\.[xX*])?)?|(?:0|[1-9]\\d{0,15})\\.(?:0|[1-9]\\d{0,15})(?:\\.[xX*])?|(?:0|[1-9]\\d{0,15})\\.(?:0|[1-9]\\d{0,15})\\.(?:0|[1-9]\\d{0,15})(?:-(?:0|[1-9]\\d*|\\d*[A-Za-z-][0-9A-Za-z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[A-Za-z-][0-9A-Za-z-]*))*)??(?:\\+[0-9A-Za-z-]+(?:\\.[0-9A-Za-z-]+)*)??)(?:\\s+(?:>=|<=|>|<|=|~>|~|\\^)?\\s*(?:v)?(?:[xX*](?:\\.[xX*](?:\\.[xX*])?)?|(?:0|[1-9]\\d{0,15})(?:\\.[xX*](?:\\.[xX*])?)?|(?:0|[1-9]\\d{0,15})\\.(?:0|[1-9]\\d{0,15})(?:\\.[xX*])?|(?:0|[1-9]\\d{0,15})\\.(?:0|[1-9]\\d{0,15})\\.(?:0|[1-9]\\d{0,15})(?:-(?:0|[1-9]\\d*|\\d*[A-Za-z-][0-9A-Za-z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[A-Za-z-][0-9A-Za-z-]*))*)??(?:\\+[0-9A-Za-z-]+(?:\\.[0-9A-Za-z-]+)*)??))*))*$",
+      "description": "Semantic version range to print for the semver-range argument format.",
+      "examples": [
+        ">=1.2.3 <2.0.0"
+      ]
+    },
+    "string_list_value": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Text values to print for the string-list argument format.",
+      "examples": [
+        [
+          "alpha",
+          "beta"
+        ]
+      ]
+    }
+  },
+  "required": [
+    "string_value",
+    "int_value",
+    "bool_value",
+    "semver_value",
+    "semver_range_value",
+    "string_list_value"
+  ],
+  "fileManifest": [
+    {
+      "src": ".github/workflows/print-argument-values.yaml",
+      "dest": ".github/workflows/print-argument-values.yaml",
+      "user_managed": false
+    }
+  ],
+  "description": "A test feature that renders one configuration argument of each supported argument format into a GitHub Actions workflow and prints the values in its logs.",
+  "version": "0.1.0"
+}
