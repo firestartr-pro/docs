@@ -112,7 +112,7 @@ spec:
 | `aws_oidc_s3_role_var_name` | `AWS_OIDC_S3_ROLE` | Exact uppercase GitHub Actions repository variable name containing the IAM role ARN for OIDC authentication |
 | `aws_region` | `eu-west-3` | AWS region of the S3 bucket |
 | `handler_path` | `src/handler.ts` | esbuild entry point; applied to all services |
-| `minify_default` | `true` | Default for esbuild minification |
+| `minify_default` | `"true"` | Default for esbuild minification |
 | `service_root_dir` | `packages/` | Root directory scanned for services in dispatch/all mode (fallback when no config file) |
 | `build_config_file` | `.github/build_lambda_packages.yaml` | Path to per-service build configuration file |
 | `pnpm_version` | `"11"` | Version of pnpm to pin via corepack |
