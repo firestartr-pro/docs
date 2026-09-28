@@ -90,7 +90,7 @@ echo "    ✓ ${HOMEPAGE_DIR}/_index.md → ${WEB_CONTENT_DIR}/_index.md"
 
 echo "==> Migrating deploying workloads"
 write_page "${CORE_DOCS_DIR}/README.md" "${DEPLOYING_WORKLOADS_DIR}/_index.md" \
-  "title = 'Deploying workloads'" 'weight = 1' "menus = ['main']" '[cascade]' "type = 'docs'"
+  "title = 'Deploying workloads'" 'weight = 1' "width = 'full'" "menus = ['main']" '[cascade]' "type = 'docs'"
 echo "    ✓ core/docs/README.md → deploying-workloads/_index.md"
 
 # Every core doc except the section README, the providers subtree, and the
