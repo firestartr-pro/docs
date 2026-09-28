@@ -2,18 +2,11 @@
 
 ![Infrastructure repositories feed declarative inputs into Firestartr, which scaffolds code repositories and hydrates state repositories; code repositories publish images to the registry, and ArgoCD applies the state repositories through the Kubernetes API Machinery, where Firestartr watches custom resources, producing Kubernetes workloads, managed infrastructure, and resources in other cloud providers](./images/core-deploying-workloads.png)
 
-Welcome to the Firestartr public documentation. This documentation is intended for users and administrators of Firestartr, covering configuration, repository structures, and operational guides.
+Firestartr turns what you declare in your infrastructure repositories (claims, the `.firestartr` configuration and features) into running workloads. It scaffolds the code repositories where your applications live, and hydrates the state repositories that describe what each environment should run. When a code repository publishes a new image, its state repository gets the new version, and ArgoCD applies that state to the cluster through the Kubernetes API. Kubernetes then runs the workloads, while Firestartr provisions the managed infrastructure and the resources in other cloud providers that the state declares.
 
-## Table of Contents
-
-- [Overview](#overview)
-- [Configuration](#configuration)
-- [Repository Structures](#repository-structures)
-- [Migration Guides](#migration-guides)
+The guides below explain how to configure Firestartr, how state repositories are organized, and how to move older repositories to the current structure.
 
 ---
-
-## Overview
 
 ## Configuration
 
