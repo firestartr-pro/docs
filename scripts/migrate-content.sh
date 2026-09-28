@@ -130,6 +130,11 @@ done < <(find "${CORE_DOCS_DIR}/providers" -type f -name '*.md' -print0)
 echo "==> Migrating features"
 write_page "${RAW_DIR}/features/README.md" "${FEATURES_DIR}/_index.md" \
   "title = 'Features'" 'weight = 3' "menus = ['main']" '[cascade]' "type = 'docs'"
+# The features README is the root README of prefapp/features; its repository-level
+# docs/ folder is not promoted, so those links point back to GitHub.
+sed_inplace -E \
+  -e 's#\]\((\./)?docs/([^)]+)\)#](https://github.com/prefapp/features/blob/main/docs/\2)#g' \
+  "${FEATURES_DIR}/_index.md"
 echo "    ✓ features/README.md → features/_index.md"
 
 while IFS= read -r -d '' feature_dir; do
