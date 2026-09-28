@@ -1,4 +1,6 @@
-# Firestartr Public Documentation
+# Deploying workloads
+
+![Infrastructure repositories feed declarative inputs into Firestartr, which scaffolds code repositories and hydrates state repositories; code repositories publish images to the registry, and ArgoCD applies the state repositories through the Kubernetes API Machinery, where Firestartr watches custom resources, producing Kubernetes workloads, managed infrastructure, and resources in other cloud providers](./images/core-deploying-workloads.png)
 
 Welcome to the Firestartr public documentation. This documentation is intended for users and administrators of Firestartr, covering configuration, repository structures, and operational guides.
 
