@@ -9,6 +9,8 @@ to your needs. It gives an organization one explicit map of its software — and
 people responsible for it — and then acts on that map to create and maintain the
 repositories, pipelines, and infrastructure the software needs.
 
+![Firestartr sits between a map of the organization — domains, systems, components, teams, features, and infrastructure — and the GitHub, AWS, and Azure resources it creates and maintains](./images/firestartr-overview.png)
+
 ## When software outgrows the organization
 
 It usually starts small: a few repositories, and everyone knows who owns what. As teams
@@ -17,6 +19,8 @@ and products multiply, that shared understanding disappears.
 - Every repository grows its own CI/CD setup, with little convention across them.
 - The architecture becomes opaque: nothing describes how the pieces relate.
 - Permissions accumulate person by person, so responsibility turns diffuse.
+
+![Four people hold tangled admin, write, and read permissions over nine loose repositories, under clouds labeled opaque architecture, CI/CD per repo, duplicated configuration, ad-hoc solutions, and individual permissions](./images/organization-chaos.png)
 
 The software still runs, but the organization no longer has a model of it. Firestartr
 makes that model explicit before automating anything on top of it.
@@ -83,16 +87,36 @@ same model.
 
 ## How the Skill carries instructions
 
-The [Skill](https://github.com/prefapp/skills) does not act directly. An instruction travels a path of three stages:
+The [Skill](https://github.com/prefapp/skills) does not act directly. A request travels
+a fixed path before anything changes:
 
-1. **fs-forge** — the step that issues the instruction to Firestartr.
-2. **agent** — interprets the instruction against the map and works out what must
-   change.
-3. **skill** — carries the change out against the mapped components, using their
-   features and supporting infrastructure.
+1. **agent** — the AI agent you talk to, with the Firestartr skill loaded.
+2. **skill** — interprets the request against the map and turns it into Firestartr
+   instructions.
+3. **fs-forge** — the command-line tool the skill uses to hand those instructions to
+   Firestartr.
 
-Because every stage works from the same map, the result stays consistent with the
-organization's structure instead of drifting away from it.
+Firestartr then applies the change where the software lives: GitHub, AWS, and Azure.
+
+![An agent running the Firestartr skill sends instructions through fs-forge to Firestartr, which acts on GitHub, AWS, and Azure](./images/skill-instruction-flow.png)
+
+The skill interprets; the CLI executes. Because every stage works from the same map, the
+result stays consistent with the organization's structure instead of drifting away from
+it.
+
+## From chaos to a clear map
+
+Put together, the pieces replace the tangle from the start of this page with a structure
+anyone can read:
+
+- Every repository is a component with a place in a system.
+- Every system belongs to a domain of the business.
+- People belong to teams, and each team owns the components of a system.
+
+![People grouped into team-inventory and team-checkout, each team the owner of one system in the commerce domain, and each system listing its components](./images/organization-mapped.png)
+
+The same software, now with a model the organization can rely on — and one Firestartr can
+act on.
 
 ## Where to go next
 
