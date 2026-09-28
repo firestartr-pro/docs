@@ -177,10 +177,10 @@ You can now browse the documentation site exactly as it will appear after deploy
 - Promotions never write `site/web/content/_index.md`.
 
 ### Deployment guides (`site/raw/core/docs/`)
-- `README.md` → `content/deploying-resources/_index.md` with the title, weight, main-menu
+- `README.md` → `content/deploying-workloads/_index.md` with the title, weight, main-menu
   membership, and a `cascade` that sets `type = 'docs'` for the section.
 - Every other `.md` file except the `providers/` and `backstage/` subtrees → copied
-  under `content/deploying-resources/` with front matter `weight = 1`.
+  under `content/deploying-workloads/` with front matter `weight = 1`.
 
 ### Providers (`site/raw/core/docs/providers/`)
 - `README.md` → `content/providers/_index.md` with `title = 'Providers'`, `weight = 2`,

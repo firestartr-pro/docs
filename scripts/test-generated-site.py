@@ -40,7 +40,7 @@ GUIDES = {
     "Validating-our-claims": "the Validating Our Claims guide",
     "Migrating-to-our-new-app-state-repo-structure": "the migration guide",
 }
-TOP_LEVEL_SECTIONS = {"deploying-resources", "providers", "features"}
+TOP_LEVEL_SECTIONS = {"deploying-workloads", "providers", "features"}
 BACKSTAGE_SOURCE = ROOT / "site" / "raw" / "core" / "docs" / "backstage"
 PORTAL_FIXTURE_IMAGE = ROOT / "site" / "raw" / "images" / "backstage-test-fixture.png"
 
@@ -180,7 +180,7 @@ def check_navigation(index: str) -> None:
     check(bool(navbar), "Hextra navbar is rendered")
 
     expected = set(TOP_LEVEL_SECTIONS)
-    expected_labels = ["Deploying resources", "Providers", "Features"]
+    expected_labels = ["Deploying workloads", "Providers", "Features"]
     if BACKSTAGE_SOURCE.is_dir():
         expected.add("backstage")
         expected_labels.append("Firestartr Portal")
@@ -193,7 +193,7 @@ def check_navigation(index: str) -> None:
         print(f"      found: {sorted(segments)}")
 
     destinations = [
-        ("/docs/deploying-resources/", "Deploying resources"),
+        ("/docs/deploying-workloads/", "Deploying workloads"),
         ("/docs/providers/", "Providers"),
         ("/docs/features/", "Features"),
     ]
@@ -232,10 +232,10 @@ def check_navigation(index: str) -> None:
             )
 
     for slug in GUIDES:
-        href = f"/docs/deploying-resources/{slug}/"
+        href = f"/docs/deploying-workloads/{slug}/"
         check(
-            href in section_sidebars["deploying-resources"],
-            f"sidebar nests {slug} under Deploying resources",
+            href in section_sidebars["deploying-workloads"],
+            f"sidebar nests {slug} under Deploying workloads",
         )
 
 
@@ -243,10 +243,10 @@ def check_page_headings() -> None:
     print("Page headings (a single H1 per page)")
     pages = [
         "index.html",
-        "deploying-resources/index.html",
+        "deploying-workloads/index.html",
         "providers/index.html",
         "features/index.html",
-        "deploying-resources/state-apps-repository/index.html",
+        "deploying-workloads/state-apps-repository/index.html",
         "providers/terraform/workspace-sync/index.html",
         "features/charts_repo/index.html",
         "features/charts_repo/CHANGELOG/index.html",
@@ -285,7 +285,7 @@ def check_theme_chrome(index: str) -> None:
     )
     check("href=/docs/favicon.svg" not in index, "Hextra default favicon.svg is not used")
 
-    docs_page = read(PUBLIC_DIR / "deploying-resources" / "index.html")
+    docs_page = read(PUBLIC_DIR / "deploying-workloads" / "index.html")
     check("hextra-toc" in docs_page, "documentation pages render a table of contents")
     check("Edit this page" not in docs_page, "documentation pages omit edit links")
     check("Last updated on" not in docs_page, "documentation pages omit last-modified dates")
@@ -360,8 +360,8 @@ def check_portal_fixture() -> None:
                     check(marker in read(page), f"/backstage/{route}/ renders its source page")
 
             check(
-                not (PUBLIC_DIR / "deploying-resources" / "backstage").exists(),
-                "Firestartr Portal is not nested under Deploying resources",
+                not (PUBLIC_DIR / "deploying-workloads" / "backstage").exists(),
+                "Firestartr Portal is not nested under Deploying workloads",
             )
 
             index = read(HOMEPAGE)
@@ -400,22 +400,22 @@ def check_portal_fixture() -> None:
 
 
 def check_guides() -> None:
-    print("Deploying resources section")
+    print("Deploying workloads section")
     for slug, label in GUIDES.items():
-        check((PUBLIC_DIR / "deploying-resources" / slug / "index.html").is_file(), f"{label} is published")
+        check((PUBLIC_DIR / "deploying-workloads" / slug / "index.html").is_file(), f"{label} is published")
         check(not (PUBLIC_DIR / slug).exists(), f"{label} is not a root-level entry")
-    check((PUBLIC_DIR / "deploying-resources" / "index.html").is_file(), "section index is published")
+    check((PUBLIC_DIR / "deploying-workloads" / "index.html").is_file(), "section index is published")
 
-    index = read(PUBLIC_DIR / "deploying-resources" / "index.html")
+    index = read(PUBLIC_DIR / "deploying-workloads" / "index.html")
     check("href=/docs/features/" in index, "section index links Features as a sibling section")
     check("href=/docs/providers/" in index, "section index links Providers as a sibling section")
 
-    dot = read(PUBLIC_DIR / "deploying-resources" / "The-dot-firestartr-repository" / "index.html")
+    dot = read(PUBLIC_DIR / "deploying-workloads" / "The-dot-firestartr-repository" / "index.html")
     check(
         "Validating-our-claims/#-about-the-applyto-field-values" in dot,
         "applyTo cross-reference points at the Validating guide anchor",
     )
-    validating = read(PUBLIC_DIR / "deploying-resources" / "Validating-our-claims" / "index.html")
+    validating = read(PUBLIC_DIR / "deploying-workloads" / "Validating-our-claims" / "index.html")
     check(
         'id="-about-the-applyto-field-values"' in validating or "id=-about-the-applyto-field-values" in validating,
         "Validating guide exposes the applyTo anchor",
@@ -431,8 +431,8 @@ def check_providers_and_features() -> None:
     ):
         check((PUBLIC_DIR / page).is_file(), f"{page} is reachable")
     check(
-        not (PUBLIC_DIR / "deploying-resources" / "providers").exists(),
-        "Providers stays independent from Deploying resources",
+        not (PUBLIC_DIR / "deploying-workloads" / "providers").exists(),
+        "Providers stays independent from Deploying workloads",
     )
 
     for page in (
@@ -461,7 +461,7 @@ def check_internal_links() -> None:
     for page in iter_pages():
         html = read(page)
         rel = page.parent.relative_to(PUBLIC_DIR).as_posix()
-        in_scope = page == HOMEPAGE or rel.startswith("deploying-resources")
+        in_scope = page == HOMEPAGE or rel.startswith("deploying-workloads")
         for match in re.finditer(r'(?:href|src)=("([^"]*)"|([^ >]*))', html):
             raw = (match.group(2) or match.group(3) or "").strip()
             if not raw or raw.startswith(("http://", "https://", "mailto:", "data:", "javascript:")):
@@ -483,7 +483,7 @@ def check_internal_links() -> None:
         print(f"      missing target: {page} -> {raw}")
     check(
         not missing_fragments,
-        f"anchors on the homepage and Deploying resources resolve ({len(missing_fragments)} missing)",
+        f"anchors on the homepage and Deploying workloads resolve ({len(missing_fragments)} missing)",
     )
     for raw, page in list(missing_fragments.items())[:10]:
         print(f"      missing anchor: {page} -> {raw}")

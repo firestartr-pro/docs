@@ -120,7 +120,7 @@ act on.
 
 ## Where to go next
 
-- **Deploying resources** — practical guides for the repositories Firestartr manages:
+- **Deploying workloads** — practical guides for the repositories Firestartr manages:
   the `.firestartr` configuration repository, the application and system-service state
   repositories, claim validation, and migration.
 - **Providers** — documentation for the providers that back claims, including the

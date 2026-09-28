@@ -11,7 +11,7 @@
 #
 # Published layout:
 #   /                       homepage (never overwritten by a promotion)
-#   /deploying-resources/   core deployment guides
+#   /deploying-workloads/   core deployment guides
 #   /providers/             provider documentation (incl. nested pages)
 #   /features/              feature documentation (incl. nested pages)
 #   /backstage/             Firestartr Portal guide (when promoted)
@@ -30,7 +30,7 @@ WEB_STATIC_DIR="site/web/static"
 HOMEPAGE_DIR="site/homepage"
 RAW_DIR="site/raw"
 CORE_DOCS_DIR="${RAW_DIR}/core/docs"
-DEPLOYING_RESOURCES_DIR="${WEB_CONTENT_DIR}/deploying-resources"
+DEPLOYING_WORKLOADS_DIR="${WEB_CONTENT_DIR}/deploying-workloads"
 PROVIDERS_DIR="${WEB_CONTENT_DIR}/providers"
 FEATURES_DIR="${WEB_CONTENT_DIR}/features"
 BACKSTAGE_DIR="${WEB_CONTENT_DIR}/backstage"
@@ -81,17 +81,17 @@ fi
 
 echo "==> Cleaning generated content"
 rm -rf "${WEB_CONTENT_DIR}" "${WEB_STATIC_DIR}" "site/web/assets/images"
-mkdir -p "${DEPLOYING_RESOURCES_DIR}" "${PROVIDERS_DIR}" "${FEATURES_DIR}" \
+mkdir -p "${DEPLOYING_WORKLOADS_DIR}" "${PROVIDERS_DIR}" "${FEATURES_DIR}" \
   "${WEB_STATIC_DIR}/images"
 
 echo "==> Copying destination-owned homepage"
 cp "${HOMEPAGE_DIR}/_index.md" "${WEB_CONTENT_DIR}/_index.md"
 echo "    ✓ ${HOMEPAGE_DIR}/_index.md → ${WEB_CONTENT_DIR}/_index.md"
 
-echo "==> Migrating deploying resources"
-write_page "${CORE_DOCS_DIR}/README.md" "${DEPLOYING_RESOURCES_DIR}/_index.md" \
-  "title = 'Deploying resources'" 'weight = 1' "menus = ['main']" '[cascade]' "type = 'docs'"
-echo "    ✓ core/docs/README.md → deploying-resources/_index.md"
+echo "==> Migrating deploying workloads"
+write_page "${CORE_DOCS_DIR}/README.md" "${DEPLOYING_WORKLOADS_DIR}/_index.md" \
+  "title = 'Deploying workloads'" 'weight = 1' "menus = ['main']" '[cascade]' "type = 'docs'"
+echo "    ✓ core/docs/README.md → deploying-workloads/_index.md"
 
 # Every core doc except the section README, the providers subtree, and the
 # Backstage-owned portal subtree is a deployment guide. Promotions must never
@@ -101,7 +101,7 @@ while IFS= read -r -d '' file; do
   case "${rel_path}" in
     README.md|providers/*|backstage/*) continue ;;
   esac
-  write_page "${file}" "${DEPLOYING_RESOURCES_DIR}/${rel_path}" 'weight = 1'
+  write_page "${file}" "${DEPLOYING_WORKLOADS_DIR}/${rel_path}" 'weight = 1'
   echo "    ✓ ${rel_path}"
 done < <(find "${CORE_DOCS_DIR}" -type f -name '*.md' -print0)
 

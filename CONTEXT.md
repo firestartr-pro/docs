@@ -20,7 +20,7 @@ development workflow; it lists shared terms only and is not a specification.
   from GitHub, Backstage, and the Skill.
 - **Promotion** — Copying `site/raw/` material into the published Hugo hierarchy during the
   docs deploy workflow. A promotion must not replace destination-owned homepage content.
-- **Deploying resources** — Top-level published area for the deployment guides: the
+- **Deploying workloads** — Top-level published area for the deployment guides: the
   `.firestartr` repository, State Apps Repository, State Sys Services Repository, Validating
   Our Claims, and Migrating to the New App State Repository Structure.
 - **Providers** — Top-level published area for provider documentation, including the nested
