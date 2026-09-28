@@ -25,6 +25,9 @@ disablePathToLower = true
 [params]
   displayUpdatedDate = false
 
+  [params.imageZoom]
+    enable = true
+
   [params.navbar]
     displayTitle = true
     displayLogo = true
