@@ -47,12 +47,12 @@ A detailed explanation of each configuration file will be provided below.
 
 ```yaml
 name: app1
-state_repo: "firestartr-test/state-app-sample-app"
+state_repo: "<your-org>/state-app-sample-app"
 platforms: [cluster-name]
 services:
-  - repo: firestartr-test/build-and-dispatch-images-react
+  - repo: <your-org>/build-and-dispatch-images-react
     service_names: [micro-a, micro-b]
-  - repo: firestartr-test/another-build-and-dispatch-images-react
+  - repo: <your-org>/another-build-and-dispatch-images-react
     platforms: [cluster-name-2]
     service_names: [micro-a, micro-b]
 ```

@@ -80,7 +80,7 @@ dispatches:
       - repo: state-repo
         dispatch_event_type: "dispatch-image-v5"
         base_path: apps
-        tenant: councilbox
+        tenant: my-tenant
         application: app-1 
         env: dev
         service_names: ['service-1']
