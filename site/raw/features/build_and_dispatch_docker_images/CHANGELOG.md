@@ -1,5 +1,18 @@
 # Changelog
 
+## [5.7.0](https://github.com/prefapp/features/compare/build_and_dispatch_docker_images-v5.6.1...build_and_dispatch_docker_images-v5.7.0) (2026-10-01)
+
+
+### Features
+
+* **schema:** add top-level description to all features ([#1281](https://github.com/prefapp/features/issues/1281)) ([b3df3de](https://github.com/prefapp/features/commit/b3df3de88f4f27320a9152d7d7728d9dbebec6d1))
+
+
+### Bug Fixes
+
+* `build_and_dispatch_docker_images` readiness ([#1341](https://github.com/prefapp/features/issues/1341)) ([b83643f](https://github.com/prefapp/features/commit/b83643f397d45326e0d565da4ea472dcad8a4c8b))
+* README for build and dispatch workflows ([#1263](https://github.com/prefapp/features/issues/1263)) ([f510612](https://github.com/prefapp/features/commit/f51061280fbd352757430022b5a3d7a0c8eb623a))
+
 ## [5.6.1](https://github.com/prefapp/features/compare/build_and_dispatch_docker_images-v5.6.0...build_and_dispatch_docker_images-v5.6.1) (2026-08-10)
 
 
