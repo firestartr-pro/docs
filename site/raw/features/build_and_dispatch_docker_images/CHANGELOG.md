@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.7.1](https://github.com/prefapp/features/compare/build_and_dispatch_docker_images-v5.7.0...build_and_dispatch_docker_images-v5.7.1) (2026-10-01)
+
+
+### Bug Fixes
+
+* specify GitHub token permissions ([b1cf709](https://github.com/prefapp/features/commit/b1cf7095eca7a648905c4c22d122766cbc993fd2))
+
 ## [5.7.0](https://github.com/prefapp/features/compare/build_and_dispatch_docker_images-v5.6.1...build_and_dispatch_docker_images-v5.7.0) (2026-10-01)
 
 
