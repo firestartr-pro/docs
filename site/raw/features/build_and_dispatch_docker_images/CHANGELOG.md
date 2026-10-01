@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.7.2](https://github.com/prefapp/features/compare/build_and_dispatch_docker_images-v5.7.1...build_and_dispatch_docker_images-v5.7.2) (2026-10-01)
+
+
+### Bug Fixes
+
+* pin version for ACTION_RUN_DAGGER in config.yaml ([#1345](https://github.com/prefapp/features/issues/1345)) ([5f8bb9a](https://github.com/prefapp/features/commit/5f8bb9a51d99c961596e7023edde661eae1a8d14))
+
 ## [5.7.1](https://github.com/prefapp/features/compare/build_and_dispatch_docker_images-v5.7.0...build_and_dispatch_docker_images-v5.7.1) (2026-10-01)
 
 
