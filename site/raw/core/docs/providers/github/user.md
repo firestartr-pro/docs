@@ -14,7 +14,7 @@ name: user_a
 profile:
   displayName: user_a
   email: user-a@example.com
-  picture: https://avatars.githubusercontent.com/u/1025564
+  picture: https://avatars.githubusercontent.com/u/123456
 providers:
   github:
     name: "user-a-github"   # GitHub username

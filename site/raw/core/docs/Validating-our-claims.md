@@ -71,7 +71,7 @@ the claim with the name `my-claim-1`"
 # my-data-rule.yaml
 ---
 name: "prefix-test-app"
-description: "Prefix all claim names with soups- in soups app"
+description: "Prefix all claim names with test- in test app"
 regoFile: claim_prefix_name.rego
 applyTo:
   - app: test
@@ -103,13 +103,13 @@ providers:
     policy: apply
     name: test-tenant-pre-vmss
     source: remote
-    module: git::https://github.com/test/tfm.git//modules/vmss-soups?ref=vmss-soups-v0.3.5
+    module: git::https://github.com/test/tfm.git//modules/vmss-demo?ref=vmss-demo-v0.3.5
     values:
       common:
         resource_group_name: "tenant-test-pre"
         location: "westeurope"
       vmss:
-        name: "tenant-soup-pre"
+        name: "tenant-demo-pre"
         sku: "Standard_D2as_v5"
         instances: 1
 ```
@@ -118,7 +118,7 @@ providers:
 echo "
 ---
 name: \"prefix-test-app\"
-description: \"Prefix all claim names with soups- in soups app\"
+description: \"Prefix all claim names with test- in test app\"
 regoFile: claim_prefix_name.rego
 applyTo:
   - app: test
@@ -149,13 +149,13 @@ providers:
     policy: apply
     name: test-tenant-pre-vmss
     source: remote
-    module: git::https://github.com/test/tfm.git//modules/vmss-soups?ref=vmss-soups-v0.3.5
+    module: git::https://github.com/test/tfm.git//modules/vmss-demo?ref=vmss-demo-v0.3.5
     values:
       common:
-        resource_group_name: "corpme-soups-pre"
+        resource_group_name: "tenant-test-pre"
         location: "westeurope"
       vmss:
-        name: "test-soup-pre"
+        name: "tenant-demo-pre"
         sku: "Standard_D2as_v5"
         instances: 1
 ' > claim.yaml &&
