@@ -1,0 +1,439 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Firestartr Documentation –</title><link>https://docs.firestartr.dev/docs/features/terraform-infra/</link><description>Recent content on Firestartr Documentation</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><atom:link href="https://docs.firestartr.dev/docs/features/terraform-infra/index.xml" rel="self" type="application/rss+xml"/><item><title/><link>https://docs.firestartr.dev/docs/features/terraform-infra/ACCOUNTS_README/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.firestartr.dev/docs/features/terraform-infra/ACCOUNTS_README/</guid><description>
+&lt;h1&gt;Terrafire script usage guide&lt;span class="hx:absolute hx:-mt-20" id="terrafire-script-usage-guide"&gt;&lt;/span&gt;&lt;/h1&gt;&lt;p&gt;To bootstrap the required resources in the AWS account, we will use terraform, through a configuration script (&lt;code&gt;terrafire.sh&lt;/code&gt;).&lt;/p&gt;
+&lt;h3&gt;Prerequisites&lt;span class="hx:absolute hx:-mt-20" id="prerequisites"&gt;&lt;/span&gt;&lt;a href="#prerequisites" class="subheading-anchor" aria-label="Permalink for this section"&gt;&lt;/a&gt;&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;AWS CLI&lt;/strong&gt;: Make sure you have the AWS CLI installed and configured with the necessary permissions to create resources in your AWS account. Minimum version required is 2.27.0.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Terraform&lt;/strong&gt;: Ensure you have Terraform installed on your machine. You can download it from the &lt;a href="https://www.terraform.io/downloads.html"target="_blank" rel="noopener"&gt;Terraform website&lt;/a&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;aws cli must be configured with the following profiles:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;beginners&lt;/code&gt;: For testing purposes&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;firestartr-pro&lt;/code&gt;: For production&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;Configuration&lt;span class="hx:absolute hx:-mt-20" id="configuration"&gt;&lt;/span&gt;&lt;a href="#configuration" class="subheading-anchor" aria-label="Permalink for this section"&gt;&lt;/a&gt;&lt;/h4&gt;&lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code"&gt;
+&lt;div&gt;&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-ini" data-lang="ini"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="na"&gt;[profile profile1] ; For testing purposes&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="na"&gt;sso_session&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;my-sso&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="na"&gt;sso_account_id&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;1234567890&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="na"&gt;sso_role_name&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;AdministratorAccess&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="na"&gt;region&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;eu-west-1&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="na"&gt;output&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;json&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="na"&gt;[profile profile2] ; Production account&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="na"&gt;sso_session&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;my-sso&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="na"&gt;sso_account_id&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;0987654321&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="na"&gt;sso_role_name&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;AdministratorAccess&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="na"&gt;region&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;eu-west-1&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="na"&gt;output&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;json&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;[sso-session my-sso]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="na"&gt;sso_region&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;eu-west-1&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="na"&gt;sso_start_url&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;https://my-sso.awsapps.com/start&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="na"&gt;sso_registration_scopes&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;sso:account:access&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0"&gt;
+&lt;button
+class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+title="Copy code"
+aria-label="Copy code"
+data-copied-label="Copied!"
+&gt;
+&lt;div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h2&gt;Overview&lt;span class="hx:absolute hx:-mt-20" id="overview"&gt;&lt;/span&gt;&lt;a href="#overview" class="subheading-anchor" aria-label="Permalink for this section"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;The &lt;code&gt;terrafire.sh&lt;/code&gt; script wraps calls to the &lt;code&gt;terraform&lt;/code&gt; command for a specific Terraform backend. Backends are structured as follows:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;account&lt;/code&gt;: folders inside the project &lt;code&gt;accounts&lt;/code&gt; directory. Each one represents an AWS account.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;environment&lt;/code&gt;: subfolders within each account, representing environments (development, production, staging, etc.).&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;module&lt;/code&gt;: subfolders within each environment, representing distinct configuration units (e.g., VPC, EKS, Route53 domain).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Thus, each module is referenced as &lt;code&gt;account/environment/module&lt;/code&gt;. The script is intended to run Terraform within module directories.&lt;/p&gt;
+&lt;p&gt;Terraform commands such as &lt;code&gt;plan&lt;/code&gt;, &lt;code&gt;apply&lt;/code&gt;, and &lt;code&gt;destroy&lt;/code&gt; support execution across multiple modules. In these cases, the script accepts a space-separated list of modules. For other commands (&lt;code&gt;import&lt;/code&gt;, &lt;code&gt;state&lt;/code&gt;, &lt;code&gt;force-unlock&lt;/code&gt;), only a single module is supported.&lt;/p&gt;
+&lt;p&gt;For the specific case of multiple modules usage, if no module is provided, the script will try to automatically find all the modules within the &lt;code&gt;account/environment&lt;/code&gt; folder and execute for all of them.&lt;/p&gt;
+&lt;h3&gt;Passing optional arguments to the script&lt;span class="hx:absolute hx:-mt-20" id="passing-optional-arguments-to-the-script"&gt;&lt;/span&gt;&lt;a href="#passing-optional-arguments-to-the-script" class="subheading-anchor" aria-label="Permalink for this section"&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;As &lt;code&gt;terrafire.sh&lt;/code&gt; wraps the usage of the &lt;code&gt;terraform&lt;/code&gt; command, we need a way to pass optional parameters to the terraform commands.
+This is performed with the &lt;code&gt;--&lt;/code&gt; string.&lt;/p&gt;
+&lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code"&gt;
+&lt;div&gt;&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# For testing purposes&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;./terrafire.sh COMMAND ACCOUNT ENVIRONMENT &lt;span class="o"&gt;[&lt;/span&gt;MODULE&lt;span class="o"&gt;(&lt;/span&gt;s&lt;span class="o"&gt;)]&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt;SUBCOMMAND&lt;span class="o"&gt;]&lt;/span&gt; -- &lt;span class="o"&gt;[&lt;/span&gt;PARAMETERS&lt;span class="o"&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# Example&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;./terrafire.sh -f account1 dev vpc 12345abcd-6789-ef01-2345-6789abcdef00 -- -force&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0"&gt;
+&lt;button
+class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+title="Copy code"
+aria-label="Copy code"
+data-copied-label="Copied!"
+&gt;
+&lt;div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h3&gt;plan&lt;span class="hx:absolute hx:-mt-20" id="plan"&gt;&lt;/span&gt;&lt;a href="#plan" class="subheading-anchor" aria-label="Permalink for this section"&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;To see the &lt;code&gt;terraform plan&lt;/code&gt; of a micro-state, run the following command:&lt;/p&gt;
+&lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code"&gt;
+&lt;div&gt;&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# For testing purposes&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;./terrafire.sh -p ACCOUNT ENVIRONMENT &lt;span class="o"&gt;[&lt;/span&gt;MODULE&lt;span class="o"&gt;(&lt;/span&gt;S&lt;span class="o"&gt;)]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# For example, the state of the VPC module in production (&amp;#39;pro&amp;#39;) for account &amp;#39;client-a&amp;#39;...&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;./terrafire.sh -p client-a pro vpc
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# And to test the VPC and the EKS modules in dev environment for account &amp;#39;client-b&amp;#39;...&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;./terrafire.sh -p client-b dev vpc eks
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# And to test all modules in the predev environment for account &amp;#39;client-c&amp;#39;...&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;./terrafire.sh -p client-c predev&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0"&gt;
+&lt;button
+class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+title="Copy code"
+aria-label="Copy code"
+data-copied-label="Copied!"
+&gt;
+&lt;div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h3&gt;apply&lt;span class="hx:absolute hx:-mt-20" id="apply"&gt;&lt;/span&gt;&lt;a href="#apply" class="subheading-anchor" aria-label="Permalink for this section"&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;To &lt;strong&gt;apply&lt;/strong&gt; &lt;code&gt;terraform&lt;/code&gt; of a micro-state, run the following command:&lt;/p&gt;
+&lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code"&gt;
+&lt;div&gt;&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# For testing purposes&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;./terrafire.sh -a ACCOUNT ENVIRONMENT &lt;span class="o"&gt;[&lt;/span&gt;MODULE&lt;span class="o"&gt;(&lt;/span&gt;s&lt;span class="o"&gt;)]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# For example, creating the VPC in production (pro) for account &amp;#39;client-a&amp;#39;...&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;./terrafire.sh -a client-a pro vpc
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# And to create the VPC and the EKS in development (dev) for account &amp;#39;client-b&amp;#39;...&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;./terrafire.sh -a client-b dev vpc eks
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# And to apply all microstates in the &amp;#39;testing&amp;#39; environment for account &amp;#39;client-c&amp;#39;...&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;./terrafire.sh -a client-c testing&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0"&gt;
+&lt;button
+class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+title="Copy code"
+aria-label="Copy code"
+data-copied-label="Copied!"
+&gt;
+&lt;div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h3&gt;destroy&lt;span class="hx:absolute hx:-mt-20" id="destroy"&gt;&lt;/span&gt;&lt;a href="#destroy" class="subheading-anchor" aria-label="Permalink for this section"&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;To &lt;strong&gt;destroy&lt;/strong&gt; a &lt;code&gt;terraform&lt;/code&gt; configuration of a micro-state, run the following command:&lt;/p&gt;
+&lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code"&gt;
+&lt;div&gt;&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# For testing purposes&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;./terrafire.sh -d ACCOUNT ENVIRONMENT &lt;span class="o"&gt;[&lt;/span&gt;MODULE&lt;span class="o"&gt;(&lt;/span&gt;s&lt;span class="o"&gt;)]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# For example, deleting the VPC in production (pro) for account &amp;#39;client-a&amp;#39;...&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;./terrafire.sh -d client-a pro vpc
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# And to delete the VPC and the EKS in &amp;#39;dev&amp;#39; environment for account &amp;#39;client-b&amp;#39;...&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;./terrafire.sh -d client-b dev vpc eks
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# And to delete all microstates in &amp;#39;test&amp;#39; environment for account &amp;#39;client-c&amp;#39;...&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;./terrafire.sh -d client-c test&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0"&gt;
+&lt;button
+class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+title="Copy code"
+aria-label="Copy code"
+data-copied-label="Copied!"
+&gt;
+&lt;div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h3&gt;force-unlock&lt;span class="hx:absolute hx:-mt-20" id="force-unlock"&gt;&lt;/span&gt;&lt;a href="#force-unlock" class="subheading-anchor" aria-label="Permalink for this section"&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;To forcibly unlock a terraform state. It needs the ID of the Terraform lock, and needs and accepts only one module.&lt;/p&gt;
+&lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code"&gt;
+&lt;div&gt;&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# For testing purposes&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;./terrafire.sh -f ACCOUNT ENVIRONMENT MODULE LOCK_ID
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# For example, unlocking the state 12345abcd-6789-ef01-2345-6789abcdef00 for the VPC in production for account &amp;#39;client-a&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;./terrafire.sh -f client-a pro vpc 12345abcd-6789-ef01-2345-6789abcdef00&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0"&gt;
+&lt;button
+class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+title="Copy code"
+aria-label="Copy code"
+data-copied-label="Copied!"
+&gt;
+&lt;div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h3&gt;state&lt;span class="hx:absolute hx:-mt-20" id="state"&gt;&lt;/span&gt;&lt;a href="#state" class="subheading-anchor" aria-label="Permalink for this section"&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;Allows commands that affect directly the Terraform state. Needs and accepts only one module.&lt;/p&gt;
+&lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code"&gt;
+&lt;div&gt;&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# For testing purposes&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;./terrafire.sh -s ACCOUNT ENVIRONMENT MODULE SUBCOMMAND &lt;span class="o"&gt;[&lt;/span&gt; -- SUBCOMMAND_OPTIONS&lt;span class="o"&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# For example, show details for the VPC in production for account &amp;#39;client-a&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;./terrafire.sh -s client-a pro vpc show -- &lt;span class="s1"&gt;&amp;#39;aws_subnet.public&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# And for removing resources for the state in the EKS in dev environment for account &amp;#39;client-b&amp;#39;...&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;./terrafire.sh -s client-b dev eks rm -- &lt;span class="s1"&gt;&amp;#39;aws_instance.obsolete&amp;#39;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0"&gt;
+&lt;button
+class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+title="Copy code"
+aria-label="Copy code"
+data-copied-label="Copied!"
+&gt;
+&lt;div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h3&gt;import&lt;span class="hx:absolute hx:-mt-20" id="import"&gt;&lt;/span&gt;&lt;a href="#import" class="subheading-anchor" aria-label="Permalink for this section"&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;Imports existent infrastructure into Terraform control. Needs and accepts only one module.&lt;/p&gt;
+&lt;p&gt;For this purpose, it is imperative to create a Terraform file, e.g., main.tf, and define there the resources we want to import, just like with a standard Terraform import.&lt;/p&gt;
+&lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code"&gt;
+&lt;div&gt;&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# For testing purposes&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;./terrafire.sh -i ACCOUNT ENVIRONMENT MODULE RESOURCE_ADDRESS RESOURCE_ID
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# For example, importing an VPC in the production environment into the vpc module for account &amp;#39;client-a&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;./terrafire.sh -i client-a pro vpc aws_subnet.public subnet-1234567890abcdef0
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# And to import the EKS in dev environment for account &amp;#39;client-b&amp;#39;...&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;./terrafire.sh -i client-b dev eks aws_eks_cluster.main eks-0fedcba0987654321&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0"&gt;
+&lt;button
+class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+title="Copy code"
+aria-label="Copy code"
+data-copied-label="Copied!"
+&gt;
+&lt;div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h1&gt;Terrafire script reference&lt;span class="hx:absolute hx:-mt-20" id="terrafire-script-reference"&gt;&lt;/span&gt;&lt;/h1&gt;&lt;p&gt;This section outlines the usage of the &lt;code&gt;terrafire.sh&lt;/code&gt; script for managing Terraform deployments.&lt;/p&gt;
+&lt;h2&gt;1. Synopsis&lt;span class="hx:absolute hx:-mt-20" id="1-synopsis"&gt;&lt;/span&gt;&lt;a href="#1-synopsis" class="subheading-anchor" aria-label="Permalink for this section"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;The &lt;code&gt;terrafire.sh&lt;/code&gt; script is designed to execute Terraform commands (&lt;code&gt;plan&lt;/code&gt;, &lt;code&gt;apply&lt;/code&gt;, &lt;code&gt;destroy&lt;/code&gt;, &lt;code&gt;force-unlock&lt;/code&gt;) across different accounts, environments, and modules.&lt;/p&gt;
+&lt;h2&gt;2. Requirements&lt;span class="hx:absolute hx:-mt-20" id="2-requirements"&gt;&lt;/span&gt;&lt;a href="#2-requirements" class="subheading-anchor" aria-label="Permalink for this section"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;Terraform executable installed and configured.&lt;/li&gt;
+&lt;li&gt;A directory structure as expected by the script (see below).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;3. Directory Structure&lt;span class="hx:absolute hx:-mt-20" id="3-directory-structure"&gt;&lt;/span&gt;&lt;a href="#3-directory-structure" class="subheading-anchor" aria-label="Permalink for this section"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;The script expects a specific directory layout:&lt;/p&gt;
+&lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code"&gt;
+&lt;div&gt;&lt;pre&gt;&lt;code&gt;accounts/
+├── &amp;lt;account_name&amp;gt;/
+│ ├── &amp;lt;environment_name&amp;gt;/
+│ │ ├── &amp;lt;00-module_name1&amp;gt;/
+│ │ │ └── ... (Terraform files, terraform.tfvars)
+│ │ └── &amp;lt;01-module_name2&amp;gt;/
+│ │ ├── providers.tf
+│ │ └── ...
+│ ├── account.tfvars (optional)
+│ ├── providers.tf
+│ ├── variables.tf
+│ └── ...
+├── globals.tfvars (optional)
+├── backend.tf
+├── terrafire.sh
+├── README.md&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0"&gt;
+&lt;button
+class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+title="Copy code"
+aria-label="Copy code"
+data-copied-label="Copied!"
+&gt;
+&lt;div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;SCRIPT_DIR&amp;gt;&lt;/code&gt;: The directory where &lt;code&gt;terrafire.sh&lt;/code&gt; is located.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;account_name&amp;gt;&lt;/code&gt;: A directory representing an AWS account.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;environment_name&amp;gt;&lt;/code&gt;: A subdirectory within an account, representing an environment (e.g., &lt;code&gt;dev&lt;/code&gt;, &lt;code&gt;pro&lt;/code&gt;). This folder needs the files &lt;code&gt;variables.tf&lt;/code&gt; and &lt;code&gt;providers.tf&lt;/code&gt; in order for the system to function properly. The &lt;code&gt;providers.tf&lt;/code&gt; file cannot be placed directly in its final location because its path depends on the account and environment names. In the next section we will explain how this file should be generated.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;module_name&amp;gt;&lt;/code&gt;: A subdirectory within an environment, containing the Terraform configuration for a specific module (e.g., &lt;code&gt;vpc&lt;/code&gt;, &lt;code&gt;eks&lt;/code&gt;).&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;3.1 Providers file&lt;span class="hx:absolute hx:-mt-20" id="31-providers-file"&gt;&lt;/span&gt;&lt;a href="#31-providers-file" class="subheading-anchor" aria-label="Permalink for this section"&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;As previously discussed, we cannot provide the providers.tf as it is dependent on both the &lt;strong&gt;account&lt;/strong&gt; name and the &lt;strong&gt;environment&lt;/strong&gt; name, so we can have different providers for each environment. Each environment needs its own &lt;code&gt;providers.tf&lt;/code&gt; file.&lt;/p&gt;
+&lt;p&gt;In the following section, we provide a sample &lt;code&gt;providers.tf&lt;/code&gt; file that can be used. You can prepare it and place it inside the relevant environment folder&lt;/p&gt;
+&lt;p&gt;For example, if you have a &amp;ldquo;my_name&amp;rdquo; account and &amp;ldquo;dev&amp;rdquo; environment, the path of this file should be &lt;code&gt;accounts/my_name/dev/providers.tf&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;To prepare the file, you can change the &lt;strong&gt;AWS region&lt;/strong&gt;, and (this is the important part) the &lt;strong&gt;AWS account ID&lt;/strong&gt; for the &lt;strong&gt;account&lt;/strong&gt; you are adding this file to.&lt;/p&gt;
+&lt;p&gt;You can add whichever configurations to this provider file, such as aliases.&lt;/p&gt;
+&lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code"&gt;
+&lt;div&gt;&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-terraform" data-lang="terraform"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kr"&gt;provider&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;aws&amp;#34;&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nx"&gt;region&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;eu-west-1&amp;#34;&lt;/span&gt;&lt;span class="c1"&gt; # change this as needed
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nx"&gt;dynamic&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;assume_role_with_web_identity&amp;#34;&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nx"&gt;for_each&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;var&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;is_cicd&lt;/span&gt; &lt;span class="o"&gt;?&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nx"&gt;content&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nx"&gt;role_arn&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;arn:aws:iam::&amp;lt;AWS_ACCOUNT_ID&amp;gt;:role/tf-base-role&amp;#34;&lt;/span&gt;&lt;span class="c1"&gt; # add here the account&amp;#39;s AWS account ID
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;&lt;/span&gt; &lt;span class="nx"&gt;web_identity_token_file&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;/tmp/web_identity_token_file&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nx"&gt;dynamic&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;assume_role&amp;#34;&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nx"&gt;for_each&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="o"&gt;!&lt;/span&gt;&lt;span class="nb"&gt;var&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;is_cicd&lt;/span&gt; &lt;span class="o"&gt;?&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nx"&gt;content&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nx"&gt;role_arn&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;arn:aws:iam::&amp;lt;AWS_ACCOUNT_ID&amp;gt;:role/tf-base-role&amp;#34;&lt;/span&gt;&lt;span class="c1"&gt; # add here the account&amp;#39;s AWS account ID
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nx"&gt;assume_role&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nx"&gt;role_arn&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;arn:aws:iam::&amp;lt;AWS_ACCOUNT_ID&amp;gt;:role/AccountAdminRole&amp;#34;&lt;/span&gt;&lt;span class="c1"&gt; # add here the account&amp;#39;s AWS account ID
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0"&gt;
+&lt;button
+class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+title="Copy code"
+aria-label="Copy code"
+data-copied-label="Copied!"
+&gt;
+&lt;div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Also, we have provided a sample &lt;code&gt;examples/env/providers.tf&lt;/code&gt; file that you can use to add to your current configuration in the right place, in your own account/environment folders. This file is only a template, and can be modified to suit your needs.&lt;/p&gt;
+&lt;h2&gt;4. Usage&lt;span class="hx:absolute hx:-mt-20" id="4-usage"&gt;&lt;/span&gt;&lt;a href="#4-usage" class="subheading-anchor" aria-label="Permalink for this section"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;The script is invoked with the following command structure:&lt;/p&gt;
+&lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code"&gt;
+&lt;div&gt;&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;./terrafire.sh OPTION ACCOUNT ENVIRONMENT &lt;span class="o"&gt;[&lt;/span&gt;MODULE&lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt;-- EXTRA_ARGS&lt;span class="o"&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Arguments:
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;- OPTION: &lt;span class="o"&gt;(&lt;/span&gt;Required&lt;span class="o"&gt;)&lt;/span&gt; The Terraform action to perform.
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; -a: Run terraform apply on the specified modules. If no module is specified, it applies to all modules in the environment.
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; -p: Run terraform plan on the specified modules. If no module is specified, it plans &lt;span class="k"&gt;for&lt;/span&gt; all modules in the environment.
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; -d: Run terraform destroy on the specified modules. If no module is specified, it destroys all modules in the environment.
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; -f: Run terraform force-unlock &lt;span class="k"&gt;for&lt;/span&gt; the state. This option requires a LOCK_ID to be passed as an extra argument &lt;span class="o"&gt;(&lt;/span&gt;the first argument after --&lt;span class="o"&gt;)&lt;/span&gt;.
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;ACCOUNT: &lt;span class="o"&gt;(&lt;/span&gt;Required&lt;span class="o"&gt;)&lt;/span&gt; The name of the account. This must correspond to a directory at the same level as the script.
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Example: my-account
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;ENVIRONMENT: &lt;span class="o"&gt;(&lt;/span&gt;Required&lt;span class="o"&gt;)&lt;/span&gt; The name of the environment. This must correspond to a subdirectory within the specified ACCOUNT folder.
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Example: dev, staging, pro
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;MODULE...: &lt;span class="o"&gt;(&lt;/span&gt;Optional&lt;span class="o"&gt;)&lt;/span&gt; The name&lt;span class="o"&gt;(&lt;/span&gt;s&lt;span class="o"&gt;)&lt;/span&gt; of specific module&lt;span class="o"&gt;(&lt;/span&gt;s&lt;span class="o"&gt;)&lt;/span&gt; to target. These must correspond to subdirectories within the specified ACCOUNT/ENVIRONMENT folder. If omitted, the action applies to all modules within the environment. You can specify multiple modules separated by spaces.
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Example: vpc, eks database
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;-- EXTRA_ARGS: &lt;span class="o"&gt;(&lt;/span&gt;Optional&lt;span class="o"&gt;)&lt;/span&gt; Any additional arguments to be passed directly to the terraform &lt;span class="nb"&gt;command&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;e.g., -var&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;foo=bar&amp;#34;&lt;/span&gt;, -target&lt;span class="o"&gt;=&lt;/span&gt;resource.id&lt;span class="o"&gt;)&lt;/span&gt;. These must be preceded by --. If using -f &lt;span class="o"&gt;(&lt;/span&gt;force-unlock&lt;span class="o"&gt;)&lt;/span&gt;, the LOCK_ID is the first argument here.&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0"&gt;
+&lt;button
+class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+title="Copy code"
+aria-label="Copy code"
+data-copied-label="Copied!"
+&gt;
+&lt;div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Displaying Available Accounts and Modules:
+If an invalid account or no account is provided, the script will list available accounts.
+If an invalid option or environment is provided (after a valid account), the script will attempt to list available modules for that account and environment.&lt;/p&gt;
+&lt;h3&gt;5. Examples&lt;span class="hx:absolute hx:-mt-20" id="5-examples"&gt;&lt;/span&gt;&lt;a href="#5-examples" class="subheading-anchor" aria-label="Permalink for this section"&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;Plan all modules in the dev environment for account-alpha:&lt;/p&gt;
+&lt;p&gt;Apply the vpc module in the pro environment for account-beta:&lt;/p&gt;
+&lt;p&gt;Destroy the eks and network modules in the staging environment for account-gamma:&lt;/p&gt;
+&lt;p&gt;Force-unlock a state lock (LOCK_ID must be known):&lt;/p&gt;
+&lt;p&gt;(Note: The module vpc is specified here as the force-unlock command in the script is associated with a module&amp;rsquo;s directory context, even if the lock ID itself might be global or apply to a specific state file named after the module.)&lt;/p&gt;
+&lt;p&gt;Plan the webserver module in dev for account-delta and pass an extra variable to Terraform:&lt;/p&gt;
+&lt;h2&gt;6. Terraform Backend and Variables&lt;span class="hx:absolute hx:-mt-20" id="6-terraform-backend-and-variables"&gt;&lt;/span&gt;&lt;a href="#6-terraform-backend-and-variables" class="subheading-anchor" aria-label="Permalink for this section"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Backend Configuration: The script expects a backend.tf file in &amp;lt;SCRIPT_DIR&amp;gt; for backend configuration. It dynamically sets the key for the S3 backend based on account, environment, and module.
+Provider Configuration: A providers.tf file can be placed in &amp;lt;SCRIPT_DIR&amp;gt;/&lt;account&gt;/&lt;environment&gt;/ to be copied into the working directory for the Terraform operations.
+Variable Files (.tfvars): The script looks for and uses variable files in the following order of precedence (later files override earlier ones):
+&amp;lt;SCRIPT_DIR&amp;gt;/globals.tfvars
+&amp;lt;SCRIPT_DIR&amp;gt;/&lt;account&gt;/account.tfvars
+&amp;lt;SCRIPT_DIR&amp;gt;/&lt;account&gt;/&lt;environment&gt;/environment.tfvars
+&amp;lt;SCRIPT_DIR&amp;gt;/&lt;account&gt;/&lt;environment&gt;/&lt;module&gt;/terraform.tfvars&lt;/p&gt;
+&lt;h3&gt;7. Environment Variables for Backend&lt;span class="hx:absolute hx:-mt-20" id="7-environment-variables-for-backend"&gt;&lt;/span&gt;&lt;a href="#7-environment-variables-for-backend" class="subheading-anchor" aria-label="Permalink for this section"&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;The script relies on the following environment variables being set for Terraform backend operations (typically sourced from &lt;code&gt;/tmp/.firestartr-env&lt;/code&gt; or set manually):&lt;/p&gt;
+&lt;p&gt;FIRESTARTR_BACKEND: S3 bucket name.
+FIRESTARTR_LOCK: DynamoDB table name for state locking.
+FIRESTARTR_BACKEND_REGION: AWS region for the backend resources.
+FIRESTARTR_BACKEND_ROLE_ARN: IAM role ARN for accessing backend resources.
+FIRESTARTR_BACKEND_PROFILE: (Assumed, based on script structure) AWS CLI profile to use for backend operations.&lt;/p&gt;
+&lt;h3&gt;8. TF state prefix&lt;span class="hx:absolute hx:-mt-20" id="8-tf-state-prefix"&gt;&lt;/span&gt;&lt;a href="#8-tf-state-prefix" class="subheading-anchor" aria-label="Permalink for this section"&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;By default, the Terraform state in Amazon S3 uses the following key structure:
+&lt;code&gt;firestartr/&amp;lt;account&amp;gt;/&amp;lt;environment&amp;gt;/&amp;lt;module&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;If you use multiple GitHub repositories with the terraform-infra feature installed, this structure may cause collisions if the &lt;code&gt;&amp;lt;account&amp;gt;/&amp;lt;environment&amp;gt;/&amp;lt;module&amp;gt;&lt;/code&gt; path is repeated across repositories.&lt;/p&gt;
+&lt;p&gt;To avoid this, you can define a custom prefix by creating a &lt;code&gt;.firestartr_tfstate_prefix&lt;/code&gt; file. The value in this file will be inserted between &lt;code&gt;firestartr/&lt;/code&gt; and &lt;code&gt;&amp;lt;account&amp;gt;&lt;/code&gt;, resulting in the following structure: &lt;code&gt;firestartr/&amp;lt;custom_value&amp;gt;/&amp;lt;account&amp;gt;/&amp;lt;environment&amp;gt;/&amp;lt;module&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;We recommend setting this custom value to your GitHub repository name, but you can use any valid string for Amazon S3 object keys.&lt;/p&gt;
+&lt;h3&gt;9. Error Handling&lt;span class="hx:absolute hx:-mt-20" id="9-error-handling"&gt;&lt;/span&gt;&lt;a href="#9-error-handling" class="subheading-anchor" aria-label="Permalink for this section"&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;The script uses set -euo pipefail and a trap to exit immediately if any command fails or an error occurs. Error messages are printed to standard error.&lt;/p&gt;</description></item><item><title/><link>https://docs.firestartr.dev/docs/features/terraform-infra/CHANGELOG/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.firestartr.dev/docs/features/terraform-infra/CHANGELOG/</guid><description>
+&lt;h1&gt;Changelog&lt;span class="hx:absolute hx:-mt-20" id="changelog"&gt;&lt;/span&gt;&lt;/h1&gt;&lt;h2&gt;&lt;a href="https://github.com/prefapp/features/compare/terraform-infra-v3.1.1...terraform-infra-v3.1.2"target="_blank" rel="noopener"&gt;3.1.2&lt;/a&gt; (2026-08-31)&lt;span class="hx:absolute hx:-mt-20" id="312-2026-08-31"&gt;&lt;/span&gt;&lt;a href="#312-2026-08-31" class="subheading-anchor" aria-label="Permalink for this section"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;h3&gt;Bug Fixes&lt;span class="hx:absolute hx:-mt-20" id="bug-fixes"&gt;&lt;/span&gt;&lt;a href="#bug-fixes" class="subheading-anchor" aria-label="Permalink for this section"&gt;&lt;/a&gt;&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;discover ref modules when had local modules (&lt;a href="https://github.com/prefapp/features/issues/1276"target="_blank" rel="noopener"&gt;#1276&lt;/a&gt;) (&lt;a href="https://github.com/prefapp/features/commit/928c6a3f6776f8b40be1e59b8193a3538cc643d1"target="_blank" rel="noopener"&gt;928c6a3&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;&lt;a href="https://github.com/prefapp/features/compare/terraform-infra-v3.1.0...terraform-infra-v3.1.1"target="_blank" rel="noopener"&gt;3.1.1&lt;/a&gt; (2026-08-26)&lt;span class="hx:absolute hx:-mt-20" id="311-2026-08-26"&gt;&lt;/span&gt;&lt;a href="#311-2026-08-26" class="subheading-anchor" aria-label="Permalink for this section"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;h3&gt;Bug Fixes&lt;span class="hx:absolute hx:-mt-20" id="bug-fixes-1"&gt;&lt;/span&gt;&lt;a href="#bug-fixes-1" class="subheading-anchor" aria-label="Permalink for this section"&gt;&lt;/a&gt;&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;add read TF_VAR from environment (&lt;a href="https://github.com/prefapp/features/issues/1265"target="_blank" rel="noopener"&gt;#1265&lt;/a&gt;) (&lt;a href="https://github.com/prefapp/features/commit/2728297b7643a24a0366ad4545bdd4617a7b82ed"target="_blank" rel="noopener"&gt;2728297&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;&lt;a href="https://github.com/prefapp/features/compare/terraform-infra-v3.0.0...terraform-infra-v3.1.0"target="_blank" rel="noopener"&gt;3.1.0&lt;/a&gt; (2026-08-25)&lt;span class="hx:absolute hx:-mt-20" id="310-2026-08-25"&gt;&lt;/span&gt;&lt;a href="#310-2026-08-25" class="subheading-anchor" aria-label="Permalink for this section"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;h3&gt;Features&lt;span class="hx:absolute hx:-mt-20" id="features"&gt;&lt;/span&gt;&lt;a href="#features" class="subheading-anchor" aria-label="Permalink for this section"&gt;&lt;/a&gt;&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;update ref-sync with modules skiping (&lt;a href="https://github.com/prefapp/features/commit/65bc0500356d5e45b3fe78696c6f4f2f144bc217"target="_blank" rel="noopener"&gt;65bc050&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;&lt;a href="https://github.com/prefapp/features/compare/terraform-infra-v2.3.0...terraform-infra-v3.0.0"target="_blank" rel="noopener"&gt;3.0.0&lt;/a&gt; (2026-08-05)&lt;span class="hx:absolute hx:-mt-20" id="300-2026-08-05"&gt;&lt;/span&gt;&lt;a href="#300-2026-08-05" class="subheading-anchor" aria-label="Permalink for this section"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;h3&gt;⚠ BREAKING CHANGES&lt;span class="hx:absolute hx:-mt-20" id="-breaking-changes"&gt;&lt;/span&gt;&lt;a href="#-breaking-changes" class="subheading-anchor" aria-label="Permalink for this section"&gt;&lt;/a&gt;&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;terraform-infra:&lt;/strong&gt; add copy workspaces and ref-sync (&lt;a href="https://github.com/prefapp/features/issues/1170"target="_blank" rel="noopener"&gt;#1170&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Features&lt;span class="hx:absolute hx:-mt-20" id="features-1"&gt;&lt;/span&gt;&lt;a href="#features-1" class="subheading-anchor" aria-label="Permalink for this section"&gt;&lt;/a&gt;&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;terraform-infra:&lt;/strong&gt; add copy workspaces and ref-sync (&lt;a href="https://github.com/prefapp/features/issues/1170"target="_blank" rel="noopener"&gt;#1170&lt;/a&gt;) (&lt;a href="https://github.com/prefapp/features/commit/8cbd3d4d8e010a302687cc66c934a84d1e937ed1"target="_blank" rel="noopener"&gt;8cbd3d4&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;&lt;a href="https://github.com/prefapp/features/compare/terraform-infra-v2.2.0...terraform-infra-v2.3.0"target="_blank" rel="noopener"&gt;2.3.0&lt;/a&gt; (2026-07-22)&lt;span class="hx:absolute hx:-mt-20" id="230-2026-07-22"&gt;&lt;/span&gt;&lt;a href="#230-2026-07-22" class="subheading-anchor" aria-label="Permalink for this section"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;h3&gt;Features&lt;span class="hx:absolute hx:-mt-20" id="features-2"&gt;&lt;/span&gt;&lt;a href="#features-2" class="subheading-anchor" aria-label="Permalink for this section"&gt;&lt;/a&gt;&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;add json-schema per feature (&lt;a href="https://github.com/prefapp/features/issues/1131"target="_blank" rel="noopener"&gt;#1131&lt;/a&gt;) (&lt;a href="https://github.com/prefapp/features/commit/2c3e1c9bbfc402c170448581e52a326e744270f0"target="_blank" rel="noopener"&gt;2c3e1c9&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;&lt;a href="https://github.com/prefapp/features/compare/terraform-infra-v2.1.0...terraform-infra-v2.2.0"target="_blank" rel="noopener"&gt;2.2.0&lt;/a&gt; (2026-07-02)&lt;span class="hx:absolute hx:-mt-20" id="220-2026-07-02"&gt;&lt;/span&gt;&lt;a href="#220-2026-07-02" class="subheading-anchor" aria-label="Permalink for this section"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;h3&gt;Features&lt;span class="hx:absolute hx:-mt-20" id="features-3"&gt;&lt;/span&gt;&lt;a href="#features-3" class="subheading-anchor" aria-label="Permalink for this section"&gt;&lt;/a&gt;&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;terraform-infra:&lt;/strong&gt; change terraform-plan-apply WF to detect changes based on conventional commits (&lt;a href="https://github.com/prefapp/features/issues/1110"target="_blank" rel="noopener"&gt;#1110&lt;/a&gt;) (&lt;a href="https://github.com/prefapp/features/commit/3cdc07ceeeb40869114e0f3a5192d95fd1191551"target="_blank" rel="noopener"&gt;3cdc07c&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;&lt;a href="https://github.com/prefapp/features/compare/terraform-infra-v2.0.0...terraform-infra-v2.1.0"target="_blank" rel="noopener"&gt;2.1.0&lt;/a&gt; (2026-06-09)&lt;span class="hx:absolute hx:-mt-20" id="210-2026-06-09"&gt;&lt;/span&gt;&lt;a href="#210-2026-06-09" class="subheading-anchor" aria-label="Permalink for this section"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;h3&gt;Features&lt;span class="hx:absolute hx:-mt-20" id="features-4"&gt;&lt;/span&gt;&lt;a href="#features-4" class="subheading-anchor" aria-label="Permalink for this section"&gt;&lt;/a&gt;&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;terraform-infra:&lt;/strong&gt; convert vars TF_VAR intro environment vars (&lt;a href="https://github.com/prefapp/features/issues/1087"target="_blank" rel="noopener"&gt;#1087&lt;/a&gt;) (&lt;a href="https://github.com/prefapp/features/commit/d0cbaed14593ecd9e42f0f5df3461cbad19247a1"target="_blank" rel="noopener"&gt;d0cbaed&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;&lt;a href="https://github.com/prefapp/features/compare/terraform-infra-v1.8.2...terraform-infra-v2.0.0"target="_blank" rel="noopener"&gt;2.0.0&lt;/a&gt; (2026-05-29)&lt;span class="hx:absolute hx:-mt-20" id="200-2026-05-29"&gt;&lt;/span&gt;&lt;a href="#200-2026-05-29" class="subheading-anchor" aria-label="Permalink for this section"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;h3&gt;⚠ BREAKING CHANGES&lt;span class="hx:absolute hx:-mt-20" id="-breaking-changes-1"&gt;&lt;/span&gt;&lt;a href="#-breaking-changes-1" class="subheading-anchor" aria-label="Permalink for this section"&gt;&lt;/a&gt;&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;Update all action dependencies to use node24. (&lt;a href="https://github.com/prefapp/features/issues/1047"target="_blank" rel="noopener"&gt;#1047&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Bug Fixes&lt;span class="hx:absolute hx:-mt-20" id="bug-fixes-2"&gt;&lt;/span&gt;&lt;a href="#bug-fixes-2" class="subheading-anchor" aria-label="Permalink for this section"&gt;&lt;/a&gt;&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;Update all action dependencies to use node24. (&lt;a href="https://github.com/prefapp/features/issues/1047"target="_blank" rel="noopener"&gt;#1047&lt;/a&gt;) (&lt;a href="https://github.com/prefapp/features/commit/cf5a62a927743696cac9d5a7e4bf26b1a85881fa"target="_blank" rel="noopener"&gt;cf5a62a&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;&lt;a href="https://github.com/prefapp/features/compare/terraform-infra-v1.8.1...terraform-infra-v1.8.2"target="_blank" rel="noopener"&gt;1.8.2&lt;/a&gt; (2026-04-10)&lt;span class="hx:absolute hx:-mt-20" id="182-2026-04-10"&gt;&lt;/span&gt;&lt;a href="#182-2026-04-10" class="subheading-anchor" aria-label="Permalink for this section"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;h3&gt;Bug Fixes&lt;span class="hx:absolute hx:-mt-20" id="bug-fixes-3"&gt;&lt;/span&gt;&lt;a href="#bug-fixes-3" class="subheading-anchor" aria-label="Permalink for this section"&gt;&lt;/a&gt;&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;destructive workflows naming (&lt;a href="https://github.com/prefapp/features/issues/940"target="_blank" rel="noopener"&gt;#940&lt;/a&gt;) (&lt;a href="https://github.com/prefapp/features/commit/c5008b862b54a69aae46b23b89c09cdf45f9c4f8"target="_blank" rel="noopener"&gt;c5008b8&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;&lt;a href="https://github.com/prefapp/features/compare/terraform-infra-v1.8.0...terraform-infra-v1.8.1"target="_blank" rel="noopener"&gt;1.8.1&lt;/a&gt; (2026-04-10)&lt;span class="hx:absolute hx:-mt-20" id="181-2026-04-10"&gt;&lt;/span&gt;&lt;a href="#181-2026-04-10" class="subheading-anchor" aria-label="Permalink for this section"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;h3&gt;Bug Fixes&lt;span class="hx:absolute hx:-mt-20" id="bug-fixes-4"&gt;&lt;/span&gt;&lt;a href="#bug-fixes-4" class="subheading-anchor" aria-label="Permalink for this section"&gt;&lt;/a&gt;&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;update documentation for terraform-infra module (&lt;a href="https://github.com/prefapp/features/issues/937"target="_blank" rel="noopener"&gt;#937&lt;/a&gt;) (&lt;a href="https://github.com/prefapp/features/commit/e6cbd19bf0083ef50accc40a60e4111ed9516da7"target="_blank" rel="noopener"&gt;e6cbd19&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;&lt;a href="https://github.com/prefapp/features/compare/terraform-infra-v1.7.1...terraform-infra-v1.8.0"target="_blank" rel="noopener"&gt;1.8.0&lt;/a&gt; (2026-03-09)&lt;span class="hx:absolute hx:-mt-20" id="180-2026-03-09"&gt;&lt;/span&gt;&lt;a href="#180-2026-03-09" class="subheading-anchor" aria-label="Permalink for this section"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;h3&gt;Features&lt;span class="hx:absolute hx:-mt-20" id="features-5"&gt;&lt;/span&gt;&lt;a href="#features-5" class="subheading-anchor" aria-label="Permalink for this section"&gt;&lt;/a&gt;&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;add checkboxes to plan and destroy to the terraform destroy workflow (&lt;a href="https://github.com/prefapp/features/issues/888"target="_blank" rel="noopener"&gt;#888&lt;/a&gt;) (&lt;a href="https://github.com/prefapp/features/commit/8536d7d266bf5e8ea540361704d1ffd8a81e9b44"target="_blank" rel="noopener"&gt;8536d7d&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;&lt;a href="https://github.com/prefapp/features/compare/terraform-infra-v1.7.0...terraform-infra-v1.7.1"target="_blank" rel="noopener"&gt;1.7.1&lt;/a&gt; (2026-01-23)&lt;span class="hx:absolute hx:-mt-20" id="171-2026-01-23"&gt;&lt;/span&gt;&lt;a href="#171-2026-01-23" class="subheading-anchor" aria-label="Permalink for this section"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;h3&gt;Bug Fixes&lt;span class="hx:absolute hx:-mt-20" id="bug-fixes-5"&gt;&lt;/span&gt;&lt;a href="#bug-fixes-5" class="subheading-anchor" aria-label="Permalink for this section"&gt;&lt;/a&gt;&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;terraform-infra:&lt;/strong&gt; update git diff for PR (&lt;a href="https://github.com/prefapp/features/issues/803"target="_blank" rel="noopener"&gt;#803&lt;/a&gt;) (&lt;a href="https://github.com/prefapp/features/commit/fe6e42a23f6b045549fbed436892a64acf8c8a92"target="_blank" rel="noopener"&gt;fe6e42a&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;&lt;a href="https://github.com/prefapp/features/compare/terraform-infra-v1.6.0...terraform-infra-v1.7.0"target="_blank" rel="noopener"&gt;1.7.0&lt;/a&gt; (2025-11-26)&lt;span class="hx:absolute hx:-mt-20" id="170-2025-11-26"&gt;&lt;/span&gt;&lt;a href="#170-2025-11-26" class="subheading-anchor" aria-label="Permalink for this section"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;h3&gt;Features&lt;span class="hx:absolute hx:-mt-20" id="features-6"&gt;&lt;/span&gt;&lt;a href="#features-6" class="subheading-anchor" aria-label="Permalink for this section"&gt;&lt;/a&gt;&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;exclude files from terraform plan (&lt;a href="https://github.com/prefapp/features/issues/762"target="_blank" rel="noopener"&gt;#762&lt;/a&gt;) (&lt;a href="https://github.com/prefapp/features/commit/e448ad680a05d06cd4d2ad04ab050631cda5b7ba"target="_blank" rel="noopener"&gt;e448ad6&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;&lt;a href="https://github.com/prefapp/features/compare/terraform-infra-v1.5.2...terraform-infra-v1.6.0"target="_blank" rel="noopener"&gt;1.6.0&lt;/a&gt; (2025-11-07)&lt;span class="hx:absolute hx:-mt-20" id="160-2025-11-07"&gt;&lt;/span&gt;&lt;a href="#160-2025-11-07" class="subheading-anchor" aria-label="Permalink for this section"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;h3&gt;Features&lt;span class="hx:absolute hx:-mt-20" id="features-7"&gt;&lt;/span&gt;&lt;a href="#features-7" class="subheading-anchor" aria-label="Permalink for this section"&gt;&lt;/a&gt;&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;add files to terraform-infra (&lt;a href="https://github.com/prefapp/features/issues/748"target="_blank" rel="noopener"&gt;#748&lt;/a&gt;) (&lt;a href="https://github.com/prefapp/features/commit/c9a9b12318964b0393b40c98db541ef0cee5155f"target="_blank" rel="noopener"&gt;c9a9b12&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;&lt;a href="https://github.com/prefapp/features/compare/terraform-infra-v1.5.1...terraform-infra-v1.5.2"target="_blank" rel="noopener"&gt;1.5.2&lt;/a&gt; (2025-10-20)&lt;span class="hx:absolute hx:-mt-20" id="152-2025-10-20"&gt;&lt;/span&gt;&lt;a href="#152-2025-10-20" class="subheading-anchor" aria-label="Permalink for this section"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;h3&gt;Bug Fixes&lt;span class="hx:absolute hx:-mt-20" id="bug-fixes-6"&gt;&lt;/span&gt;&lt;a href="#bug-fixes-6" class="subheading-anchor" aria-label="Permalink for this section"&gt;&lt;/a&gt;&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;add missing backends.tf to terraform-infra package (&lt;a href="https://github.com/prefapp/features/issues/732"target="_blank" rel="noopener"&gt;#732&lt;/a&gt;) (&lt;a href="https://github.com/prefapp/features/commit/4ca10c267701f71bcae37a1e0d124fa81e5293a2"target="_blank" rel="noopener"&gt;4ca10c2&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;&lt;a href="https://github.com/prefapp/features/compare/terraform-infra-v1.5.0...terraform-infra-v1.5.1"target="_blank" rel="noopener"&gt;1.5.1&lt;/a&gt; (2025-10-15)&lt;span class="hx:absolute hx:-mt-20" id="151-2025-10-15"&gt;&lt;/span&gt;&lt;a href="#151-2025-10-15" class="subheading-anchor" aria-label="Permalink for this section"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;h3&gt;Bug Fixes&lt;span class="hx:absolute hx:-mt-20" id="bug-fixes-7"&gt;&lt;/span&gt;&lt;a href="#bug-fixes-7" class="subheading-anchor" aria-label="Permalink for this section"&gt;&lt;/a&gt;&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;remove duplicate action output (&lt;a href="https://github.com/prefapp/features/issues/730"target="_blank" rel="noopener"&gt;#730&lt;/a&gt;) (&lt;a href="https://github.com/prefapp/features/commit/5130784caa7d15ab6f378abc6ad5b8f3b0dea0dd"target="_blank" rel="noopener"&gt;5130784&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;&lt;a href="https://github.com/prefapp/features/compare/terraform-infra-v1.4.1...terraform-infra-v1.5.0"target="_blank" rel="noopener"&gt;1.5.0&lt;/a&gt; (2025-10-03)&lt;span class="hx:absolute hx:-mt-20" id="150-2025-10-03"&gt;&lt;/span&gt;&lt;a href="#150-2025-10-03" class="subheading-anchor" aria-label="Permalink for this section"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;h3&gt;Features&lt;span class="hx:absolute hx:-mt-20" id="features-8"&gt;&lt;/span&gt;&lt;a href="#features-8" class="subheading-anchor" aria-label="Permalink for this section"&gt;&lt;/a&gt;&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;add cardinality tfstate infra (&lt;a href="https://github.com/prefapp/features/issues/706"target="_blank" rel="noopener"&gt;#706&lt;/a&gt;) (&lt;a href="https://github.com/prefapp/features/commit/43a10bf80a3e312bb3373287c432b38d254cfabe"target="_blank" rel="noopener"&gt;43a10bf&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;&lt;a href="https://github.com/prefapp/features/compare/terraform-infra-v1.4.0...terraform-infra-v1.4.1"target="_blank" rel="noopener"&gt;1.4.1&lt;/a&gt; (2025-09-22)&lt;span class="hx:absolute hx:-mt-20" id="141-2025-09-22"&gt;&lt;/span&gt;&lt;a href="#141-2025-09-22" class="subheading-anchor" aria-label="Permalink for this section"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;h3&gt;Bug Fixes&lt;span class="hx:absolute hx:-mt-20" id="bug-fixes-8"&gt;&lt;/span&gt;&lt;a href="#bug-fixes-8" class="subheading-anchor" aria-label="Permalink for this section"&gt;&lt;/a&gt;&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;fixes for github action workflows (&lt;a href="https://github.com/prefapp/features/commit/f7275633bbb192c4d5943d7417a722a418e3f9b1"target="_blank" rel="noopener"&gt;f727563&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;refactoring for exit conditions (&lt;a href="https://github.com/prefapp/features/commit/becf82e2690b206e1d498f1cddcb74f70106e2de"target="_blank" rel="noopener"&gt;becf82e&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;terraform destroy (&lt;a href="https://github.com/prefapp/features/issues/694"target="_blank" rel="noopener"&gt;#694&lt;/a&gt;) (&lt;a href="https://github.com/prefapp/features/commit/f5b3246dcb63fb2f698ebccc7eb6aae90de2376b"target="_blank" rel="noopener"&gt;f5b3246&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;&lt;a href="https://github.com/prefapp/features/compare/terraform-infra-v1.3.2...terraform-infra-v1.4.0"target="_blank" rel="noopener"&gt;1.4.0&lt;/a&gt; (2025-09-10)&lt;span class="hx:absolute hx:-mt-20" id="140-2025-09-10"&gt;&lt;/span&gt;&lt;a href="#140-2025-09-10" class="subheading-anchor" aria-label="Permalink for this section"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;h3&gt;Features&lt;span class="hx:absolute hx:-mt-20" id="features-9"&gt;&lt;/span&gt;&lt;a href="#features-9" class="subheading-anchor" aria-label="Permalink for this section"&gt;&lt;/a&gt;&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;update terraform infra workflows (&lt;a href="https://github.com/prefapp/features/commit/5d04d0436e4ce9310614ea4cc25f487f31e006f9"target="_blank" rel="noopener"&gt;5d04d04&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;&lt;a href="https://github.com/prefapp/features/compare/terraform-infra-v1.3.1...terraform-infra-v1.3.2"target="_blank" rel="noopener"&gt;1.3.2&lt;/a&gt; (2025-09-05)&lt;span class="hx:absolute hx:-mt-20" id="132-2025-09-05"&gt;&lt;/span&gt;&lt;a href="#132-2025-09-05" class="subheading-anchor" aria-label="Permalink for this section"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;h3&gt;Bug Fixes&lt;span class="hx:absolute hx:-mt-20" id="bug-fixes-9"&gt;&lt;/span&gt;&lt;a href="#bug-fixes-9" class="subheading-anchor" aria-label="Permalink for this section"&gt;&lt;/a&gt;&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;bootstrap script and cloudformation role (&lt;a href="https://github.com/prefapp/features/issues/674"target="_blank" rel="noopener"&gt;#674&lt;/a&gt;) (&lt;a href="https://github.com/prefapp/features/commit/f54fbb18ff73e9885e6fb6a80bd3226d61657dcd"target="_blank" rel="noopener"&gt;f54fbb1&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;&lt;a href="https://github.com/prefapp/features/compare/terraform-infra-v1.3.0...terraform-infra-v1.3.1"target="_blank" rel="noopener"&gt;1.3.1&lt;/a&gt; (2025-09-05)&lt;span class="hx:absolute hx:-mt-20" id="131-2025-09-05"&gt;&lt;/span&gt;&lt;a href="#131-2025-09-05" class="subheading-anchor" aria-label="Permalink for this section"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;h3&gt;Bug Fixes&lt;span class="hx:absolute hx:-mt-20" id="bug-fixes-10"&gt;&lt;/span&gt;&lt;a href="#bug-fixes-10" class="subheading-anchor" aria-label="Permalink for this section"&gt;&lt;/a&gt;&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;app-token step (&lt;a href="https://github.com/prefapp/features/issues/669"target="_blank" rel="noopener"&gt;#669&lt;/a&gt;) (&lt;a href="https://github.com/prefapp/features/commit/6bcd02020263f35d7addf0487d1acbf58c7fc76d"target="_blank" rel="noopener"&gt;6bcd020&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;&lt;a href="https://github.com/prefapp/features/compare/terraform-infra-v1.2.0...terraform-infra-v1.3.0"target="_blank" rel="noopener"&gt;1.3.0&lt;/a&gt; (2025-09-04)&lt;span class="hx:absolute hx:-mt-20" id="130-2025-09-04"&gt;&lt;/span&gt;&lt;a href="#130-2025-09-04" class="subheading-anchor" aria-label="Permalink for this section"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;h3&gt;Features&lt;span class="hx:absolute hx:-mt-20" id="features-10"&gt;&lt;/span&gt;&lt;a href="#features-10" class="subheading-anchor" aria-label="Permalink for this section"&gt;&lt;/a&gt;&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;update to terraform-infra template with tested code from bootstrap repo (&lt;a href="https://github.com/prefapp/features/issues/659"target="_blank" rel="noopener"&gt;#659&lt;/a&gt;) (&lt;a href="https://github.com/prefapp/features/commit/91d68822c0803227d8ba70e3c7b1a59f931fc711"target="_blank" rel="noopener"&gt;91d6882&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;&lt;a href="https://github.com/prefapp/features/compare/terraform-infra-v1.1.0...terraform-infra-v1.2.0"target="_blank" rel="noopener"&gt;1.2.0&lt;/a&gt; (2025-08-27)&lt;span class="hx:absolute hx:-mt-20" id="120-2025-08-27"&gt;&lt;/span&gt;&lt;a href="#120-2025-08-27" class="subheading-anchor" aria-label="Permalink for this section"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;h3&gt;Features&lt;span class="hx:absolute hx:-mt-20" id="features-11"&gt;&lt;/span&gt;&lt;a href="#features-11" class="subheading-anchor" aria-label="Permalink for this section"&gt;&lt;/a&gt;&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;include option to not wait for inputs in terraform commands (&lt;a href="https://github.com/prefapp/features/issues/655"target="_blank" rel="noopener"&gt;#655&lt;/a&gt;) (&lt;a href="https://github.com/prefapp/features/commit/49ea634865a4e9a538154fc80b4504e105ea58b8"target="_blank" rel="noopener"&gt;49ea634&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;new validation structure (&lt;a href="https://github.com/prefapp/features/issues/635"target="_blank" rel="noopener"&gt;#635&lt;/a&gt;) (&lt;a href="https://github.com/prefapp/features/commit/7e3f1cbd35af1d333a7f965dcce965975c371f92"target="_blank" rel="noopener"&gt;7e3f1cb&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;&lt;a href="https://github.com/prefapp/features/compare/terraform-infra-v1.0.0...terraform-infra-v1.1.0"target="_blank" rel="noopener"&gt;1.1.0&lt;/a&gt; (2025-08-07)&lt;span class="hx:absolute hx:-mt-20" id="110-2025-08-07"&gt;&lt;/span&gt;&lt;a href="#110-2025-08-07" class="subheading-anchor" aria-label="Permalink for this section"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;h3&gt;Features&lt;span class="hx:absolute hx:-mt-20" id="features-12"&gt;&lt;/span&gt;&lt;a href="#features-12" class="subheading-anchor" aria-label="Permalink for this section"&gt;&lt;/a&gt;&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;Add new feature for Terraform infrastructure (&lt;a href="https://github.com/prefapp/features/issues/598"target="_blank" rel="noopener"&gt;#598&lt;/a&gt;) (&lt;a href="https://github.com/prefapp/features/commit/f3ff30edb35a8eecbfdc2185fb2af10e0b52f514"target="_blank" rel="noopener"&gt;f3ff30e&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;</description></item></channel></rss>
