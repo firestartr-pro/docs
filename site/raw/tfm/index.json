@@ -143,6 +143,12 @@
       "source": "git::https://github.com/prefapp/tfm.git//modules/azure-backup-vault?ref=azure-backup-vault-v0.1.11"
     },
     {
+      "name": "azure-cognitive-account",
+      "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-cognitive-account/README.md",
+      "version": "0.1.0",
+      "source": "git::https://github.com/prefapp/tfm.git//modules/azure-cognitive-account?ref=azure-cognitive-account-v0.1.0"
+    },
+    {
       "name": "azure-customrole",
       "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-customrole/README.md",
       "version": "0.2.2",
