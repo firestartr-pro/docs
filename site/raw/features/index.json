@@ -72,7 +72,7 @@
     },
     {
       "name": "cloudfront_s3_build_and_deploy",
-      "version": "0.3.4",
+      "version": "1.0.0",
       "files": [
         {
           "name": "README.md",
@@ -86,7 +86,7 @@
     },
     {
       "name": "features_repo",
-      "version": "1.4.1",
+      "version": "2.0.0",
       "files": [
         {
           "name": "README.md",
@@ -198,7 +198,7 @@
     },
     {
       "name": "state_repo",
-      "version": "2.6.2",
+      "version": "3.0.0",
       "files": [
         {
           "name": "README.md",

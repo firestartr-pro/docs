@@ -1,5 +1,16 @@
 # Changelog
 
+## [1.0.0](https://github.com/prefapp/features/compare/cloudfront_s3_build_and_deploy-v0.3.4...cloudfront_s3_build_and_deploy-v1.0.0) (2026-10-05)
+
+
+### ⚠ BREAKING CHANGES
+
+* Add format to all existing features ([#1249](https://github.com/prefapp/features/issues/1249))
+
+### Features
+
+* Add format to all existing features ([#1249](https://github.com/prefapp/features/issues/1249)) ([bccb398](https://github.com/prefapp/features/commit/bccb3981b1ac32e0552e9c9bfdd1cd1cf8cec491))
+
 ## [0.3.4](https://github.com/prefapp/features/compare/cloudfront_s3_build_and_deploy-v0.3.3...cloudfront_s3_build_and_deploy-v0.3.4) (2026-09-11)
 
 
