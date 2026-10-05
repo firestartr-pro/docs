@@ -1,5 +1,16 @@
 # Changelog
 
+## [6.0.0](https://github.com/prefapp/features/compare/build_and_dispatch_docker_images-v5.7.2...build_and_dispatch_docker_images-v6.0.0) (2026-10-05)
+
+
+### ⚠ BREAKING CHANGES
+
+* Add format to all existing features ([#1249](https://github.com/prefapp/features/issues/1249))
+
+### Features
+
+* Add format to all existing features ([#1249](https://github.com/prefapp/features/issues/1249)) ([bccb398](https://github.com/prefapp/features/commit/bccb3981b1ac32e0552e9c9bfdd1cd1cf8cec491))
+
 ## [5.7.2](https://github.com/prefapp/features/compare/build_and_dispatch_docker_images-v5.7.1...build_and_dispatch_docker_images-v5.7.2) (2026-10-01)
 
 

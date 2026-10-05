@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.8.1](https://github.com/prefapp/features/compare/release_please-v1.8.0...release_please-v1.8.1) (2026-10-01)
+
+
+### Bug Fixes
+
+* pin ACTION_RELEASE_PLEASE_VERSION to a specific commit hash ([#1344](https://github.com/prefapp/features/issues/1344)) ([c90cc67](https://github.com/prefapp/features/commit/c90cc673d8bde32c70fc7d4527baad761c5233da))
+
 ## [1.8.0](https://github.com/prefapp/features/compare/release_please-v1.7.0...release_please-v1.8.0) (2026-08-12)
 
 

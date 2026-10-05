@@ -38,8 +38,13 @@ Add it to your repository's feature list with the following configuration:
 │   │   ├── templates/             # Mustache templates go here
 │   │   ├── config.yaml            # Feature definition
 │   │   ├── package.json
-│   │   └── README.md
+│   │   ├── README.md
+│   │   ├── CONTEXT.md             # Package glossary (context-modeling)
+│   │   └── docs/adr/              # Package-scoped architecture decisions
 │   └── another-feature/
+├── CONTEXT-MAP.md                 # Points at each package's CONTEXT.md
+├── docs/adr/                      # System-wide architecture decisions
+├── AGENTS.md                      # Agent instructions (design memory + workflow)
 ├── .release-please-manifest.json
 ├── release-please-config.json
 ├── .github/
@@ -64,14 +69,49 @@ config.yaml structure
 feature_name: example
 
 # The following are the args that will be used to render the templates.
-# There are two types of args:
+# There are three types of args:
 # $ref: replaced by the value from the metadata section of the config.yaml file
 # $lit: literal value
+# $arg: The name of the argument as consumed by the claim (each $arg becomes a schema property)
+# $default: The default value for the argument
+# $format: Optional named value type resolved from the registry in scripts/arg-formats.js
+#          (string, int, bool, semver, semver-range, string-list). It controls the JSON
+#          type emitted for the argument in schema.json:
+#            string         -> { type: "string" } (no pattern)
+#            int            -> { type: "integer" }
+#            bool           -> { type: "boolean" }
+#            semver         -> { type: "string", pattern: <semver regexp> }
+#            semver-range   -> { type: "string", pattern: <npm semver range regexp> }
+#            string-list    -> { type: "array", items: { type: "string" } }
+#          Claimed values are validated against these native types by the generated
+#          schema.json; only $defaults are checked at schema generation and emitted
+#          as native types: a quoted numeric/boolean string default (e.g. "8080",
+#          "true") is coerced to integer/boolean because the renderer's Arg schema
+#          only allows string | array | boolean $default values. Unknown tokens fail
+#          schema generation.
 args:
   ORG:
     $ref: [spec, org]
   REPO_NAME:
     $ref: [metadata, name]
+  APP_NAME:
+    $default: "my-app"
+    $arg: app_name
+    $format: string
+  PORT:
+    $default: "8080"
+    $arg: port
+    $format: int
+  ENABLE_TLS:
+    $default: "true"
+    $arg: enable_tls
+    $format: bool
+  APP_VERSION:
+    $default: "1.4.2"
+    $arg: app_version
+    $format: semver
+  REPO_DESCRIPTION:
+    $lit: "A description of the repo"
 
 # Files to render from the templates/ folder
 files:
@@ -118,6 +158,8 @@ You can add logic with conditionals:
 ---
 
 ## Testing Features
+
+For testing features against the renderer source locally with Docker (no rebuilds), see [docs/local-testing.md](docs/local-testing.md).
 
 ### Using generic-fixtures/cr.yaml
 
@@ -172,28 +214,14 @@ If your feature requires specific CR fields not covered by the generic fixture, 
 
 ---
 
-## Schema promotion
+## Agent Skills
 
-Each feature package has a `schema.json` that documents its user-feedable arguments and file manifest. It is generated from `config.yaml` with:
+This repo includes two agent skills under `.agents/skills/`:
 
-```bash
-pnpm generate:schemas
-```
-
-and kept in sync by the `pr_verify` workflow.
-
-On every feature release, the **Promote Schemas to Docs Repo** workflow promotes the generated schemas to the objective docs repository `firestartr-pro/docs` (defaults: `firestartr-pro/docs`). For each feature and version it writes:
-
-- `site/raw/features/<feature>/<version>/schema.json`
-- an updated `site/raw/features/versions.json`
-
-### Arguments
-
-- `docs_org`: the GitHub organization that owns the docs repository (default: `firestartr-pro`).
-- `docs_repo_name`: the repository that receives the generated feature schemas (default: `docs`).
-- `disable_promote_schemas`: set it to disable the schema promotion workflow.
-
-The workflow authenticates with a GitHub App that has write access to the docs repository. Configure it in the repository settings with the `FIRESTARTER_DOCS_APP_ID` variable and the `FIRESTARTR_DOCS_APP_PEM_FILE` secret.
+| Skill | Description |
+|-------|-------------|
+| `maintain-feature-schema` | Generate or enrich per-feature JSON Schemas (`schema.json`) from `config.yaml`, `package.json`, and `README.md`, adding descriptions and examples to every property. Run `pnpm generate:schemas` then `pnpm test:schemas` to sync. |
+| `rollout-feature` | End-to-end test or debug a feature against a live Firestartr platform. Test mode does a read-only verify; loop mode does edit-fix-retry up to 5 iterations, committing template fixes to the working branch only after explicit user approval. |
 
 ---
 
