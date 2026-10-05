@@ -1,5 +1,16 @@
 # Changelog
 
+## [2.0.0](https://github.com/prefapp/features/compare/catalog_repo-v1.7.0...catalog_repo-v2.0.0) (2026-10-05)
+
+
+### ⚠ BREAKING CHANGES
+
+* Add format to all existing features ([#1249](https://github.com/prefapp/features/issues/1249))
+
+### Features
+
+* Add format to all existing features ([#1249](https://github.com/prefapp/features/issues/1249)) ([bccb398](https://github.com/prefapp/features/commit/bccb3981b1ac32e0552e9c9bfdd1cd1cf8cec491))
+
 ## [1.7.0](https://github.com/prefapp/features/compare/catalog_repo-v1.6.0...catalog_repo-v1.7.0) (2026-08-31)
 
 
