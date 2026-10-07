@@ -1,5 +1,13 @@
 # Changelog
 
+## [3.0.1](https://github.com/prefapp/features/compare/claims_repo-v3.0.0...claims_repo-v3.0.1) (2026-10-07)
+
+
+### Bug Fixes
+
+* **claims_repo:** allow SKIP=SKIP on import ([#1307](https://github.com/prefapp/features/issues/1307)) ([6032a48](https://github.com/prefapp/features/commit/6032a489505a8f95beb52731cc51d0eae53009c4))
+* **claims_repo:** show render error in hydrate workflow summary ([#1366](https://github.com/prefapp/features/issues/1366)) ([18904b0](https://github.com/prefapp/features/commit/18904b0f97fc1ed746d608a9d9cd6c7d777a23b2))
+
 ## [3.0.0](https://github.com/prefapp/features/compare/claims_repo-v2.10.2...claims_repo-v3.0.0) (2026-10-05)
 
 
