@@ -283,8 +283,8 @@
     {
       "name": "azure-sa",
       "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-sa/README.md",
-      "version": "0.3.4",
-      "source": "git::https://github.com/prefapp/tfm.git//modules/azure-sa?ref=azure-sa-v0.3.4"
+      "version": "0.4.0",
+      "source": "git::https://github.com/prefapp/tfm.git//modules/azure-sa?ref=azure-sa-v0.4.0"
     },
     {
       "name": "azure-sa-backup",
