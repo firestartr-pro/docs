@@ -500,8 +500,11 @@ function releasePlan(entry, folders, options, failedDirs) {
     versionDir: newest.dir,
     versionDirs: sorted.map((folder) => folder.dir),
     // The folders of this name that failed validation: only their top-level
-    // files are read, to find the leftovers of a previous Latest copy.
-    failedDirs: [...failedDirs].filter((dir) => parentOf(dir) === nameDir),
+    // files are read, to find the leftovers of a previous Latest copy. A folder
+    // whose name is not a version never held a Latest copy.
+    failedDirs: [...failedDirs].filter(
+      (dir) => parentOf(dir) === nameDir && VERSION_PATTERN.test(path.posix.basename(dir)),
+    ),
     target: entry.unnamed ? `${entry.path}/${entry.latest}` : nameDir,
     versionsFile: `${nameDir}/versions.json`,
     versions: sorted.map((folder) => ({
@@ -557,6 +560,9 @@ function topLevelFileNames(versionDirs, options) {
 function failedNamesByFolder(entries, failedDirs) {
   const names = new Map()
   for (const dir of failedDirs) {
+    // A failed folder is only a Version folder when its name is a version: a
+    // stray metadata file at another depth must not retire a name.
+    if (!VERSION_PATTERN.test(path.posix.basename(dir))) continue
     const entry = ownerOf(entries, dir)
     if (!entry || entry.mode !== 'release') continue
     const nameDir = parentOf(dir)
@@ -724,13 +730,42 @@ function imageOwners(entries, presentNames, fileName) {
 }
 
 /**
+ * Every name present in a named release Area, so an image is attributed to
+ * the longest matching name even when that name is legacy or failed.
+ */
+function collectPresentNames(entries, options) {
+  const presentNames = new Map()
+  for (const entry of entries) {
+    if (entry.mode !== 'release' || entry.unnamed) continue
+    const areaAbs = path.join(options.docs, options.root, entry.path)
+    if (!lstat(areaAbs)?.isDirectory()) continue
+    presentNames.set(
+      entry,
+      fs.readdirSync(areaAbs).filter((name) => lstat(path.join(areaAbs, name))?.isDirectory()),
+    )
+  }
+  return presentNames
+}
+
+/** The owner folder of a flat image candidate: the name folder, or the Area itself. */
+function ownerDir(owner) {
+  return owner.name ? `${owner.entry.path}/${owner.name}` : owner.entry.path
+}
+
+/**
  * The flat images the Registry expects (newest Version folders, then Mirrors)
  * and the flat names more than one source claims. `sources` are the
  * `{dir, entry, name}` triples to collect, newest Version folder first. A
  * claimed name is copied from no source: the hub reports the collision instead
  * of letting one source win it silently.
+ *
+ * A singly-claimed name with another possible owner that is not rebuilding
+ * this run (an unmanaged name sharing the prefix included) is ambiguous: it is
+ * reported instead of being copied, before any Latest link is rewritten.
+ * `willRebuild` holds the names and Areas that rebuild this run (plans,
+ * mirrors and retirements), using the same ownership data as pruning.
  */
-function expectedImages(entries, sources, options) {
+function expectedImages(entries, sources, options, presentNames, willRebuild) {
   const claimed = new Map()
 
   for (const { dir, entry, name } of sources) {
@@ -742,23 +777,49 @@ function expectedImages(entries, sources, options) {
       if (owner && owner !== entry) continue
       const flatName = flatImageName(entry.path, name, rel)
       const claims = claimed.get(flatName) ?? []
-      claims.push({ file: path.join(imagesAbs, rel), rel: path.posix.join(dir, IMAGES_DIR, rel) })
+      claims.push({ file: path.join(imagesAbs, rel), rel: path.posix.join(dir, IMAGES_DIR, rel), entry, name })
       claimed.set(flatName, claims)
     }
   }
 
+  const isRebuilt = (owner) =>
+    owner.name
+      ? (willRebuild?.names.get(owner.entry) ?? new Set()).has(owner.name)
+      : willRebuild?.areas.has(owner.entry) ?? false
   const expected = new Map()
   const collisions = new Map()
+  const ambiguous = new Map()
   for (const [flatName, claims] of claimed) {
-    if (claims.length === 1) expected.set(flatName, claims[0].file)
-    else collisions.set(flatName, new Set(claims.map((claim) => claim.rel)))
+    if (claims.length > 1) {
+      collisions.set(flatName, new Set(claims.map((claim) => claim.rel)))
+      continue
+    }
+    const claim = claims[0]
+    const owners = imageOwners(entries, presentNames, flatName)
+    const isClaimant = (owner) => owner.entry === claim.entry && owner.name === claim.name
+    if (!owners.some(isClaimant)) {
+      ambiguous.set(flatName, {
+        rel: claim.rel,
+        owners: [ownerDir(claim)].sort(),
+      })
+      continue
+    }
+    const outsiders = owners.filter((owner) => !isClaimant(owner) && !isRebuilt(owner))
+    if (outsiders.length) {
+      ambiguous.set(flatName, {
+        rel: claim.rel,
+        owners: owners.map(ownerDir).sort(),
+      })
+      continue
+    }
+    expected.set(flatName, claim.file)
   }
-  return { expected, collisions }
+  return { expected, collisions, ambiguous }
 }
 
 /** Copies the expected images into the flat images folder and prunes stale ones. */
-function applyImages(entries, state, options, images) {
-  const { expected, collisions } = images
+function applyImages(entries, state, options, images, presentNames) {
+  const { expected, collisions, ambiguous } = images
   const imagesAbs = path.join(options.docs, options.root, IMAGES_DIR)
   const copied = []
   const pruned = []
@@ -771,18 +832,7 @@ function applyImages(entries, state, options, images) {
     rebuiltNames.get(item.entry).add(item.name)
   }
   const rebuiltAreas = new Set([...state.ready, ...state.retired.map((item) => item.entry)])
-  // Every name present in a named release Area, so an image is attributed to
-  // the longest matching name even when that name is legacy or failed.
-  const presentNames = new Map()
-  for (const entry of entries) {
-    if (entry.mode !== 'release' || entry.unnamed) continue
-    const areaAbs = path.join(options.docs, options.root, entry.path)
-    if (!lstat(areaAbs)?.isDirectory()) continue
-    presentNames.set(
-      entry,
-      fs.readdirSync(areaAbs).filter((name) => lstat(path.join(areaAbs, name))?.isDirectory()),
-    )
-  }
+  const namesPresent = presentNames ?? collectPresentNames(entries, options)
 
   if (expected.size) {
     // The hub owns the flat images folder: a symlink planted in its place is
@@ -803,12 +853,12 @@ function applyImages(entries, state, options, images) {
   if (lstat(imagesAbs)?.isDirectory()) {
     for (const name of fs.readdirSync(imagesAbs).sort()) {
       const abs = path.join(imagesAbs, name)
-      // A colliding flat name stays exactly as the hub found it.
-      if (collisions.has(name)) continue
+      // A colliding or ambiguous flat name stays exactly as the hub found it.
+      if (collisions.has(name) || ambiguous?.has(name)) continue
       if (!lstat(abs)?.isFile() || expected.has(name)) continue
       // Pruned only when every owner the name could have rebuilt this run: one
       // that did not may still publish the image. Otherwise it is Unmanaged.
-      const owners = imageOwners(entries, presentNames, name)
+      const owners = imageOwners(entries, namesPresent, name)
       const rebuilt = ({ entry, name: ownerName }) =>
         ownerName ? (rebuiltNames.get(entry) ?? new Set()).has(ownerName) : rebuiltAreas.has(entry)
       if (!owners.length || !owners.every(rebuilt)) continue
@@ -1037,6 +1087,11 @@ function main(argv) {
     ...found.versions.map((item) => item.entry),
     ...[...failedNames.values()].map((failed) => failed.entry),
   ])
+  // An Area that is, or lies beneath, a failed folder keeps no index: writing
+  // one would publish an empty list inside a folder the hub must not touch.
+  for (const entry of [...areasWithFolders]) {
+    if (isUnderFailed(entry.path, found.failedDirs)) areasWithFolders.delete(entry)
+  }
 
   const state = {
     failures: found.failures,
@@ -1055,6 +1110,23 @@ function main(argv) {
 
   // The flat images are computed before the Latest copies, so a link is only
   // rewritten to a flat name this run really derives.
+  const presentNames = collectPresentNames(entries, options)
+  const willRebuildNames = new Map()
+  for (const plan of plans) {
+    if (!plan.name) continue
+    if (!willRebuildNames.has(plan.entry)) willRebuildNames.set(plan.entry, new Set())
+    willRebuildNames.get(plan.entry).add(plan.name)
+  }
+  for (const item of retired) {
+    if (!item.name) continue
+    if (!willRebuildNames.has(item.entry)) willRebuildNames.set(item.entry, new Set())
+    willRebuildNames.get(item.entry).add(item.name)
+  }
+  const willRebuildAreas = new Set([
+    ...plans.map((plan) => plan.entry),
+    ...found.mirrors.map((mirror) => mirror.entry),
+    ...retired.map((item) => item.entry),
+  ])
   const images = expectedImages(
     entries,
     [
@@ -1062,6 +1134,8 @@ function main(argv) {
       ...found.mirrors.map((mirror) => ({ dir: mirror.dir, entry: mirror.entry, name: '' })),
     ],
     options,
+    presentNames,
+    { names: willRebuildNames, areas: willRebuildAreas },
   )
   for (const [flatName, sources] of images.collisions) {
     found.failures.push({
@@ -1069,6 +1143,14 @@ function main(argv) {
       reason:
         `flat image name "${flatName}" is claimed by more than one source: ` +
         [...sources].sort().map((source) => `"${source}"`).join(', '),
+    })
+  }
+  for (const [flatName, info] of images.ambiguous) {
+    found.failures.push({
+      path: `${IMAGES_DIR}/${flatName}`,
+      reason:
+        `flat image name "${flatName}" is ambiguous: "${info.rel}" could belong to ` +
+        info.owners.map((owner) => `"${owner}"`).join(', '),
     })
   }
 
@@ -1079,7 +1161,7 @@ function main(argv) {
   for (const item of state.managed) state.ready.add(item.entry)
   for (const mirror of state.mirrors) state.ready.add(mirror.entry)
 
-  const appliedImages = applyImages(entries, state, options, images)
+  const appliedImages = applyImages(entries, state, options, images, presentNames)
   state.expectedImages = appliedImages.expected
   state.copiedImages = appliedImages.copied
   state.pruned = appliedImages.pruned
