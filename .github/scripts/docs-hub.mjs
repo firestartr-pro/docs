@@ -846,8 +846,11 @@ function applyImages(entries, state, options, images, presentNames) {
   }
   const rebuiltAreas = new Set([...state.ready, ...state.retired.map((item) => item.entry)])
   const namesPresent = presentNames ?? collectPresentNames(entries, options)
+  // A failed flat images folder is left alone: nothing is copied into it and
+  // nothing is pruned from it.
+  const imagesFailed = isUnderFailed(IMAGES_DIR, state.failedDirs)
 
-  if (expected.size) {
+  if (expected.size && !imagesFailed) {
     // The hub owns the flat images folder: a symlink planted in its place is
     // replaced by a real folder, never written through.
     if (lstat(imagesAbs)?.isSymbolicLink()) fs.rmSync(imagesAbs)
@@ -863,7 +866,7 @@ function applyImages(entries, state, options, images, presentNames) {
     }
   }
 
-  if (lstat(imagesAbs)?.isDirectory()) {
+  if (lstat(imagesAbs)?.isDirectory() && !imagesFailed) {
     for (const name of fs.readdirSync(imagesAbs).sort()) {
       const abs = path.join(imagesAbs, name)
       // A colliding or ambiguous flat name stays exactly as the hub found it.
@@ -953,7 +956,9 @@ function unmanagedFiles(entries, state, options) {
 /** Whether a path is a failed folder or lies under one. */
 function isUnderFailed(relPath, failedDirs) {
   for (const dir of failedDirs) {
-    if (relPath === dir || relPath.startsWith(`${dir}/`)) return true
+    // A failed folder at the root (recorded as '') is an ancestor of every
+    // root-relative path, so a root ownership failure protects the whole tree.
+    if (dir === '' || relPath === dir || relPath.startsWith(`${dir}/`)) return true
   }
   return false
 }
@@ -1167,6 +1172,11 @@ function main(argv) {
         info.owners.map((owner) => `"${owner}"`).join(', '),
     })
   }
+
+  // A failed flat images folder keeps its files and no link points at it:
+  // clearing the destinations before the Latest copies are written leaves
+  // every image link as the publisher wrote it.
+  if (isUnderFailed(IMAGES_DIR, found.failedDirs)) images.expected.clear()
 
   const applied = applyReleases(plans, entries, options, images.expected, areasWithFolders)
   found.failures.push(...applied.blocked)
