@@ -35,7 +35,9 @@ Available GitHub claim types:
 - `UserClaim` — hydrates `FirestartrGithubMembership` CRs.
 - `GroupClaim` — hydrates `FirestartrGithubGroup` CRs.
 - `OrgWebhookClaim` — hydrates `FirestartrGithubOrgWebhook` CRs.
-- `GitHubOrgClaim` — hydrates `FirestartrGithubOrganizationSettings` CRs.
+- `OrgSettingsClaim` — hydrates `FirestartrGithubOrganizationSettings`, `FirestartrGithubOrganizationVariableSection`, and `FirestartrGithubOrganizationSecretSection` CRs.
+
+> **Note:** `GitHubOrgClaim` is no longer supported. If you have existing claim files using `kind: GitHubOrgClaim`, migrate them to `kind: OrgSettingsClaim`.
 
 ![Hydrating a GitHub claim](./images/claims_repo-example_1-2.jpg)
 *Hydrating a GitHub claim*

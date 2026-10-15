@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.4.0](https://github.com/prefapp/features/compare/firestartr_repo-v1.3.0...firestartr_repo-v1.4.0) (2026-10-15)
+
+
+### Features
+
+* add helm_repositories scaffold to config.yaml ([#1388](https://github.com/prefapp/features/issues/1388)) ([cc9b7d7](https://github.com/prefapp/features/commit/cc9b7d78a17130e0e4128d541c1418184717f203))
+
 ## [1.3.0](https://github.com/prefapp/features/compare/firestartr_repo-v1.2.0...firestartr_repo-v1.3.0) (2026-08-31)
 
 
