@@ -390,7 +390,11 @@ function discover(entries, options) {
     if (owner) versions.push({ rel, dir: folder, metadata, entry: owner })
   }
 
-  return { failures, failedDirs, versions, mirrors }
+  // A folder that failed validation is untouched: a version or mirror folder
+  // that is, or lies beneath, one (a stray metadata file in the same folder)
+  // is not a rebuild source, so nothing is published from a failed folder.
+  const usable = (item) => !isUnderFailed(item.dir, failedDirs)
+  return { failures, failedDirs, versions: versions.filter(usable), mirrors: mirrors.filter(usable) }
 }
 
 function validateMirror(rel, folder, metadata, entries, fail) {
