@@ -735,7 +735,9 @@ function imageOwners(entries, presentNames, fileName) {
 
 /**
  * Every name present in a named release Area, so an image is attributed to
- * the longest matching name even when that name is legacy or failed.
+ * the longest matching name even when that name is legacy or failed. A folder
+ * owned by a more-specific Registry entry (a nested Area) is not a name of
+ * this Area.
  */
 function collectPresentNames(entries, options) {
   const presentNames = new Map()
@@ -745,7 +747,11 @@ function collectPresentNames(entries, options) {
     if (!lstat(areaAbs)?.isDirectory()) continue
     presentNames.set(
       entry,
-      fs.readdirSync(areaAbs).filter((name) => lstat(path.join(areaAbs, name))?.isDirectory()),
+      fs.readdirSync(areaAbs).filter(
+        (name) =>
+          lstat(path.join(areaAbs, name))?.isDirectory() &&
+          ownerOf(entries, `${entry.path}/${name}`) === entry,
+      ),
     )
   }
   return presentNames
@@ -769,16 +775,19 @@ function ownerDir(owner) {
  * `willRebuild` holds the names and Areas that rebuild this run (plans,
  * mirrors and retirements), using the same ownership data as pruning.
  */
-function expectedImages(entries, sources, options, presentNames, willRebuild) {
+function expectedImages(entries, sources, options, presentNames, willRebuild, failedDirs) {
   const claimed = new Map()
 
   for (const { dir, entry, name } of sources) {
     const imagesAbs = path.join(options.docs, options.root, dir, IMAGES_DIR)
     if (!lstat(imagesAbs)?.isDirectory()) continue
     for (const rel of relativeFiles(imagesAbs)) {
+      const sourceRel = path.posix.join(dir, IMAGES_DIR, rel)
       // A nested Area's images belong to that Area's own Registry entry.
-      const owner = ownerOf(entries, path.posix.join(dir, IMAGES_DIR, rel))
+      const owner = ownerOf(entries, sourceRel)
       if (owner && owner !== entry) continue
+      // Nothing under a failed folder is published as a flat image.
+      if (failedDirs && isUnderFailed(sourceRel, failedDirs)) continue
       const flatName = flatImageName(entry.path, name, rel)
       const claims = claimed.get(flatName) ?? []
       claims.push({ file: path.join(imagesAbs, rel), rel: path.posix.join(dir, IMAGES_DIR, rel), entry, name })
@@ -1140,6 +1149,7 @@ function main(argv) {
     options,
     presentNames,
     { names: willRebuildNames, areas: willRebuildAreas },
+    found.failedDirs,
   )
   for (const [flatName, sources] of images.collisions) {
     found.failures.push({
