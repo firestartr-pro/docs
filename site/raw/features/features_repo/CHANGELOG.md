@@ -1,5 +1,20 @@
 # Changelog
 
+## [2.0.2](https://github.com/prefapp/features/compare/features_repo-v2.0.1...features_repo-v2.0.2) (2026-10-16)
+
+
+### Bug Fixes
+
+* **features_repo:** update testing and scripts with lastest changes ([#1393](https://github.com/prefapp/features/issues/1393)) ([c9ffdc6](https://github.com/prefapp/features/commit/c9ffdc6239ef969af56ca188804808c0f4921225))
+
+## [2.0.1](https://github.com/prefapp/features/compare/features_repo-v2.0.0...features_repo-v2.0.1) (2026-10-16)
+
+
+### Bug Fixes
+
+* **features_repo:** retry docs promotion pushes on concurrent releases ([#1364](https://github.com/prefapp/features/issues/1364)) ([1f40df3](https://github.com/prefapp/features/commit/1f40df3f0edb97fc350e47ab5fcbdc53a7d32b20))
+* **features_repo:** sync deps source and set default disable_promote_schemas to true ([#1391](https://github.com/prefapp/features/issues/1391)) ([0f29cf3](https://github.com/prefapp/features/commit/0f29cf39c203313cd829a041219a8d0df4189914))
+
 ## [2.0.0](https://github.com/prefapp/features/compare/features_repo-v1.4.1...features_repo-v2.0.0) (2026-10-05)
 
 

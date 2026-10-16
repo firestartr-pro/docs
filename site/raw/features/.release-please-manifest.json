@@ -14,7 +14,7 @@
     "packages/terraform-infra": "4.0.0",
     "packages/catalog_repo": "2.0.0",
     "packages/charts_repo": "2.2.0",
-    "packages/features_repo": "2.0.0",
+    "packages/features_repo": "2.0.2",
     "packages/cloudfront_s3_build_and_deploy": "1.0.0",
     "packages/build_and_publish_lambda_code": "2.0.0",
     "packages/state_secrets": "1.2.0",
