@@ -215,7 +215,7 @@ pnpm generate:schemas
 
 and kept in sync by the `pr_verify` workflow.
 
-On every feature release, the **Promote Schemas to Docs Repo** workflow promotes the generated schemas to the objective docs repository `{{| DOCS_ORG |}}/{{| DOCS_REPO_NAME |}}` (defaults: `firestartr-pro/docs`). For each feature and version it writes:
+Schema promotion is opt-in: the **Promote Schemas to Docs Repo** workflow is only installed when `disable_promote_schemas` is set to `false`. When enabled, on every feature release it promotes the generated schemas to the objective docs repository `{{| DOCS_ORG |}}/{{| DOCS_REPO_NAME |}}` (defaults: `firestartr-pro/docs`). For each feature and version it writes:
 
 - `site/raw/features/<feature>/<version>/schema.json`
 - an updated `site/raw/features/versions.json`
@@ -224,7 +224,7 @@ On every feature release, the **Promote Schemas to Docs Repo** workflow promotes
 
 - `docs_org`: the GitHub organization that owns the docs repository (default: `firestartr-pro`).
 - `docs_repo_name`: the repository that receives the generated feature schemas (default: `docs`).
-- `disable_promote_schemas`: set it to disable the schema promotion workflow.
+- `disable_promote_schemas`: whether to skip the schema promotion workflow (default: `true`). Set it to `false` to install it.
 
 The workflow authenticates with a GitHub App that has write access to the docs repository. Configure it in the repository settings with the `FIRESTARTER_DOCS_APP_ID` variable and the `FIRESTARTR_DOCS_APP_PEM_FILE` secret.
 
