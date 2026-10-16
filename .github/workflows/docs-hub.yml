@@ -1,0 +1,125 @@
+---
+# FEATURE_NAME: undefined
+# FEATURE_VERSION: undefined
+# FEATURE_URL: undefined
+
+name: Docs hub
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'site/raw/**'
+      - '.docs-hub/registry.yaml'
+      - '.github/scripts/docs-hub.mjs'
+      - '.github/workflows/docs-hub.yml'
+  workflow_dispatch:
+  schedule:
+    - cron: '0 3 * * *'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: docs-hub
+  cancel-in-progress: false
+
+jobs:
+  rebuild:
+    name: Rebuild derived files
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Set up Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: "22"
+
+      - name: Generate GitHub App token
+        id: app-token
+        uses: actions/create-github-app-token@v2
+        with:
+          app-id: ${{ vars.FIRESTARTER_DOCS_APP_ID }}
+          private-key: ${{ secrets.FIRESTARTR_DOCS_APP_PEM_FILE }}
+
+      - name: Checkout docs repo
+        uses: actions/checkout@v6
+        with:
+          repository: ${{ github.repository }}
+          path: pro-docs
+          token: ${{ steps.app-token.outputs.token }}
+
+      - name: Rebuild derived files
+        env:
+          GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
+          DOCS_REPO: ${{ github.workspace }}/pro-docs
+          DOCS_HUB_SCRIPT: .github/scripts/docs-hub.mjs
+          DOCS_HUB_REGISTRY: .docs-hub/registry.yaml
+          DOCS_HUB_ROOT: site/raw
+          DOCS_HUB_BRANCH: main
+          # Unescaped `&` tags here and in the other rendered files: the escaped form
+          # turns "/" into an HTML entity, which would corrupt paths and URLs.
+          DOCS_HUB_URL_BASE: https://raw.githubusercontent.com/${{ github.repository }}/main/site/raw
+        run: |
+          set -euo pipefail
+
+          APP_SLUG="${{ steps.app-token.outputs.app-slug }}"
+          USER_ID=$(gh api "/users/${APP_SLUG}[bot]" --jq .id)
+          git -C "$DOCS_REPO" config user.name "${APP_SLUG}[bot]"
+          git -C "$DOCS_REPO" config user.email "${USER_ID}+${APP_SLUG}[bot]@users.noreply.github.com"
+
+          STATUS=0
+          for attempt in 1 2 3 4 5; do
+            git -C "$DOCS_REPO" fetch origin "$DOCS_HUB_BRANCH"
+            git -C "$DOCS_REPO" reset --hard FETCH_HEAD
+
+            REGISTRY_JSON="$RUNNER_TEMP/registry.json"
+            if [ ! -f "$DOCS_REPO/$DOCS_HUB_REGISTRY" ]; then
+              echo "docs_hub: registry \"$DOCS_REPO/$DOCS_HUB_REGISTRY\" is missing" >&2
+              exit 2
+            fi
+            if ! yq -o=json '.' "$DOCS_REPO/$DOCS_HUB_REGISTRY" > "$REGISTRY_JSON"; then
+              echo "docs_hub: registry \"$DOCS_REPO/$DOCS_HUB_REGISTRY\" is not valid YAML" >&2
+              exit 2
+            fi
+
+            set +e
+            node "$DOCS_REPO/$DOCS_HUB_SCRIPT" \
+              --docs "$DOCS_REPO" \
+              --root "$DOCS_HUB_ROOT" \
+              --registry "$REGISTRY_JSON" \
+              --url-base "$DOCS_HUB_URL_BASE"
+            CODE=$?
+            set -e
+
+            if [ "$CODE" -ge 2 ]; then
+              echo "docs_hub: fatal error ($CODE), nothing was committed"
+              exit "$CODE"
+            fi
+            STATUS=$CODE
+
+            if [ -e "$DOCS_REPO/$DOCS_HUB_ROOT" ]; then
+              git -C "$DOCS_REPO" add -A -- ":(literal)$DOCS_HUB_ROOT"
+            fi
+            # A push with the App token, unlike GITHUB_TOKEN, triggers this workflow again;
+            # that run finds no diff and stops here.
+            if git -C "$DOCS_REPO" diff --staged --quiet; then
+              echo "docs_hub: nothing to commit"
+              exit "$STATUS"
+            fi
+
+            git -C "$DOCS_REPO" commit -m "docs: rebuild derived files (docs_hub)"
+            if git -C "$DOCS_REPO" push origin "HEAD:${DOCS_HUB_BRANCH}"; then
+              echo "docs_hub: pushed the rebuilt tree"
+              exit "$STATUS"
+            fi
+
+            echo "docs_hub: push rejected, retrying on the new ${DOCS_HUB_BRANCH}"
+            sleep $((attempt * 5 + RANDOM % 5))
+          done
+
+          echo "docs_hub: push failed after 5 attempts"
+          exit 1
