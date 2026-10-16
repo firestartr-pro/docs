@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.0.2](https://github.com/prefapp/features/compare/features_repo-v2.0.1...features_repo-v2.0.2) (2026-10-16)
+
+
+### Bug Fixes
+
+* **features_repo:** update testing and scripts with lastest changes ([#1393](https://github.com/prefapp/features/issues/1393)) ([c9ffdc6](https://github.com/prefapp/features/commit/c9ffdc6239ef969af56ca188804808c0f4921225))
+
 ## [2.0.1](https://github.com/prefapp/features/compare/features_repo-v2.0.0...features_repo-v2.0.1) (2026-10-16)
 
 
