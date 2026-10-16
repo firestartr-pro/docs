@@ -45,13 +45,11 @@ jobs:
         with:
           app-id: ${{ vars.FIRESTARTER_DOCS_APP_ID }}
           private-key: ${{ secrets.FIRESTARTR_DOCS_APP_PEM_FILE }}
-          owner: firestartr-pro
-          repositories: docs
 
       - name: Checkout docs repo
         uses: actions/checkout@v6
         with:
-          repository: firestartr-pro/docs
+          repository: ${{ github.repository }}
           path: pro-docs
           token: ${{ steps.app-token.outputs.token }}
 
@@ -69,7 +67,7 @@ jobs:
           DOCS_HUB_BRANCH: main
           # Unescaped `&` tags here and in the other rendered files: the escaped form
           # turns "/" into an HTML entity, which would corrupt paths and URLs.
-          DOCS_HUB_URL_BASE: https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw
+          DOCS_HUB_URL_BASE: https://raw.githubusercontent.com/${{ github.repository }}/main/site/raw
         run: |
           set -euo pipefail
 
