@@ -33,7 +33,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v6
 
-      # Pin Node instead of the runner image's default, so an image update cannot change it.
       - name: Set up Node
         uses: actions/setup-node@v6
         with:
@@ -57,10 +56,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
           DOCS_REPO: ${{ github.workspace }}/pro-docs
-          # Relative to the docs checkout: each attempt reads the script and the
-          # Registry of the revision it rebuilds, after its fetch and reset.
-          # The Registry is YAML edited by hand; the script reads the JSON the
-          # step below converts it to (mikefarah yq v4 is preinstalled on the runner).
           DOCS_HUB_SCRIPT: .github/scripts/docs-hub.mjs
           DOCS_HUB_REGISTRY: .docs-hub/registry.yaml
           DOCS_HUB_ROOT: site/raw
@@ -81,8 +76,6 @@ jobs:
             git -C "$DOCS_REPO" fetch origin "$DOCS_HUB_BRANCH"
             git -C "$DOCS_REPO" reset --hard FETCH_HEAD
 
-            # The script stays dependency-free and reads JSON, so YAML becomes
-            # JSON in $RUNNER_TEMP first. An empty registry.yaml converts to `null`.
             REGISTRY_JSON="$RUNNER_TEMP/registry.json"
             if [ ! -f "$DOCS_REPO/$DOCS_HUB_REGISTRY" ]; then
               echo "docs_hub: registry \"$DOCS_REPO/$DOCS_HUB_REGISTRY\" is missing" >&2
@@ -108,12 +101,11 @@ jobs:
             fi
             STATUS=$CODE
 
-            # A fresh docs repo has no root folder yet; the script wrote nothing.
             if [ -e "$DOCS_REPO/$DOCS_HUB_ROOT" ]; then
               git -C "$DOCS_REPO" add -A -- ":(literal)$DOCS_HUB_ROOT"
             fi
-            # No diff ends the loop: the push below touches the root folder, which
-            # re-triggers this workflow, and that run finds nothing to commit.
+            # A push with the App token, unlike GITHUB_TOKEN, triggers this workflow again;
+            # that run finds no diff and stops here.
             if git -C "$DOCS_REPO" diff --staged --quiet; then
               echo "docs_hub: nothing to commit"
               exit "$STATUS"
