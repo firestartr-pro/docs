@@ -690,7 +690,11 @@ function expectedImages(entries, sources, options, presentNames, willRebuild, fa
       continue
     }
     const outsiders = owners.filter((owner) => !isClaimant(owner) && !isRebuilt(owner))
-    if (outsiders.length) {
+    // Writing a flat image that is absent or already byte-equal takes nothing from an outsider.
+    const current = path.join(options.docs, options.root, IMAGES_DIR, flatName)
+    const unchanged =
+      !lstat(current) || (lstat(current).isFile() && fs.readFileSync(current).equals(fs.readFileSync(claim.file)))
+    if (outsiders.length && !unchanged) {
       ambiguous.set(flatName, {
         rel: claim.rel,
         owners: owners.map(ownerDir).sort(),
