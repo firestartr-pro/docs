@@ -4,8 +4,8 @@
 // This file is rendered verbatim into the docs repository (it contains no
 // Mustache), so the tests exercise the same file that runs in the workflow.
 //
-// It reads the Registry (one JSON object per line, rendered from the claim
-// args), validates every folder's metadata against it, then rebuilds the
+// It reads the Registry (.docs-hub/registry.yaml, edited by hand in the docs
+// repo and converted to JSON by the workflow with `yq -o=json`), validates every folder's metadata against it, then rebuilds the
 // Derived files: `versions.json`, `index.json`, the Latest copies and the flat
 // `images/` folder. It never touches a file it does not own.
 //
@@ -40,7 +40,7 @@ const REGISTRY_KEYS = [
 ]
 const RELEASE_ONLY_KEYS = ['versionsUrl', 'unnamed', 'latest', 'indexKey']
 const DEFAULT_ROOT = 'site/raw'
-const DEFAULT_REGISTRY = '.docs-hub/registry.jsonl'
+const DEFAULT_REGISTRY = '.docs-hub/registry.yaml'
 const IMAGES_DIR = 'images'
 // A managed name is one folder name, and not a file or folder the hub writes or reads.
 const RESERVED_NAMES = new Set(['index.json', 'versions.json', 'meta.json', '.meta.json', IMAGES_DIR])
@@ -166,32 +166,47 @@ function parseArgs(argv) {
   return options
 }
 
-/** Parses and validates the Registry, naming the offending line on any error. */
+/** Parses and validates the Registry, naming the offending entry on any error. */
 export function parseRegistry(text) {
+  // The workflow converts registry.yaml to JSON with `yq -o=json` and passes
+  // the result to --registry, so this reads one JSON document: an array of
+  // entries. An empty file converts to `null`, which means no entries.
+  // An empty Registry is a safe no-op: a fresh install ships the starter
+  // registry.yaml with `[]`, so there is simply nothing to rebuild yet.
+  if (text.trim() === '' || text.trim() === 'null') return []
+  let document
+  try {
+    document = JSON.parse(text)
+  } catch (error) {
+    throw new FatalError(`registry: invalid JSON (${error.message}); is registry.yaml valid YAML?`)
+  }
+  if (document === null) return []
+  if (!Array.isArray(document)) {
+    throw new FatalError(`registry must be a YAML list of entries, got ${JSON.stringify(document)}`)
+  }
+  const raws = document
+
   const entries = []
   const seen = new Set()
 
-  for (const [index, line] of text.split('\n').entries()) {
-    const lineNumber = index + 1
-    if (!line.trim()) continue
-
+  for (const [index, raw] of raws.entries()) {
+    const entryNumber = index + 1
+    const label =
+      raw && typeof raw === 'object' && !Array.isArray(raw) && typeof raw.path === 'string' && raw.path !== ''
+        ? `registry entry ${entryNumber} (path "${raw.path}")`
+        : `registry entry ${entryNumber}`
     const fail = (message) => {
-      throw new FatalError(`registry line ${lineNumber}: ${message}`)
+      throw new FatalError(`${label}: ${message}`)
     }
 
-    let raw
-    try {
-      raw = JSON.parse(line)
-    } catch (error) {
-      fail(`invalid JSON (${error.message})`)
-    }
-    if (!raw || typeof raw !== 'object' || Array.isArray(raw)) fail('entry must be a JSON object')
+    if (!raw || typeof raw !== 'object' || Array.isArray(raw)) fail('entry must be an object')
     for (const key of Object.keys(raw)) {
       if (!REGISTRY_KEYS.includes(key)) fail(`unknown key "${key}"`)
     }
 
     const area = raw.path
-    if (typeof area !== 'string' || area === '') fail('missing "path"')
+    if (area === undefined || area === null || area === '') fail('missing "path"')
+    if (typeof area !== 'string') fail(`"path" must be a non-empty string, got ${JSON.stringify(area)}; quote the value in registry.yaml`)
     if (
       path.posix.isAbsolute(area) ||
       area.endsWith('/') ||
@@ -204,10 +219,10 @@ export function parseRegistry(text) {
       fail(`"path" must not be the hub-owned "${IMAGES_DIR}" folder or inside it, got "${area}"`)
     }
     if (typeof raw.source !== 'string' || !/^[^/\s]+\/[^/\s]+$/.test(raw.source)) {
-      fail(`"source" must be an "org/repo" string, got ${JSON.stringify(raw.source)}`)
+      fail(`"source" must be an "org/repo" string, got ${JSON.stringify(raw.source)}${typeof raw.source === 'number' ? '; quote the value in registry.yaml' : ''}`)
     }
     if (raw.mode !== 'release' && raw.mode !== 'mirror') {
-      fail(`"mode" must be "release" or "mirror", got ${JSON.stringify(raw.mode)}`)
+      fail(`"mode" must be "release" or "mirror", got ${JSON.stringify(raw.mode)}${typeof raw.mode === 'number' ? '; quote the value in registry.yaml' : ''}`)
     }
     if (seen.has(area)) fail(`duplicate path "${area}"`)
     seen.add(area)
@@ -221,7 +236,7 @@ export function parseRegistry(text) {
     } else {
       entry.versionsUrl = raw.versionsUrl ?? 'README.md'
       if (typeof entry.versionsUrl !== 'string' || entry.versionsUrl === '') {
-        fail('"versionsUrl" must be a non-empty string')
+        fail(`"versionsUrl" must be a non-empty string${typeof raw.versionsUrl === 'number' ? `, got ${JSON.stringify(raw.versionsUrl)}; quote the value in registry.yaml` : ''}`)
       }
       // `versions.json` links resolve it below each Version folder: a `..` or absolute path points outside it.
       if (
@@ -235,7 +250,7 @@ export function parseRegistry(text) {
       if (entry.unnamed) {
         entry.latest = raw.latest ?? 'latest'
         if (typeof entry.latest !== 'string' || entry.latest === '') {
-          fail('"latest" must be a non-empty string')
+          fail(`"latest" must be a non-empty string${typeof raw.latest === 'number' ? `, got ${JSON.stringify(raw.latest)}; quote the value in registry.yaml` : ''}`)
         }
         if (entry.latest.includes('/') || entry.latest === '.' || entry.latest === '..') {
           fail(`"latest" must be one folder name inside the Area, got "${entry.latest}"`)
@@ -250,21 +265,23 @@ export function parseRegistry(text) {
         if ('latest' in raw) fail('"latest" is only valid for unnamed release Areas')
         entry.indexKey = raw.indexKey ?? area.split('/').at(-1)
         if (typeof entry.indexKey !== 'string' || entry.indexKey === '') {
-          fail('"indexKey" must be a non-empty string')
+          fail(`"indexKey" must be a non-empty string${typeof raw.indexKey === 'number' ? `, got ${JSON.stringify(raw.indexKey)}; quote the value in registry.yaml` : ''}`)
         }
       }
     }
 
-    // `topFiles` is rendered as a comma-joined string: Mustache cannot emit a
-    // JSON array from a list without leaving a trailing comma.
+    // `topFiles` is a YAML list of file names at the Area root.
     if ('topFiles' in raw) {
-      if (typeof raw.topFiles !== 'string') {
-        fail('"topFiles" must be a comma-joined string')
+      if (!Array.isArray(raw.topFiles)) {
+        fail(`"topFiles" must be a list of file names${typeof raw.topFiles === 'string' ? `, got ${JSON.stringify(raw.topFiles)}; write it as a YAML list` : ''}`)
       }
-      entry.topFiles = raw.topFiles
-        .split(',')
-        .map((file) => file.trim())
-        .filter((file) => file !== '')
+      entry.topFiles = []
+      for (const [fileIndex, file] of raw.topFiles.entries()) {
+        if (typeof file !== 'string' || file.trim() === '') {
+          fail(`"topFiles[${fileIndex}]" must be a non-empty string${typeof file === 'number' ? `, got ${JSON.stringify(file)}; quote the value in registry.yaml` : ''}`)
+        }
+        entry.topFiles.push(file.trim())
+      }
       // The Area-root files the hub reads or writes: a declared file with one of
       // these names would have two writers, or be read as metadata.
       const hubFiles = ['meta.json', '.meta.json']
@@ -286,7 +303,7 @@ export function parseRegistry(text) {
     entries.push(entry)
   }
 
-  if (entries.length === 0) throw new FatalError('registry is empty')
+  if (entries.length === 0) return entries
   return entries
 }
 
@@ -1043,6 +1060,13 @@ function main(argv) {
     throw new FatalError(`cannot read the Registry at "${registryPath}"`)
   }
   const entries = parseRegistry(fs.readFileSync(registryPath, 'utf8'))
+
+  // A fresh install ships the starter registry.yaml with `[]`: the run
+  // succeeds, touches nothing, and tells the reader to add entries.
+  if (entries.length === 0) {
+    writeSummary('# docs_hub rebuild\n\nRegistry is empty: add entries to `.docs-hub/registry.yaml`.\n')
+    return 0
+  }
 
   // A fresh docs repo has no root folder until its first publisher writes one:
   // there is nothing to rebuild, which is not an error. A root that is there but

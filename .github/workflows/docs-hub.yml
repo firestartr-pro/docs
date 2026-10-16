@@ -11,7 +11,7 @@ on:
       - main
     paths:
       - 'site/raw/**'
-      - '.docs-hub/registry.jsonl'
+      - '.docs-hub/registry.yaml'
       - '.github/scripts/docs-hub.mjs'
       - '.github/workflows/docs-hub.yml'
   workflow_dispatch:
@@ -61,8 +61,10 @@ jobs:
           DOCS_REPO: ${{ github.workspace }}/pro-docs
           # Relative to the docs checkout: each attempt reads the script and the
           # Registry of the revision it rebuilds, after its fetch and reset.
+          # The Registry is YAML edited by hand; the script reads the JSON the
+          # step below converts it to (mikefarah yq v4 is preinstalled on the runner).
           DOCS_HUB_SCRIPT: .github/scripts/docs-hub.mjs
-          DOCS_HUB_REGISTRY: .docs-hub/registry.jsonl
+          DOCS_HUB_REGISTRY: .docs-hub/registry.yaml
           DOCS_HUB_ROOT: site/raw
           DOCS_HUB_BRANCH: main
           # Unescaped `&` tags here and in the other rendered files: the escaped form
@@ -81,11 +83,23 @@ jobs:
             git -C "$DOCS_REPO" fetch origin "$DOCS_HUB_BRANCH"
             git -C "$DOCS_REPO" reset --hard FETCH_HEAD
 
+            # The script stays dependency-free and reads JSON, so YAML becomes
+            # JSON in $RUNNER_TEMP first. An empty registry.yaml converts to `null`.
+            REGISTRY_JSON="$RUNNER_TEMP/registry.json"
+            if [ ! -f "$DOCS_REPO/$DOCS_HUB_REGISTRY" ]; then
+              echo "docs_hub: registry \"$DOCS_REPO/$DOCS_HUB_REGISTRY\" is missing" >&2
+              exit 2
+            fi
+            if ! yq -o=json '.' "$DOCS_REPO/$DOCS_HUB_REGISTRY" > "$REGISTRY_JSON"; then
+              echo "docs_hub: registry \"$DOCS_REPO/$DOCS_HUB_REGISTRY\" is not valid YAML" >&2
+              exit 2
+            fi
+
             set +e
             node "$DOCS_REPO/$DOCS_HUB_SCRIPT" \
               --docs "$DOCS_REPO" \
               --root "$DOCS_HUB_ROOT" \
-              --registry "$DOCS_REPO/$DOCS_HUB_REGISTRY" \
+              --registry "$REGISTRY_JSON" \
               --url-base "$DOCS_HUB_URL_BASE"
             CODE=$?
             set -e
