@@ -597,6 +597,14 @@ function collectPresentNames(entries, options) {
   return presentNames
 }
 
+// Whether this run rebuilt the owner's files: a named owner by its package
+// name, an unnamed one by its whole Area.
+function isRebuiltOwner(rebuilt, owner) {
+  return owner.name
+    ? (rebuilt.names.get(owner.entry) ?? new Set()).has(owner.name)
+    : rebuilt.areas.has(owner.entry)
+}
+
 function ownerDir(owner) {
   return owner.name ? `${owner.entry.path}/${owner.name}` : owner.entry.path
 }
@@ -619,10 +627,6 @@ function expectedImages(entries, sources, options, presentNames, rebuilt, failed
     }
   }
 
-  const isRebuilt = (owner) =>
-    owner.name
-      ? (rebuilt.names.get(owner.entry) ?? new Set()).has(owner.name)
-      : rebuilt.areas.has(owner.entry)
   const expected = new Map()
   const collisions = new Map()
   const ambiguous = new Map()
@@ -641,7 +645,7 @@ function expectedImages(entries, sources, options, presentNames, rebuilt, failed
       })
       continue
     }
-    const outsiders = owners.filter((owner) => !isClaimant(owner) && !isRebuilt(owner))
+    const outsiders = owners.filter((owner) => !isClaimant(owner) && !isRebuiltOwner(rebuilt, owner))
     // Writing a flat image that is absent or already byte-equal takes nothing from an outsider.
     const current = path.join(options.docs, options.root, IMAGES_DIR, flatName)
     const unchanged =
@@ -684,9 +688,7 @@ function applyImages(entries, state, options, images, presentNames, rebuilt) {
       if (collisions.has(name) || ambiguous?.has(name)) continue
       if (!lstat(abs)?.isFile() || expected.has(name)) continue
       const owners = imageOwners(entries, presentNames, name)
-      const isRebuilt = ({ entry, name: ownerName }) =>
-        ownerName ? (rebuilt.names.get(entry) ?? new Set()).has(ownerName) : rebuilt.areas.has(entry)
-      if (!owners.length || !owners.every(isRebuilt)) continue
+      if (!owners.length || !owners.every((owner) => isRebuiltOwner(rebuilt, owner))) continue
       fs.rmSync(abs)
       pruned.push(name)
     }
@@ -894,7 +896,6 @@ function main(argv) {
     versions: found.versions,
     mirrors: found.mirrors,
     managed: [],
-    retired,
     derivedFiles: [],
     ready: new Set(),
     expectedImages: new Set(),
