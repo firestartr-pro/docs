@@ -1,7 +1,7 @@
 ---
-# FEATURE_NAME: undefined
-# FEATURE_VERSION: undefined
-# FEATURE_URL: undefined
+# FEATURE_NAME: docs_hub
+# FEATURE_VERSION: docs_hub-v1
+# FEATURE_URL: https://github.com/prefapp/features/tree/docs_hub-v1/packages/docs_hub
 
 name: Docs hub
 
