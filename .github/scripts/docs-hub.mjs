@@ -18,10 +18,8 @@ const REGISTRY_KEYS = [
   'mode',
   'versionsUrl',
   'unnamed',
-  'latest',
-  'indexKey',
 ]
-const RELEASE_ONLY_KEYS = ['versionsUrl', 'unnamed', 'latest', 'indexKey']
+const RELEASE_ONLY_KEYS = ['versionsUrl', 'unnamed']
 const DEFAULT_ROOT = 'site/raw'
 const DEFAULT_REGISTRY = '.docs-hub/registry.yaml'
 const IMAGES_DIR = 'images'
@@ -204,25 +202,7 @@ export function parseRegistry(text) {
       }
       entry.unnamed = raw.unnamed ?? false
       if (typeof entry.unnamed !== 'boolean') fail('"unnamed" must be a boolean')
-      if (entry.unnamed) {
-        entry.latest = raw.latest ?? 'latest'
-        if (typeof entry.latest !== 'string' || entry.latest === '') {
-          fail(`"latest" must be a non-empty string${typeof raw.latest === 'number' ? `, got ${JSON.stringify(raw.latest)}; quote the value in registry.yaml` : ''}`)
-        }
-        if (entry.latest.includes('/') || entry.latest === '.' || entry.latest === '..') {
-          fail(`"latest" must be one folder name inside the Area, got "${entry.latest}"`)
-        }
-        if (VERSION_PATTERN.test(entry.latest) || entry.latest === 'versions.json' || entry.latest === 'meta.json') {
-          fail(`"latest" must not be a version or a derived file name, got "${entry.latest}"`)
-        }
-        if ('indexKey' in raw) fail('"indexKey" is only valid for named release Areas')
-      } else {
-        if ('latest' in raw) fail('"latest" is only valid for unnamed release Areas')
-        entry.indexKey = raw.indexKey ?? area.split('/').at(-1)
-        if (typeof entry.indexKey !== 'string' || entry.indexKey === '') {
-          fail(`"indexKey" must be a non-empty string${typeof raw.indexKey === 'number' ? `, got ${JSON.stringify(raw.indexKey)}; quote the value in registry.yaml` : ''}`)
-        }
-      }
+      if (entry.unnamed) entry.latest = 'latest'
     }
 
     entries.push(entry)
@@ -568,7 +548,7 @@ function applyReleases(plans, entries, options, expected, areasWithFolders) {
       continue
     }
     const value = {
-      [entry.indexKey]: named.map((item) => ({
+      [entry.path.split('/').at(-1)]: named.map((item) => ({
         name: item.name,
         version: item.version,
         files: [
@@ -621,7 +601,7 @@ function ownerDir(owner) {
   return owner.name ? `${owner.entry.path}/${owner.name}` : owner.entry.path
 }
 
-function expectedImages(entries, sources, options, presentNames, willRebuild, failedDirs) {
+function expectedImages(entries, sources, options, presentNames, rebuilt, failedDirs) {
   const claimed = new Map()
 
   for (const { dir, entry, name } of sources) {
@@ -641,8 +621,8 @@ function expectedImages(entries, sources, options, presentNames, willRebuild, fa
 
   const isRebuilt = (owner) =>
     owner.name
-      ? (willRebuild?.names.get(owner.entry) ?? new Set()).has(owner.name)
-      : willRebuild?.areas.has(owner.entry) ?? false
+      ? (rebuilt.names.get(owner.entry) ?? new Set()).has(owner.name)
+      : rebuilt.areas.has(owner.entry)
   const expected = new Map()
   const collisions = new Map()
   const ambiguous = new Map()
@@ -678,19 +658,11 @@ function expectedImages(entries, sources, options, presentNames, willRebuild, fa
   return { expected, collisions, ambiguous }
 }
 
-function applyImages(entries, state, options, images, presentNames) {
+function applyImages(entries, state, options, images, presentNames, rebuilt) {
   const { expected, collisions, ambiguous } = images
   const imagesAbs = path.join(options.docs, options.root, IMAGES_DIR)
   const copied = []
   const pruned = []
-  const rebuiltNames = new Map()
-  for (const item of [...state.managed, ...state.retired]) {
-    if (!item.name) continue
-    if (!rebuiltNames.has(item.entry)) rebuiltNames.set(item.entry, new Set())
-    rebuiltNames.get(item.entry).add(item.name)
-  }
-  const rebuiltAreas = new Set([...state.ready, ...state.retired.map((item) => item.entry)])
-  const namesPresent = presentNames ?? collectPresentNames(entries, options)
   const imagesFailed = isUnderFailed(IMAGES_DIR, state.failedDirs)
 
   if (expected.size && !imagesFailed) {
@@ -711,10 +683,10 @@ function applyImages(entries, state, options, images, presentNames) {
       const abs = path.join(imagesAbs, name)
       if (collisions.has(name) || ambiguous?.has(name)) continue
       if (!lstat(abs)?.isFile() || expected.has(name)) continue
-      const owners = imageOwners(entries, namesPresent, name)
-      const rebuilt = ({ entry, name: ownerName }) =>
-        ownerName ? (rebuiltNames.get(entry) ?? new Set()).has(ownerName) : rebuiltAreas.has(entry)
-      if (!owners.length || !owners.every(rebuilt)) continue
+      const owners = imageOwners(entries, presentNames, name)
+      const isRebuilt = ({ entry, name: ownerName }) =>
+        ownerName ? (rebuilt.names.get(entry) ?? new Set()).has(ownerName) : rebuilt.areas.has(entry)
+      if (!owners.length || !owners.every(isRebuilt)) continue
       fs.rmSync(abs)
       pruned.push(name)
     }
@@ -932,22 +904,25 @@ function main(argv) {
   }
 
   const presentNames = collectPresentNames(entries, options)
-  const willRebuildNames = new Map()
+  const rebuiltNames = new Map()
   for (const plan of plans) {
     if (!plan.name) continue
-    if (!willRebuildNames.has(plan.entry)) willRebuildNames.set(plan.entry, new Set())
-    willRebuildNames.get(plan.entry).add(plan.name)
+    if (!rebuiltNames.has(plan.entry)) rebuiltNames.set(plan.entry, new Set())
+    rebuiltNames.get(plan.entry).add(plan.name)
   }
   for (const item of retired) {
     if (!item.name) continue
-    if (!willRebuildNames.has(item.entry)) willRebuildNames.set(item.entry, new Set())
-    willRebuildNames.get(item.entry).add(item.name)
+    if (!rebuiltNames.has(item.entry)) rebuiltNames.set(item.entry, new Set())
+    rebuiltNames.get(item.entry).add(item.name)
   }
-  const willRebuildAreas = new Set([
-    ...plans.map((plan) => plan.entry),
-    ...found.mirrors.map((mirror) => mirror.entry),
-    ...retired.map((item) => item.entry),
-  ])
+  const rebuilt = {
+    names: rebuiltNames,
+    areas: new Set([
+      ...plans.map((plan) => plan.entry),
+      ...found.mirrors.map((mirror) => mirror.entry),
+      ...retired.map((item) => item.entry),
+    ]),
+  }
   const images = expectedImages(
     entries,
     [
@@ -956,7 +931,7 @@ function main(argv) {
     ],
     options,
     presentNames,
-    { names: willRebuildNames, areas: willRebuildAreas },
+    rebuilt,
     found.failedDirs,
   )
   for (const [flatName, sources] of images.collisions) {
@@ -985,7 +960,7 @@ function main(argv) {
   for (const item of state.managed) state.ready.add(item.entry)
   for (const mirror of state.mirrors) state.ready.add(mirror.entry)
 
-  const appliedImages = applyImages(entries, state, options, images, presentNames)
+  const appliedImages = applyImages(entries, state, options, images, presentNames, rebuilt)
   state.expectedImages = appliedImages.expected
   state.copiedImages = appliedImages.copied
   state.pruned = appliedImages.pruned

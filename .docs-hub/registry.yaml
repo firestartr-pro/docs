@@ -24,7 +24,6 @@
 #   mode: release
 #   unnamed: true
 #   versionsUrl: index.yaml
-#   latest: latest
 - path: features
   source: prefapp/features
   mode: release
