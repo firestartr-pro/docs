@@ -20,7 +20,6 @@ const REGISTRY_KEYS = [
   'unnamed',
   'latest',
   'indexKey',
-  'topFiles',
 ]
 const RELEASE_ONLY_KEYS = ['versionsUrl', 'unnamed', 'latest', 'indexKey']
 const DEFAULT_ROOT = 'site/raw'
@@ -224,33 +223,6 @@ export function parseRegistry(text) {
           fail(`"indexKey" must be a non-empty string${typeof raw.indexKey === 'number' ? `, got ${JSON.stringify(raw.indexKey)}; quote the value in registry.yaml` : ''}`)
         }
       }
-    }
-
-    if ('topFiles' in raw) {
-      if (!Array.isArray(raw.topFiles)) {
-        fail(`"topFiles" must be a list of file names${typeof raw.topFiles === 'string' ? `, got ${JSON.stringify(raw.topFiles)}; write it as a YAML list` : ''}`)
-      }
-      entry.topFiles = []
-      for (const [fileIndex, file] of raw.topFiles.entries()) {
-        if (typeof file !== 'string' || file.trim() === '') {
-          fail(`"topFiles[${fileIndex}]" must be a non-empty string${typeof file === 'number' ? `, got ${JSON.stringify(file)}; quote the value in registry.yaml` : ''}`)
-        }
-        entry.topFiles.push(file.trim())
-      }
-      const hubFiles = ['meta.json', '.meta.json']
-      if (entry.mode === 'release') {
-        hubFiles.push(...(entry.unnamed ? ['versions.json', entry.latest] : ['index.json']))
-      }
-      for (const file of entry.topFiles) {
-        if (file.includes('/')) {
-          fail(`"topFiles" must be file names at the Area root, got "${file}"`)
-        }
-        if (hubFiles.includes(file)) {
-          fail(`"topFiles" names "${file}", which the hub reads or writes at the Area root`)
-        }
-      }
-    } else {
-      entry.topFiles = []
     }
 
     entries.push(entry)
@@ -765,9 +737,6 @@ function unmanagedFiles(entries, state, options) {
   const mirrorRoots = new Set(
     entries.filter((entry) => entry.mode === 'mirror').map((entry) => entry.path),
   )
-  const topFiles = new Map(
-    entries.map((entry) => [entry.path, new Set(entry.topFiles ?? [])]),
-  )
   const rootAbs = path.join(options.docs, options.root)
 
   const walk = (relDir) => {
@@ -792,7 +761,6 @@ function unmanagedFiles(entries, state, options) {
       if (relDir === IMAGES_DIR && state.expectedImages.has(name)) continue
       const parent = parentOf(rel)
       if (mirrorRoots.has(parent)) continue
-      if ((topFiles.get(parent) ?? new Set()).has(name)) continue
       unmanaged.add(rel)
     }
   }

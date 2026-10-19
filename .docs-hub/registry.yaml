@@ -12,8 +12,6 @@
 #   source: prefapp/features
 #   mode: release
 #   versionsUrl: schema.json
-#   topFiles:
-#     - README.md
 #
 # Mirror Area (one unversioned folder):
 # - path: core/docs
@@ -31,5 +29,3 @@
   source: prefapp/features
   mode: release
   versionsUrl: schema.json
-  topFiles:
-    - README.md
