@@ -1,5 +1,22 @@
 # Changelog
 
+## [3.1.0](https://github.com/prefapp/features/compare/claims_repo-v3.0.1...claims_repo-v3.1.0) (2026-10-20)
+
+
+### Features
+
+* **claims_repo:** remove the non-working GitHubOrgClaim kind ([68cc6d0](https://github.com/prefapp/features/commit/68cc6d096cd94ef53573d8346ee4c925a912d7b4))
+* **claims_repo:** report every artifact in hydrate PR title and summary ([#1397](https://github.com/prefapp/features/issues/1397)) ([a44f395](https://github.com/prefapp/features/commit/a44f39549d450d270a181c83e4e9b018d7816a9b))
+* **claims_repo:** require Firestartr CLI &gt;=2.11.0 and regenerate schemas ([#1398](https://github.com/prefapp/features/issues/1398)) ([a7203ed](https://github.com/prefapp/features/commit/a7203ed2cf51cb2ce5c56a52b27eab45fbb15d29))
+* **claims_repo:** unify github find-CR logic on the shared scripts ([#1396](https://github.com/prefapp/features/issues/1396)) ([c24ce46](https://github.com/prefapp/features/commit/c24ce46518c272a42a7624e98b7ef1b3211f1a96))
+
+
+### Bug Fixes
+
+* **claims_repo:** keep and document the pending org secrets artifact ([#1390](https://github.com/prefapp/features/issues/1390)) ([0c19d20](https://github.com/prefapp/features/commit/0c19d208343aa6fb41adaeda16fb4836a78b83a9))
+* **claims_repo:** route OrgSettingsClaim through provision and unprovision ([#1383](https://github.com/prefapp/features/issues/1383)) ([e30943d](https://github.com/prefapp/features/commit/e30943d92d82e1005368738d228c3d853704ba3e))
+* **claims_repo:** update image firestartr reference ([#1395](https://github.com/prefapp/features/issues/1395)) ([9e56b1b](https://github.com/prefapp/features/commit/9e56b1b2091c5ac29dd287d91398fc6382028693))
+
 ## [3.0.1](https://github.com/prefapp/features/compare/claims_repo-v3.0.0...claims_repo-v3.0.1) (2026-10-07)
 
 
