@@ -598,7 +598,7 @@ function collectPresentNames(entries, options) {
   for (const entry of entries) {
     if (entry.mode !== 'release' || entry.unnamed) continue
     const areaAbs = path.join(options.docs, options.root, entry.path)
-    if (!lstat(areaAbs)?.isDirectory()) continue
+    if (!isDirectory(entry.path, options)) continue
     presentNames.set(
       entry,
       fs.readdirSync(areaAbs).filter(

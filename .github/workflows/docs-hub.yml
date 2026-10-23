@@ -55,14 +55,14 @@ jobs:
           DOCS_REPO: ${{ github.workspace }}/pro-docs
           DOCS_HUB_SCRIPT: .github/scripts/docs-hub.mjs
           DOCS_HUB_REGISTRY: .docs-hub/registry.yaml
-          DOCS_HUB_ROOT: site/raw
-          DOCS_HUB_BRANCH: main
           # Unescaped `&` tags here and in the other rendered files: the escaped form
           # turns "/" into an HTML entity, which would corrupt paths and URLs.
-          DOCS_HUB_URL_BASE: https://raw.githubusercontent.com/${{ github.repository }}/main/site/raw
+          DOCS_HUB_ROOT: site/raw
+          DOCS_HUB_BRANCH: main
         run: |
           set -euo pipefail
 
+          DOCS_HUB_URL_BASE=$(node -p '"https://raw.githubusercontent.com/" + [process.env.GITHUB_REPOSITORY, process.env.DOCS_HUB_BRANCH, process.env.DOCS_HUB_ROOT].flatMap(value => value.split("/")).map(encodeURIComponent).join("/")')
           APP_SLUG="${{ steps.app-token.outputs.app-slug }}"
           USER_ID=$(gh api "/users/${APP_SLUG}[bot]" --jq .id)
           git -C "$DOCS_REPO" config user.name "${APP_SLUG}[bot]"
