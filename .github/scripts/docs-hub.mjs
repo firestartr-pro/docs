@@ -251,7 +251,12 @@ function relativeFiles(dir, prefix = '') {
 }
 
 function isDirectory(relPath, options) {
-  return lstat(path.join(options.docs, options.root, relPath))?.isDirectory() ?? false
+  let abs = path.join(options.docs, options.root)
+  for (const segment of relPath.split('/')) {
+    abs = path.join(abs, segment)
+    if (!lstat(abs)?.isDirectory()) return false
+  }
+  return true
 }
 
 function discover(entries, options) {
@@ -729,6 +734,7 @@ function unmanagedFiles(entries, state, options) {
       const stats = lstat(abs)
       if (!stats) continue
       if (stats.isDirectory()) {
+        if (entries.some((entry) => entry.path === rel)) continue
         if (ownedDirs.has(rel)) continue
         if (isUnderFailed(rel, state.failedDirs, entries)) continue
         if (isInsideMirror(entries, rel)) continue
@@ -748,6 +754,11 @@ function unmanagedFiles(entries, state, options) {
     }
   }
   walk('')
+  for (const entry of entries) {
+    if (isDirectory(entry.path, options) && !isUnderFailed(entry.path, state.failedDirs, entries)) {
+      walk(entry.path)
+    }
+  }
 
   for (const entry of entries) {
     if (entry.mode !== 'mirror' || state.ready.has(entry)) continue
@@ -768,7 +779,8 @@ function isUnderFailed(relPath, failedDirs, entries) {
 }
 
 function isInsideMirror(entries, relPath) {
-  return entries.some((entry) => entry.mode === 'mirror' && relPath.startsWith(`${entry.path}/`))
+  const owner = ownerOf(entries, relPath)
+  return owner?.mode === 'mirror' && relPath !== owner.path
 }
 
 function renderSummary(state, entries, options) {
