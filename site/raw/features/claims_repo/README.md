@@ -15,7 +15,7 @@ Use the provided `docker-compose.yaml` when you want to run Firestartr CLI comma
 3. Set `CLAIM` to the TFWorkspace claim name you want to target.
 4. Run `docker compose up` from the claims repo root.
 
-The compose service mounts your local claims repo checkout (including the `claims/` directory) plus your `~/.kube` and `~/.azure` directories so the CLI can reach local credentials and repository files. The image comes from `ghcr.io/prefapp/gitops-k8s`, so picking the right tag matters when you need a specific CLI build or plan behavior.
+The compose service mounts your local claims repo checkout (including the `claims/` directory) plus your `~/.kube` and `~/.azure` directories so the CLI can reach local credentials and repository files. The image comes from `ghcr.io/firestartr-pro/firestartr`, so picking the right tag matters when you need a specific CLI build or plan behavior.
 
 ## Hydrating claims
 
@@ -30,12 +30,12 @@ The compose service mounts your local claims repo checkout (including the `claim
 
 4. Select `Run workflow` on the right hand side of the screen, introduce the name of the claim to be hydrated and select the claim type (if it is a GitHub claim). NOTE: the name of the claim should be the value of the field `name` inside the claim YAML. Setting this value to the file name may result in the workflow not working as expected.
 
-Available GitHub claim types:
+Available GitHub claim types — exactly the kinds the claim type dropdown offers and the workflows route:
 - `ComponentClaim` — hydrates `FirestartrGithubRepository`, `FirestartrGithubRepositoryFeature`, and `FirestartrGithubRepositorySecretsSection` CRs.
 - `UserClaim` — hydrates `FirestartrGithubMembership` CRs.
 - `GroupClaim` — hydrates `FirestartrGithubGroup` CRs.
 - `OrgWebhookClaim` — hydrates `FirestartrGithubOrgWebhook` CRs.
-- `OrgSettingsClaim` — hydrates `FirestartrGithubOrganizationSettings`, `FirestartrGithubOrganizationVariableSection`, and `FirestartrGithubOrganizationSecretSection` CRs.
+- `OrgSettingsClaim` — hydrates **3** CRs: `FirestartrGithubOrganizationSettings`, `FirestartrGithubOrganizationVariableSection` when the claim declares `actions_variables`, and `FirestartrGithubOrganizationSecretsSection`. The org secrets artifact is **not pending**: it is already rendered and applied, and hydrate and delete both carry it in their allowlists.
 
 > **Note:** `GitHubOrgClaim` is no longer supported. If you have existing claim files using `kind: GitHubOrgClaim`, migrate them to `kind: OrgSettingsClaim`.
 
@@ -137,6 +137,6 @@ The same claim types listed for [hydrating](#hydrating-claims) are available for
 
 ## CLI version requirements
 
-The workflows in this feature rely on the Firestartr CLI (`@firestartr/cli`) to render and import claims. Before running, they check that the CLI version pinned by the `FIRESTARTR_CLI_VERSION` repository variable satisfies the `>=2.9.0` constraint. Set that variable to a release that satisfies the constraint. Snapshot builds (non-canonical semver versions) can skip the check via the `--ignore-snapshots` flag.
+The workflows in this feature rely on the Firestartr CLI (`@firestartr/cli`) to render and import claims. Before running, they check that the CLI version pinned by the `FIRESTARTR_CLI_VERSION` repository variable satisfies the `>=2.11.0` constraint. Set that variable to a release that satisfies the constraint. Snapshot builds (non-canonical semver versions) can skip the check via the `--ignore-snapshots` flag.
 
-The check can be tuned with the `cli_version_constraint` argument (the minimum CLI version, defaults to `>=2.9.0`) and disabled entirely by setting `cli_version_check_enabled` to `false` (defaults to `true`).
+The check can be tuned with the `cli_version_constraint` argument (the minimum CLI version, defaults to `>=2.11.0`) and disabled entirely by setting `cli_version_check_enabled` to `false` (defaults to `true`).
