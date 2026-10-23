@@ -422,6 +422,11 @@ const CODE_OR_LINK =
 export function rewriteImageLinks(content, imagesDir, expected, entry, name) {
   return content.replace(CODE_OR_LINK, (match, code, run, prefix, relPath) => {
     if (code !== undefined) return match
+    try {
+      relPath = decodeURIComponent(relPath)
+    } catch {
+      return match
+    }
     if (relPath.split('/').some((segment) => segment === '' || segment === '..')) return match
     const flatName = flatImageName(entry.path, name, relPath)
     if (expected.get(flatName) !== path.join(imagesDir, relPath)) return match
