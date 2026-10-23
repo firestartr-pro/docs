@@ -8,9 +8,11 @@ name: Docs hub
 on:
   push:
     branches:
-      - main
+      - |-
+        main
     paths:
-      - 'site/raw/**'
+      - |-
+        site/raw/**
       - '.docs-hub/registry.yaml'
       - '.github/scripts/docs-hub.mjs'
       - '.github/workflows/docs-hub.yml'
@@ -57,8 +59,10 @@ jobs:
           DOCS_HUB_REGISTRY: .docs-hub/registry.yaml
           # Unescaped `&` tags here and in the other rendered files: the escaped form
           # turns "/" into an HTML entity, which would corrupt paths and URLs.
-          DOCS_HUB_ROOT: site/raw
-          DOCS_HUB_BRANCH: main
+          DOCS_HUB_ROOT: |-
+            site/raw
+          DOCS_HUB_BRANCH: |-
+            main
         run: |
           set -euo pipefail
 

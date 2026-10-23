@@ -422,11 +422,13 @@ function releasePlan(entry, folders, options, failedDirs) {
 }
 
 const CODE_OR_LINK =
-  /(```[\s\S]*?```|~~~[\s\S]*?~~~|(`+)(?!`)[^\n]*?(?<!`)\2(?!`))|(\]\(|\]:\s+|\b(?:src|href)=["'])(?:\.\/)?images\/([^\s)"'#?]+)/g
+  /(```[\s\S]*?```|~~~[\s\S]*?~~~|(`+)(?!`)[^\n]*?(?<!`)\2(?!`))|(\]\(|\]:\s+|\b(?:src|href)=["'])(?:<(?:\.\/)?images\/([^<>\r\n]+)>|(?:\.\/)?images\/((?:\\[()]|[^\s()"'#?\\]|\((?:\\[()]|[^\s()"'#?\\])*\))+))/g
 
 export function rewriteImageLinks(content, imagesDir, expected, entry, name) {
-  return content.replace(CODE_OR_LINK, (match, code, run, prefix, relPath) => {
+  return content.replace(CODE_OR_LINK, (match, code, run, prefix, anglePath, plainPath) => {
     if (code !== undefined) return match
+    let relPath = anglePath ?? plainPath
+    if (prefix.startsWith(']')) relPath = relPath.replace(/\\([()])/g, '$1')
     try {
       relPath = decodeURIComponent(relPath)
     } catch {
@@ -439,7 +441,9 @@ export function rewriteImageLinks(content, imagesDir, expected, entry, name) {
       /[!'()*]/g,
       (character) => `%${character.charCodeAt(0).toString(16).toUpperCase()}`,
     )
-    return `${prefix}./images/${encodedName}`
+    return anglePath === undefined
+      ? `${prefix}./images/${encodedName}`
+      : `${prefix}<./images/${encodedName}>`
   })
 }
 
