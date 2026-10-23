@@ -422,10 +422,10 @@ function releasePlan(entry, folders, options, failedDirs) {
 }
 
 const CODE_OR_LINK =
-  /(```[\s\S]*?```|~~~[\s\S]*?~~~|(`+)(?!`)[^\n]*?(?<!`)\2(?!`))|(\]\(|\]:\s+|\b(?:src|href)=["'])(?:<(?:\.\/)?images\/([^<>\r\n]+)>|(?:\.\/)?images\/((?:\\[()]|[^\s()"'#?\\]|\((?:\\[()]|[^\s()"'#?\\])*\))+))/g
+  /(```[\s\S]*?```|~~~[\s\S]*?~~~|(`+)(?!`)[^\n]*?(?<!`)\2(?!`))|(\]\(|\]:\s+|\b(?:src|href)=["'])(?:<(?:\.\/)?images\/([^<>\r\n?#]+)([?#][^<>\r\n]*)?>|(?:\.\/)?images\/((?:\\[()]|[^\s()"'#?\\]|\((?:\\[()]|[^\s()"'#?\\])*\))+))/g
 
 export function rewriteImageLinks(content, imagesDir, expected, entry, name) {
-  return content.replace(CODE_OR_LINK, (match, code, run, prefix, anglePath, plainPath) => {
+  return content.replace(CODE_OR_LINK, (match, code, run, prefix, anglePath, suffix, plainPath) => {
     if (code !== undefined) return match
     let relPath = anglePath ?? plainPath
     if (prefix.startsWith(']')) relPath = relPath.replace(/\\([()])/g, '$1')
@@ -443,7 +443,7 @@ export function rewriteImageLinks(content, imagesDir, expected, entry, name) {
     )
     return anglePath === undefined
       ? `${prefix}./images/${encodedName}`
-      : `${prefix}<./images/${encodedName}>`
+      : `${prefix}<./images/${encodedName}${suffix ?? ''}>`
   })
 }
 
