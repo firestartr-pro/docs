@@ -298,7 +298,7 @@ function discover(entries, options) {
     if (owner) versions.push({ rel, dir: folder, metadata, entry: owner })
   }
 
-  const usable = (item) => !isUnderFailed(item.dir, failedDirs)
+  const usable = (item) => !isUnderFailed(item.dir, failedDirs, entries)
   return { failures, failedDirs, versions: versions.filter(usable), mirrors: mirrors.filter(usable) }
 }
 
@@ -425,7 +425,11 @@ export function rewriteImageLinks(content, imagesDir, expected, entry, name) {
     if (relPath.split('/').some((segment) => segment === '' || segment === '..')) return match
     const flatName = flatImageName(entry.path, name, relPath)
     if (expected.get(flatName) !== path.join(imagesDir, relPath)) return match
-    return `${prefix}./images/${flatName}`
+    const encodedName = encodeURIComponent(flatName).replace(
+      /[!'()*]/g,
+      (character) => `%${character.charCodeAt(0).toString(16).toUpperCase()}`,
+    )
+    return `${prefix}./images/${encodedName}`
   })
 }
 
@@ -619,7 +623,7 @@ function expectedImages(entries, sources, options, presentNames, rebuilt, failed
       const sourceRel = path.posix.join(dir, IMAGES_DIR, rel)
       const owner = ownerOf(entries, sourceRel)
       if (owner && owner !== entry) continue
-      if (failedDirs && isUnderFailed(sourceRel, failedDirs)) continue
+      if (failedDirs && isUnderFailed(sourceRel, failedDirs, entries)) continue
       const flatName = flatImageName(entry.path, name, rel)
       const claims = claimed.get(flatName) ?? []
       claims.push({ file: path.join(imagesAbs, rel), rel: path.posix.join(dir, IMAGES_DIR, rel), entry, name })
@@ -667,7 +671,7 @@ function applyImages(entries, state, options, images, presentNames, rebuilt) {
   const imagesAbs = path.join(options.docs, options.root, IMAGES_DIR)
   const copied = []
   const pruned = []
-  const imagesFailed = isUnderFailed(IMAGES_DIR, state.failedDirs)
+  const imagesFailed = isUnderFailed(IMAGES_DIR, state.failedDirs, entries)
 
   if (expected.size && !imagesFailed) {
     if (lstat(imagesAbs)?.isSymbolicLink()) fs.rmSync(imagesAbs)
@@ -721,7 +725,7 @@ function unmanagedFiles(entries, state, options) {
       if (!stats) continue
       if (stats.isDirectory()) {
         if (ownedDirs.has(rel)) continue
-        if (isUnderFailed(rel, state.failedDirs)) continue
+        if (isUnderFailed(rel, state.failedDirs, entries)) continue
         if (isInsideMirror(entries, rel)) continue
         walk(rel)
         continue
@@ -748,9 +752,12 @@ function unmanagedFiles(entries, state, options) {
   return [...unmanaged].sort()
 }
 
-function isUnderFailed(relPath, failedDirs) {
+function isUnderFailed(relPath, failedDirs, entries) {
+  const owner = ownerOf(entries, relPath)
   for (const dir of failedDirs) {
-    if (dir === '' || relPath === dir || relPath.startsWith(`${dir}/`)) return true
+    if (dir !== '' && relPath !== dir && !relPath.startsWith(`${dir}/`)) continue
+    const failedOwner = ownerOf(entries, dir)
+    if (!failedOwner || failedOwner === owner) return true
   }
   return false
 }
@@ -868,7 +875,7 @@ function main(argv) {
         })
         continue
       }
-      if (isUnderFailed(plan.target, found.failedDirs)) continue
+      if (isUnderFailed(plan.target, found.failedDirs, entries)) continue
       plans.push(plan)
     }
   }
@@ -878,7 +885,7 @@ function main(argv) {
   for (const [nameDir, { entry, dirs }] of failedNames) {
     if (found.versions.some((item) => item.entry === entry && parentOf(item.dir) === nameDir)) continue
     const target = entry.unnamed ? `${entry.path}/${entry.latest}` : nameDir
-    if (isUnderFailed(target, found.failedDirs) || ownerOf(entries, target) !== entry) continue
+    if (isUnderFailed(target, found.failedDirs, entries) || ownerOf(entries, target) !== entry) continue
     retireName({ versionsFile: `${nameDir}/versions.json`, target, dirs }, options)
     retired.push({ entry, name: entry.unnamed ? '' : path.posix.basename(nameDir) })
   }
@@ -887,7 +894,7 @@ function main(argv) {
     ...[...failedNames.values()].map((failed) => failed.entry),
   ])
   for (const entry of [...areasWithFolders]) {
-    if (isUnderFailed(entry.path, found.failedDirs)) areasWithFolders.delete(entry)
+    if (isUnderFailed(entry.path, found.failedDirs, entries)) areasWithFolders.delete(entry)
   }
 
   const state = {
@@ -952,7 +959,7 @@ function main(argv) {
     })
   }
 
-  if (isUnderFailed(IMAGES_DIR, found.failedDirs)) images.expected.clear()
+  if (isUnderFailed(IMAGES_DIR, found.failedDirs, entries)) images.expected.clear()
 
   const applied = applyReleases(plans, entries, options, images.expected, areasWithFolders)
   found.failures.push(...applied.blocked)
