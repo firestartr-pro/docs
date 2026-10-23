@@ -422,13 +422,13 @@ function releasePlan(entry, folders, options, failedDirs) {
 }
 
 const CODE_OR_LINK =
-  /(```[\s\S]*?```|~~~[\s\S]*?~~~|(`+)(?!`)[^\n]*?(?<!`)\2(?!`))|(\]\(|\]:\s+|\b(?:src|href)=["'])(?:<(?:\.\/)?images\/([^<>\r\n?#]+)([?#][^<>\r\n]*)?>|(?:\.\/)?images\/((?:\\[()]|[^\s()"'#?\\]|\((?:\\[()]|[^\s()"'#?\\])*\))+))/g
+  /(```[\s\S]*?```|~~~[\s\S]*?~~~|(`+)(?!`)[^\n]*?(?<!`)\2(?!`))|(\]\(|\]:\s+)(?:<(?:\.\/)?images\/([^<>\r\n?#]+)([?#][^<>\r\n]*)?>|(?:\.\/)?images\/((?:\\[()]|[^\s()"'#?\\]|\((?:\\[()]|[^\s()"'#?\\])*\))+))|(\b(?:src|href)=)(["'])(?:\.\/)?images\/((?:(?!\8)[^\r\n?#])+)([?#](?:(?!\8)[^\r\n])*)?\8/g
 
 export function rewriteImageLinks(content, imagesDir, expected, entry, name) {
-  return content.replace(CODE_OR_LINK, (match, code, run, prefix, anglePath, suffix, plainPath) => {
+  return content.replace(CODE_OR_LINK, (match, code, run, prefix, anglePath, suffix, plainPath, htmlPrefix, quote, htmlPath, htmlSuffix) => {
     if (code !== undefined) return match
-    let relPath = anglePath ?? plainPath
-    if (prefix.startsWith(']')) relPath = relPath.replace(/\\([()])/g, '$1')
+    let relPath = anglePath ?? plainPath ?? htmlPath
+    if (prefix !== undefined) relPath = relPath.replace(/\\([()])/g, '$1')
     try {
       relPath = decodeURIComponent(relPath)
     } catch {
@@ -441,6 +441,7 @@ export function rewriteImageLinks(content, imagesDir, expected, entry, name) {
       /[!'()*]/g,
       (character) => `%${character.charCodeAt(0).toString(16).toUpperCase()}`,
     )
+    if (htmlPrefix !== undefined) return `${htmlPrefix}${quote}./images/${encodedName}${htmlSuffix ?? ''}${quote}`
     return anglePath === undefined
       ? `${prefix}./images/${encodedName}`
       : `${prefix}<./images/${encodedName}${suffix ?? ''}>`
