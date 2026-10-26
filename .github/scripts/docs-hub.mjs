@@ -1034,7 +1034,7 @@ const isMain = process.argv[1] && path.resolve(process.argv[1]) === fileURLToPat
 
 if (isMain) {
   try {
-    process.exit(main(process.argv.slice(2)))
+    process.exitCode = main(process.argv.slice(2))
   } catch (error) {
     if (error instanceof FatalError) {
       process.stderr.write(`docs_hub: ${error.message}\n`)
