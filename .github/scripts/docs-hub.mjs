@@ -304,7 +304,13 @@ function discover(entries, options) {
   }
 
   const usable = (item) => !isUnderFailed(item.dir, failedDirs, entries)
-  return { failures, failedDirs, versions: versions.filter(usable), mirrors: mirrors.filter(usable) }
+  return {
+    failures,
+    failedDirs,
+    areasWithFolders: new Set(versions.map((item) => item.entry)),
+    versions: versions.filter(usable),
+    mirrors: mirrors.filter(usable),
+  }
 }
 
 function validateMirror(rel, folder, metadata, entries, fail) {
@@ -422,11 +428,27 @@ function releasePlan(entry, folders, options, failedDirs) {
 }
 
 const CODE_OR_LINK =
-  /(```[\s\S]*?```|~~~[\s\S]*?~~~|(`+)(?!`)[^\n]*?(?<!`)\2(?!`))|(\]\(|\]:\s+)(?:<(?:\.\/)?images\/([^<>\r\n?#]+)([?#][^<>\r\n]*)?>|(?:\.\/)?images\/((?:\\[()]|[^\s()"'#?\\]|\((?:\\[()]|[^\s()"'#?\\])*\))+))|(\b(?:src|href)=)(["'])(?:\.\/)?images\/((?:(?!\8)[^\r\n?#])+)([?#](?:(?!\8)[^\r\n])*)?\8/g
+  /(^ {0,3}(?:`{3,}|~{3,})[^\r\n]*(?=\r?$)|(`+)(?!`)[^\n]*?(?<!`)\2(?!`))|(\]\(|\]:\s+)(?:<(?:\.\/)?images\/([^<>\r\n?#]+)([?#][^<>\r\n]*)?>|(?:\.\/)?images\/((?:\\[()]|[^\s()"'#?\\]|\((?:\\[()]|[^\s()"'#?\\])*\))+))|(\b(?:src|href)=)(["'])(?:\.\/)?images\/((?:(?!\8)[^\r\n?#])+)([?#](?:(?!\8)[^\r\n])*)?\8/gm
 
 export function rewriteImageLinks(content, imagesDir, expected, entry, name) {
+  let fence = null
   return content.replace(CODE_OR_LINK, (match, code, run, prefix, anglePath, suffix, plainPath, htmlPrefix, quote, htmlPath, htmlSuffix) => {
-    if (code !== undefined) return match
+    if (code !== undefined) {
+      const marker = /^ {0,3}(`{3,}|~{3,})(.*)/.exec(code)
+      if (marker) {
+        if (!fence) {
+          if (marker[1][0] === '~' || !marker[2].includes('`')) fence = marker[1]
+        } else if (
+          marker[1][0] === fence[0] &&
+          marker[1].length >= fence.length &&
+          marker[2].trim() === ''
+        ) {
+          fence = null
+        }
+      }
+      return match
+    }
+    if (fence) return match
     let relPath = anglePath ?? plainPath ?? htmlPath
     if (prefix !== undefined) relPath = relPath.replace(/\\([()])/g, '$1')
     try {
@@ -779,7 +801,7 @@ function isUnderFailed(relPath, failedDirs, entries) {
   for (const dir of failedDirs) {
     if (dir !== '' && relPath !== dir && !relPath.startsWith(`${dir}/`)) continue
     const failedOwner = ownerOf(entries, dir)
-    if (!failedOwner || failedOwner === owner) return true
+    if (dir === '' || failedOwner === owner) return true
   }
   return false
 }
@@ -913,7 +935,7 @@ function main(argv) {
     retired.push({ entry, name: entry.unnamed ? '' : path.posix.basename(nameDir) })
   }
   const areasWithFolders = new Set([
-    ...found.versions.map((item) => item.entry),
+    ...found.areasWithFolders,
     ...[...failedNames.values()].map((failed) => failed.entry),
   ])
   for (const entry of [...areasWithFolders]) {
