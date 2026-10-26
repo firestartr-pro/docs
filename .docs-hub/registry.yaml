@@ -1,0 +1,30 @@
+# Registry: the Areas the hub rebuilds, one entry per Area.
+#
+# This file was installed once by the docs_hub feature and is now yours to
+# edit here in the docs repo by PR: a feature upgrade never rewrites it. Add one entry per
+# Area when onboarding a publisher. The hub validates each entry at run time
+# and reports the offending entry.
+#
+# Examples (uncomment and adapt):
+#
+# Release Area (Version folders with a name level):
+# - path: features
+#   source: prefapp/features
+#   mode: release
+#   versionsUrl: schema.json
+#
+# Mirror Area (one unversioned folder):
+# - path: core/docs
+#   source: firestartr-pro/firestartr
+#   mode: mirror
+#
+# Unnamed release Area (Version folders directly under the Area):
+# - path: core/crds
+#   source: firestartr-pro/firestartr
+#   mode: release
+#   unnamed: true
+#   versionsUrl: index.yaml
+- path: features
+  source: prefapp/features
+  mode: release
+  versionsUrl: schema.json
