@@ -58,6 +58,40 @@ The workflow is controlled by these feature arguments:
 |---|---|---|
 | `ref_sync_enabled` | Enables or disables the ref-sync workflow job. | `true` |
 | `terraform_sync_cron` | Cron expression used by the scheduled ref-sync workflow. | `0 2 * * 1-5` |
+| `github_environment_secrets` | List of GitHub Environment secret names to expose to Terraform workflows as environment variables. Each target uses `<account>/<environment>`. If a selected secret is missing or empty in that Environment, it is left unset for Terraform; its absence alone does not fail the pipeline. | `[]` |
+
+Example in a `ComponentClaim`:
+
+```yaml
+features:
+  - name: terraform-infra
+    args:
+      github_environment_secrets:
+        - OVH_APPLICATION_KEY
+        - OVH_APPLICATION_SECRET
+```
+
+To add the secret values, open the Terraform repository in GitHub and go to
+**Settings > Environments**. Open (or create) the Environment named
+`<account>/<environment>` for the target, then add each value under
+**Environment secrets** using the exact name listed in `github_environment_secrets`.
+Repeat this for every target that needs the secret; adding a name to the
+`ComponentClaim` only selects it and does not create its value.
+
+Names may use letters, numbers, and underscores; cannot start with
+a number; and cannot use the reserved `GITHUB_`, `GH_`, `RUNNER_`, or `ACTIONS_`,
+`TF_VAR_`, or `FIRESTARTR_` prefixes. The values are read from the Terraform
+repository's
+GitHub Environment named `<account>/<environment>` and are never written to
+the repository or workflow summaries. Names must be unique and cannot replace
+workflow control variables such as `TENANT_NAME`, `ENVIRONMENT_NAME`,
+`MODULE_PATHS`, `TENANT`, `ENV`, or `MODULES`. If a selected secret is not
+defined (or is empty) in the target GitHub Environment, Terraform receives no
+value for that environment variable; the workflow does not fail just because
+the secret is missing. Terraform may still fail if the corresponding input is
+required and has no default.
+Use GitHub Variables, not secrets, for non-sensitive `TF_VAR_*` Terraform
+inputs; those values may appear in workflow output and ref-sync issue comments.
 
 #### Team notifications
 
@@ -433,4 +467,3 @@ The script `bootstrap/prepare.sh` initializes and configures the Terraform backe
 ---
 
 For more details, see the workflow file at `.github/workflows/terraform-plan-apply.yaml` and the scripts in `.github/scripts/`.
-

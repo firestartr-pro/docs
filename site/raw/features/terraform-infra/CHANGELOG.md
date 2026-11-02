@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.1.0](https://github.com/prefapp/features/compare/terraform-infra-v4.0.0...terraform-infra-v4.1.0) (2026-11-02)
+
+
+### Features
+
+* **terraform-infra:** mount GitHub Environment secrets ([#1334](https://github.com/prefapp/features/issues/1334)) ([fa2cca3](https://github.com/prefapp/features/commit/fa2cca32271704a6b12550db5b3f5317b08fe608))
+
 ## [4.0.0](https://github.com/prefapp/features/compare/terraform-infra-v3.1.2...terraform-infra-v4.0.0) (2026-10-05)
 
 

@@ -213,7 +213,11 @@ Each feature package has a `schema.json` that documents its user-feedable argume
 pnpm generate:schemas
 ```
 
-and kept in sync by the `pr_verify` workflow.
+Regeneration preserves the manual enrichments already present in a `schema.json`: property
+`description`/`examples`, and top-level `required` entries that `config.yaml` does not
+contradict — a `$default` declared for an arg keeps it optional, and an entry whose `$arg`
+was removed is dropped. Running it twice produces identical output. The result is kept in
+sync by the `pr_verify` workflow.
 
 Schema promotion is opt-in: the **Promote Schemas to Docs Repo** workflow is only installed when `disable_promote_schemas` is set to `false`. When enabled, on every feature release it promotes the generated schemas to the objective docs repository `{{| DOCS_ORG |}}/{{| DOCS_REPO_NAME |}}` (defaults: `firestartr-pro/docs`). For each feature and version it writes:
 
