@@ -433,8 +433,8 @@
     {
       "name": "ovh-mks",
       "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/ovh-mks/README.md",
-      "version": "0.1.0",
-      "source": "git::https://github.com/prefapp/tfm.git//modules/ovh-mks?ref=ovh-mks-v0.1.0"
+      "version": "0.2.0",
+      "source": "git::https://github.com/prefapp/tfm.git//modules/ovh-mks?ref=ovh-mks-v0.2.0"
     },
     {
       "name": "ovh-mks-access",
