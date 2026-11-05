@@ -1,5 +1,21 @@
 # Changelog
 
+## [3.0.0](https://github.com/prefapp/features/compare/charts_repo-v2.2.0...charts_repo-v3.0.0) (2026-11-05)
+
+
+### ⚠ BREAKING CHANGES
+
+* new claim patching functionality to add needed repo elements ([#1435](https://github.com/prefapp/features/issues/1435))
+
+### Features
+
+* new claim patching functionality to add needed repo elements ([#1435](https://github.com/prefapp/features/issues/1435)) ([1c32455](https://github.com/prefapp/features/commit/1c3245579e5739f14dc276caba06f61e876c29c8))
+
+
+### Bug Fixes
+
+* allow release-please to update multiple packages ([#1234](https://github.com/prefapp/features/issues/1234)) ([e0dd364](https://github.com/prefapp/features/commit/e0dd364ca03276490b644f7a016a2b33214f5ec6))
+
 ## [2.2.0](https://github.com/prefapp/features/compare/charts_repo-v2.1.0...charts_repo-v2.2.0) (2026-08-31)
 
 
