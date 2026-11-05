@@ -1,5 +1,17 @@
 # Changelog
 
+## [2.1.0](https://github.com/prefapp/features/compare/features_repo-v2.0.2...features_repo-v2.1.0) (2026-11-05)
+
+
+### Features
+
+* Declare labels with patching functionality ([#1233](https://github.com/prefapp/features/issues/1233)) ([ee4227f](https://github.com/prefapp/features/commit/ee4227fcef821c3b96d9a16cf40404b3ceef98c3))
+
+
+### Bug Fixes
+
+* **features_repo:** keep manually added required entries on schema regeneration ([#1407](https://github.com/prefapp/features/issues/1407)) ([6916c51](https://github.com/prefapp/features/commit/6916c51cf3ae3533c58d55c39f162064c20da120))
+
 ## [2.0.2](https://github.com/prefapp/features/compare/features_repo-v2.0.1...features_repo-v2.0.2) (2026-10-16)
 
 
