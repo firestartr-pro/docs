@@ -1,5 +1,12 @@
 # Changelog
 
+## [6.1.0](https://github.com/prefapp/features/compare/build_and_dispatch_docker_images-v6.0.0...build_and_dispatch_docker_images-v6.1.0) (2026-11-05)
+
+
+### Features
+
+* Declare labels with patching functionality ([#1233](https://github.com/prefapp/features/issues/1233)) ([ee4227f](https://github.com/prefapp/features/commit/ee4227fcef821c3b96d9a16cf40404b3ceef98c3))
+
 ## [6.0.0](https://github.com/prefapp/features/compare/build_and_dispatch_docker_images-v5.7.2...build_and_dispatch_docker_images-v6.0.0) (2026-10-05)
 
 
