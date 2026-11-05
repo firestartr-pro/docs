@@ -74,7 +74,7 @@ config.yaml structure
 feature_name: example
 
 # The following are the args that will be used to render the templates.
-# $ref: replaced by the value from the metadata section of the config.yaml file
+# $ref: replaced by the value at the given path in the Claim
 # $lit: literal value
 # $arg: The name of the argument as consumed by the claim (each $arg becomes a schema property)
 # $default: The default value for the argument
@@ -93,9 +93,9 @@ feature_name: example
 #          schema generation.
 args:
   ORG:
-    $ref: [spec, org]
+    $ref: [providers, github, org]
   REPO_NAME:
-    $ref: [metadata, name]
+    $ref: [providers, github, name]
   APP_NAME:
     $default: "my-app"
     $arg: app_name
@@ -111,13 +111,16 @@ files:
     dest: docs/index.md
     upgradable: true
 
-# Patches to apply in the component catalog file using JSON Patch (RFC 6902) when the feature is installed
-patches:
+# Patches to apply to the Claim using [JSON patch](https://www.rfc-editor.org/rfc/rfc6902)
+# notation when the feature is installed. Use a flat list with Claim-relative paths
+# (for example, /annotations/... or /providers/github/labels/-).
+# Values can be rendered the same way as the files.
+claimPatches:
   - name: "add_annotation"
     op: "add"
-    path: "/metadata/annotations/backstage.io~1techdocs-ref"
-    # Values can use Mustache syntax with 
-    value: "url:https://github.com/prefapp/features/tree/main"
+    path: "/annotations/backstage.io~1techdocs-ref"
+    # Values can use Mustache syntax with {{| VAR |}}
+    value: "url:https://github.com/{{| ORG |}}/{{| REPO_NAME |}}/tree/main"
 ```
 
 ### Template syntax

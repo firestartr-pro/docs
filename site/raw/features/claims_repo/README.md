@@ -6,6 +6,14 @@ This feature installs the workflows used to manually hydrate and delete GitHub a
 
 This feature installs the workflows necessary for manually hydrating and deleting GitHub and TFWorkspace claims, plus two additional workflows to import manually created GitHub resources into GitHub claims and a `pr-verify` workflow.
 
+## Repository Labels
+
+This feature declares the following GitHub repository label, created on the repository when the feature is installed:
+
+| Label | Color | Purpose |
+|---|---|---|
+| `auto-hydrate` | `EFE802` | Triggers the auto-hydrate workflow when added to a pull request. |
+
 ## Local claims runner
 
 Use the provided `docker-compose.yaml` when you want to run Firestartr CLI commands against a local checkout of the claims repo.
@@ -52,6 +60,17 @@ Available GitHub claim types — exactly the kinds the claim type dropdown offer
 
 ![The action summary](./images/claims_repo-example_1-4.jpg)
 *The action summary with a link to the state repo*
+
+### Auto-hydrate
+
+The `♻️ Auto Hydrate` workflow hydrates the claims a PR touches when the PR is merged into the base branch, so you don't have to run the hydrate workflow by hand.
+
+- Hydration happens once, after the merge. Change detection uses the merge commit, so only the claims that PR touched are hydrated. The hydrate workflow then renders the base branch as it was when that run was dispatched, so the state repos converge to the latest `main` and an older snapshot never overwrites a later merge.
+- Whether the state repo PRs are auto-merged is controlled by `automerge` in `.config/auto-hydrate.yaml` (defaults to `false`).
+- To skip auto-hydrate for a single PR, add the `no-auto-hydrate` label before merging.
+- PRs that don't touch `claims/` and PRs from forks are ignored.
+- PRs opened by a bot (the `provision-claim`, import and delete workflows) are ignored, and so are PRs merged by a bot. `provision-claim` dispatches its own hydration, the delete workflows must not hydrate, and bot-opened import and `update-features` PRs need a manual hydrate after merging.
+- Auto-hydrate never deletes claims. If a PR deletes one claim and changes another, the changes hydrate and the deletion is skipped with a comment pointing at the delete workflows. Use those workflows to remove a claim.
 
 ## Deleting claims
 

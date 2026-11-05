@@ -112,6 +112,14 @@ Automatically generates chart snapshots during Pull Requests.
   1. Detects charts modified in the PR.
   2. Calls `generate-artifact.yaml` with `release_type: snapshots` to build and upload a snapshot version to the designated registry.
 
+## Repository Labels
+
+This feature declares the following GitHub repository label, created on the repository when the feature is installed:
+
+| Label | Color | Purpose |
+|---|---|---|
+| `generate-snapshot` | `68DF9F` | Triggers snapshot artifact generation when added to a pull request. |
+
 ---
 
 ## 4. `pr-verify.yaml`

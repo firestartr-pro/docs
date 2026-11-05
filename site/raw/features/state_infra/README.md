@@ -17,6 +17,14 @@ This repository stores the rendered Custom Resources (CRs) for the infrastructur
 
 - **Auto-merge** (`auto-merge.yaml`) - Automatically merges hydration pull requests when the `AUTO_MERGE` control file is present.
 
+## Repository Labels
+
+This feature declares the following GitHub repository label, created on the repository when the feature is installed:
+
+| Label | Color | Purpose |
+|---|---|---|
+| `plan` | `17A4B0` | Marks pull requests and issues that should trigger a Terraform plan run. |
+
 ## Auto-Merge Hydration PRs
 
 Hydration pull-requests created by the claims repository workflows can be automatically merged by adding an empty **`AUTO_MERGE`** file to the **root** of this repository, in the **default branch**.

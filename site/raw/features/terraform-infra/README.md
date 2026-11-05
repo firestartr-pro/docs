@@ -147,12 +147,15 @@ flowchart TD
 
 **Labels:**
 
-| Label | Meaning |
-|---|---|
-| `ref-sync` | Drift issue `[Ref Sync] <target>` — opened when drift is detected, closed when drift is resolved. |
-| `ref-sync-auto` | Added to `sync`-mode drift issues. Marks issues that are auto-applied so the apply workflow ignores them (avoids a duplicate apply). |
-| `ref-sync-error` | Error issue `[Ref Sync Error] <target>` — created when the sync pipeline fails for a target (plan error or failed `sync`-mode auto-apply). |
-| `terraform/apply` | Operator signal: closing a `ref-sync` issue with this label triggers the apply workflow. Also added by `sync` mode when the inline auto-apply succeeds. |
+| Label | Color | Meaning |
+|---|---|---|
+| `ref-sync` | `0969da` | Drift issue `[Ref Sync] <target>` — opened when drift is detected, closed when drift is resolved. |
+| `ref-sync-auto` | `2da44e` | Added to `sync`-mode drift issues. Marks issues that are auto-applied so the apply workflow ignores them (avoids a duplicate apply). |
+| `ref-sync-error` | `d73a4a` | Error issue `[Ref Sync Error] <target>` — created when the sync pipeline fails for a target (plan error or failed `sync`-mode auto-apply). |
+| `terraform/apply` | `fb8532` | Operator signal: closing a `ref-sync` issue with this label triggers the apply workflow. Also added by `sync` mode when the inline auto-apply succeeds. |
+| `terraform/plan` | `17A4B0` | Label for Terraform plan requests. |
+
+These five labels are declared by this feature via `claimPatches` operations on `/providers/github/labels/-`, so they are created on the repository when the feature is installed. The ref-sync scripts also create the ref-sync labels and `terraform/apply` at runtime (idempotently) as a fallback for repositories that installed the feature before this declaration.
 
 **On sync failure:**
 - **Plan error or `sync`-mode auto-apply failure** — the workflow creates or updates a GitHub issue titled `[Ref Sync Error] <target>` with the label `ref-sync-error`, containing the failed terraform output and signalling that the sync needs review. The issue is closed automatically once a later sync of the same target succeeds. The failing module emits a red `::error::` annotation in the logs and the sync job fails, so the failing points are marked red in the pipeline. The matrix runs with `fail-fast: false`, so a failing leg never cancels the other legs.
