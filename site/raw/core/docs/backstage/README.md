@@ -15,3 +15,5 @@ The Firestartr Portal is built on [Backstage](https://backstage.io/).
   features on your components.
 - [Batch Actions](./batch-actions.md) — apply changes to multiple resources
   at once.
+- [Permissions](./permissions.md) — understand and configure who can modify
+  resources.
