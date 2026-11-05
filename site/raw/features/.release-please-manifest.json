@@ -7,7 +7,7 @@
     "packages/build_and_dispatch_docker_images": "6.0.0",
     "packages/state_infra": "2.0.0",
     "packages/state_repo_sys_services": "2.5.0",
-    "packages/state_repo_apps": "3.10.0",
+    "packages/state_repo_apps": "4.0.0",
     "packages/claims_repo": "3.1.0",
     "packages/state_github": "2.0.0",
     "packages/firestartr_repo": "1.4.0",

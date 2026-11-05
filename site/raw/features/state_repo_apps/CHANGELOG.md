@@ -1,5 +1,16 @@
 # Changelog
 
+## [4.0.0](https://github.com/prefapp/features/compare/state_repo_apps-v3.10.0...state_repo_apps-v4.0.0) (2026-11-05)
+
+
+### ⚠ BREAKING CHANGES
+
+* new claim patching functionality to add needed repo elements ([#1435](https://github.com/prefapp/features/issues/1435))
+
+### Features
+
+* new claim patching functionality to add needed repo elements ([#1435](https://github.com/prefapp/features/issues/1435)) ([1c32455](https://github.com/prefapp/features/commit/1c3245579e5739f14dc276caba06f61e876c29c8))
+
 ## [3.10.0](https://github.com/prefapp/features/compare/state_repo_apps-v3.9.1...state_repo_apps-v3.10.0) (2026-07-22)
 
 
