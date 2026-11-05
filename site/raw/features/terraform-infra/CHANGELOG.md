@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.2.0](https://github.com/prefapp/features/compare/terraform-infra-v4.1.0...terraform-infra-v4.2.0) (2026-11-05)
+
+
+### Features
+
+* Declare labels with patching functionality ([#1233](https://github.com/prefapp/features/issues/1233)) ([ee4227f](https://github.com/prefapp/features/commit/ee4227fcef821c3b96d9a16cf40404b3ceef98c3))
+
 ## [4.1.0](https://github.com/prefapp/features/compare/terraform-infra-v4.0.0...terraform-infra-v4.1.0) (2026-11-02)
 
 
