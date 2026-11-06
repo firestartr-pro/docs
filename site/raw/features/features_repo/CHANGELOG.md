@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.1.2](https://github.com/prefapp/features/compare/features_repo-v2.1.1...features_repo-v2.1.2) (2026-11-06)
+
+
+### Bug Fixes
+
+* **features_repo:** escape Mustache examples in rendered README ([#1447](https://github.com/prefapp/features/issues/1447)) ([a842e45](https://github.com/prefapp/features/commit/a842e45100ef074088a64a8aaeae1c72ad979610))
+
 ## [2.1.1](https://github.com/prefapp/features/compare/features_repo-v2.1.0...features_repo-v2.1.1) (2026-11-06)
 
 

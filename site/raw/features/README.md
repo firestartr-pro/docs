@@ -57,6 +57,14 @@ Add it to your repository's feature list with the following configuration:
 └── README.md
 ```
 
+## Centrally managed tooling
+
+Root `package.json`, `pnpm-workspace.yaml`, `pnpm-lock.yaml`, and shared `scripts/*.js` are centrally managed by `features_repo`. Do not edit them: feature updates restore their canonical content. The root `packageManager` field pins the pnpm version used locally and in CI.
+
+Feature packages under `packages/` are not pnpm workspace members. They **must not declare dependencies**, including `devDependencies`, because those dependencies are not installed. Feature tests use the shared tooling in root `node_modules` instead.
+
+Run `pnpm test` to run root tests and each feature's `test` script. Packages without a `test` script are skipped.
+
 ## Contributing to Features
 
 ### Creating a new feature
@@ -129,8 +137,13 @@ We use the [Mustache](https://mustache.github.io/mustache.5.html) template engin
 You can add logic with conditionals:
 
 ```mustache
+{{| #condition |}}
+  {{| variable |}}   ← this renders when condition is true
+{{| /condition |}}
 
+{{| ^condition |}}
   In case the condition is false
+{{| /condition |}}
 ```
 
 ### Updating an existing feature
@@ -211,7 +224,11 @@ Each feature package has a `schema.json` that documents its user-feedable argume
 pnpm generate:schemas
 ```
 
-and kept in sync by the `pr_verify` workflow.
+Regeneration preserves the manual enrichments already present in a `schema.json`: property
+`description`/`examples`, and top-level `required` entries that `config.yaml` does not
+contradict — a `$default` declared for an arg keeps it optional, and an entry whose `$arg`
+was removed is dropped. Running it twice produces identical output. The result is kept in
+sync by the `pr_verify` workflow.
 
 Schema promotion is opt-in: the **Promote Schemas to Docs Repo** workflow is only installed when `disable_promote_schemas` is set to `false`. When enabled, on every feature release it promotes the generated schemas to the objective docs repository `firestartr-pro/docs` (defaults: `firestartr-pro/docs`). For each feature and version it writes:
 

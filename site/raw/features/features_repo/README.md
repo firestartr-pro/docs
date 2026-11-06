@@ -127,8 +127,10 @@ claimPatches:
   - name: "add_annotation"
     op: "add"
     path: "/annotations/backstage.io~1techdocs-ref"
+{{|=<% %>=|}}
     # Values can use Mustache syntax with {{| VAR |}}
     value: "url:https://github.com/{{| ORG |}}/{{| REPO_NAME |}}/tree/main"
+<%={{| |}}=%>
 ```
 
 ### Template syntax
@@ -137,6 +139,7 @@ We use the [Mustache](https://mustache.github.io/mustache.5.html) template engin
 You can add logic with conditionals:
 
 ```mustache
+{{|=<% %>=|}}
 {{| #condition |}}
   {{| variable |}}   ← this renders when condition is true
 {{| /condition |}}
@@ -144,6 +147,7 @@ You can add logic with conditionals:
 {{| ^condition |}}
   In case the condition is false
 {{| /condition |}}
+<%={{| |}}=%>
 ```
 
 ### Updating an existing feature
