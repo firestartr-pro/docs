@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.1.1](https://github.com/prefapp/features/compare/features_repo-v2.1.0...features_repo-v2.1.1) (2026-11-06)
+
+
+### Bug Fixes
+
+* **features_repo:** compare schemas on disk instead of HEAD in test:schemas ([#1442](https://github.com/prefapp/features/issues/1442)) ([32a5aa4](https://github.com/prefapp/features/commit/32a5aa452838f641a5edd3d4060c20337a8446cb))
+* **features_repo:** exclude feature packages from pnpm workspace and pin pnpm ([#1443](https://github.com/prefapp/features/issues/1443)) ([5764634](https://github.com/prefapp/features/commit/5764634619e156a28325aca81301930b0df7f0bb))
+
 ## [2.1.0](https://github.com/prefapp/features/compare/features_repo-v2.0.2...features_repo-v2.1.0) (2026-11-05)
 
 

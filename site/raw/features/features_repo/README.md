@@ -57,6 +57,14 @@ Add it to your repository's feature list with the following configuration:
 └── README.md
 ```
 
+## Centrally managed tooling
+
+Root `package.json`, `pnpm-workspace.yaml`, `pnpm-lock.yaml`, and shared `scripts/*.js` are centrally managed by `features_repo`. Do not edit them: feature updates restore their canonical content. The root `packageManager` field pins the pnpm version used locally and in CI.
+
+Feature packages under `packages/` are not pnpm workspace members. They **must not declare dependencies**, including `devDependencies`, because those dependencies are not installed. Feature tests use the shared tooling in root `node_modules` instead.
+
+Run `pnpm test` to run root tests and each feature's `test` script. Packages without a `test` script are skipped.
+
 ## Contributing to Features
 
 ### Creating a new feature
