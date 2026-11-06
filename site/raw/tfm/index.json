@@ -431,6 +431,12 @@
       "source": "git::https://github.com/prefapp/tfm.git//modules/mongodb-atlas-project?ref=mongodb-atlas-project-v1.4.1"
     },
     {
+      "name": "ovh-container-registry",
+      "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/ovh-container-registry/README.md",
+      "version": "0.1.0",
+      "source": "git::https://github.com/prefapp/tfm.git//modules/ovh-container-registry?ref=ovh-container-registry-v0.1.0"
+    },
+    {
       "name": "ovh-mks",
       "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/ovh-mks/README.md",
       "version": "0.2.0",
