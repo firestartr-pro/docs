@@ -55,12 +55,21 @@ modify.
 
 ## Step 5 — Save your changes
 
-Modify what you need and press the save button. Just clicking the button
-launches the provision task that updates your resource, which you can follow
-from the **Tasks** tab, as described in
-[Resources Provisioning](./resources-provisioning.md), or with a quick look at
-the top of the Settings surface, where the progress is shown live.
+Modify what you need and press the save button in the **save bar** at the
+bottom of the form. The save bar tracks your work: it tells you whether you
+have unsaved changes, the save button stays disabled until something actually
+changed, and **Discard** restores the last saved state if you want to throw
+your edits away.
+
+Just clicking the button launches the provision task that updates your
+resource, which you can follow from the **Tasks** tab, as described in
+[Resources Provisioning](./resources-provisioning.md), or watch it live in the
+save bar itself: the phase, the running progress, and the latest provision
+message are shown live while the save runs, and any failure reason stays
+visible there until the next save or you dismiss it.
+
+While a save is running the form stays put: the claim-type tabs and the
+*Configuration*/*Annotations* toggle are disabled until it finishes, so the
+progress you are watching cannot be taken over by another claim's save.
 
 ![Save configuration button](./images/backstage-resource-edition-05-save-button.png)
-
-![Progress of the update shown at the top of the Settings surface](./images/backstage-resource-edition-06-settings-progress.png)
