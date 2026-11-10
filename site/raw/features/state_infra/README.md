@@ -44,4 +44,3 @@ git push
 
 - When the `AUTO_MERGE` file is present, any hydration PR (branches starting with `automated/`) will be automatically merged.
 - If the file is removed, hydration PRs will require manual review and merge.
-- The auto-merge is also supported via the `automerge` input in the claims repository hydrate workflow.

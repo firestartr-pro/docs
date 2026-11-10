@@ -167,9 +167,9 @@ You can add logic with conditionals:
 
 ## Testing Features
 
-### Using generic-fixtures/cr.yaml
+### Using generic-fixtures/claim.yaml
 
-The `generic-fixtures/cr.yaml` file provides a reusable Custom Resource (CR) fixture for testing feature rendering. This fixture contains a complete example of a `FirestartrGithubRepository` resource with all common fields populated.
+The `generic-fixtures/claim.yaml` file provides a reusable `ComponentClaim` fixture for testing feature rendering. It uses the stitched-claim shape the renderer expects — top-level `providers.github` — which is what the `$ref`s in each feature's `config.yaml` resolve against.
 
 #### How to use it
 
@@ -179,43 +179,46 @@ Each feature package includes a `render_tests.yaml` file that defines test cases
 # packages/<feature-name>/render_tests.yaml
 tests:
   - name: test1
-    cr: "../../generic-fixtures/cr.yaml"
+    claim: "../../generic-fixtures/claim.yaml"
 ```
+
+#### Legacy fixture: generic-fixtures/cr.yaml
+
+`generic-fixtures/cr.yaml` retains the legacy `FirestartrGithubRepository` fixture for features whose `render_tests.yaml` still uses `cr:`. Use `claim.yaml` with `claim:` for features migrated to ComponentClaims.
 
 #### What the fixture provides
 
-The generic CR fixture includes:
+The generic claim fixture includes:
 
-- **Metadata**: annotations, labels, and resource name
-- **Spec.org**: Organization name (`firestartr-test`)
-- **Spec.context**: Backend and provider references
-- **Spec.firestartr**: Technology stack and state key configuration
-- **Spec.repo**: Repository settings (visibility, branches, merge options, etc.)
-- **Spec.actions**: OIDC configuration
-- **Spec.permissions**: Team/group permissions
-- **Spec.branchProtections**: Branch protection rules
+- **kind**: `ComponentClaim`, the input kind the renderer validates by default
+- **name**: Claim name (`claims`)
+- **providers.github.org**: Organization name (`firestartr-test`)
+- **providers.github.name**: Repository name (`claims`)
+- **providers.github.branchStrategy.defaultBranch**: Default branch (`main`)
+- **providers.github.actions.oidc**: OIDC configuration
 
 #### Creating custom fixtures
 
-If your feature requires specific CR fields not covered by the generic fixture, you can:
+If your feature requires specific claim fields not covered by the generic fixture, you can:
 
 1. Create a custom fixture in your feature's `__tests__/` folder:
 
    ```yaml
-   # packages/<feature-name>/__tests__/custom-cr.yaml
+   # packages/<feature-name>/__tests__/custom-claim.yaml
    apiVersion: firestartr.dev/v1
-   kind: FirestartrGithubRepository
-   metadata:
-     name: my-custom-resource
-   spec:
-     # ... your custom fields
+   kind: ComponentClaim
+   name: my-custom-claim
+   providers:
+     github:
+       org: my-org
+       # ... your custom fields
    ```
 
 2. Reference it in your `render_tests.yaml`:
    ```yaml
    tests:
      - name: custom-test
-       cr: "./__tests__/custom-cr.yaml"
+       claim: "./__tests__/custom-claim.yaml"
    ```
 
 ---

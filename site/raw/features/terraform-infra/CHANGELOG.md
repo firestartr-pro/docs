@@ -1,5 +1,13 @@
 # Changelog
 
+## [4.2.1](https://github.com/prefapp/features/compare/terraform-infra-v4.2.0...terraform-infra-v4.2.1) (2026-11-10)
+
+
+### Bug Fixes
+
+* **terraform-infra:** use merge SHA for apply validation ([#1444](https://github.com/prefapp/features/issues/1444)) ([ef13873](https://github.com/prefapp/features/commit/ef138736e64286fe6e82fc135ee84594ec635f4e))
+* Updated feature tests to use claims instead of CRs ([#1363](https://github.com/prefapp/features/issues/1363)) ([e0654a8](https://github.com/prefapp/features/commit/e0654a82aae3d3807ce04696fe228ca9c7bd0bb1))
+
 ## [4.2.0](https://github.com/prefapp/features/compare/terraform-infra-v4.1.0...terraform-infra-v4.2.0) (2026-11-05)
 
 

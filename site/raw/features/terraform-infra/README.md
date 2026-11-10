@@ -43,6 +43,8 @@ When a pull request is opened or updated:
 When a pull request is **merged and closed** with the `terraform/apply` label:
 - **Apply**: The workflow runs `terraform apply` for the affected modules and posts the results as a comment.
 
+For merged pull requests, changed modules are calculated from GitHub's changed-file list for the pull request, so squash, merge-commit, and rebase strategies are supported. GitHub limits this list to 3,000 files; if the full list cannot be retrieved, the workflow fails rather than applying an incomplete module matrix.
+
 ### 2. Manual Trigger (Workflow Dispatch)
 
 You can manually trigger the workflow from the GitHub Actions UI:
@@ -218,6 +220,7 @@ The run is skipped **only when every non-merge commit** in the pull request is s
 - Determines which account modules are affected by a pull request and builds the job matrix consumed by the plan/apply job.
 - Detects changed modules by **directory**, not by file type: a change to *any* file inside a module directory (for example an external AWS policy `.json`, a `.tf`, a `.tfvars`, or an `init-from-module` file) marks that module as changed. `providers.tf` is still ignored.
 - Skips the run entirely when every commit in the pull request matches one of the configured skip commit types (see [Skipping runs by commit type](#skipping-runs-by-commit-type)).
+- Rejects affected modules that no longer exist in the checkout, preventing Plan/Apply from running against an empty configuration and an existing state. To intentionally remove a module, first run the **Terraform Destroy** workflow and verify it succeeds. Then open a PR that only removes that module directory; `validate` is expected to fail on the PR and post-merge, which is safe because the state is already empty. Do not combine the removal with other module changes, because the guard stops validation for the entire PR. Renaming a module directory requires explicitly migrating its Terraform state; otherwise the guard will block it.
 
 ### `.github/scripts/functions.sh`
 

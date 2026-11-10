@@ -36,7 +36,7 @@ The compose service mounts your local claims repo checkout (including the `claim
 ![The Actions tabs](./images/claims_repo-example_1-1.jpg)
 *The Actions tabs*
 
-4. Select `Run workflow` on the right hand side of the screen, introduce the name of the claim to be hydrated and select the claim type (if it is a GitHub claim). NOTE: the name of the claim should be the value of the field `name` inside the claim YAML. Setting this value to the file name may result in the workflow not working as expected.
+4. Select `Run workflow` on the right hand side of the screen. In the `name` field introduce the name of the claim to be hydrated, a comma-separated list of claim names, or `*` to hydrate **every** claim of the selected kind. Optionally use `excludedClaims` to leave specific names out (each excluded name must be part of the selection). Select the claim type (GitHub claims only). NOTE: a claim name should be the value of the field `name` inside the claim YAML. Setting this value to the file name may result in the workflow not working as expected.
 
 Available GitHub claim types — exactly the kinds the claim type dropdown offers and the workflows route:
 - `ComponentClaim` — hydrates `FirestartrGithubRepository`, `FirestartrGithubRepositoryFeature`, and `FirestartrGithubRepositorySecretsSection` CRs.
@@ -61,12 +61,29 @@ Available GitHub claim types — exactly the kinds the claim type dropdown offer
 ![The action summary](./images/claims_repo-example_1-4.jpg)
 *The action summary with a link to the state repo*
 
+💡 The hydrate workflows open the state repo PR with the `automated/` branch prefix, so the state repo decides whether to auto-merge it. To keep the PR open for manual review even if the state repo is configured to auto-merge, check **Never auto-merge** (`neverAutomerge`): the PR then opens with the `automated-non-automerge/` prefix, which the state repo ignores. The `reimport` and `uninstall-repository-feature` workflows have the same checkbox.
+
+### Mass hydration
+
+When `name` is a comma-separated list or `*`, the workflow renders and hydrates the whole selection of the chosen kind in a single run and opens **one pull request per state repo** (instead of one per claim). The branch is chosen from the number of claims the selection resolves to:
+
+- **One claim** — a single name, or a list/`*`/`excludedClaims` narrowed to one — uses the same deterministic branch as a normal hydration of that claim (`automated/<claim>-<name>`, or `automated-non-automerge/...`). It is shared with single-claim runs, so a later run for that claim replaces it.
+- **Two or more** — uses the run-scoped branch `automated/mass-<kind>-<run-id>` (or `automated-non-automerge/mass-<kind>-<run-id>`), where `<run-id>` is the workflow run id, so each run gets its own branch and never replaces another run's open pull request.
+
+Every hydrated CR gets its `firestartr.dev/last-state-pr` annotation updated to that pull request.
+
+- `name` is mandatory: use a comma-separated list, or `*` for all claims of the kind.
+- `excludedClaims` is optional; it must match names in the selection, and the run fails if any excluded value is not part of the selection.
+- If the selection ends up empty, the run finishes without opening a pull request.
+- If an explicitly requested (non-`*`) claim does not exist, the run fails fast without opening a pull request.
+- TFWorkspace variants are still hydrated as separate pull requests (one per variant).
+
 ### Auto-hydrate
 
 The `♻️ Auto Hydrate` workflow hydrates the claims a PR touches when the PR is merged into the base branch, so you don't have to run the hydrate workflow by hand.
 
 - Hydration happens once, after the merge. Change detection uses the merge commit, so only the claims that PR touched are hydrated. The hydrate workflow then renders the base branch as it was when that run was dispatched, so the state repos converge to the latest `main` and an older snapshot never overwrites a later merge.
-- Whether the state repo PRs are auto-merged is controlled by `automerge` in `.config/auto-hydrate.yaml` (defaults to `false`).
+- The state repo PRs open with the `automated/` branch prefix, so each state repo decides whether to auto-merge them with its own rules (the `AUTO_MERGE` file and its required checks). Auto-hydrate has no auto-merge configuration of its own.
 - To skip auto-hydrate for a single PR, add the `no-auto-hydrate` label before merging.
 - PRs that don't touch `claims/` and PRs from forks are ignored.
 - PRs opened by a bot (the `provision-claim`, import and delete workflows) are ignored, and so are PRs merged by a bot. `provision-claim` dispatches its own hydration, the delete workflows must not hydrate, and bot-opened import and `update-features` PRs need a manual hydrate after merging.
@@ -113,7 +130,10 @@ The same claim types listed for [hydrating](#hydrating-claims) are available for
 
 ![Import GitHub resources](./images/claims_repo-example_3-2.jpg)
 
-3. Press the green button and wait for the workflow to finish. Once the workflow is finished, a PR will be created both in the `state-github` repo and the `claims` repo. Merge them both and the resource will be imported
+3. Press the green button and wait for the workflow to finish. Once the workflow is finished, a PR will be created both in the `state-github` repo and the `claims` repo. Merge them both and the resource will be imported.
+
+- **Never auto-merge** (`neverAutomerge`): keeps the `state-github` PR open for manual review even if the state repo is configured to auto-merge. Defaults to `false`.
+- **Auto-merge claims PR** (`automergeClaimsPr`): merges the PR opened in the `claims` repo as long as it passes all checks. Defaults to `true`.
 
 ## Update feature in all claims
 1. Head over to the `Actions` tab of the `claims` repo and select the `Update features` workflow on the left side list.
