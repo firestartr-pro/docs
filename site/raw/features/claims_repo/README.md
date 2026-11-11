@@ -12,7 +12,7 @@ This feature declares the following GitHub repository label, created on the repo
 
 | Label | Color | Purpose |
 |---|---|---|
-| `auto-hydrate` | `EFE802` | Triggers the auto-hydrate workflow when added to a pull request. |
+| `no-auto-hydrate` | `8C959F` | Excludes a pull request from auto-hydration when it is added before the merge. |
 
 ## Local claims runner
 
@@ -43,7 +43,7 @@ Available GitHub claim types — exactly the kinds the claim type dropdown offer
 - `UserClaim` — hydrates `FirestartrGithubMembership` CRs.
 - `GroupClaim` — hydrates `FirestartrGithubGroup` CRs.
 - `OrgWebhookClaim` — hydrates `FirestartrGithubOrgWebhook` CRs.
-- `OrgSettingsClaim` — hydrates **3** CRs: `FirestartrGithubOrganizationSettings`, `FirestartrGithubOrganizationVariableSection` when the claim declares `actions_variables`, and `FirestartrGithubOrganizationSecretsSection`. The org secrets artifact is **not pending**: it is already rendered and applied, and hydrate and delete both carry it in their allowlists.
+- `OrgSettingsClaim` — hydrates **3** CRs: `FirestartrGithubOrganizationSettings`, `FirestartrGithubOrganizationVariableSection` when the claim declares `actions_variables`, and `FirestartrGithubOrganizationSecretSection` when it declares `org_secrets`.
 
 > **Note:** `GitHubOrgClaim` is no longer supported. If you have existing claim files using `kind: GitHubOrgClaim`, migrate them to `kind: OrgSettingsClaim`.
 
@@ -84,7 +84,7 @@ The `♻️ Auto Hydrate` workflow hydrates the claims a PR touches when the PR 
 
 - Hydration happens once, after the merge. Change detection uses the merge commit, so only the claims that PR touched are hydrated. The hydrate workflow then renders the base branch as it was when that run was dispatched, so the state repos converge to the latest `main` and an older snapshot never overwrites a later merge.
 - The state repo PRs open with the `automated/` branch prefix, so each state repo decides whether to auto-merge them with its own rules (the `AUTO_MERGE` file and its required checks). Auto-hydrate has no auto-merge configuration of its own.
-- To skip auto-hydrate for a single PR, add the `no-auto-hydrate` label before merging.
+- To skip auto-hydrate for a single PR, add the `no-auto-hydrate` label before merging. The label is created with the feature, so it is available in the PR label picker.
 - PRs that don't touch `claims/` and PRs from forks are ignored.
 - PRs opened by a bot (the `provision-claim`, import and delete workflows) are ignored, and so are PRs merged by a bot. `provision-claim` dispatches its own hydration, the delete workflows must not hydrate, and bot-opened import and `update-features` PRs need a manual hydrate after merging.
 - Auto-hydrate never deletes claims. If a PR deletes one claim and changes another, the changes hydrate and the deletion is skipped with a comment pointing at the delete workflows. Use those workflows to remove a claim.

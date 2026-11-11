@@ -1,5 +1,28 @@
 # Changelog
 
+## [3.2.0](https://github.com/prefapp/features/compare/claims_repo-v3.1.0...claims_repo-v3.2.0) (2026-11-11)
+
+
+### Features
+
+* **claims_repo:** add policy gate to unprovision tfwp ([#1326](https://github.com/prefapp/features/issues/1326)) ([0570f3a](https://github.com/prefapp/features/commit/0570f3aa60f0a90f45332ed0b202806bcaef8a32))
+* **claims_repo:** auto-hydrate every claims PR unless labelled no-auto-hydrate ([#1430](https://github.com/prefapp/features/issues/1430)) ([6bcb77c](https://github.com/prefapp/features/commit/6bcb77cc0d92300fa4b2a621c766422268ba2d52))
+* **claims_repo:** move hydration PR auto-merge decisions to the state repos ([#1450](https://github.com/prefapp/features/issues/1450)) ([1a11a7b](https://github.com/prefapp/features/commit/1a11a7bfc134b46eca6b3ab4384e2e64274b4c12))
+* **claims_repo:** verify the claims PR before merging it in unprovision workflow ([#1410](https://github.com/prefapp/features/issues/1410)) ([775f1d3](https://github.com/prefapp/features/commit/775f1d39f88a67e55f7fe99a8158bee873a751a2))
+* Declare labels with patching functionality ([#1233](https://github.com/prefapp/features/issues/1233)) ([ee4227f](https://github.com/prefapp/features/commit/ee4227fcef821c3b96d9a16cf40404b3ceef98c3))
+* update hydration workflows to allow hydrating multiple claims ([#1381](https://github.com/prefapp/features/issues/1381)) ([9eff0b6](https://github.com/prefapp/features/commit/9eff0b6b023d3ac62510cd6bff7eaf4668937da0))
+
+
+### Bug Fixes
+
+* **`claims_repo`:** missing trims worklows ([#1406](https://github.com/prefapp/features/issues/1406)) ([6c262ed](https://github.com/prefapp/features/commit/6c262edcf966bf11347e19c7f7c3d08f315f1b08))
+* add --no-audit to npx firestartr calls ([#1300](https://github.com/prefapp/features/issues/1300)) ([62b6620](https://github.com/prefapp/features/commit/62b6620c4da154d1ae184d5ec503975a6bf72543))
+* **claims_repo:** create the no-auto-hydrate label the workflow expects ([#1468](https://github.com/prefapp/features/issues/1468)) ([3564d3f](https://github.com/prefapp/features/commit/3564d3fcd5613ddb93e50cf56b9bf7f38baec5e6))
+* **claims_repo:** fail provision fast when a wet PR check fails ([#1401](https://github.com/prefapp/features/issues/1401)) ([07e1667](https://github.com/prefapp/features/commit/07e1667ec61d0f35a0be022f81870f0e1473752a))
+* **claims_repo:** keep one hydration PR per claim when automerge changes ([#1412](https://github.com/prefapp/features/issues/1412)) ([3cb9160](https://github.com/prefapp/features/commit/3cb91600b28b037131ca054bb48cbb54b47e9cf4))
+* **claims_repo:** use singular FirestartrGithubOrganizationSecretSection org secret kind ([#1470](https://github.com/prefapp/features/issues/1470)) ([b33aa9a](https://github.com/prefapp/features/commit/b33aa9a8e82e616eb285fcbf21d56ecff08ab7fc))
+* Updated feature tests to use claims instead of CRs ([#1363](https://github.com/prefapp/features/issues/1363)) ([e0654a8](https://github.com/prefapp/features/commit/e0654a82aae3d3807ce04696fe228ca9c7bd0bb1))
+
 ## [3.1.0](https://github.com/prefapp/features/compare/claims_repo-v3.0.1...claims_repo-v3.1.0) (2026-10-20)
 
 

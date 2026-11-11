@@ -8,7 +8,7 @@
     "packages/state_infra": "2.0.0",
     "packages/state_repo_sys_services": "2.5.0",
     "packages/state_repo_apps": "4.0.0",
-    "packages/claims_repo": "3.1.0",
+    "packages/claims_repo": "3.2.0",
     "packages/state_github": "2.0.0",
     "packages/firestartr_repo": "1.4.0",
     "packages/terraform-infra": "4.2.1",
