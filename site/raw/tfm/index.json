@@ -377,6 +377,12 @@
       "source": "git::https://github.com/prefapp/tfm.git//modules/github-org-rulesets?ref=github-org-rulesets-v0.1.1"
     },
     {
+      "name": "github-org-secrets-section",
+      "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/github-org-secrets-section/README.md",
+      "version": "0.2.0",
+      "source": "git::https://github.com/prefapp/tfm.git//modules/github-org-secrets-section?ref=github-org-secrets-section-v0.2.0"
+    },
+    {
       "name": "github-org-settings",
       "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/github-org-settings/README.md",
       "version": "0.1.0",
