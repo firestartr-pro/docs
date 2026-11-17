@@ -40,9 +40,33 @@ GUIDES = {
     "Validating-our-claims": "the Validating Our Claims guide",
     "Migrating-to-our-new-app-state-repo-structure": "the migration guide",
 }
-TOP_LEVEL_SECTIONS = {"deploying-workloads", "providers", "features"}
 BACKSTAGE_SOURCE = ROOT / "site" / "raw" / "core" / "docs" / "backstage"
 PORTAL_FIXTURE_IMAGE = ROOT / "site" / "raw" / "images" / "backstage-test-fixture.png"
+
+# A section is published only when the migration finds a source for it: an Area that has
+# not published yet is skipped, not a build error, exactly as scripts/migrate-content.sh
+# skips it. `backstage` is the optional one; the rest are Areas under migration.
+SECTION_LABELS = {
+    "deploying-workloads": "Deploying workloads",
+    "providers": "Providers",
+    "features": "Features",
+    "backstage": "Firestartr Portal",
+}
+SECTION_SOURCES = {
+    "deploying-workloads": ROOT / "site" / "raw" / "core" / "docs" / "README.md",
+    "providers": ROOT / "site" / "raw" / "core" / "docs" / "providers" / "README.md",
+    "features": ROOT / "site" / "raw" / "features" / "README.md",
+    "backstage": BACKSTAGE_SOURCE,
+}
+
+
+def published_sections() -> list[str]:
+    """The sections the migration publishes, in navbar order."""
+    return [name for name, source in SECTION_SOURCES.items() if source.exists()]
+
+
+def unpublished_sections() -> set[str]:
+    return set(SECTION_LABELS) - set(published_sections())
 
 failures: list[str] = []
 checks = 0
@@ -179,11 +203,8 @@ def check_navigation(index: str) -> None:
     navbar = element_with_class(index, "nav", "hextra-max-navbar-width")
     check(bool(navbar), "Hextra navbar is rendered")
 
-    expected = set(TOP_LEVEL_SECTIONS)
-    expected_labels = ["Deploying workloads", "Providers", "Features"]
-    if BACKSTAGE_SOURCE.is_dir():
-        expected.add("backstage")
-        expected_labels.append("Firestartr Portal")
+    expected = set(published_sections())
+    expected_labels = [SECTION_LABELS[name] for name in published_sections()]
     segments = set(re.findall(r'href=(?:"|\')?/docs/([^/>"\']+)/', navbar))
     check(
         segments == expected,
@@ -193,12 +214,8 @@ def check_navigation(index: str) -> None:
         print(f"      found: {sorted(segments)}")
 
     destinations = [
-        ("/docs/deploying-workloads/", "Deploying workloads"),
-        ("/docs/providers/", "Providers"),
-        ("/docs/features/", "Features"),
+        (f"/docs/{name}/", SECTION_LABELS[name]) for name in published_sections()
     ]
-    if BACKSTAGE_SOURCE.is_dir():
-        destinations.append(("/docs/backstage/", "Firestartr Portal"))
     for href, label in destinations:
         check(has_labeled_link(navbar, href, label), f"navbar links {label} to {href}")
 
@@ -232,6 +249,8 @@ def check_navigation(index: str) -> None:
             )
 
     for slug in GUIDES:
+        if "deploying-workloads" not in expected:
+            continue
         href = f"/docs/deploying-workloads/{slug}/"
         check(
             href in section_sidebars["deploying-workloads"],
@@ -241,18 +260,15 @@ def check_navigation(index: str) -> None:
 
 def check_page_headings() -> None:
     print("Page headings (a single H1 per page)")
-    pages = [
-        "index.html",
-        "deploying-workloads/index.html",
-        "providers/index.html",
-        "features/index.html",
+    published = published_sections()
+    pages = ["index.html"] + [f"{section}/index.html" for section in published]
+    sample_pages = [
         "deploying-workloads/state-apps-repository/index.html",
         "providers/terraform/workspace-sync/index.html",
         "features/charts_repo/index.html",
         "features/charts_repo/CHANGELOG/index.html",
     ]
-    if BACKSTAGE_SOURCE.is_dir():
-        pages.append("backstage/index.html")
+    pages += [page for page in sample_pages if page.split("/")[0] in published]
     for page in pages:
         h1_count = len(re.findall(r"<h1[ >]", read(PUBLIC_DIR / page)))
         check(h1_count == 1, f"{page} renders exactly one H1")
@@ -285,13 +301,15 @@ def check_theme_chrome(index: str) -> None:
     )
     check("href=/docs/favicon.svg" not in index, "Hextra default favicon.svg is not used")
 
-    docs_page = read(PUBLIC_DIR / "deploying-workloads" / "index.html")
-    check("hextra-toc" in docs_page, "documentation pages render a table of contents")
-    check("Edit this page" not in docs_page, "documentation pages omit edit links")
-    check("Last updated on" not in docs_page, "documentation pages omit last-modified dates")
+    if "deploying-workloads" in published_sections():
+        docs_page = read(PUBLIC_DIR / "deploying-workloads" / "index.html")
+        check("hextra-toc" in docs_page, "documentation pages render a table of contents")
+        check("Edit this page" not in docs_page, "documentation pages omit edit links")
+        check("Last updated on" not in docs_page, "documentation pages omit last-modified dates")
 
-    mermaid_page = read(PUBLIC_DIR / "features" / "release_please" / "index.html")
-    check('<pre class="mermaid ' in mermaid_page, "Mermaid diagrams are enabled")
+    if "features" in published_sections():
+        mermaid_page = read(PUBLIC_DIR / "features" / "release_please" / "index.html")
+        check('<pre class="mermaid ' in mermaid_page, "Mermaid diagrams are enabled")
 
 
 PORTAL_FIXTURE_PAGES = {
@@ -401,14 +419,21 @@ def check_portal_fixture() -> None:
 
 def check_guides() -> None:
     print("Deploying workloads section")
+    if "deploying-workloads" not in published_sections():
+        print("      (skipped: no site/raw/core/docs/README.md)")
+        return
     for slug, label in GUIDES.items():
         check((PUBLIC_DIR / "deploying-workloads" / slug / "index.html").is_file(), f"{label} is published")
         check(not (PUBLIC_DIR / slug).exists(), f"{label} is not a root-level entry")
     check((PUBLIC_DIR / "deploying-workloads" / "index.html").is_file(), "section index is published")
 
     index = read(PUBLIC_DIR / "deploying-workloads" / "index.html")
-    check("href=/docs/features/" in index, "section index links Features as a sibling section")
-    check("href=/docs/providers/" in index, "section index links Providers as a sibling section")
+    for section, label in (("features", "Features"), ("providers", "Providers")):
+        if section in published_sections():
+            check(
+                f"href=/docs/{section}/" in index,
+                f"section index links {label} as a sibling section",
+            )
 
     dot = read(PUBLIC_DIR / "deploying-workloads" / "The-dot-firestartr-repository" / "index.html")
     check(
@@ -424,23 +449,24 @@ def check_guides() -> None:
 
 def check_providers_and_features() -> None:
     print("Providers and Features sections")
-    for page in (
+    published = published_sections()
+    provider_pages = (
         "providers/index.html",
         "providers/terraform/index.html",
         "providers/terraform/workspace-sync/index.html",
-    ):
-        check((PUBLIC_DIR / page).is_file(), f"{page} is reachable")
-    check(
-        not (PUBLIC_DIR / "deploying-workloads" / "providers").exists(),
-        "Providers stays independent from Deploying workloads",
     )
-
-    for page in (
+    feature_pages = (
         "features/index.html",
         "features/claims_repo/index.html",
         "features/state_repo_apps/KUBERNETES_README/index.html",
-    ):
+    )
+    for page in [p for p in provider_pages + feature_pages if p.split("/")[0] in published]:
         check((PUBLIC_DIR / page).is_file(), f"{page} is reachable")
+    if "providers" in published:
+        check(
+            not (PUBLIC_DIR / "deploying-workloads" / "providers").exists(),
+            "Providers stays independent from Deploying workloads",
+        )
 
 
 def check_internal_links() -> None:
@@ -448,6 +474,16 @@ def check_internal_links() -> None:
     link_cache: dict[Path, str] = {}
     missing_targets: dict[str, str] = {}
     missing_fragments: dict[str, str] = {}
+    unpublished_targets: dict[str, str] = {}
+    unpublished = unpublished_sections()
+
+    def unpublished_section(raw_reference: str, page: Path) -> str | None:
+        """The section a reference points into when that section has not published."""
+        url = urllib.parse.urljoin(page_url(page), raw_reference)
+        segments = [s for s in url.split("#", 1)[0].split("?", 1)[0].split("/") if s]
+        if segments[:1] == ["docs"]:
+            segments = segments[1:]
+        return segments[0] if segments and segments[0] in unpublished else None
 
     def target_html(path: Path) -> str:
         if path not in link_cache:
@@ -472,7 +508,12 @@ def check_internal_links() -> None:
                 continue
             target = resolve_target(raw, page)
             if target is None:
-                missing_targets.setdefault(raw, str(page.relative_to(PUBLIC_DIR)))
+                # A page may still link a section whose Area has not published: that
+                # link is dead only while the Area is, and it is not a build failure.
+                if unpublished_section(raw, page) is not None:
+                    unpublished_targets.setdefault(raw, str(page.relative_to(PUBLIC_DIR)))
+                else:
+                    missing_targets.setdefault(raw, str(page.relative_to(PUBLIC_DIR)))
                 continue
             fragment = raw.partition("#")[2]
             if fragment and in_scope and not fragment_exists(target, fragment):
@@ -481,6 +522,8 @@ def check_internal_links() -> None:
     check(not missing_targets, f"every internal link target resolves ({len(missing_targets)} missing)")
     for raw, page in list(missing_targets.items())[:10]:
         print(f"      missing target: {page} -> {raw}")
+    for raw, page in list(unpublished_targets.items())[:10]:
+        print(f"      not published yet: {page} -> {raw}")
     check(
         not missing_fragments,
         f"anchors on the homepage and Deploying workloads resolve ({len(missing_fragments)} missing)",
