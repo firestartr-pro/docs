@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.0.1](https://github.com/prefapp/features/compare/release_please-v2.0.0...release_please-v2.0.1) (2026-11-17)
+
+
+### Bug Fixes
+
+* **release_please:** authenticate rolling tag push with the App token ([#1478](https://github.com/prefapp/features/issues/1478)) ([3da8a6f](https://github.com/prefapp/features/commit/3da8a6facae914aba5eb297a37782546730a6dbc))
+* Updated feature tests to use claims instead of CRs ([#1363](https://github.com/prefapp/features/issues/1363)) ([e0654a8](https://github.com/prefapp/features/commit/e0654a82aae3d3807ce04696fe228ca9c7bd0bb1))
+
 ## [2.0.0](https://github.com/prefapp/features/compare/release_please-v1.8.1...release_please-v2.0.0) (2026-10-05)
 
 
