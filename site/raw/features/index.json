@@ -85,6 +85,20 @@
       ]
     },
     {
+      "name": "docs_publisher",
+      "version": "1.1.0",
+      "files": [
+        {
+          "name": "README.md",
+          "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/features/docs_publisher/README.md"
+        },
+        {
+          "name": "CHANGELOG.md",
+          "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/features/docs_publisher/CHANGELOG.md"
+        }
+      ]
+    },
+    {
       "name": "features_repo",
       "version": "2.1.2",
       "files": [
