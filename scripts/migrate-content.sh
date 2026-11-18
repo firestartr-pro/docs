@@ -89,9 +89,16 @@ cp "${HOMEPAGE_DIR}/_index.md" "${WEB_CONTENT_DIR}/_index.md"
 echo "    ✓ ${HOMEPAGE_DIR}/_index.md → ${WEB_CONTENT_DIR}/_index.md"
 
 echo "==> Migrating deploying workloads"
-write_page "${CORE_DOCS_DIR}/README.md" "${DEPLOYING_WORKLOADS_DIR}/_index.md" \
-  "title = 'Deploying workloads'" 'weight = 1' "width = 'full'" "menus = ['main']" '[cascade]' "type = 'docs'"
-echo "    ✓ core/docs/README.md → deploying-workloads/_index.md"
+# The core docs Area is empty while it is being migrated to docs_publisher, and a
+# source repository that has not published yet leaves it empty for a while: an
+# absent Area is not a build error, it is simply not published.
+if [ -f "${CORE_DOCS_DIR}/README.md" ]; then
+  write_page "${CORE_DOCS_DIR}/README.md" "${DEPLOYING_WORKLOADS_DIR}/_index.md" \
+    "title = 'Deploying workloads'" 'weight = 1' "width = 'full'" "menus = ['main']" '[cascade]' "type = 'docs'"
+  echo "    ✓ core/docs/README.md → deploying-workloads/_index.md"
+else
+  echo "    (skipped: no ${CORE_DOCS_DIR}/README.md)"
+fi
 
 # Every core doc except the section README, the providers subtree, and the
 # Backstage-owned portal subtree is a deployment guide. Promotions must never
@@ -107,6 +114,7 @@ done < <(find "${CORE_DOCS_DIR}" -type f -name '*.md' -print0)
 
 echo "==> Migrating providers"
 # The providers README is not the homepage source; it becomes the section index.
+if [ -d "${CORE_DOCS_DIR}/providers" ]; then
 while IFS= read -r -d '' file; do
   rel_path="${file#"${CORE_DOCS_DIR}/providers/"}"
   case "${rel_path}" in
@@ -126,16 +134,25 @@ while IFS= read -r -d '' file; do
       ;;
   esac
 done < <(find "${CORE_DOCS_DIR}/providers" -type f -name '*.md' -print0)
+else
+  echo "    (skipped: no ${CORE_DOCS_DIR}/providers/)"
+fi
 
 echo "==> Migrating features"
-write_page "${RAW_DIR}/features/README.md" "${FEATURES_DIR}/_index.md" \
-  "title = 'Features'" 'weight = 3' "menus = ['main']" '[cascade]' "type = 'docs'"
-# The features README is the root README of prefapp/features; its repository-level
-# docs/ folder is not promoted, so those links point back to GitHub.
-sed_inplace -E \
-  -e 's#\]\((\./)?docs/([^)]+)\)#](https://github.com/prefapp/features/blob/main/docs/\2)#g' \
-  "${FEATURES_DIR}/_index.md"
-echo "    ✓ features/README.md → features/_index.md"
+# Same rule as the core docs: the features Area is empty between the deletion of
+# its old content and the first docs_publisher run.
+if [ -f "${RAW_DIR}/features/README.md" ]; then
+  write_page "${RAW_DIR}/features/README.md" "${FEATURES_DIR}/_index.md" \
+    "title = 'Features'" 'weight = 3' "menus = ['main']" '[cascade]' "type = 'docs'"
+  # The features README is the root README of prefapp/features; its repository-level
+  # docs/ folder is not promoted, so those links point back to GitHub.
+  sed_inplace -E \
+    -e 's#\]\((\./)?docs/([^)]+)\)#](https://github.com/prefapp/features/blob/main/docs/\2)#g' \
+    "${FEATURES_DIR}/_index.md"
+  echo "    ✓ features/README.md → features/_index.md"
+else
+  echo "    (skipped: no ${RAW_DIR}/features/README.md)"
+fi
 
 while IFS= read -r -d '' feature_dir; do
   feature_name="$(basename "${feature_dir}")"
@@ -204,6 +221,26 @@ if [ -d "${HOMEPAGE_DIR}/images" ]; then
   echo "    ✓ site/homepage/images → static/images"
 fi
 
+# Every Area that keeps images next to its docs publishes them under the Area's
+# own path: a feature package, a tfm module, a mirrored subtree and a mirrored
+# subtree of a subtree (site/raw/core/docs/backstage) all follow the same rule and
+# cannot collide on a file name. The flat site/raw/images/ root stays reserved for
+# the Areas that predate this layout, and is skipped here.
+#
+# A Version folder keeps an identical copy of its package's images; this build
+# serves the package and not the Version folder, so publishing them would triple
+# the deployed site for URLs nothing links to.
+while IFS= read -r -d '' image_dir; do
+  case "$(basename "$(dirname "${image_dir}")")" in
+    [0-9]*.[0-9]*.[0-9]*) continue ;;
+  esac
+  area_rel="${image_dir#"${RAW_DIR}/"}"
+  area_rel="${area_rel%/images}"
+  mkdir -p "${WEB_STATIC_DIR}/images/${area_rel}"
+  cp -R "${image_dir}/." "${WEB_STATIC_DIR}/images/${area_rel}/"
+  echo "    ✓ site/raw/${area_rel}/images → static/images/${area_rel}"
+done < <(find "${RAW_DIR}" -mindepth 2 -type d -name images -print0)
+
 echo "==> Rewriting links for Hugo"
 while IFS= read -r -d '' file; do
   # README.md links resolve to their directory index.
@@ -219,6 +256,29 @@ while IFS= read -r -d '' file; do
   sed_inplace -E \
     -e "s|\]\(\./([^\)#]+)\.md(#[^)]+)?\)|](${link_prefix}\\1/\\2)|g" \
     "${file}"
+
+  # A page resolves its relative images against the Area it was generated from,
+  # which the copy above published as /images/<area>/. The three sections the
+  # build moves out of their Area say where they come from; every other page
+  # mirrors site/raw, so its nearest images folder is its own. A page whose Area
+  # carries no images keeps the shared /images/ root.
+  case "${file}" in
+    "${DEPLOYING_WORKLOADS_DIR}"/*) image_area="core/docs" ;;
+    "${PROVIDERS_DIR}"/*)           image_area="core/docs/providers" ;;
+    "${BACKSTAGE_DIR}"/*)           image_area="core/docs/backstage" ;;
+    *)
+      image_area="$(dirname "${file#"${WEB_CONTENT_DIR}/"}")"
+      while [ "${image_area}" != "." ] && [ ! -d "${RAW_DIR}/${image_area}/images" ]; do
+        image_area="$(dirname "${image_area}")"
+      done
+      ;;
+  esac
+  if [ "${image_area}" != "." ] && [ -d "${RAW_DIR}/${image_area}/images" ]; then
+    sed_inplace -E \
+      -e "s|\]\(\./images/|](/images/${image_area}/|g" \
+      -e "s|\]\(images/|](/images/${image_area}/|g" \
+      "${file}"
+  fi
 
   # Shared images live at the site-wide /images/ path under the configured
   # base URL, regardless of the page's section depth.
