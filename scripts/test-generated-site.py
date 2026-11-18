@@ -61,7 +61,6 @@ SECTION_SOURCES = {
 
 
 def published_sections() -> list[str]:
-    """The sections the migration publishes, in navbar order."""
     return [name for name, source in SECTION_SOURCES.items() if source.exists()]
 
 
@@ -470,7 +469,6 @@ def check_internal_links() -> None:
     unpublished = unpublished_sections()
 
     def unpublished_section(raw_reference: str, page: Path) -> str | None:
-        """The section a reference points into when that section has not published."""
         url = urllib.parse.urljoin(page_url(page), raw_reference)
         segments = [s for s in url.split("#", 1)[0].split("?", 1)[0].split("/") if s]
         if segments[:1] == ["docs"]:
