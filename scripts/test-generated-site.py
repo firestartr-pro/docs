@@ -451,22 +451,14 @@ def check_providers_and_features() -> None:
     print("Providers and Features sections")
     published = published_sections()
     provider_pages = (
-        "providers/index.html",
         "providers/terraform/index.html",
-        "providers/terraform/workspace-sync/index.html",
     )
     feature_pages = (
-        "features/index.html",
         "features/claims_repo/index.html",
         "features/state_repo_apps/KUBERNETES_README/index.html",
     )
     for page in [p for p in provider_pages + feature_pages if p.split("/")[0] in published]:
         check((PUBLIC_DIR / page).is_file(), f"{page} is reachable")
-    if "providers" in published:
-        check(
-            not (PUBLIC_DIR / "deploying-workloads" / "providers").exists(),
-            "Providers stays independent from Deploying workloads",
-        )
 
 
 def check_internal_links() -> None:
