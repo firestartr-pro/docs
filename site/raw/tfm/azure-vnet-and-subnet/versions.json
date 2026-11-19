@@ -1,0 +1,67 @@
+[
+  {
+    "version": "2.3.1",
+    "date": "2026-09-07T15:30:43Z",
+    "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-vnet-and-subnet/2.3.1/README.md"
+  },
+  {
+    "version": "2.3.0",
+    "date": "2026-08-18T10:20:34Z",
+    "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-vnet-and-subnet/2.3.0/README.md"
+  },
+  {
+    "version": "2.2.1",
+    "date": "2026-08-11T10:35:46Z",
+    "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-vnet-and-subnet/2.2.1/README.md"
+  },
+  {
+    "version": "2.2.0",
+    "date": "2026-03-17T09:36:53Z",
+    "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-vnet-and-subnet/2.2.0/README.md"
+  },
+  {
+    "version": "2.1.2",
+    "date": "2026-01-12T13:02:27Z",
+    "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-vnet-and-subnet/2.1.2/README.md"
+  },
+  {
+    "version": "2.1.1",
+    "date": "2025-04-24T10:44:01Z",
+    "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-vnet-and-subnet/2.1.1/README.md"
+  },
+  {
+    "version": "2.1.0",
+    "date": "2025-04-24T10:12:28Z",
+    "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-vnet-and-subnet/2.1.0/README.md"
+  },
+  {
+    "version": "2.0.2",
+    "date": "2025-03-28T18:21:00Z",
+    "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-vnet-and-subnet/2.0.2/README.md"
+  },
+  {
+    "version": "2.0.1",
+    "date": "2025-03-28T16:54:12Z",
+    "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-vnet-and-subnet/2.0.1/README.md"
+  },
+  {
+    "version": "2.0.0",
+    "date": "2025-03-11T11:50:01Z",
+    "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-vnet-and-subnet/2.0.0/README.md"
+  },
+  {
+    "version": "1.2.2",
+    "date": "2024-02-19T15:25:03Z",
+    "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-vnet-and-subnet/1.2.2/README.md"
+  },
+  {
+    "version": "1.2.1",
+    "date": "2024-01-24T09:48:41Z",
+    "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-vnet-and-subnet/1.2.1/README.md"
+  },
+  {
+    "version": "1.2.0",
+    "date": "2023-12-19T16:16:13Z",
+    "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-vnet-and-subnet/1.2.0/README.md"
+  }
+]

@@ -1,0 +1,132 @@
+[
+  {
+    "version": "3.0.3",
+    "date": "2026-10-01T09:42:53Z",
+    "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-aks/3.0.3/README.md"
+  },
+  {
+    "version": "3.0.2",
+    "date": "2026-09-29T07:51:35Z",
+    "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-aks/3.0.2/README.md"
+  },
+  {
+    "version": "3.0.1",
+    "date": "2026-09-25T09:19:35Z",
+    "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-aks/3.0.1/README.md"
+  },
+  {
+    "version": "3.0.0",
+    "date": "2026-09-24T14:35:09Z",
+    "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-aks/3.0.0/README.md"
+  },
+  {
+    "version": "2.0.4",
+    "date": "2026-08-20T13:16:14Z",
+    "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-aks/2.0.4/README.md"
+  },
+  {
+    "version": "2.0.3",
+    "date": "2026-08-19T10:45:06Z",
+    "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-aks/2.0.3/README.md"
+  },
+  {
+    "version": "2.0.2",
+    "date": "2026-05-25T12:00:45Z",
+    "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-aks/2.0.2/README.md"
+  },
+  {
+    "version": "2.0.1",
+    "date": "2026-05-25T11:47:09Z",
+    "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-aks/2.0.1/README.md"
+  },
+  {
+    "version": "2.0.0",
+    "date": "2026-03-17T18:33:29Z",
+    "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-aks/2.0.0/README.md"
+  },
+  {
+    "version": "1.9.3",
+    "date": "2025-12-03T15:53:18Z",
+    "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-aks/1.9.3/README.md"
+  },
+  {
+    "version": "1.9.2",
+    "date": "2025-04-25T08:35:05Z",
+    "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-aks/1.9.2/README.md"
+  },
+  {
+    "version": "1.9.1",
+    "date": "2025-04-24T10:56:06Z",
+    "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-aks/1.9.1/README.md"
+  },
+  {
+    "version": "1.9.0",
+    "date": "2025-04-24T10:28:34Z",
+    "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-aks/1.9.0/README.md"
+  },
+  {
+    "version": "1.8.1",
+    "date": "2025-04-24T08:02:48Z",
+    "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-aks/1.8.1/README.md"
+  },
+  {
+    "version": "1.8.0",
+    "date": "2024-10-17T10:27:23Z",
+    "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-aks/1.8.0/README.md"
+  },
+  {
+    "version": "1.7.1",
+    "date": "2024-10-14T09:01:29Z",
+    "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-aks/1.7.1/README.md"
+  },
+  {
+    "version": "1.7.0",
+    "date": "2024-10-14T08:21:18Z",
+    "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-aks/1.7.0/README.md"
+  },
+  {
+    "version": "1.6.0",
+    "date": "2024-09-23T12:31:14Z",
+    "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-aks/1.6.0/README.md"
+  },
+  {
+    "version": "1.5.2",
+    "date": "2024-08-01T09:13:46Z",
+    "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-aks/1.5.2/README.md"
+  },
+  {
+    "version": "1.5.1",
+    "date": "2024-08-01T06:48:37Z",
+    "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-aks/1.5.1/README.md"
+  },
+  {
+    "version": "1.5.0",
+    "date": "2024-07-31T09:15:54Z",
+    "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-aks/1.5.0/README.md"
+  },
+  {
+    "version": "1.4.1",
+    "date": "2024-01-25T16:47:49Z",
+    "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-aks/1.4.1/README.md"
+  },
+  {
+    "version": "1.4.0",
+    "date": "2024-01-25T16:32:55Z",
+    "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-aks/1.4.0/README.md"
+  },
+  {
+    "version": "1.3.0",
+    "date": "2024-01-25T10:23:36Z",
+    "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-aks/1.3.0/README.md"
+  },
+  {
+    "version": "1.2.0",
+    "date": "2023-12-19T16:16:13Z",
+    "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-aks/1.2.0/README.md"
+  },
+  {
+    "version": "1.1.0",
+    "date": "2023-12-15T08:24:51Z",
+    "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-aks/1.1.0/README.md"
+  }
+]

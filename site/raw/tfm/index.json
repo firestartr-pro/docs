@@ -1,464 +1,734 @@
 {
-  "modules": [
+  "tfm": [
     {
       "name": "aws-amq-rabbit",
-      "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/aws-amq-rabbit/README.md",
       "version": "0.3.0",
-      "source": "git::https://github.com/prefapp/tfm.git//modules/aws-amq-rabbit?ref=aws-amq-rabbit-v0.3.0"
+      "files": [
+        {
+          "name": "README.md",
+          "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/aws-amq-rabbit/README.md"
+        }
+      ]
     },
     {
       "name": "aws-backup",
-      "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/aws-backup/README.md",
       "version": "0.3.2",
-      "source": "git::https://github.com/prefapp/tfm.git//modules/aws-backup?ref=aws-backup-v0.3.2"
+      "files": [
+        {
+          "name": "README.md",
+          "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/aws-backup/README.md"
+        }
+      ]
     },
     {
       "name": "aws-cloudfront-delivery",
-      "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/aws-cloudfront-delivery/README.md",
       "version": "1.0.1",
-      "source": "git::https://github.com/prefapp/tfm.git//modules/aws-cloudfront-delivery?ref=aws-cloudfront-delivery-v1.0.1"
-    },
-    {
-      "name": "aws-ecr",
-      "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/aws-ecr/README.md",
-      "external-links": [
-        "https://raw.githubusercontent.com/terraform-aws-modules/terraform-aws-ecr/refs/heads/master/README.md"
-      ],
-      "source": "git::https://github.com/terraform-aws-modules/terraform-aws-ecr.git"
+      "files": [
+        {
+          "name": "README.md",
+          "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/aws-cloudfront-delivery/README.md"
+        }
+      ]
     },
     {
       "name": "aws-ecs",
-      "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/aws-ecs/README.md",
       "version": "1.2.0",
-      "source": "git::https://github.com/prefapp/tfm.git//modules/aws-ecs?ref=aws-ecs-v1.2.0"
+      "files": [
+        {
+          "name": "README.md",
+          "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/aws-ecs/README.md"
+        }
+      ]
     },
     {
       "name": "aws-eks",
-      "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/aws-eks/README.md",
       "version": "1.6.0",
-      "source": "git::https://github.com/prefapp/tfm.git//modules/aws-eks?ref=aws-eks-v1.6.0"
+      "files": [
+        {
+          "name": "README.md",
+          "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/aws-eks/README.md"
+        }
+      ]
     },
     {
       "name": "aws-kms",
-      "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/aws-kms/README.md",
       "version": "0.3.0",
-      "source": "git::https://github.com/prefapp/tfm.git//modules/aws-kms?ref=aws-kms-v0.3.0"
+      "files": [
+        {
+          "name": "README.md",
+          "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/aws-kms/README.md"
+        }
+      ]
     },
     {
       "name": "aws-kms-multiple",
-      "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/aws-kms-multiple/README.md",
       "version": "0.3.0",
-      "source": "git::https://github.com/prefapp/tfm.git//modules/aws-kms-multiple?ref=aws-kms-multiple-v0.3.0"
+      "files": [
+        {
+          "name": "README.md",
+          "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/aws-kms-multiple/README.md"
+        }
+      ]
     },
     {
       "name": "aws-oidc",
-      "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/aws-oidc/README.md",
       "version": "1.5.0",
-      "source": "git::https://github.com/prefapp/tfm.git//modules/aws-oidc?ref=aws-oidc-v1.5.0"
+      "files": [
+        {
+          "name": "README.md",
+          "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/aws-oidc/README.md"
+        }
+      ]
     },
     {
       "name": "aws-parameter-store",
-      "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/aws-parameter-store/README.md",
       "version": "0.5.0",
-      "source": "git::https://github.com/prefapp/tfm.git//modules/aws-parameter-store?ref=aws-parameter-store-v0.5.0"
+      "files": [
+        {
+          "name": "README.md",
+          "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/aws-parameter-store/README.md"
+        }
+      ]
     },
     {
       "name": "aws-parameter-store-replication",
-      "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/aws-parameter-store-replication/README.md",
       "version": "0.3.0",
-      "source": "git::https://github.com/prefapp/tfm.git//modules/aws-parameter-store-replication?ref=aws-parameter-store-replication-v0.3.0"
+      "files": [
+        {
+          "name": "README.md",
+          "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/aws-parameter-store-replication/README.md"
+        }
+      ]
     },
     {
       "name": "aws-rds",
-      "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/aws-rds/README.md",
       "version": "0.2.0",
-      "source": "git::https://github.com/prefapp/tfm.git//modules/aws-rds?ref=aws-rds-v0.2.0"
+      "files": [
+        {
+          "name": "README.md",
+          "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/aws-rds/README.md"
+        }
+      ]
     },
     {
       "name": "aws-s3",
-      "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/aws-s3/README.md",
       "version": "0.1.1",
-      "source": "git::https://github.com/prefapp/tfm.git//modules/aws-s3?ref=aws-s3-v0.1.1"
+      "files": [
+        {
+          "name": "README.md",
+          "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/aws-s3/README.md"
+        }
+      ]
     },
     {
       "name": "aws-secretsmanager-replication",
-      "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/aws-secretsmanager-replication/README.md",
       "version": "2.0.1",
-      "source": "git::https://github.com/prefapp/tfm.git//modules/aws-secretsmanager-replication?ref=aws-secretsmanager-replication-v2.0.1"
+      "files": [
+        {
+          "name": "README.md",
+          "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/aws-secretsmanager-replication/README.md"
+        }
+      ]
     },
     {
       "name": "aws-sso",
-      "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/aws-sso/README.md",
       "version": "0.7.0",
-      "source": "git::https://github.com/prefapp/tfm.git//modules/aws-sso?ref=aws-sso-v0.7.0"
+      "files": [
+        {
+          "name": "README.md",
+          "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/aws-sso/README.md"
+        }
+      ]
     },
     {
       "name": "aws-terraform-backend",
-      "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/aws-terraform-backend/README.md",
       "version": "1.0.0",
-      "source": "git::https://github.com/prefapp/tfm.git//modules/aws-terraform-backend?ref=aws-terraform-backend-v1.0.0"
-    },
-    {
-      "name": "aws-vpc",
-      "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/aws-vpc/README.md",
-      "external-links": [
-        "https://raw.githubusercontent.com/terraform-aws-modules/terraform-aws-vpc/refs/heads/master/README.md"
-      ],
-      "source": "git::https://github.com/terraform-aws-modules/terraform-aws-vpc.git"
+      "files": [
+        {
+          "name": "README.md",
+          "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/aws-terraform-backend/README.md"
+        }
+      ]
     },
     {
       "name": "aws-waf",
-      "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/aws-waf/README.md",
       "version": "0.2.0",
-      "source": "git::https://github.com/prefapp/tfm.git//modules/aws-waf?ref=aws-waf-v0.2.0"
+      "files": [
+        {
+          "name": "README.md",
+          "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/aws-waf/README.md"
+        }
+      ]
     },
     {
       "name": "azure-aks",
-      "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-aks/README.md",
       "version": "3.0.3",
-      "source": "git::https://github.com/prefapp/tfm.git//modules/azure-aks?ref=azure-aks-v3.0.3"
+      "files": [
+        {
+          "name": "README.md",
+          "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-aks/README.md"
+        }
+      ]
     },
     {
       "name": "azure-alerts",
-      "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-alerts/README.md",
       "version": "0.1.3",
-      "source": "git::https://github.com/prefapp/tfm.git//modules/azure-alerts?ref=azure-alerts-v0.1.3"
+      "files": [
+        {
+          "name": "README.md",
+          "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-alerts/README.md"
+        }
+      ]
     },
     {
       "name": "azure-app-gateway",
-      "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-app-gateway/README.md",
       "version": "0.10.1",
-      "source": "git::https://github.com/prefapp/tfm.git//modules/azure-app-gateway?ref=azure-app-gateway-v0.10.1"
+      "files": [
+        {
+          "name": "README.md",
+          "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-app-gateway/README.md"
+        }
+      ]
     },
     {
       "name": "azure-application",
-      "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-application/README.md",
       "version": "1.0.2",
-      "source": "git::https://github.com/prefapp/tfm.git//modules/azure-application?ref=azure-application-v1.0.2"
+      "files": [
+        {
+          "name": "README.md",
+          "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-application/README.md"
+        }
+      ]
     },
     {
       "name": "azure-backup-vault",
-      "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-backup-vault/README.md",
       "version": "0.1.11",
-      "source": "git::https://github.com/prefapp/tfm.git//modules/azure-backup-vault?ref=azure-backup-vault-v0.1.11"
+      "files": [
+        {
+          "name": "README.md",
+          "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-backup-vault/README.md"
+        }
+      ]
     },
     {
       "name": "azure-cognitive-account",
-      "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-cognitive-account/README.md",
       "version": "0.1.0",
-      "source": "git::https://github.com/prefapp/tfm.git//modules/azure-cognitive-account?ref=azure-cognitive-account-v0.1.0"
+      "files": [
+        {
+          "name": "README.md",
+          "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-cognitive-account/README.md"
+        }
+      ]
     },
     {
       "name": "azure-customrole",
-      "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-customrole/README.md",
       "version": "0.2.2",
-      "source": "git::https://github.com/prefapp/tfm.git//modules/azure-customrole?ref=azure-customrole-v0.2.2"
+      "files": [
+        {
+          "name": "README.md",
+          "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-customrole/README.md"
+        }
+      ]
     },
     {
       "name": "azure-disks",
-      "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-disks/README.md",
       "version": "1.2.1",
-      "source": "git::https://github.com/prefapp/tfm.git//modules/azure-disks?ref=azure-disks-v1.2.1"
+      "files": [
+        {
+          "name": "README.md",
+          "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-disks/README.md"
+        }
+      ]
     },
     {
       "name": "azure-disks-backup",
-      "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-disks-backup/README.md",
       "version": "1.2.4",
-      "source": "git::https://github.com/prefapp/tfm.git//modules/azure-disks-backup?ref=azure-disks-backup-v1.2.4"
+      "files": [
+        {
+          "name": "README.md",
+          "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-disks-backup/README.md"
+        }
+      ]
     },
     {
       "name": "azure-dns-zone",
-      "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-dns-zone/README.md",
-      "version": "0.4.0",
-      "source": "git::https://github.com/prefapp/tfm.git//modules/azure-dns-zone?ref=azure-dns-zone-v0.4.0"
+      "version": "0.4.1",
+      "files": [
+        {
+          "name": "README.md",
+          "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-dns-zone/README.md"
+        }
+      ]
     },
     {
       "name": "azure-event-hub",
-      "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-event-hub/README.md",
       "version": "0.1.2",
-      "source": "git::https://github.com/prefapp/tfm.git//modules/azure-event-hub?ref=azure-event-hub-v0.1.2"
+      "files": [
+        {
+          "name": "README.md",
+          "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-event-hub/README.md"
+        }
+      ]
     },
     {
       "name": "azure-flexible-server-postgresql",
-      "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-flexible-server-postgresql/README.md",
       "version": "3.1.3",
-      "source": "git::https://github.com/prefapp/tfm.git//modules/azure-flexible-server-postgresql?ref=azure-flexible-server-postgresql-v3.1.3"
+      "files": [
+        {
+          "name": "README.md",
+          "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-flexible-server-postgresql/README.md"
+        }
+      ]
     },
     {
       "name": "azure-kv",
-      "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-kv/README.md",
       "version": "1.5.3",
-      "source": "git::https://github.com/prefapp/tfm.git//modules/azure-kv?ref=azure-kv-v1.5.3"
+      "files": [
+        {
+          "name": "README.md",
+          "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-kv/README.md"
+        }
+      ]
     },
     {
       "name": "azure-linux-vm",
-      "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-linux-vm/README.md",
       "version": "0.1.4",
-      "source": "git::https://github.com/prefapp/tfm.git//modules/azure-linux-vm?ref=azure-linux-vm-v0.1.4"
+      "files": [
+        {
+          "name": "README.md",
+          "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-linux-vm/README.md"
+        }
+      ]
     },
     {
       "name": "azure-localnet-gateway",
-      "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-localnet-gateway/README.md",
       "version": "0.1.2",
-      "source": "git::https://github.com/prefapp/tfm.git//modules/azure-localnet-gateway?ref=azure-localnet-gateway-v0.1.2"
+      "files": [
+        {
+          "name": "README.md",
+          "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-localnet-gateway/README.md"
+        }
+      ]
     },
     {
       "name": "azure-managed-redis",
-      "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-managed-redis/README.md",
       "version": "2.0.0",
-      "source": "git::https://github.com/prefapp/tfm.git//modules/azure-managed-redis?ref=azure-managed-redis-v2.0.0"
+      "files": [
+        {
+          "name": "README.md",
+          "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-managed-redis/README.md"
+        }
+      ]
     },
     {
       "name": "azure-mi",
-      "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-mi/README.md",
       "version": "1.3.2",
-      "source": "git::https://github.com/prefapp/tfm.git//modules/azure-mi?ref=azure-mi-v1.3.2"
+      "files": [
+        {
+          "name": "README.md",
+          "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-mi/README.md"
+        }
+      ]
     },
     {
       "name": "azure-nat-gateway",
-      "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-nat-gateway/README.md",
       "version": "1.1.1",
-      "source": "git::https://github.com/prefapp/tfm.git//modules/azure-nat-gateway?ref=azure-nat-gateway-v1.1.1"
+      "files": [
+        {
+          "name": "README.md",
+          "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-nat-gateway/README.md"
+        }
+      ]
     },
     {
       "name": "azure-nsg-nsr",
-      "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-nsg-nsr/README.md",
       "version": "0.2.4",
-      "source": "git::https://github.com/prefapp/tfm.git//modules/azure-nsg-nsr?ref=azure-nsg-nsr-v0.2.4"
+      "files": [
+        {
+          "name": "README.md",
+          "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-nsg-nsr/README.md"
+        }
+      ]
     },
     {
       "name": "azure-oidc",
-      "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-oidc/README.md",
       "version": "1.4.3",
-      "source": "git::https://github.com/prefapp/tfm.git//modules/azure-oidc?ref=azure-oidc-v1.4.3"
+      "files": [
+        {
+          "name": "README.md",
+          "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-oidc/README.md"
+        }
+      ]
     },
     {
       "name": "azure-policy-assignments",
-      "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-policy-assignments/README.md",
       "version": "0.2.2",
-      "source": "git::https://github.com/prefapp/tfm.git//modules/azure-policy-assignments?ref=azure-policy-assignments-v0.2.2"
+      "files": [
+        {
+          "name": "README.md",
+          "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-policy-assignments/README.md"
+        }
+      ]
     },
     {
       "name": "azure-policy-definitions",
-      "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-policy-definitions/README.md",
       "version": "0.2.2",
-      "source": "git::https://github.com/prefapp/tfm.git//modules/azure-policy-definitions?ref=azure-policy-definitions-v0.2.2"
+      "files": [
+        {
+          "name": "README.md",
+          "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-policy-definitions/README.md"
+        }
+      ]
     },
     {
       "name": "azure-private-dns-zone",
-      "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-private-dns-zone/README.md",
       "version": "0.2.2",
-      "source": "git::https://github.com/prefapp/tfm.git//modules/azure-private-dns-zone?ref=azure-private-dns-zone-v0.2.2"
+      "files": [
+        {
+          "name": "README.md",
+          "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-private-dns-zone/README.md"
+        }
+      ]
     },
     {
       "name": "azure-public-ip",
-      "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-public-ip/README.md",
       "version": "0.3.4",
-      "source": "git::https://github.com/prefapp/tfm.git//modules/azure-public-ip?ref=azure-public-ip-v0.3.4"
+      "files": [
+        {
+          "name": "README.md",
+          "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-public-ip/README.md"
+        }
+      ]
     },
     {
       "name": "azure-public-prefix",
-      "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-public-prefix/README.md",
       "version": "0.3.3",
-      "source": "git::https://github.com/prefapp/tfm.git//modules/azure-public-prefix?ref=azure-public-prefix-v0.3.3"
+      "files": [
+        {
+          "name": "README.md",
+          "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-public-prefix/README.md"
+        }
+      ]
     },
     {
       "name": "azure-redis-cache",
-      "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-redis-cache/README.md",
       "version": "1.0.0",
-      "source": "git::https://github.com/prefapp/tfm.git//modules/azure-redis-cache?ref=azure-redis-cache-v1.0.0"
+      "files": [
+        {
+          "name": "README.md",
+          "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-redis-cache/README.md"
+        }
+      ]
     },
     {
       "name": "azure-resource-group",
-      "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-resource-group/README.md",
       "version": "1.5.2",
-      "source": "git::https://github.com/prefapp/tfm.git//modules/azure-resource-group?ref=azure-resource-group-v1.5.2"
+      "files": [
+        {
+          "name": "README.md",
+          "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-resource-group/README.md"
+        }
+      ]
     },
     {
       "name": "azure-role-assignment",
-      "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-role-assignment/README.md",
       "version": "0.2.1",
-      "source": "git::https://github.com/prefapp/tfm.git//modules/azure-role-assignment?ref=azure-role-assignment-v0.2.1"
+      "files": [
+        {
+          "name": "README.md",
+          "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-role-assignment/README.md"
+        }
+      ]
     },
     {
       "name": "azure-sa",
-      "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-sa/README.md",
       "version": "0.5.0",
-      "source": "git::https://github.com/prefapp/tfm.git//modules/azure-sa?ref=azure-sa-v0.5.0"
+      "files": [
+        {
+          "name": "README.md",
+          "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-sa/README.md"
+        }
+      ]
     },
     {
       "name": "azure-sa-backup",
-      "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-sa-backup/README.md",
       "version": "0.3.3",
-      "source": "git::https://github.com/prefapp/tfm.git//modules/azure-sa-backup?ref=azure-sa-backup-v0.3.3"
+      "files": [
+        {
+          "name": "README.md",
+          "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-sa-backup/README.md"
+        }
+      ]
     },
     {
       "name": "azure-vmss",
-      "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-vmss/README.md",
       "version": "0.3.3",
-      "source": "git::https://github.com/prefapp/tfm.git//modules/azure-vmss?ref=azure-vmss-v0.3.3"
+      "files": [
+        {
+          "name": "README.md",
+          "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-vmss/README.md"
+        }
+      ]
     },
     {
       "name": "azure-vnet-and-subnet",
-      "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-vnet-and-subnet/README.md",
       "version": "2.3.1",
-      "source": "git::https://github.com/prefapp/tfm.git//modules/azure-vnet-and-subnet?ref=azure-vnet-and-subnet-v2.3.1"
+      "files": [
+        {
+          "name": "README.md",
+          "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-vnet-and-subnet/README.md"
+        }
+      ]
     },
     {
       "name": "azure-vnet-gateway",
-      "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-vnet-gateway/README.md",
       "version": "0.1.1",
-      "source": "git::https://github.com/prefapp/tfm.git//modules/azure-vnet-gateway?ref=azure-vnet-gateway-v0.1.1"
+      "files": [
+        {
+          "name": "README.md",
+          "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-vnet-gateway/README.md"
+        }
+      ]
     },
     {
       "name": "azure-vnet-gateway-connection",
-      "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-vnet-gateway-connection/README.md",
       "version": "0.1.1",
-      "source": "git::https://github.com/prefapp/tfm.git//modules/azure-vnet-gateway-connection?ref=azure-vnet-gateway-connection-v0.1.1"
+      "files": [
+        {
+          "name": "README.md",
+          "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-vnet-gateway-connection/README.md"
+        }
+      ]
     },
     {
       "name": "azure-vnet-peering",
-      "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-vnet-peering/README.md",
       "version": "1.3.2",
-      "source": "git::https://github.com/prefapp/tfm.git//modules/azure-vnet-peering?ref=azure-vnet-peering-v1.3.2"
+      "files": [
+        {
+          "name": "README.md",
+          "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-vnet-peering/README.md"
+        }
+      ]
     },
     {
       "name": "azure-windows-vm",
-      "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-windows-vm/README.md",
       "version": "0.1.11",
-      "source": "git::https://github.com/prefapp/tfm.git//modules/azure-windows-vm?ref=azure-windows-vm-v0.1.11"
+      "files": [
+        {
+          "name": "README.md",
+          "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azure-windows-vm/README.md"
+        }
+      ]
     },
     {
       "name": "azuread-group",
-      "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azuread-group/README.md",
       "version": "1.2.1",
-      "source": "git::https://github.com/prefapp/tfm.git//modules/azuread-group?ref=azuread-group-v1.2.1"
+      "files": [
+        {
+          "name": "README.md",
+          "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/azuread-group/README.md"
+        }
+      ]
     },
     {
       "name": "cloudamqp-cluster",
-      "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/cloudamqp-cluster/README.md",
       "version": "1.1.2",
-      "source": "git::https://github.com/prefapp/tfm.git//modules/cloudamqp-cluster?ref=cloudamqp-cluster-v1.1.2"
-    },
-    {
-      "name": "cloudamqp-vpc",
-      "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/cloudamqp-vpc/README.md",
-      "version": "1.2.0",
-      "source": "git::https://github.com/prefapp/tfm.git//modules/cloudamqp-vpc?ref=cloudamqp-vpc-v1.2.0"
+      "files": [
+        {
+          "name": "README.md",
+          "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/cloudamqp-cluster/README.md"
+        }
+      ]
     },
     {
       "name": "dummy",
-      "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/dummy/README.md",
       "version": "0.3.0",
-      "source": "git::https://github.com/prefapp/tfm.git//modules/dummy?ref=dummy-v0.3.0"
+      "files": [
+        {
+          "name": "README.md",
+          "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/dummy/README.md"
+        }
+      ]
     },
     {
       "name": "github-files-set",
-      "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/github-files-set/README.md",
       "version": "0.1.2",
-      "source": "git::https://github.com/prefapp/tfm.git//modules/github-files-set?ref=github-files-set-v0.1.2"
+      "files": [
+        {
+          "name": "README.md",
+          "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/github-files-set/README.md"
+        }
+      ]
     },
     {
       "name": "github-membership",
-      "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/github-membership/README.md",
       "version": "0.2.0",
-      "source": "git::https://github.com/prefapp/tfm.git//modules/github-membership?ref=github-membership-v0.2.0"
+      "files": [
+        {
+          "name": "README.md",
+          "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/github-membership/README.md"
+        }
+      ]
     },
     {
       "name": "github-org-ruleset",
-      "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/github-org-ruleset/README.md",
       "version": "0.1.1",
-      "source": "git::https://github.com/prefapp/tfm.git//modules/github-org-ruleset?ref=github-org-ruleset-v0.1.1"
+      "files": [
+        {
+          "name": "README.md",
+          "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/github-org-ruleset/README.md"
+        }
+      ]
     },
     {
       "name": "github-org-rulesets",
-      "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/github-org-rulesets/README.md",
       "version": "0.1.1",
-      "source": "git::https://github.com/prefapp/tfm.git//modules/github-org-rulesets?ref=github-org-rulesets-v0.1.1"
+      "files": [
+        {
+          "name": "README.md",
+          "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/github-org-rulesets/README.md"
+        }
+      ]
     },
     {
       "name": "github-org-secrets-section",
-      "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/github-org-secrets-section/README.md",
       "version": "0.2.0",
-      "source": "git::https://github.com/prefapp/tfm.git//modules/github-org-secrets-section?ref=github-org-secrets-section-v0.2.0"
+      "files": [
+        {
+          "name": "README.md",
+          "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/github-org-secrets-section/README.md"
+        }
+      ]
     },
     {
       "name": "github-org-settings",
-      "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/github-org-settings/README.md",
       "version": "0.1.0",
-      "source": "git::https://github.com/prefapp/tfm.git//modules/github-org-settings?ref=github-org-settings-v0.1.0"
+      "files": [
+        {
+          "name": "README.md",
+          "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/github-org-settings/README.md"
+        }
+      ]
     },
     {
       "name": "github-org-variables-section",
-      "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/github-org-variables-section/README.md",
       "version": "0.1.0",
-      "source": "git::https://github.com/prefapp/tfm.git//modules/github-org-variables-section?ref=github-org-variables-section-v0.1.0"
+      "files": [
+        {
+          "name": "README.md",
+          "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/github-org-variables-section/README.md"
+        }
+      ]
     },
     {
       "name": "github-org-webhook",
-      "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/github-org-webhook/README.md",
       "version": "0.2.0",
-      "source": "git::https://github.com/prefapp/tfm.git//modules/github-org-webhook?ref=github-org-webhook-v0.2.0"
+      "files": [
+        {
+          "name": "README.md",
+          "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/github-org-webhook/README.md"
+        }
+      ]
     },
     {
       "name": "github-repo",
-      "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/github-repo/README.md",
       "version": "0.9.0",
-      "source": "git::https://github.com/prefapp/tfm.git//modules/github-repo?ref=github-repo-v0.9.0"
+      "files": [
+        {
+          "name": "README.md",
+          "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/github-repo/README.md"
+        }
+      ]
     },
     {
       "name": "github-repo-secrets-section",
-      "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/github-repo-secrets-section/README.md",
       "version": "0.1.2",
-      "source": "git::https://github.com/prefapp/tfm.git//modules/github-repo-secrets-section?ref=github-repo-secrets-section-v0.1.2"
+      "files": [
+        {
+          "name": "README.md",
+          "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/github-repo-secrets-section/README.md"
+        }
+      ]
     },
     {
       "name": "github-team",
-      "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/github-team/README.md",
       "version": "0.2.0",
-      "source": "git::https://github.com/prefapp/tfm.git//modules/github-team?ref=github-team-v0.2.0"
+      "files": [
+        {
+          "name": "README.md",
+          "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/github-team/README.md"
+        }
+      ]
     },
     {
       "name": "mongodb-atlas-azure-privatelink",
-      "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/mongodb-atlas-azure-privatelink/README.md",
       "version": "0.2.3",
-      "source": "git::https://github.com/prefapp/tfm.git//modules/mongodb-atlas-azure-privatelink?ref=mongodb-atlas-azure-privatelink-v0.2.3"
+      "files": [
+        {
+          "name": "README.md",
+          "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/mongodb-atlas-azure-privatelink/README.md"
+        }
+      ]
     },
     {
       "name": "mongodb-atlas-cluster",
-      "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/mongodb-atlas-cluster/README.md",
       "version": "0.4.0",
-      "source": "git::https://github.com/prefapp/tfm.git//modules/mongodb-atlas-cluster?ref=mongodb-atlas-cluster-v0.4.0"
+      "files": [
+        {
+          "name": "README.md",
+          "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/mongodb-atlas-cluster/README.md"
+        }
+      ]
     },
     {
       "name": "mongodb-atlas-project",
-      "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/mongodb-atlas-project/README.md",
       "version": "1.4.1",
-      "source": "git::https://github.com/prefapp/tfm.git//modules/mongodb-atlas-project?ref=mongodb-atlas-project-v1.4.1"
+      "files": [
+        {
+          "name": "README.md",
+          "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/mongodb-atlas-project/README.md"
+        }
+      ]
     },
     {
       "name": "ovh-container-registry",
-      "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/ovh-container-registry/README.md",
       "version": "0.1.0",
-      "source": "git::https://github.com/prefapp/tfm.git//modules/ovh-container-registry?ref=ovh-container-registry-v0.1.0"
+      "files": [
+        {
+          "name": "README.md",
+          "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/ovh-container-registry/README.md"
+        }
+      ]
     },
     {
       "name": "ovh-mks",
-      "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/ovh-mks/README.md",
       "version": "0.2.0",
-      "source": "git::https://github.com/prefapp/tfm.git//modules/ovh-mks?ref=ovh-mks-v0.2.0"
+      "files": [
+        {
+          "name": "README.md",
+          "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/ovh-mks/README.md"
+        }
+      ]
     },
     {
       "name": "ovh-mks-access",
-      "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/ovh-mks-access/README.md",
       "version": "0.2.0",
-      "source": "git::https://github.com/prefapp/tfm.git//modules/ovh-mks-access?ref=ovh-mks-access-v0.2.0"
+      "files": [
+        {
+          "name": "README.md",
+          "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/ovh-mks-access/README.md"
+        }
+      ]
     },
     {
       "name": "ovh-network",
-      "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/ovh-network/README.md",
       "version": "0.2.0",
-      "source": "git::https://github.com/prefapp/tfm.git//modules/ovh-network?ref=ovh-network-v0.2.0"
+      "files": [
+        {
+          "name": "README.md",
+          "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/ovh-network/README.md"
+        }
+      ]
     }
   ]
 }
