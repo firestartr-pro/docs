@@ -1,0 +1,17 @@
+[
+  {
+    "version": "1.0.0",
+    "date": "2026-10-05T15:43:07Z",
+    "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/features/hello-world/1.0.0/schema.json"
+  },
+  {
+    "version": "0.3.0",
+    "date": "2026-08-31T16:19:16Z",
+    "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/features/hello-world/0.3.0/schema.json"
+  },
+  {
+    "version": "0.2.0",
+    "date": "2026-07-22T16:26:20Z",
+    "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/features/hello-world/0.2.0/schema.json"
+  }
+]

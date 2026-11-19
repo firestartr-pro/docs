@@ -1,0 +1,22 @@
+[
+  {
+    "version": "2.0.0",
+    "date": "2026-10-05T15:44:09Z",
+    "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/features/catalog_repo/2.0.0/schema.json"
+  },
+  {
+    "version": "1.7.0",
+    "date": "2026-08-31T16:11:49Z",
+    "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/features/catalog_repo/1.7.0/schema.json"
+  },
+  {
+    "version": "1.6.0",
+    "date": "2026-08-14T13:04:24Z",
+    "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/features/catalog_repo/1.6.0/schema.json"
+  },
+  {
+    "version": "1.5.0",
+    "date": "2026-07-22T15:43:36Z",
+    "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/features/catalog_repo/1.5.0/schema.json"
+  }
+]

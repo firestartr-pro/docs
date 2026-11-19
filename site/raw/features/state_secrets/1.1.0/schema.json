@@ -1,0 +1,24 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "state_secrets args",
+  "type": "object",
+  "properties": {
+    "feature_name": {
+      "const": "state_secrets"
+    }
+  },
+  "fileManifest": [
+    {
+      "src": ".config/.gitkeep",
+      "dest": ".config/.gitkeep",
+      "user_managed": false
+    },
+    {
+      "src": ".github/workflows/auto-merge.yaml",
+      "dest": ".github/workflows/auto-merge.yaml",
+      "user_managed": false
+    }
+  ],
+  "description": "no description",
+  "version": "1.1.0"
+}

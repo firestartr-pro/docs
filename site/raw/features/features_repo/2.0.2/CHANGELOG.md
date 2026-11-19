@@ -1,0 +1,114 @@
+# Changelog
+
+## [2.0.2](https://github.com/prefapp/features/compare/features_repo-v2.0.1...features_repo-v2.0.2) (2026-10-16)
+
+
+### Bug Fixes
+
+* **features_repo:** update testing and scripts with lastest changes ([#1393](https://github.com/prefapp/features/issues/1393)) ([c9ffdc6](https://github.com/prefapp/features/commit/c9ffdc6239ef969af56ca188804808c0f4921225))
+
+## [2.0.1](https://github.com/prefapp/features/compare/features_repo-v2.0.0...features_repo-v2.0.1) (2026-10-16)
+
+
+### Bug Fixes
+
+* **features_repo:** retry docs promotion pushes on concurrent releases ([#1364](https://github.com/prefapp/features/issues/1364)) ([1f40df3](https://github.com/prefapp/features/commit/1f40df3f0edb97fc350e47ab5fcbdc53a7d32b20))
+* **features_repo:** sync deps source and set default disable_promote_schemas to true ([#1391](https://github.com/prefapp/features/issues/1391)) ([0f29cf3](https://github.com/prefapp/features/commit/0f29cf39c203313cd829a041219a8d0df4189914))
+
+## [2.0.0](https://github.com/prefapp/features/compare/features_repo-v1.4.1...features_repo-v2.0.0) (2026-10-05)
+
+
+### ⚠ BREAKING CHANGES
+
+* Add format to all existing features ([#1249](https://github.com/prefapp/features/issues/1249))
+
+### Features
+
+* Add format to all existing features ([#1249](https://github.com/prefapp/features/issues/1249)) ([bccb398](https://github.com/prefapp/features/commit/bccb3981b1ac32e0552e9c9bfdd1cd1cf8cec491))
+
+## [1.4.1](https://github.com/prefapp/features/compare/features_repo-v1.4.0...features_repo-v1.4.1) (2026-09-01)
+
+
+### Bug Fixes
+
+* **features_repo:** resolve correct org for docs repo in promote-schemas workflow ([#1297](https://github.com/prefapp/features/issues/1297)) ([3f8591c](https://github.com/prefapp/features/commit/3f8591c01bedd5aeac7331d614b6449ff72cbad7))
+
+## [1.4.0](https://github.com/prefapp/features/compare/features_repo-v1.3.0...features_repo-v1.4.0) (2026-08-31)
+
+
+### Features
+
+* **schema:** add top-level description to all features ([#1281](https://github.com/prefapp/features/issues/1281)) ([b3df3de](https://github.com/prefapp/features/commit/b3df3de88f4f27320a9152d7d7728d9dbebec6d1))
+
+## [1.3.0](https://github.com/prefapp/features/compare/features_repo-v1.2.1...features_repo-v1.3.0) (2026-08-20)
+
+
+### Features
+
+* `$format` parameter and feature arg validation ([#1230](https://github.com/prefapp/features/issues/1230)) ([5c71032](https://github.com/prefapp/features/commit/5c71032f07c3f9eabaf2751d100104e5d04416bc))
+
+
+### Bug Fixes
+
+* **features_repo:** bump features_renderer to 1.17.1 and add ajv to rendered repo for lockfile parity ([#1254](https://github.com/prefapp/features/issues/1254)) ([34582db](https://github.com/prefapp/features/commit/34582db35b02c24792a013543c5d9be0861a63c8))
+
+## [1.2.1](https://github.com/prefapp/features/compare/features_repo-v1.2.0...features_repo-v1.2.1) (2026-08-18)
+
+
+### Bug Fixes
+
+* Docs and features_repo pnpm-lock statle file ([#1245](https://github.com/prefapp/features/issues/1245)) ([d0e58f8](https://github.com/prefapp/features/commit/d0e58f8f60b90cb7d917c9b8808ab2edd9aa7534))
+
+## [1.2.0](https://github.com/prefapp/features/compare/features_repo-v1.1.0...features_repo-v1.2.0) (2026-08-11)
+
+
+### Features
+
+* feature_repo machinery generalization ([#1177](https://github.com/prefapp/features/issues/1177)) ([fc85e44](https://github.com/prefapp/features/commit/fc85e44941748b32c5e0adcb15f4eb5e2df4eef5))
+
+## [1.1.0](https://github.com/prefapp/features/compare/features_repo-v1.0.1...features_repo-v1.1.0) (2026-07-22)
+
+
+### Features
+
+* add json-schema per feature ([#1131](https://github.com/prefapp/features/issues/1131)) ([2c3e1c9](https://github.com/prefapp/features/commit/2c3e1c9bbfc402c170448581e52a326e744270f0))
+
+## [1.0.1](https://github.com/prefapp/features/compare/features_repo-v1.0.0...features_repo-v1.0.1) (2026-06-18)
+
+
+### Bug Fixes
+
+* add new pnpm auth system for pnpm &gt; 1.5 ([#1100](https://github.com/prefapp/features/issues/1100)) ([24dcb64](https://github.com/prefapp/features/commit/24dcb64087ae49e33b5aefc284665cfd5934544c))
+
+## [1.0.0](https://github.com/prefapp/features/compare/features_repo-v0.3.1...features_repo-v1.0.0) (2026-06-02)
+
+
+### ⚠ BREAKING CHANGES
+
+* **features_repo:** update versions for the deprecated nodejs 20 ([#1065](https://github.com/prefapp/features/issues/1065))
+
+### Features
+
+* **features_repo:** update versions for the deprecated nodejs 20 ([#1065](https://github.com/prefapp/features/issues/1065)) ([b0f757d](https://github.com/prefapp/features/commit/b0f757da318c0a04240e58510cb9c70777d98157))
+
+## [0.3.1](https://github.com/prefapp/features/compare/features_repo-v0.3.0...features_repo-v0.3.1) (2026-02-26)
+
+
+### Bug Fixes
+
+* use temporal mustache tags to scape block ([c18b4d1](https://github.com/prefapp/features/commit/c18b4d104ea9c51313ec4820a1484df9e753ddc0))
+* use temporal mustache tags to scape block ([#857](https://github.com/prefapp/features/issues/857)) ([c18b4d1](https://github.com/prefapp/features/commit/c18b4d104ea9c51313ec4820a1484df9e753ddc0))
+
+## [0.3.0](https://github.com/prefapp/features/compare/features_repo-v0.2.0...features_repo-v0.3.0) (2026-02-25)
+
+
+### Features
+
+* **features_repo:** add doc about tests and update packages urls ([#853](https://github.com/prefapp/features/issues/853)) ([6c3902b](https://github.com/prefapp/features/commit/6c3902bb0889d16933a38f8d32c48f52689a849d))
+
+## [0.2.0](https://github.com/prefapp/features/compare/features_repo-v0.1.0...features_repo-v0.2.0) (2026-02-25)
+
+
+### Features
+
+* Add feature to create custom features repo ([#846](https://github.com/prefapp/features/issues/846)) ([1971086](https://github.com/prefapp/features/commit/1971086fabdbb0312a451c793dd8ae4d91983fa9))

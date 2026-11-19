@@ -1,0 +1,214 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "build_and_publish_lambda_code args",
+  "type": "object",
+  "properties": {
+    "feature_name": {
+      "const": "build_and_publish_lambda_code"
+    },
+    "s3_bucket": {
+      "type": "string",
+      "description": "The S3 bucket to upload service artifacts to.",
+      "examples": [
+        "lambda-sources"
+      ]
+    },
+    "aws_oidc_s3_role_var_name": {
+      "type": "string",
+      "description": "GitHub Actions repository variable name containing the AWS IAM role ARN used for OIDC authentication to push artifacts to S3.",
+      "default": "AWS_OIDC_S3_ROLE",
+      "examples": [
+        "AWS_OIDC_S3_ROLE",
+        "AWS_LAMBDA_ARTIFACTS_ROLE"
+      ]
+    },
+    "aws_region": {
+      "type": "string",
+      "description": "The AWS region for the S3 bucket.",
+      "default": "eu-west-3",
+      "examples": [
+        "eu-west-3",
+        "eu-west-1"
+      ]
+    },
+    "handler_path": {
+      "type": "string",
+      "description": "Default handler entry point for esbuild bundling. Applied to services that do not specify a handler in the config file.",
+      "default": "src/handler.ts",
+      "examples": [
+        "src/handler.ts",
+        "src/infrastructure/aws/APIGatewayProxyHandler.ts"
+      ]
+    },
+    "minify_default": {
+      "type": "string",
+      "description": "Default value for esbuild minification on release-triggered and manual builds.",
+      "default": "true",
+      "examples": [
+        "true",
+        "false"
+      ]
+    },
+    "service_root_dir": {
+      "type": "string",
+      "description": "Root directory where services are discovered (depth-2 scan for package.json). Used as fallback when no build config file exists.",
+      "default": "packages/",
+      "examples": [
+        "packages/",
+        "lambdas/"
+      ]
+    },
+    "pnpm_version": {
+      "type": "string",
+      "description": "Version of pnpm to pin via corepack.",
+      "default": "11",
+      "examples": [
+        "11",
+        "10"
+      ]
+    },
+    "esbuild_version": {
+      "type": "string",
+      "description": "Version of esbuild to invoke with pnpm dlx for service bundling.",
+      "default": "0.27.0",
+      "examples": [
+        "0.27.0",
+        "0.26.0"
+      ]
+    },
+    "build_config_file": {
+      "type": "string",
+      "description": "Path to the YAML build config file that declares per-service definitions (name, path, handler, build command, artifact path).",
+      "default": ".github/build_lambda_packages.yaml",
+      "examples": [
+        ".github/build_lambda_packages.yaml"
+      ]
+    },
+    "minimum_release_age": {
+      "type": "string",
+      "description": "Minimum package age in minutes before installation.",
+      "default": "2880",
+      "examples": [
+        "2880"
+      ]
+    },
+    "minimum_release_age_exclude": {
+      "type": "string",
+      "description": "YAML list of package patterns excluded from the minimum release age delay.",
+      "default": [],
+      "examples": [
+        [
+          "@prefapp/*"
+        ]
+      ]
+    },
+    "deploy_timeout_minutes": {
+      "type": "string",
+      "description": "Maximum minutes for the Lambda code deployment job.",
+      "default": "15",
+      "examples": [
+        "15",
+        "30"
+      ]
+    },
+    "slack_enabled": {
+      "type": "string",
+      "description": "Whether optional deployment notifications are enabled.",
+      "default": "false",
+      "examples": [
+        "false",
+        "true"
+      ]
+    },
+    "slack_action": {
+      "type": "string",
+      "description": "Optional notification action reference used by the consumer.",
+      "default": "",
+      "examples": [
+        "example-org/notify-slack/actions/notify-slack@main"
+      ]
+    },
+    "slack_deploy_channel": {
+      "type": "string",
+      "description": "Optional channel identifier for deployment notifications.",
+      "default": ""
+    },
+    "slack_alert_channel": {
+      "type": "string",
+      "description": "Optional channel identifier for failed deployment notifications.",
+      "default": ""
+    },
+    "slack_bot_token_secret": {
+      "type": "string",
+      "description": "Optional GitHub secret name containing the Slack bot token.",
+      "default": ""
+    },
+    "slack_app_name": {
+      "type": "string",
+      "description": "Optional application name used by deployment notifications.",
+      "default": ""
+    }
+  },
+  "required": [
+    "s3_bucket"
+  ],
+  "fileManifest": [
+    {
+      "src": ".github/workflows/build_and_publish_lambda_code.yaml",
+      "dest": ".github/workflows/build_and_publish_lambda_code.yaml",
+      "user_managed": false
+    },
+    {
+      "src": ".github/workflows/deploy_lambda_code.yaml",
+      "dest": ".github/workflows/deploy_lambda_code.yaml",
+      "user_managed": false
+    },
+    {
+      "src": ".github/build_lambda_packages.yaml",
+      "dest": ".github/build_lambda_packages.yaml",
+      "user_managed": true
+    },
+    {
+      "src": ".github/.yamllint.conf",
+      "dest": ".github/.yamllint.conf",
+      "user_managed": true
+    },
+    {
+      "src": ".node-version",
+      "dest": ".node-version",
+      "user_managed": true
+    },
+    {
+      "src": "pnpm-workspace.yaml",
+      "dest": "pnpm-workspace.yaml",
+      "user_managed": true
+    },
+    {
+      "src": "docs/README.md",
+      "dest": "docs/README.md",
+      "user_managed": false
+    },
+    {
+      "src": "docs/ci/README.md",
+      "dest": "docs/ci/README.md",
+      "user_managed": false
+    },
+    {
+      "src": "docs/ci/DEPLOY.md",
+      "dest": "docs/ci/DEPLOY.md",
+      "user_managed": false
+    },
+    {
+      "src": "docs/ci/CICD.md",
+      "dest": "docs/ci/CICD.md",
+      "user_managed": false
+    },
+    {
+      "src": ".lambda.yaml",
+      "dest": ".lambda.yaml",
+      "user_managed": true
+    }
+  ],
+  "description": "This feature provides templates and workflows to automate building, publishing, and deploying Node.js service code to Amazon S3 and existing AWS Lambda functions. It follows the standard organization convention of separating code build from infrastructure deployment.",
+  "version": "1.0.1"
+}

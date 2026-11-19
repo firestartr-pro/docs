@@ -1,0 +1,32 @@
+[
+  {
+    "version": "1.0.0",
+    "date": "2026-10-05T15:49:48Z",
+    "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/features/cloudfront_s3_build_and_deploy/1.0.0/schema.json"
+  },
+  {
+    "version": "0.3.4",
+    "date": "2026-09-11T14:28:29Z",
+    "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/features/cloudfront_s3_build_and_deploy/0.3.4/schema.json"
+  },
+  {
+    "version": "0.3.3",
+    "date": "2026-09-11T12:43:46Z",
+    "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/features/cloudfront_s3_build_and_deploy/0.3.3/schema.json"
+  },
+  {
+    "version": "0.3.2",
+    "date": "2026-09-10T17:48:25Z",
+    "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/features/cloudfront_s3_build_and_deploy/0.3.2/schema.json"
+  },
+  {
+    "version": "0.3.1",
+    "date": "2026-09-10T17:18:47Z",
+    "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/features/cloudfront_s3_build_and_deploy/0.3.1/schema.json"
+  },
+  {
+    "version": "0.3.0",
+    "date": "2026-07-22T16:06:37Z",
+    "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/features/cloudfront_s3_build_and_deploy/0.3.0/schema.json"
+  }
+]

@@ -1,0 +1,84 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "features_repo args",
+  "type": "object",
+  "properties": {
+    "feature_name": {
+      "const": "features_repo"
+    }
+  },
+  "fileManifest": [
+    {
+      "src": "packages/.gitkeep",
+      "dest": "packages/.gitkeep",
+      "user_managed": false
+    },
+    {
+      "src": "docs/README.md",
+      "dest": "README.md",
+      "user_managed": false
+    },
+    {
+      "src": "package.json",
+      "dest": "package.json",
+      "user_managed": false
+    },
+    {
+      "src": "pnpm-workspace.yaml",
+      "dest": "pnpm-workspace.yaml",
+      "user_managed": false
+    },
+    {
+      "src": "pnpm-lock.yaml",
+      "dest": "pnpm-lock.yaml",
+      "user_managed": false
+    },
+    {
+      "src": ".github/actionlint-matcher.json",
+      "dest": ".github/actionlint-matcher.json",
+      "user_managed": false
+    },
+    {
+      "src": ".github/workflows/pr_verify.yaml",
+      "dest": ".github/workflows/pr_verify.yaml",
+      "user_managed": false
+    },
+    {
+      "src": "generic-fixtures/cr.yaml",
+      "dest": "generic-fixtures/cr.yaml",
+      "user_managed": false
+    },
+    {
+      "src": "packages/hello-world/CHANGELOG.md",
+      "dest": "packages/hello-world/CHANGELOG.md",
+      "user_managed": true
+    },
+    {
+      "src": "packages/hello-world/templates/hello.md",
+      "dest": "packages/hello-world/templates/hello.md",
+      "user_managed": true
+    },
+    {
+      "src": "packages/hello-world/templates/docs/README.md",
+      "dest": "packages/hello-world/templates/docs/README.md",
+      "user_managed": true
+    },
+    {
+      "src": "packages/hello-world/config.yaml",
+      "dest": "packages/hello-world/config.yaml",
+      "user_managed": true
+    },
+    {
+      "src": "packages/hello-world/package.json",
+      "dest": "packages/hello-world/package.json",
+      "user_managed": true
+    },
+    {
+      "src": "packages/hello-world/render_tests.yaml",
+      "dest": "packages/hello-world/render_tests.yaml",
+      "user_managed": true
+    }
+  ],
+  "description": "no description",
+  "version": "1.1.0"
+}

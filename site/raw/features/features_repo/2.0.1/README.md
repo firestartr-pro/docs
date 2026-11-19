@@ -1,0 +1,238 @@
+# Firestartr Features Repository
+
+## Overview
+
+This feature provides the initial setup for the Firestartr features monorepo, your organization's private registry of reusable, Mustache-templated Firestartr features.
+
+<p align="center">
+  <img src="https://docs.firestartr.dev/docs/favicon.png" alt="Firestartr" width="320">
+</p>
+
+<p align="center">
+  <strong>Your organization’s private registry of reusable Firestartr features</strong>
+</p>
+
+---
+
+## About
+
+This repository is a **monorepo** that holds all custom Firestartr features for your organization.
+
+Every feature lives under `packages/`, uses **Mustache** templating, and is defined via a powerful `config.yaml` (file rendering + JSON Patch support for Backstage catalog, etc.).
+
+Features are automatically versioned using **Conventional Commits** via the `release_please` companion feature (see [Required companion features](#required-companion-features)).
+
+---
+
+## Required companion features
+
+The `release_please` feature must be applied to this repository alongside `features_repo`. It handles automated versioning and changelog generation for each package under `packages/` using Conventional Commits.
+
+Add it to your repository's feature list with the following configuration:
+
+```yaml
+- name: release_please
+  ref: release_please-v1 # Use the latest stable version
+  args:
+    release_type: node
+```
+
+---
+
+## Repository structure
+
+```bash
+.
+├── packages/
+│   ├── my-awesome-feature/
+│   │   ├── templates/             # Mustache templates go here
+│   │   ├── config.yaml            # Feature definition
+│   │   ├── package.json
+│   │   └── README.md
+│   └── another-feature/
+├── .release-please-manifest.json
+├── release-please-config.json
+├── .github/
+│   └── workflows/                 # CI/release workflows (managed by features)
+└── README.md
+```
+
+## Contributing to Features
+
+### Creating a new feature
+
+- Create a new branch from main with the name of the feature you want to create.
+- Create a new folder in packages/ with the name of the feature (kebab-case recommended).
+- Create a templates/ folder inside it.
+- Create a config.yaml file using the structure below.
+- Add the new package to `.release-please-manifest.json` and `release-please-config.json` (these files are created/managed by the `release_please` feature).
+- Create a package.json file using npm init.
+
+config.yaml structure
+
+```
+feature_name: example
+
+# The following are the args that will be used to render the templates.
+# $ref: replaced by the value from the metadata section of the config.yaml file
+# $lit: literal value
+# $arg: The name of the argument as consumed by the claim (each $arg becomes a schema property)
+# $default: The default value for the argument
+# $format: Optional named value type resolved from the registry in scripts/arg-formats.js
+#          (string, int, bool, semver, semver-range, string-list). It controls the JSON
+#          type emitted for the argument in schema.json:
+#            string         -> { type: "string" } (no pattern)
+#            int            -> { type: "integer" }
+#            bool           -> { type: "boolean" }
+#            semver         -> { type: "string", pattern: <semver regexp> }
+#            semver-range   -> { type: "string", pattern: <npm semver range regexp> }
+#            string-list    -> { type: "array", items: { type: "string" } }
+#          The generated schema.json validates claimed values against these native
+#          types; only $defaults are checked at schema generation and emitted as native
+#          types (a quoted "8080" becomes the integer 8080). Unknown formats fail
+#          schema generation.
+args:
+  ORG:
+    $ref: [spec, org]
+  REPO_NAME:
+    $ref: [metadata, name]
+  APP_NAME:
+    $default: "my-app"
+    $arg: app_name
+    $format: string
+
+# Files to render from the templates/ folder
+files:
+  - src: mkdocs.yaml
+    dest: mkdocs.yaml
+    # If upgradable is true, the user can modify it. It will not be overridden or deleted on update/uninstall.
+    upgradable: true
+  - src: docs/index.md
+    dest: docs/index.md
+    upgradable: true
+
+# Patches to apply in the component catalog file using JSON Patch (RFC 6902) when the feature is installed
+patches:
+  - name: "add_annotation"
+    op: "add"
+    path: "/metadata/annotations/backstage.io~1techdocs-ref"
+    # Values can use Mustache syntax with {{| VAR |}}
+    value: "url:https://github.com/{{| ORG |}}/{{| REPO_NAME |}}/tree/main"
+```
+
+### Template syntax
+
+We use the [Mustache](https://mustache.github.io/mustache.5.html) template engine.
+You can add logic with conditionals:
+
+```mustache
+{{| #condition |}}
+  {{| variable |}}   ← this renders when condition is true
+{{| /condition |}}
+
+{{| ^condition |}}
+  In case the condition is false
+{{| /condition |}}
+```
+
+### Updating an existing feature
+
+- Create a new branch from main.
+- Modify the feature inside packages/<feature-name>/.
+- Merge the branch using a [Conventional Commit](https://www.conventionalcommits.org/en/v1.0.0/) → `release_please` will automatically create a new release.
+
+### Removing an existing feature
+
+- Create a new branch from `main`.
+- Remove the feature directory under `packages/`.
+- Remove the feature from `.release-please-manifest.json` and `release-please-config.json`.
+- Merge the branch using a Conventional Commit → `release_please` creates a new release without the feature.
+
+---
+
+## Testing Features
+
+### Using generic-fixtures/cr.yaml
+
+The `generic-fixtures/cr.yaml` file provides a reusable Custom Resource (CR) fixture for testing feature rendering. This fixture contains a complete example of a `FirestartrGithubRepository` resource with all common fields populated.
+
+#### How to use it
+
+Each feature package includes a `render_tests.yaml` file that defines test cases. To use the generic fixture:
+
+```yaml
+# packages/<feature-name>/render_tests.yaml
+tests:
+  - name: test1
+    cr: "../../generic-fixtures/cr.yaml"
+```
+
+#### What the fixture provides
+
+The generic CR fixture includes:
+
+- **Metadata**: annotations, labels, and resource name
+- **Spec.org**: Organization name (`firestartr-test`)
+- **Spec.context**: Backend and provider references
+- **Spec.firestartr**: Technology stack and state key configuration
+- **Spec.repo**: Repository settings (visibility, branches, merge options, etc.)
+- **Spec.actions**: OIDC configuration
+- **Spec.permissions**: Team/group permissions
+- **Spec.branchProtections**: Branch protection rules
+
+#### Creating custom fixtures
+
+If your feature requires specific CR fields not covered by the generic fixture, you can:
+
+1. Create a custom fixture in your feature's `__tests__/` folder:
+
+   ```yaml
+   # packages/<feature-name>/__tests__/custom-cr.yaml
+   apiVersion: firestartr.dev/v1
+   kind: FirestartrGithubRepository
+   metadata:
+     name: my-custom-resource
+   spec:
+     # ... your custom fields
+   ```
+
+2. Reference it in your `render_tests.yaml`:
+   ```yaml
+   tests:
+     - name: custom-test
+       cr: "./__tests__/custom-cr.yaml"
+   ```
+
+---
+
+## Schema promotion
+
+Each feature package has a `schema.json` that documents its user-feedable arguments and file manifest. It is generated from `config.yaml` with:
+
+```bash
+pnpm generate:schemas
+```
+
+and kept in sync by the `pr_verify` workflow.
+
+Schema promotion is opt-in: the **Promote Schemas to Docs Repo** workflow is only installed when `disable_promote_schemas` is set to `false`. When enabled, on every feature release it promotes the generated schemas to the objective docs repository `{{| DOCS_ORG |}}/{{| DOCS_REPO_NAME |}}` (defaults: `firestartr-pro/docs`). For each feature and version it writes:
+
+- `site/raw/features/<feature>/<version>/schema.json`
+- an updated `site/raw/features/versions.json`
+
+### Arguments
+
+- `docs_org`: the GitHub organization that owns the docs repository (default: `firestartr-pro`).
+- `docs_repo_name`: the repository that receives the generated feature schemas (default: `docs`).
+- `disable_promote_schemas`: whether to skip the schema promotion workflow (default: `true`). Set it to `false` to install it.
+
+The workflow authenticates with a GitHub App that has write access to the docs repository. Configure it in the repository settings with the `FIRESTARTER_DOCS_APP_ID` variable and the `FIRESTARTR_DOCS_APP_PEM_FILE` secret.
+
+---
+
+## Links
+
+- [Firestartr Documentation](https://docs.firestartr.dev)
+- [All Official Features](https://docs.firestartr.dev/docs/features/)
+
+Built with ❤️ using Firestartr

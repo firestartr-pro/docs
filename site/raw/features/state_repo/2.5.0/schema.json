@@ -1,0 +1,190 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "build_images args",
+  "type": "object",
+  "properties": {
+    "feature_name": {
+      "const": "build_images"
+    },
+    "sops_enabled": {
+      "type": "string",
+      "description": "Whether SOPS encryption is enabled for managing secrets.",
+      "default": "false",
+      "examples": [
+        "false"
+      ]
+    },
+    "version_kubectl": {
+      "type": "string",
+      "description": "The version of kubectl to use in workflows.",
+      "default": "1.32.0",
+      "examples": [
+        "1.32.0"
+      ]
+    },
+    "version_kubectl_release_date": {
+      "type": "string",
+      "description": "The release date of the kubectl version.",
+      "default": "2024-12-20",
+      "examples": [
+        "2024-12-20"
+      ]
+    },
+    "version_kustomize": {
+      "type": "string",
+      "description": "The version of kustomize to use in workflows.",
+      "default": "5.6.0",
+      "examples": [
+        "5.6.0"
+      ]
+    },
+    "version_helm": {
+      "type": "string",
+      "description": "The version of Helm to use in workflows.",
+      "default": "v3.16.4",
+      "examples": [
+        "v3.16.4"
+      ]
+    },
+    "version_helmfile": {
+      "type": "string",
+      "description": "The version of Helmfile to use in workflows.",
+      "default": "v0.169.2",
+      "examples": [
+        "v0.169.2"
+      ]
+    },
+    "version_helm_diff_plugin": {
+      "type": "string",
+      "description": "The version of the Helm Diff plugin to use in workflows.",
+      "default": "v3.9.13",
+      "examples": [
+        "v3.9.13"
+      ]
+    },
+    "version_secrets": {
+      "type": "string",
+      "description": "The version of the secrets management tool to use in workflows.",
+      "default": "v4.6.2",
+      "examples": [
+        "v4.6.2"
+      ]
+    },
+    "version_sops": {
+      "type": "string",
+      "description": "The version of SOPS to use in workflows.",
+      "default": "v3.9.1",
+      "examples": [
+        "v3.9.1"
+      ]
+    },
+    "dispatch_image_v5_timeout": {
+      "type": "string",
+      "description": "The timeout in milliseconds for dispatching image v5 workflows.",
+      "default": "300000",
+      "examples": [
+        "300000"
+      ]
+    },
+    "github_script_version": {
+      "type": "string",
+      "description": "The version of the GitHub Script action to use in workflows.",
+      "default": "v9",
+      "examples": [
+        "v9"
+      ]
+    },
+    "setup_helmfile_version": {
+      "type": "string",
+      "description": "The version of the Setup Helmfile action to use in workflows.",
+      "default": "v2.2.0",
+      "examples": [
+        "v2.2.0"
+      ]
+    }
+  },
+  "fileManifest": [
+    {
+      "src": ".github/workflows/state-repo-analyze-changes-reusable.yaml",
+      "dest": ".github/workflows/state-repo-analyze-changes-reusable.yaml",
+      "user_managed": false
+    },
+    {
+      "src": ".github/workflows/state-repo-helm-sys-services-reusable.yaml",
+      "dest": ".github/workflows/state-repo-helm-sys-services-reusable.yaml",
+      "user_managed": false
+    },
+    {
+      "src": ".github/workflows/state-repo-helm-apps-reusable.yaml",
+      "dest": ".github/workflows/state-repo-helm-apps-reusable.yaml",
+      "user_managed": false
+    },
+    {
+      "src": ".github/workflows/apps-apply.yml",
+      "dest": ".github/workflows/apps-apply.yml",
+      "user_managed": false
+    },
+    {
+      "src": ".github/workflows/apps-manual-apply.yml",
+      "dest": ".github/workflows/apps-manual-apply.yml",
+      "user_managed": false
+    },
+    {
+      "src": ".github/workflows/apps-destroy.yml",
+      "dest": ".github/workflows/apps-destroy.yml",
+      "user_managed": false
+    },
+    {
+      "src": ".github/workflows/apps-pr-verify.yml",
+      "dest": ".github/workflows/apps-pr-verify.yml",
+      "user_managed": false
+    },
+    {
+      "src": ".github/workflows/sys-services-apply.yml",
+      "dest": ".github/workflows/sys-services-apply.yml",
+      "user_managed": false
+    },
+    {
+      "src": ".github/workflows/sys-services-manual-apply.yml",
+      "dest": ".github/workflows/sys-services-manual-apply.yml",
+      "user_managed": false
+    },
+    {
+      "src": ".github/workflows/sys-services-destroy.yml",
+      "dest": ".github/workflows/sys-services-destroy.yml",
+      "user_managed": false
+    },
+    {
+      "src": ".github/workflows/sys-services-pr-verify.yml",
+      "dest": ".github/workflows/sys-services-pr-verify.yml",
+      "user_managed": false
+    },
+    {
+      "src": ".github/workflows/dispatch-image-legacy.yml",
+      "dest": ".github/workflows/dispatch-image-legacy.yml",
+      "user_managed": false
+    },
+    {
+      "src": ".github/workflows/dispatch-image.yml",
+      "dest": ".github/workflows/dispatch-image.yml",
+      "user_managed": false
+    },
+    {
+      "src": "docs/README.md",
+      "dest": ".github/workflows/STATE_REPO_DEPLOY_README.md",
+      "user_managed": false
+    },
+    {
+      "src": ".github/apps-config.yml",
+      "dest": ".github/apps-config.yml",
+      "user_managed": true
+    },
+    {
+      "src": ".github/sys-services-config.yml",
+      "dest": ".github/sys-services-config.yml",
+      "user_managed": true
+    }
+  ],
+  "description": "This feature is a collection of two sets of workflows, with one configuration file for each of them.\nIn general lines, the workflows perform the following actions:\n* When a pull request is **opened**, the feature analyzes the changes in the state repo and writes a commentary for each affected environment.\n* When a pull request is **merged**, the feature analyzes the changes in the state repo and deploys the upcoming changes.\n* When triggered **manually**, the feature can also apply or **destroy** the deployed resources in a specific environment.",
+  "version": "2.5.0"
+}

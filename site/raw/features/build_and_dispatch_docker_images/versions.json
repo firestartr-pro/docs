@@ -1,0 +1,42 @@
+[
+  {
+    "version": "6.1.0",
+    "date": "2026-11-05T12:10:53Z",
+    "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/features/build_and_dispatch_docker_images/6.1.0/schema.json"
+  },
+  {
+    "version": "6.0.0",
+    "date": "2026-10-05T15:18:51Z",
+    "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/features/build_and_dispatch_docker_images/6.0.0/schema.json"
+  },
+  {
+    "version": "5.7.2",
+    "date": "2026-10-01T16:08:54Z",
+    "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/features/build_and_dispatch_docker_images/5.7.2/schema.json"
+  },
+  {
+    "version": "5.7.1",
+    "date": "2026-10-01T15:02:27Z",
+    "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/features/build_and_dispatch_docker_images/5.7.1/schema.json"
+  },
+  {
+    "version": "5.7.0",
+    "date": "2026-10-01T14:19:20Z",
+    "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/features/build_and_dispatch_docker_images/5.7.0/schema.json"
+  },
+  {
+    "version": "5.6.1",
+    "date": "2026-08-10T10:08:30Z",
+    "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/features/build_and_dispatch_docker_images/5.6.1/schema.json"
+  },
+  {
+    "version": "5.6.0",
+    "date": "2026-08-10T08:39:57Z",
+    "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/features/build_and_dispatch_docker_images/5.6.0/schema.json"
+  },
+  {
+    "version": "5.5.0",
+    "date": "2026-07-22T16:04:38Z",
+    "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/features/build_and_dispatch_docker_images/5.5.0/schema.json"
+  }
+]

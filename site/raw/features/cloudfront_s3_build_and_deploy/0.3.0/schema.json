@@ -1,0 +1,156 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "cloudfront_s3_build_and_deploy args",
+  "type": "object",
+  "properties": {
+    "feature_name": {
+      "const": "cloudfront_s3_build_and_deploy"
+    },
+    "build_snapshots_branch": {
+      "type": "string",
+      "description": "The branch used for building snapshot releases.",
+      "default": [
+        "spec",
+        "repo",
+        "defaultBranch"
+      ],
+      "examples": [
+        "main"
+      ]
+    },
+    "release_type": {
+      "type": "string",
+      "description": "The type of release (e.g., node).",
+      "default": "node",
+      "examples": [
+        "node"
+      ]
+    },
+    "cloudfront_config_file_path": {
+      "type": "string",
+      "description": "The path to the CloudFront deployment configuration file.",
+      "default": ".github/cloudfront_deployments.yaml",
+      "examples": [
+        ".github/cloudfront_deployments.yaml"
+      ]
+    },
+    "deployment_env": {
+      "type": "string",
+      "description": "The deployment environment (e.g., predev, production).",
+      "default": "predev",
+      "examples": [
+        "predev"
+      ]
+    },
+    "deployment_type": {
+      "type": "string",
+      "description": "The deployment type (e.g., prereleases, releases).",
+      "default": "prereleases",
+      "examples": [
+        "prereleases"
+      ]
+    },
+    "deployment_tenants": {
+      "type": "string",
+      "description": "The tenants to deploy (comma-separated or default).",
+      "default": "default",
+      "examples": [
+        "default"
+      ]
+    },
+    "deployment_registry": {
+      "type": "string",
+      "description": "The S3 bucket URL used as the deployment artifact registry.",
+      "default": "s3://my-bucket-name-to-use-in-cloudformation/path/to/artifacts/",
+      "examples": [
+        "s3://my-bucket-name-to-use-in-cloudformation/path/to/artifacts/"
+      ]
+    },
+    "deployment_aws_account": {
+      "type": "string",
+      "description": "The AWS account ID for deployment.",
+      "default": "123456789012",
+      "examples": [
+        "123456789012"
+      ]
+    },
+    "deployment_aws_region": {
+      "type": "string",
+      "description": "The AWS region for deployment.",
+      "default": "eu-west-1",
+      "examples": [
+        "eu-west-1"
+      ]
+    },
+    "deployment_aws_role": {
+      "type": "string",
+      "description": "The AWS IAM role ARN used for deployment.",
+      "default": "arn:aws:iam::123456789012:role/my-deployment-role",
+      "examples": [
+        "arn:aws:iam::123456789012:role/my-deployment-role"
+      ]
+    },
+    "deployment_aws_cloudfront_distribution_id": {
+      "type": "string",
+      "description": "The CloudFront distribution ID for deployment.",
+      "default": "123456789ABC",
+      "examples": [
+        "123456789ABC"
+      ]
+    }
+  },
+  "fileManifest": [
+    {
+      "src": ".github/workflows/build_and_publish.yaml",
+      "dest": ".github/workflows/build_and_publish.yaml",
+      "user_managed": false
+    },
+    {
+      "src": ".github/workflows/deploy.yaml",
+      "dest": ".github/workflows/deploy.yaml",
+      "user_managed": false
+    },
+    {
+      "src": ".github/workflows/release.yaml",
+      "dest": ".github/workflows/release.yaml",
+      "user_managed": false
+    },
+    {
+      "src": ".github/cloudfront_deployments.yaml",
+      "dest": ".github/cloudfront_deployments.yaml",
+      "user_managed": true
+    },
+    {
+      "src": ".github/.yamllint.conf",
+      "dest": ".github/.yamllint.conf",
+      "user_managed": true
+    },
+    {
+      "src": ".release-please-manifest.json",
+      "dest": ".release-please-manifest.json",
+      "user_managed": true
+    },
+    {
+      "src": "release-please-config.json",
+      "dest": "release-please-config.json",
+      "user_managed": true
+    },
+    {
+      "src": "docs/ci/README.md",
+      "dest": "docs/ci/README.md",
+      "user_managed": false
+    },
+    {
+      "src": "docs/ci/DEPLOY.md",
+      "dest": "docs/ci/DEPLOY.md",
+      "user_managed": false
+    },
+    {
+      "src": "docs/ci/CICD.md",
+      "dest": "docs/ci/CICD.md",
+      "user_managed": false
+    }
+  ],
+  "description": "This feature provides a set of templates and workflows to automate the build and deployment of static assets to Amazon S3 and CloudFront. It is designed for projects that need to publish web content or other static files to AWS infrastructure, leveraging GitHub Actions for CI/CD automation. The feature allows you to define deployment parameters via claims, which are then used to render and execute the deployment workflows. This approach enables reproducible, auditable, and flexible deployments for multi-tenant or multi-environment scenarios.",
+  "version": "0.3.0"
+}

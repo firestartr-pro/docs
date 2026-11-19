@@ -1,0 +1,129 @@
+# Claims repo feature
+
+This feature installs the workflows necessary for manually hydrating and deleting GitHub and TFWorkspace claims, plus two additional workflows to import manually created GitHub resources into GitHub claims and a `pr-verify` workflow.
+
+## Local claims runner
+
+Use the provided `docker-compose.yaml` when you want to run Firestartr CLI commands against a local checkout of the claims repo.
+
+1. Set the image tag you want to run, if needed, with `FIRESTART_CLI_IMAGE_TAG`.
+2. Set `TF_CMD` to the command you want the container to execute.
+3. Set `CLAIM` to the TFWorkspace claim name you want to target.
+4. Run `docker compose up` from the claims repo root.
+
+The compose service mounts your local claims repo checkout (including the `claims/` directory) plus your `~/.kube` and `~/.azure` directories so the CLI can reach local credentials and repository files. The image comes from `ghcr.io/prefapp/gitops-k8s`, so picking the right tag matters when you need a specific CLI build or plan behavior.
+
+## Hydrating claims
+
+1. Create a PR with the desired changes. Check the changes that have been commited are the changes you've actually done.
+
+2. Once the `pr-verify` workflow is finished, if there are no errors, merge your PR into the main branch.
+
+3. Head over to the `Actions` tab of the `claims` repo and select the `<Your claim type> claim: hydrate` workflow on the left side list.
+
+![The Actions tabs](./images/example_1-1.jpg)
+*The Actions tabs*
+
+4. Select `Run workflow` on the right hand side of the screen, introduce the name of the claim to be hydrated and select the claim type (if it is a GitHub claim). NOTE: the name of the claim should be the value of the field `name` inside the claim YAML. Setting this value to the file name may result in the workflow not working as expected.
+
+Available GitHub claim types:
+- `ComponentClaim` — hydrates `FirestartrGithubRepository`, `FirestartrGithubRepositoryFeature`, and `FirestartrGithubRepositorySecretsSection` CRs.
+- `UserClaim` — hydrates `FirestartrGithubMembership` CRs.
+- `GroupClaim` — hydrates `FirestartrGithubGroup` CRs.
+- `OrgWebhookClaim` — hydrates `FirestartrGithubOrgWebhook` CRs.
+- `GitHubOrgClaim` — hydrates `FirestartrGithubOrganizationSettings` CRs.
+
+![Hydrating a GitHub claim](./images/example_1-2.jpg)
+*Hydrating a GitHub claim*
+
+![Hydrating a TFWorkspace claim](./images/example_1-3.jpg)
+*Hydrating a TFWorkspace claim*
+
+![Hydrating a Secrets claim](./images/example_1-3.1.jpg)
+*Hydrating a Secrets claim*
+
+5. Press the green button and wait for the workflow to finish. When it's done, click its entry in the list and there'll be a link to the `state-github`, `state-infra` or `state-secrets` repo PR. You can use it to review the PR and merge it if everything is correct.
+
+![The action summary](./images/example_1-4.jpg)
+*The action summary with a link to the state repo*
+
+## Deleting claims
+
+1. Head over to the `Actions` tab of the `claims` repo and select the `<Your claim type> claim: delete` workflow on the left side list.
+
+![The Actions tabs](./images/example_2-1.jpg)
+*The Actions tabs*
+
+2. Select `Run workflow` on the right hand side of the screen, introduce the name of the claim to be deleted and select the claim type (if it is a GitHub claim). NOTE: the name of the claim should be the value of the field `name` inside the claim YAML. Setting this value to the file name may result in the workflow not working as expected.
+
+The same claim types listed for [hydrating](#hydrating-claims) are available for deletion.
+
+![Deleting a GitHub claim](./images/example_2-2.jpg)
+*Deleting a GitHub claim*
+
+![Deleting a TFWorkspace claim](./images/example_2-3.jpg)
+*Deleting a TFWorkspace claim*
+
+![Deleting a Secrets claim](./images/example_2-3.1.jpg)
+*Deleting a Secrets claim*
+
+3. Press the green button and wait for the workflow to finish. When it's done, click its entry in the list and there'll be two links: one to the `state-github`, `state-infra` or `state-secrets` repo PR, deleting the CR file, and another to the `claims` repo PR, deleting the claim file. You can use them to review both PRs and merge them if everything is correct.
+
+![The action summary](./images/example_2-4.jpg)
+*The action summary with two links to the state and claims repo*
+
+
+## Import already created GitHub resources
+
+1. Head over to the `Actions` tab of the `claims` repo and select the `📜 Import GitHub resources` workflow on the left side list.
+
+![The Actions tabs](./images/example_3-1.jpg)
+*The Actions tabs*
+
+2. Select `Run workflow` on the right hand side of the screen, and add filters to the type of resources you want to import. The filters can be:
+
+- **REGEXP=[regex]**: import all resources that match the regex [regex].
+- **NAME=[name]**: import all resources with the name [name]. The name must be an exact match.
+- **SKIP=SKIP**: skip this import.
+
+![Import GitHub resources](./images/example_3-2.jpg)
+
+3. Press the green button and wait for the workflow to finish. Once the workflow is finished, a PR will be created both in the `state-github` repo and the `claims` repo. Merge them both and the resource will be imported
+
+## Update feature in all claims
+1. Head over to the `Actions` tab of the `claims` repo and select the `Update features` workflow on the left side list.
+2. Select `Run workflow` on the right hand side of the screen, and add filters to narrow the features and claims you want to update. The filters can be:
+  - **Features list**: mandatory filter. Either a single feature name or a list of comma separated values, each being a different feature name.
+  - **Claims list**: optional filter. Either a single `claim.name`, a list of comma separated values, each being a different `claim.name` or an empty value, which will update all applicable claims. Note that `claim.name` refers to the value of the `name` field inside the `claim` YAML file and not to the name of the YAML file itself.
+  - **Version constraint**: optional filter. Either a valid version, a valid version constraint or an empty value, which will update to the latest avaliable version. A valid version is a version that's avaliable for all features in `Features list`, in the `major.minor.patch` semver format, and will result in the feature being updated to that exact version. Valid version constraint documentation can be found [here](https://github.com/Masterminds/semver?tab=readme-ov-file#basic-comparisons) (comparisions work fine too) and will result in the feature being updated to the latest version avaliable that satisfies the specified constraint.
+  The workflow will then create a PR for each claim that was updated, with a list of changes made since the version that was currently installed up until the version that was updated to. Merge them all and then [hydrate the claims](#hydrating-claims).
+  - **Automerge**: optional filter. Setting this value to `true` will automerge the PRs created by this workflow as long as they pass all checks and have no conflicts. Defaults to `false`.
+
+![alt text](./images/update-features.png)
+
+💡 If you are using a **ref** instead of a version for the feature you want to update, the workflow will trigger the hydration process, to update the claims with the latest changes from the ref. In this case, the version constraint filter will be ignored.
+
+## Massively updating claims' features
+
+1. Head over to the `Actions` tab of the `claims` repo and select the `Update claims' features` workflow on the left side list.
+
+![The Actions tabs](./images/example_4-1.jpg)
+*The Actions tabs*
+
+2. Select `Run workflow` on the right hand side of the screen, and add filters to narrow the features and claims you want to update. The filters can be:
+
+- **Features list**: mandatory filter. Either a single feature name or a list of comma separated values, each being a different feature name.
+- **Claims list**: optional filter. Either a single `claim.name`, a list of comma separated values, each being a different `claim.name` or an empty value, which will update all applicable claims. Note that `claim.name` refers to the value of the `name` field inside the `claim` YAML file and not to the name of the YAML file itself.
+- **Version constraint**: optional filter. Either a valid version, a valid version constraint or an empty value, which will update to the latest avaliable version. A valid version is a version that's avaliable for all features in `Features list`, in the `major.minor.patch` semver format, and will result in the feature being updated to that exact version. Valid version constraint documentation can be found [here](https://github.com/Masterminds/semver?tab=readme-ov-file#basic-comparisons) (comparisions work fine too) and will result in the feature being updated to the latest version avaliable that satisfies the specified constraint.
+- **Automerge**: optional filter. Setting this value to `true` will automerge the PRs created by this workflow as long as they pass all checks and have no conflicts. Defaults to `false`.
+![Update claims' features](./images/example_4-2.jpg)
+
+
+3. Press the green button and wait for the workflow to finish. Once the workflow is finished, a PR will be created for each claim that was updated. The PR body will contain a list of changes made since the version that was currently installed up until the version that was updated to. Merge them all and then [hydrate the claims](#hydrating-claims)
+
+## Feature arguments
+
+- `state_github_repo`: the name of the repository where the GitHub related CRs are stored. Defaults to `state-github`
+- `state_infra_repo`: the name of the repository where the Terraform related CRs are stored. Defaults to `state-infra`
+- `state_secrets_repo`: the name of the repository where the ExternalSecrets related CRs are stored. Defaults to `state-secrets`
+- `catalog_repo`: the name of the repository where the Backstage catalog related CRs are stored. Defaults to `catalog`

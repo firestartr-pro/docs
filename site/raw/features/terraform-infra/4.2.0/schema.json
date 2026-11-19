@@ -1,0 +1,217 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "infra args",
+  "type": "object",
+  "properties": {
+    "feature_name": {
+      "const": "infra"
+    },
+    "aws_account_id": {
+      "type": "string",
+      "description": "The AWS account ID used for Terraform operations.",
+      "default": "${AWS::AccountId}",
+      "examples": [
+        "123456789012"
+      ]
+    },
+    "terraform_version": {
+      "type": "string",
+      "pattern": "^(?:0|[1-9]\\d*)\\.(?:0|[1-9]\\d*)\\.(?:0|[1-9]\\d*)(?:-(?:0|[1-9]\\d*|\\d*[A-Za-z-][0-9A-Za-z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[A-Za-z-][0-9A-Za-z-]*))*)?(?:\\+[0-9A-Za-z-]+(?:\\.[0-9A-Za-z-]+)*)?$",
+      "description": "The Terraform version to use for provisioning infrastructure. Must be a complete major.minor.patch semver version with optional `-prerelease` and `+build` suffixes; partial versions (`1.2`, `1.x`) and `v`-prefixed values are not accepted.",
+      "default": "1.12.2",
+      "examples": [
+        "1.12.2"
+      ]
+    },
+    "use_private_modules": {
+      "type": "string",
+      "description": "Whether to use private Terraform modules.",
+      "default": "false",
+      "examples": [
+        "false"
+      ]
+    },
+    "skip_commit_types": {
+      "type": "string",
+      "description": "A comma-separated list of commit types to skip when triggering Terraform workflows.",
+      "default": "docs,ci",
+      "examples": [
+        "docs,ci"
+      ]
+    },
+    "ref_sync_enabled": {
+      "type": "boolean",
+      "description": "Whether scheduled Terraform ref synchronization is enabled.",
+      "default": true,
+      "examples": [
+        true
+      ]
+    },
+    "terraform_sync_cron": {
+      "type": "string",
+      "description": "The cron schedule used for Terraform ref synchronization.",
+      "default": "0 2 * * 1-5",
+      "examples": [
+        "0 2 * * 1-5"
+      ]
+    },
+    "ref_sync_notify_team": {
+      "type": "string",
+      "description": "The GitHub team to mention in ref-sync drift issues.",
+      "default": "",
+      "examples": [
+        "@prefapp/platform"
+      ]
+    },
+    "github_environment_secrets": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true,
+      "default": [],
+      "allOf": [
+        {
+          "items": {
+            "type": "string",
+            "pattern": "^(?![Gg][Ii][Tt][Hh][Uu][Bb]_)(?![Gg][Hh]_)(?![Rr][Uu][Nn][Nn][Ee][Rr]_)(?![Aa][Cc][Tt][Ii][Oo][Nn][Ss]_)(?![Tt][Ff]_[Vv][Aa][Rr]_)(?![Ff][Ii][Rr][Ee][Ss][Tt][Aa][Rr][Tt][Rr]_)[A-Za-z_][A-Za-z0-9_]*(?![\\s\\S])",
+            "not": {
+              "enum": [
+                "TENANT_NAME",
+                "ENVIRONMENT_NAME",
+                "MODULE_PATHS",
+                "TENANT",
+                "ENV",
+                "MODULES"
+              ]
+            }
+          }
+        }
+      ]
+    }
+  },
+  "fileManifest": [
+    {
+      "src": ".github/scripts/functions.sh",
+      "dest": ".github/scripts/functions.sh",
+      "user_managed": false
+    },
+    {
+      "src": ".github/scripts/run_terrafire.sh",
+      "dest": ".github/scripts/run_terrafire.sh",
+      "user_managed": false
+    },
+    {
+      "src": ".github/scripts/terrafire.sh",
+      "dest": ".github/scripts/terrafire.sh",
+      "user_managed": false
+    },
+    {
+      "src": ".github/scripts/validate_tenant_changes.sh",
+      "dest": ".github/scripts/validate_tenant_changes.sh",
+      "user_managed": false
+    },
+    {
+      "src": ".github/scripts/discover_ref_targets.sh",
+      "dest": ".github/scripts/discover_ref_targets.sh",
+      "user_managed": false
+    },
+    {
+      "src": ".github/scripts/sync_ref_targets.sh",
+      "dest": ".github/scripts/sync_ref_targets.sh",
+      "user_managed": false
+    },
+    {
+      "src": ".github/scripts/ref_sync_local.sh",
+      "dest": ".github/scripts/ref_sync_local.sh",
+      "user_managed": false
+    },
+    {
+      "src": ".github/scripts/check_ref_sync_state.sh",
+      "dest": ".github/scripts/check_ref_sync_state.sh",
+      "user_managed": false
+    },
+    {
+      "src": ".github/scripts/filter_ref_targets.sh",
+      "dest": ".github/scripts/filter_ref_targets.sh",
+      "user_managed": false
+    },
+    {
+      "src": ".github/workflows/terraform-destroy.yaml",
+      "dest": ".github/workflows/terraform-destroy.yaml",
+      "user_managed": false
+    },
+    {
+      "src": ".github/workflows/terraform-plan-apply.yaml",
+      "dest": ".github/workflows/terraform-plan-apply.yaml",
+      "user_managed": false
+    },
+    {
+      "src": ".github/workflows/terraform-ref-sync.yaml",
+      "dest": ".github/workflows/terraform-ref-sync.yaml",
+      "user_managed": false
+    },
+    {
+      "src": ".github/workflows/terraform-ref-sync-apply.yaml",
+      "dest": ".github/workflows/terraform-ref-sync-apply.yaml",
+      "user_managed": false
+    },
+    {
+      "src": "docs/README.md",
+      "dest": ".github/TERRAFORM_INFRA_WORKFLOWS_README.md",
+      "user_managed": false
+    },
+    {
+      "src": "accounts/.gitkeep",
+      "dest": "accounts/.gitkeep",
+      "user_managed": true
+    },
+    {
+      "src": "accounts/.terraform_version",
+      "dest": "accounts/.terraform_version",
+      "user_managed": true
+    },
+    {
+      "src": "accounts/.firestartr_tfstate_prefix",
+      "dest": "accounts/.firestartr_tfstate_prefix",
+      "user_managed": true
+    },
+    {
+      "src": "accounts/variables.tf",
+      "dest": "accounts/variables.tf",
+      "user_managed": true
+    },
+    {
+      "src": "docs/ACCOUNTS_README.md",
+      "dest": "accounts/README.md",
+      "user_managed": false
+    },
+    {
+      "src": "accounts/backend.tf",
+      "dest": "accounts/backend.tf",
+      "user_managed": false
+    },
+    {
+      "src": "accounts/examples/env/providers.tf",
+      "dest": "accounts/examples/env/providers.tf",
+      "user_managed": true
+    },
+    {
+      "src": "bootstrap/prepare.sh",
+      "dest": "bootstrap/prepare.sh",
+      "user_managed": false
+    },
+    {
+      "src": "bootstrap/role-admin.yaml",
+      "dest": "bootstrap/role-admin.yaml",
+      "user_managed": false
+    },
+    {
+      "src": "bootstrap/terraform-backend.yaml",
+      "dest": "bootstrap/terraform-backend.yaml",
+      "user_managed": false
+    }
+  ],
+  "description": "This feature contains GitHub Actions workflows and supporting scripts to automate the planning and application of Terraform infrastructure changes across multiple accounts, environments, and modules.",
+  "version": "4.2.0"
+}

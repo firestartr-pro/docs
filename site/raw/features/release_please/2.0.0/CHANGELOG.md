@@ -1,0 +1,142 @@
+# Changelog
+
+## [2.0.0](https://github.com/prefapp/features/compare/release_please-v1.8.1...release_please-v2.0.0) (2026-10-05)
+
+
+### ⚠ BREAKING CHANGES
+
+* Add format to all existing features ([#1249](https://github.com/prefapp/features/issues/1249))
+
+### Features
+
+* Add format to all existing features ([#1249](https://github.com/prefapp/features/issues/1249)) ([bccb398](https://github.com/prefapp/features/commit/bccb3981b1ac32e0552e9c9bfdd1cd1cf8cec491))
+
+## [1.8.1](https://github.com/prefapp/features/compare/release_please-v1.8.0...release_please-v1.8.1) (2026-10-01)
+
+
+### Bug Fixes
+
+* pin ACTION_RELEASE_PLEASE_VERSION to a specific commit hash ([#1344](https://github.com/prefapp/features/issues/1344)) ([c90cc67](https://github.com/prefapp/features/commit/c90cc673d8bde32c70fc7d4527baad761c5233da))
+
+## [1.8.0](https://github.com/prefapp/features/compare/release_please-v1.7.0...release_please-v1.8.0) (2026-08-12)
+
+
+### Features
+
+* feature_repo machinery generalization ([#1177](https://github.com/prefapp/features/issues/1177)) ([fc85e44](https://github.com/prefapp/features/commit/fc85e44941748b32c5e0adcb15f4eb5e2df4eef5))
+
+## [1.7.0](https://github.com/prefapp/features/compare/release_please-v1.6.2...release_please-v1.7.0) (2026-07-22)
+
+
+### Features
+
+* add json-schema per feature ([#1131](https://github.com/prefapp/features/issues/1131)) ([2c3e1c9](https://github.com/prefapp/features/commit/2c3e1c9bbfc402c170448581e52a326e744270f0))
+
+## [1.6.2](https://github.com/prefapp/features/compare/release_please-v1.6.1...release_please-v1.6.2) (2026-06-02)
+
+
+### Bug Fixes
+
+* **release_please:** add support of rolling tag ([#1066](https://github.com/prefapp/features/issues/1066)) ([bbbee98](https://github.com/prefapp/features/commit/bbbee98125af500579628168635e180f20c7db2c))
+
+## [1.6.1](https://github.com/prefapp/features/compare/release_please-v1.6.0...release_please-v1.6.1) (2026-05-25)
+
+
+### Bug Fixes
+
+* Update release-please configuration for templates and file management ([#1006](https://github.com/prefapp/features/issues/1006)) ([d4204bb](https://github.com/prefapp/features/commit/d4204bbb7931d043156a3de525e767124ad676e2))
+
+## [1.6.0](https://github.com/prefapp/features/compare/release_please-v1.5.1...release_please-v1.6.0) (2026-05-25)
+
+
+### Features
+
+* [`release-please`] Allow config file path customization ([#1004](https://github.com/prefapp/features/issues/1004)) ([d6eb410](https://github.com/prefapp/features/commit/d6eb410f974904307a98237735829a928ed64510))
+
+## [1.5.1](https://github.com/prefapp/features/compare/release_please-v1.5.0...release_please-v1.5.1) (2026-04-24)
+
+
+### Bug Fixes
+
+* release-please docs ([#977](https://github.com/prefapp/features/issues/977)) ([020d79f](https://github.com/prefapp/features/commit/020d79f62e39317f778f4fe21d528fdaa6e0b359))
+
+## [1.5.0](https://github.com/prefapp/features/compare/release_please-v1.4.1...release_please-v1.5.0) (2026-04-20)
+
+
+### Features
+
+* add JSON files validation on release-please template ([#955](https://github.com/prefapp/features/issues/955)) ([167678b](https://github.com/prefapp/features/commit/167678bb7dd99c1514e11bce1ad39512cada84a8))
+
+## [1.4.1](https://github.com/prefapp/features/compare/release_please-v1.4.0...release_please-v1.4.1) (2026-02-23)
+
+
+### Bug Fixes
+
+* **release-please:** Avoid trigger other workflows ([#839](https://github.com/prefapp/features/issues/839)) ([5514867](https://github.com/prefapp/features/commit/5514867cd75881777a2cab2693b3f291162d1d29))
+
+## [1.4.0](https://github.com/prefapp/features/compare/release_please-v1.3.1...release_please-v1.4.0) (2025-11-13)
+
+
+### Features
+
+* new validation structure ([#635](https://github.com/prefapp/features/issues/635)) ([7e3f1cb](https://github.com/prefapp/features/commit/7e3f1cbd35af1d333a7f965dcce965975c371f92))
+* **release_please:** update to v4 version, update checkout and docs ([#758](https://github.com/prefapp/features/issues/758)) ([6985a65](https://github.com/prefapp/features/commit/6985a65390442d13605bf47c2ce27e1595f4a98f))
+
+
+### Bug Fixes
+
+* Fixed tests in all modules ([#472](https://github.com/prefapp/features/issues/472)) ([c77267b](https://github.com/prefapp/features/commit/c77267b227ef5ebc4adf4f74fc26da3b5b96e226))
+* install latest features_renderer ([#582](https://github.com/prefapp/features/issues/582)) ([7944e51](https://github.com/prefapp/features/commit/7944e51e95d96dd03783a5be96e5ffeea2b5763f))
+
+## [1.3.1](https://github.com/prefapp/features/compare/release_please-v1.3.0...release_please-v1.3.1) (2024-02-08)
+
+
+### Bug Fixes
+
+* Bump features version ([8f398b9](https://github.com/prefapp/features/commit/8f398b959cfbfb1f24b48337b4b80ae95a90f3f5))
+* Merge pull request [#229](https://github.com/prefapp/features/issues/229) from prefapp/juanjosevazquezgil-patch-3 ([8f398b9](https://github.com/prefapp/features/commit/8f398b959cfbfb1f24b48337b4b80ae95a90f3f5))
+
+## [1.3.0](https://github.com/prefapp/features/compare/release_please-v1.2.0...release_please-v1.3.0) (2024-01-08)
+
+
+### Features
+
+* release-please support new interface ([#219](https://github.com/prefapp/features/issues/219)) ([0ac56b5](https://github.com/prefapp/features/commit/0ac56b53e878fe0423744224f35ac52e68b17915))
+
+## [1.2.0](https://github.com/prefapp/features/compare/release_please-v1.1.0...release_please-v1.2.0) (2024-01-05)
+
+
+### Features
+
+* update to new version ([a812c69](https://github.com/prefapp/features/commit/a812c691b436d097c0e19a4a9e5f4cc47c5ef361))
+* update to new version ([4455c47](https://github.com/prefapp/features/commit/4455c47368e583d88a5f3f947c8604da56564e54))
+
+## [1.1.0](https://github.com/prefapp/features/compare/release_please-v1.0.1...release_please-v1.1.0) (2023-09-25)
+
+
+### Features
+
+* update release please feature ([4b14f47](https://github.com/prefapp/features/commit/4b14f4758c9295797ebd9c51a27d97e02efd39df))
+
+## [1.0.1](https://github.com/prefapp/features/compare/release_please-v1.0.0...release_please-v1.0.1) (2023-06-16)
+
+
+### Bug Fixes
+
+* Update tag used by renderer ([#192](https://github.com/prefapp/features/issues/192)) ([49d4968](https://github.com/prefapp/features/commit/49d49689deedcc4e4e9290a8698cf9d379054fa0))
+
+## [1.0.0](https://github.com/prefapp/features/compare/release_please-v0.1.0...release_please-v1.0.0) (2023-06-08)
+
+
+### ⚠ BREAKING CHANGES
+
+* Add release please feature to release please ([#190](https://github.com/prefapp/features/issues/190))
+
+### Features
+
+* release please ([#188](https://github.com/prefapp/features/issues/188)) ([20374e6](https://github.com/prefapp/features/commit/20374e6a01d658ddb2348fbc32b47241c1ae1647))
+
+
+### Bug Fixes
+
+* Add release please feature to release please ([#190](https://github.com/prefapp/features/issues/190)) ([b1d891d](https://github.com/prefapp/features/commit/b1d891df101cc337dac4e35b99cb5bba33ecf9dd))

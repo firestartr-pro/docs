@@ -1,0 +1,53 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "argocd_state args",
+  "type": "object",
+  "properties": {
+    "feature_name": {
+      "const": "argocd_state"
+    },
+    "client_name": {
+      "type": "string",
+      "description": "The name of the ArgoCD client.",
+      "default": "argocd",
+      "examples": [
+        "argocd"
+      ]
+    },
+    "argocd_server_staging": {
+      "type": "string",
+      "description": "The URL of the staging Kubernetes server for ArgoCD.",
+      "default": "URL of the staging K8S server",
+      "examples": [
+        "https://staging.example.com"
+      ]
+    },
+    "argocd_server_production": {
+      "type": "string",
+      "description": "The URL of the production Kubernetes server for ArgoCD.",
+      "default": "URL of the production K8S server",
+      "examples": [
+        "https://production.example.com"
+      ]
+    }
+  },
+  "fileManifest": [
+    {
+      "src": "docs/README.md",
+      "dest": "README.md",
+      "user_managed": true
+    },
+    {
+      "src": "apps/.gitkeep",
+      "dest": "apps/.gitkeep",
+      "user_managed": false
+    },
+    {
+      "src": "sys-services/.gitkeep",
+      "dest": "sys-services/.gitkeep",
+      "user_managed": false
+    }
+  ],
+  "description": "no description",
+  "version": "1.1.0"
+}

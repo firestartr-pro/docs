@@ -1,0 +1,241 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "claims_repo args",
+  "type": "object",
+  "properties": {
+    "feature_name": {
+      "const": "claims_repo"
+    },
+    "state_github_repo": {
+      "type": "string",
+      "default": "state-github"
+    },
+    "state_infra_repo": {
+      "type": "string",
+      "default": "state-infra"
+    },
+    "state_secrets_repo": {
+      "type": "string",
+      "default": "state-secrets"
+    },
+    "catalog_repo": {
+      "type": "string",
+      "default": "catalog"
+    },
+    "firestartr_config_repo": {
+      "type": "string",
+      "default": "${{ github.repository_owner }}/.firestartr"
+    },
+    "validation_cron_schedule": {
+      "type": "string",
+      "default": "0 0 * * *"
+    },
+    "update_with_dot_firestartr_info_cron_schedule": {
+      "type": "string",
+      "default": "0 0 * * *"
+    },
+    "update_with_dot_firestartr_info_sleep_duration_seconds": {
+      "type": "string",
+      "default": "10"
+    }
+  },
+  "fileManifest": [
+    {
+      "src": ".config/auto-hydrate.yaml",
+      "dest": ".config/auto-hydrate.yaml",
+      "user_managed": true
+    },
+    {
+      "src": ".config/claims_defaults.yaml",
+      "dest": ".config/claims_defaults.yaml",
+      "user_managed": true
+    },
+    {
+      "src": ".config/wet-repositories-config.yaml",
+      "dest": ".config/wet-repositories-config.yaml",
+      "user_managed": true
+    },
+    {
+      "src": ".github/workflows/github-import.yaml",
+      "dest": ".github/workflows/github-import.yaml",
+      "user_managed": false
+    },
+    {
+      "src": ".github/workflows/hydrate-github-claim.yaml",
+      "dest": ".github/workflows/hydrate-github-claim.yaml",
+      "user_managed": false
+    },
+    {
+      "src": ".github/workflows/provision-claim.yaml",
+      "dest": ".github/workflows/provision-claim.yaml",
+      "user_managed": false
+    },
+    {
+      "src": ".github/workflows/delete-github-claim.yaml",
+      "dest": ".github/workflows/delete-github-claim.yaml",
+      "user_managed": false
+    },
+    {
+      "src": ".github/workflows/hydrate-tfworkspace-claim.yaml",
+      "dest": ".github/workflows/hydrate-tfworkspace-claim.yaml",
+      "user_managed": false
+    },
+    {
+      "src": ".github/workflows/delete-tfworkspace-claim.yaml",
+      "dest": ".github/workflows/delete-tfworkspace-claim.yaml",
+      "user_managed": false
+    },
+    {
+      "src": ".github/workflows/hydrate-secrets-claim.yaml",
+      "dest": ".github/workflows/hydrate-secrets-claim.yaml",
+      "user_managed": false
+    },
+    {
+      "src": ".github/workflows/delete-secrets-claim.yaml",
+      "dest": ".github/workflows/delete-secrets-claim.yaml",
+      "user_managed": false
+    },
+    {
+      "src": ".github/workflows/pr-verify.yaml",
+      "dest": ".github/workflows/pr-verify.yaml",
+      "user_managed": false
+    },
+    {
+      "src": ".github/workflows/uninstall-repository-feature.yaml",
+      "dest": ".github/workflows/uninstall-repository-feature.yaml",
+      "user_managed": false
+    },
+    {
+      "src": ".github/workflows/update-features.yaml",
+      "dest": ".github/workflows/update-features.yaml",
+      "user_managed": false
+    },
+    {
+      "src": ".github/workflows/update-component-features.yaml",
+      "dest": ".github/workflows/update-component-features.yaml",
+      "user_managed": false
+    },
+    {
+      "src": ".github/workflows/validate-claims.yaml",
+      "dest": ".github/workflows/validate-claims.yaml",
+      "user_managed": false
+    },
+    {
+      "src": ".github/workflows/auto-hydrate.yaml",
+      "dest": ".github/workflows/auto-hydrate.yaml",
+      "user_managed": false
+    },
+    {
+      "src": ".github/workflows/reimport.yaml",
+      "dest": ".github/workflows/reimport.yaml",
+      "user_managed": false
+    },
+    {
+      "src": ".github/scripts/automerge-pr.sh",
+      "dest": ".github/scripts/automerge-pr.sh",
+      "user_managed": false
+    },
+    {
+      "src": ".github/scripts/check-real-changes.sh",
+      "dest": ".github/scripts/check-real-changes.sh",
+      "user_managed": false
+    },
+    {
+      "src": ".github/scripts/find-and-copy-cr-by-claim-name.js",
+      "dest": ".github/scripts/find-and-copy-cr-by-claim-name.js",
+      "user_managed": false
+    },
+    {
+      "src": ".github/scripts/find-and-delete-cr-by-claim-name.js",
+      "dest": ".github/scripts/find-and-delete-cr-by-claim-name.js",
+      "user_managed": false
+    },
+    {
+      "src": ".github/scripts/find-and-delete-claim-by-name.js",
+      "dest": ".github/scripts/find-and-delete-claim-by-name.js",
+      "user_managed": false
+    },
+    {
+      "src": ".github/scripts/compose-cr-deletion-pr-body.js",
+      "dest": ".github/scripts/compose-cr-deletion-pr-body.js",
+      "user_managed": false
+    },
+    {
+      "src": ".github/scripts/compose-claim-deletion-pr-body.js",
+      "dest": ".github/scripts/compose-claim-deletion-pr-body.js",
+      "user_managed": false
+    },
+    {
+      "src": ".github/scripts/create-deletion-pr.sh",
+      "dest": ".github/scripts/create-deletion-pr.sh",
+      "user_managed": false
+    },
+    {
+      "src": ".github/scripts/create-empty-pr.sh",
+      "dest": ".github/scripts/create-empty-pr.sh",
+      "user_managed": false
+    },
+    {
+      "src": ".github/scripts/update-cr-with-pr-data.js",
+      "dest": ".github/scripts/update-cr-with-pr-data.js",
+      "user_managed": false
+    },
+    {
+      "src": "docs/README.md",
+      "dest": ".github/README_CLAIMS_REPO.md",
+      "user_managed": false
+    },
+    {
+      "src": "claims/components/.gitkeep",
+      "dest": "claims/components/.gitkeep",
+      "user_managed": false
+    },
+    {
+      "src": "claims/groups/.gitkeep",
+      "dest": "claims/groups/.gitkeep",
+      "user_managed": false
+    },
+    {
+      "src": "claims/secrets/.gitkeep",
+      "dest": "claims/secrets/.gitkeep",
+      "user_managed": false
+    },
+    {
+      "src": "claims/systems/.gitkeep",
+      "dest": "claims/systems/.gitkeep",
+      "user_managed": false
+    },
+    {
+      "src": "claims/tfworkspaces/.gitkeep",
+      "dest": "claims/tfworkspaces/.gitkeep",
+      "user_managed": false
+    },
+    {
+      "src": "claims/users/.gitkeep",
+      "dest": "claims/users/.gitkeep",
+      "user_managed": false
+    },
+    {
+      "src": "docker/docker-compose.yaml",
+      "dest": "docker-compose.yaml",
+      "user_managed": true
+    },
+    {
+      "src": "claims/orgwebhooks/.gitkeep",
+      "dest": "claims/orgwebhooks/.gitkeep",
+      "user_managed": false
+    },
+    {
+      "src": "claims/githuborgs/.gitkeep",
+      "dest": "claims/githuborgs/.gitkeep",
+      "user_managed": false
+    },
+    {
+      "src": "INITIAL_README.md",
+      "dest": "README.md",
+      "user_managed": true
+    }
+  ],
+  "description": "no description",
+  "version": "2.3.0"
+}

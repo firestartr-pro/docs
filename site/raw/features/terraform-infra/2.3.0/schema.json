@@ -1,0 +1,131 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "infra args",
+  "type": "object",
+  "properties": {
+    "feature_name": {
+      "const": "infra"
+    },
+    "aws_account_id": {
+      "type": "string",
+      "description": "The AWS account ID used for Terraform operations.",
+      "default": "${AWS::AccountId}",
+      "examples": [
+        "123456789012"
+      ]
+    },
+    "terraform_version": {
+      "type": "string",
+      "description": "The Terraform version to use for provisioning infrastructure.",
+      "default": "1.12.2",
+      "examples": [
+        "1.12.2"
+      ]
+    },
+    "use_private_modules": {
+      "type": "string",
+      "description": "Whether to use private Terraform modules.",
+      "default": "false",
+      "examples": [
+        "false"
+      ]
+    },
+    "skip_commit_types": {
+      "type": "string",
+      "description": "A comma-separated list of commit types to skip when triggering Terraform workflows.",
+      "default": "docs,ci",
+      "examples": [
+        "docs,ci"
+      ]
+    }
+  },
+  "fileManifest": [
+    {
+      "src": ".github/scripts/functions.sh",
+      "dest": ".github/scripts/functions.sh",
+      "user_managed": false
+    },
+    {
+      "src": ".github/scripts/run_terrafire.sh",
+      "dest": ".github/scripts/run_terrafire.sh",
+      "user_managed": false
+    },
+    {
+      "src": ".github/scripts/terrafire.sh",
+      "dest": ".github/scripts/terrafire.sh",
+      "user_managed": false
+    },
+    {
+      "src": ".github/scripts/validate_tenant_changes.sh",
+      "dest": ".github/scripts/validate_tenant_changes.sh",
+      "user_managed": false
+    },
+    {
+      "src": ".github/workflows/terraform-destroy.yaml",
+      "dest": ".github/workflows/terraform-destroy.yaml",
+      "user_managed": false
+    },
+    {
+      "src": ".github/workflows/terraform-plan-apply.yaml",
+      "dest": ".github/workflows/terraform-plan-apply.yaml",
+      "user_managed": false
+    },
+    {
+      "src": "docs/README.md",
+      "dest": ".github/TERRAFORM_INFRA_WORKFLOWS_README.md",
+      "user_managed": false
+    },
+    {
+      "src": "accounts/.gitkeep",
+      "dest": "accounts/.gitkeep",
+      "user_managed": true
+    },
+    {
+      "src": "accounts/.terraform_version",
+      "dest": "accounts/.terraform_version",
+      "user_managed": true
+    },
+    {
+      "src": "accounts/.firestartr_tfstate_prefix",
+      "dest": "accounts/.firestartr_tfstate_prefix",
+      "user_managed": true
+    },
+    {
+      "src": "accounts/variables.tf",
+      "dest": "accounts/variables.tf",
+      "user_managed": true
+    },
+    {
+      "src": "docs/ACCOUNTS_README.md",
+      "dest": "accounts/README.md",
+      "user_managed": false
+    },
+    {
+      "src": "accounts/backend.tf",
+      "dest": "accounts/backend.tf",
+      "user_managed": false
+    },
+    {
+      "src": "accounts/examples/env/providers.tf",
+      "dest": "accounts/examples/env/providers.tf",
+      "user_managed": true
+    },
+    {
+      "src": "bootstrap/prepare.sh",
+      "dest": "bootstrap/prepare.sh",
+      "user_managed": false
+    },
+    {
+      "src": "bootstrap/role-admin.yaml",
+      "dest": "bootstrap/role-admin.yaml",
+      "user_managed": false
+    },
+    {
+      "src": "bootstrap/terraform-backend.yaml",
+      "dest": "bootstrap/terraform-backend.yaml",
+      "user_managed": false
+    }
+  ],
+  "description": "The automation is designed to:\n- Validate changes to Terraform modules on pull requests.\n- Run `terraform plan` for changed modules on pull requests.\n- Apply Terraform changes automatically when a pull request is merged and labeled with `terraform/apply`, or manually via workflow dispatch.\n- Provide detailed feedback and logs as pull request comments.",
+  "version": "2.3.0"
+}

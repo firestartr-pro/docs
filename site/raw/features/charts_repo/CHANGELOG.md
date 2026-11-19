@@ -1,0 +1,128 @@
+# Changelog
+
+## [3.0.0](https://github.com/prefapp/features/compare/charts_repo-v2.2.0...charts_repo-v3.0.0) (2026-11-05)
+
+
+### ⚠ BREAKING CHANGES
+
+* new claim patching functionality to add needed repo elements ([#1435](https://github.com/prefapp/features/issues/1435))
+
+### Features
+
+* new claim patching functionality to add needed repo elements ([#1435](https://github.com/prefapp/features/issues/1435)) ([1c32455](https://github.com/prefapp/features/commit/1c3245579e5739f14dc276caba06f61e876c29c8))
+
+
+### Bug Fixes
+
+* allow release-please to update multiple packages ([#1234](https://github.com/prefapp/features/issues/1234)) ([e0dd364](https://github.com/prefapp/features/commit/e0dd364ca03276490b644f7a016a2b33214f5ec6))
+
+## [2.2.0](https://github.com/prefapp/features/compare/charts_repo-v2.1.0...charts_repo-v2.2.0) (2026-08-31)
+
+
+### Features
+
+* **schema:** add top-level description to all features ([#1281](https://github.com/prefapp/features/issues/1281)) ([b3df3de](https://github.com/prefapp/features/commit/b3df3de88f4f27320a9152d7d7728d9dbebec6d1))
+
+## [2.1.0](https://github.com/prefapp/features/compare/charts_repo-v2.0.2...charts_repo-v2.1.0) (2026-07-22)
+
+
+### Features
+
+* add json-schema per feature ([#1131](https://github.com/prefapp/features/issues/1131)) ([2c3e1c9](https://github.com/prefapp/features/commit/2c3e1c9bbfc402c170448581e52a326e744270f0))
+
+## [2.0.2](https://github.com/prefapp/features/compare/charts_repo-v2.0.1...charts_repo-v2.0.2) (2026-06-02)
+
+
+### Bug Fixes
+
+* **charts_repo:** publication type ([#1061](https://github.com/prefapp/features/issues/1061)) ([586c0c3](https://github.com/prefapp/features/commit/586c0c3f0e32526e7bdabb2a68a933cdfbdf0f43))
+
+## [2.0.1](https://github.com/prefapp/features/compare/charts_repo-v2.0.0...charts_repo-v2.0.1) (2026-05-29)
+
+
+### Bug Fixes
+
+* 1013 charts repo release workflows ([#1014](https://github.com/prefapp/features/issues/1014)) ([ff73042](https://github.com/prefapp/features/commit/ff73042558ebf68e012f621df6a946550a8cc5b7))
+
+## [2.0.0](https://github.com/prefapp/features/compare/charts_repo-v1.5.0...charts_repo-v2.0.0) (2026-04-24)
+
+
+### ⚠ BREAKING CHANGES
+
+* decouple release publishing and add major rolling-tags ([#956](https://github.com/prefapp/features/issues/956))
+
+### Features
+
+* decouple release publishing and add major rolling-tags ([#956](https://github.com/prefapp/features/issues/956)) ([876095f](https://github.com/prefapp/features/commit/876095f15262fad23f452255c93a8fa92efffd85))
+
+
+### Bug Fixes
+
+* comment only on failure and delete comment on success ([#972](https://github.com/prefapp/features/issues/972)) ([0d56fb7](https://github.com/prefapp/features/commit/0d56fb71b65c9af41b7837f745d9fc65c7583b18))
+
+## [1.5.0](https://github.com/prefapp/features/compare/charts_repo-v1.4.3...charts_repo-v1.5.0) (2026-04-22)
+
+
+### Features
+
+* **charts_repo:** allow PR verify for multiple charts ([#945](https://github.com/prefapp/features/issues/945)) ([b345fd0](https://github.com/prefapp/features/commit/b345fd0d090b6dd6acb4de2700144bbe7b9f1d02))
+
+
+### Bug Fixes
+
+* **charts_repo:** support library charts in PR verify ([#951](https://github.com/prefapp/features/issues/951)) ([bcd0cc2](https://github.com/prefapp/features/commit/bcd0cc2e6425139efd4cd9aae65f029ea673ad8f))
+* **release-please:** Avoid trigger other workflows ([#839](https://github.com/prefapp/features/issues/839)) ([5514867](https://github.com/prefapp/features/commit/5514867cd75881777a2cab2693b3f291162d1d29))
+
+## [1.4.3](https://github.com/prefapp/features/compare/charts_repo-v1.4.2...charts_repo-v1.4.3) (2025-12-17)
+
+
+### Bug Fixes
+
+* **charts_repo:** fix version extraction in generate-artifact.yaml ([#784](https://github.com/prefapp/features/issues/784)) ([728c539](https://github.com/prefapp/features/commit/728c5391d8a9d5b548688ebf40ec5f99a26b8a43))
+
+## [1.4.2](https://github.com/prefapp/features/compare/charts_repo-v1.4.1...charts_repo-v1.4.2) (2025-09-10)
+
+
+### Bug Fixes
+
+* **charts:** add yamllint ([#680](https://github.com/prefapp/features/issues/680)) ([89faf78](https://github.com/prefapp/features/commit/89faf78d408e874999dc2ee78b6bbaff10293eec))
+
+## [1.4.1](https://github.com/prefapp/features/compare/charts_repo-v1.4.0...charts_repo-v1.4.1) (2025-09-09)
+
+
+### Bug Fixes
+
+* user managed files ([#678](https://github.com/prefapp/features/issues/678)) ([8f6b9df](https://github.com/prefapp/features/commit/8f6b9df50192d8b564d4b3d5c7e5ec209e6531d6))
+
+## [1.4.0](https://github.com/prefapp/features/compare/charts_repo-v1.3.0...charts_repo-v1.4.0) (2025-09-05)
+
+
+### Features
+
+* add release please config ([#671](https://github.com/prefapp/features/issues/671)) ([716fe87](https://github.com/prefapp/features/commit/716fe87e7e168dd5c3fab1c2ef9d9019c99bbf64))
+
+## [1.3.0](https://github.com/prefapp/features/compare/charts_repo-v1.2.0...charts_repo-v1.3.0) (2025-09-04)
+
+
+### Features
+
+* add release please config ([#667](https://github.com/prefapp/features/issues/667)) ([1f0c336](https://github.com/prefapp/features/commit/1f0c336b7a9d0186cd0530f00cf6a56c3463cf9c))
+
+## [1.2.0](https://github.com/prefapp/features/compare/charts_repo-v1.1.0...charts_repo-v1.2.0) (2025-09-01)
+
+
+### Features
+
+* use new validation ([#631](https://github.com/prefapp/features/issues/631)) ([eaf2bbf](https://github.com/prefapp/features/commit/eaf2bbf0be3bb7bb813bfcb11685663f35a8d7ac))
+
+
+### Bug Fixes
+
+* missing arg in template ([#660](https://github.com/prefapp/features/issues/660)) ([e5830c3](https://github.com/prefapp/features/commit/e5830c3b0030e900f4caebf8dca75a5a96ad2fdc))
+
+## [1.1.0](https://github.com/prefapp/features/compare/charts_repo-v1.0.0...charts_repo-v1.1.0) (2025-08-04)
+
+
+### Features
+
+* add charts repo ([#616](https://github.com/prefapp/features/issues/616)) ([c4c2f8e](https://github.com/prefapp/features/commit/c4c2f8e186fbe3b3b0c3ad3ab2274c898fefd744))

@@ -1,0 +1,19 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "hello-world args",
+  "type": "object",
+  "properties": {
+    "feature_name": {
+      "const": "hello-world"
+    }
+  },
+  "fileManifest": [
+    {
+      "src": "hello.md",
+      "dest": "hello.md",
+      "user_managed": false
+    }
+  ],
+  "description": "no description",
+  "version": "0.2.0"
+}

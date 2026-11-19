@@ -1,0 +1,30 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "catalog_repo args",
+  "type": "object",
+  "properties": {
+    "feature_name": {
+      "const": "catalog_repo"
+    },
+    "crontab": {
+      "type": "string",
+      "description": "The cron schedule for catalog hydration.",
+      "default": "0 */6 * * *",
+      "examples": ["0 */6 * * *"]
+    }
+  },
+  "fileManifest": [
+    {
+      "src": ".config/.gitkeep",
+      "dest": ".config/.gitkeep",
+      "user_managed": false
+    },
+    {
+      "src": ".github/workflows/hydrate.yaml",
+      "dest": ".github/workflows/hydrate.yaml",
+      "user_managed": false
+    }
+  ],
+  "description": "no description",
+  "version": "1.5.0"
+}
