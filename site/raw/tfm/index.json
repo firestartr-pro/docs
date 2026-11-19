@@ -721,6 +721,16 @@
       ]
     },
     {
+      "name": "ovh-mysql",
+      "version": "0.1.0",
+      "files": [
+        {
+          "name": "README.md",
+          "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/ovh-mysql/README.md"
+        }
+      ]
+    },
+    {
       "name": "ovh-network",
       "version": "0.2.0",
       "files": [
