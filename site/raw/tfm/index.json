@@ -42,7 +42,7 @@
     },
     {
       "name": "aws-eks",
-      "version": "1.7.0",
+      "version": "1.7.1",
       "files": [
         {
           "name": "README.md",

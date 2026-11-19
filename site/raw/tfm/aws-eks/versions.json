@@ -1,5 +1,10 @@
 [
   {
+    "version": "1.7.1",
+    "date": "2026-11-19T21:12:18Z",
+    "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/aws-eks/1.7.1/README.md"
+  },
+  {
     "version": "1.7.0",
     "date": "2026-11-19T19:31:34Z",
     "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/aws-eks/1.7.0/README.md"
