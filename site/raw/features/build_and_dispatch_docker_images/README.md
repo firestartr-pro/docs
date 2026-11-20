@@ -21,7 +21,7 @@ snapshots: # Configuration specific for snapshots, used by build_docker_pre-rele
   flavor: # Flavor-specific configuration. A flavor can be named anything as long as it's a valid YAML key
     dockerfile: path/to/dockerfile # Path relative to the repo root folder
     auto: false # Whether or not to automatically build this flavor when the * input is specified (see "Inputs" below). Defaults to false
-    build_args: # Environment variables to set during the image building process
+    build_args: # Docker build arguments (declare matching ARGs in the Dockerfile)
       #  ENV_VARIABLE_NAME: env_variable_value
       API_URL: https://api.com/url
       UI_COLOR: "#125690"
@@ -66,7 +66,7 @@ Each flavor key can contain:
 
 - `dockerfile`: path to the dockerfile to use when building this image, relative to the repo root (i.e. if the dockerfile is located at `https://www.github.com/firestartr-test/code-repo/docker/Dockerfile`, this keys' value will be `docker/Dockerfile`)
 - `auto`: whether or not to build this flavor when the [`flavors` input](#inputs) equals \*. [Defaults to false](#defaults)
-- `build_args`: key-value pairs that are set as environment variables when building the image. The key is the environment value name, and the value its value, and any number of them can be specified. They are passed as Docker build args (`--build-arg`), so the Dockerfile must declare them with `ARG <NAME>`; undeclared build args are silently ignored.
+- `build_args`: key-value pairs passed as Docker build arguments (`--build-arg`). Declare a matching `ARG <NAME>` in the Dockerfile to consume each value; undeclared build args are silently ignored. With `workflows_repo_ref: v3`, flavor `build_args` override same-named arguments supplied through `build_images_vars`; with other refs, reference those values explicitly with `{{ build_images_vars.NAME }}` to pass them as build arguments.
 - `registry`: a [`registry` object](#registry-objects) that overrides the [default registry](#defaults). If this key is specified, **_no image will be uploaded to the [default registry](#defaults)_**
 - `extra_registries`: a list of [`registry` object](#registry-objects) to where the image will be uploaded to, in addition to the [default registry](#defaults). If this key is specified, **_the image will still be uploaded to the [default registry](#defaults)_**
 - `extra_tags`: optional list of strings representing extra tags to publish the image as. While the default tag is constructed as `<flavor>_<version>`, no extra info will be appended to these tags. E.g. if the flavor is `default` and the version is `v1.2.3`, the default tag will be `default_v1.2.3`, and if `latest` is specified as an extra tag, the image will also be tagged as `latest`. For this reason, all values listed as `extra_tags` must be unique across all flavors and types (i.e., two different flavors cannot both have `latest` as an extra tag, even if one is a snapshot and the other a release)
@@ -79,6 +79,113 @@ Configuration variables (both optional):
 | ----------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `BUILD_DOCKER_IMAGES_AMD64_RUNS_ON` | Specifies the runner version that the images for `linux/amd64` will be built on, in [the format supported by the GitHub runs-on setting](https://docs.github.com/en/actions/how-tos/manage-runners/self-hosted-runners/use-in-a-workflow). If unset, it'll default to the feature argument `RUNNER_VERSION` |
 | `BUILD_DOCKER_IMAGES_ARM64_RUNS_ON` | Specifies the runner version that the images for `linux/arm64` will be built on, in [the format supported by the GitHub runs-on setting](https://docs.github.com/en/actions/how-tos/manage-runners/self-hosted-runners/use-in-a-workflow). If unset, images for this platform won't be built                |
+
+### Runtime interpolation
+
+Runtime interpolation is only available with `workflows_repo_ref` values other than `v3`. With exactly `v3`, the legacy build call is used instead: values from `build_images_vars` are passed as additional Docker build arguments, values from `build_images_secrets` are mounted into every flavor, and `{{ }}` expressions in the config file are not evaluated.
+
+`.github/build_images.yaml` is not a GitHub workflow: GitHub does not evaluate expressions in it. The `build_images` Python workflow resolves `env.*`, `build_images_vars.*` and `build_images_secrets.*` expressions using `{{ }}` syntax before validating the configuration. `env.*` reads the environment of the runner step executing Dagger; `build_images_vars.*` reads every value passed to the build through the `vars` input (including the `build_images_vars` feature argument); `build_images_secrets.*` reads values passed through the `secrets` input. Interpolation works in string values throughout the flavor configuration, including `build_args`, `extra_tags`, and `registry.repository`, for snapshots, pre-releases (the `snapshots` section), and releases.
+
+```yaml
+snapshots:
+  default:
+    dockerfile: Dockerfile
+    build_args:
+      SHA: "{{ env.GITHUB_SHA }}"
+    extra_tags:
+      - "build-{{ env.GITHUB_RUN_ID }}"
+```
+
+```dockerfile
+FROM alpine
+ARG SHA
+RUN test -n "$SHA"
+```
+
+Resolved values remain strings; quotes, backslashes, and newlines are not interpreted as YAML syntax. Values are not evaluated recursively. Mapping keys are not interpolated. The entire file is validated, so expressions in unselected flavors or types must also resolve.
+
+An env value containing a placeholder such as `{{ secrets.TOKEN }}` stays literal and is not evaluated again. Legacy `secrets.*` placeholders authored in the YAML are no longer supported; use flavor `secrets` or `build_images_secrets` and Dockerfile secret mounts instead.
+
+Only `env.*`, `build_images_vars.*` and `build_images_secrets.*` are supported here. `github.*`, `vars.*`, `secrets.*`, the legacy `vars_input.*`, and GitHub expression operators are not supported and fail with an error. Use `{{ env.GITHUB_REF_NAME }}` instead of `${{ github.ref_name }}`. `env.*` resolves against the environment variables available to the workflow step; see GitHub's [Variables reference](https://docs.github.com/en/actions/reference/workflows-and-actions/variables) for the default variables GitHub provides (such as `GITHUB_SHA`, `GITHUB_REF_NAME`, and `GITHUB_RUN_ID`). Environment variable names are case-sensitive and must match exactly.
+
+The boolean feature argument `build_images_allow_undefined` controls missing variables in all three contexts:
+
+| Value | Behavior |
+| --- | --- |
+| `false` (default) | Fail with an error naming the variable and config file. |
+| `true` | Substitute an empty string and emit a GitHub `::warning::` annotation naming the variable. |
+
+An existing variable whose value is empty is valid and does not emit a warning. The resulting config must still pass schema validation, and the Dockerfile must accept any empty build arguments.
+
+Interpolation and `build_images_allow_undefined` require a `workflows_repo_ref` other than `v3`.
+
+#### Workflow argument interpolation
+
+`build_images_vars.*` resolves values passed to the `build_images` workflow through its `vars` input. This is not GitHub's `vars` context: GitHub evaluates the workflow inputs first, and this context reads the resulting values. It includes both the fixed workflow arguments listed below and every value supplied through the `build_images_vars` feature argument.
+
+The fixed names are:
+
+- `repo_name`
+- `flavors`
+- `platforms`
+- `auth_strategy`
+- `snapshots_registry`
+- `releases_registry`
+- `output_results`
+- `type`
+- `from`
+- `dereference_enabled`
+- `allow_undefined`
+- `workflow_run_id`
+- `workflow_run_url`
+- `login_required`
+- `service_path`
+- `snapshots_registry_creds`
+- `releases_registry_creds`
+- `container_structure_filename`
+- `publish`
+
+These names are reserved: `build_images_vars` entries that assign any of them (including quoted, dotted or table-header TOML keys on any line of an entry) are rejected during hydration.
+
+```yaml
+snapshots:
+  default:
+    dockerfile: Dockerfile
+    build_args:
+      REPOSITORY: "{{ build_images_vars.repo_name }}"
+```
+
+Names are case-sensitive: `repo_name`, `REPO_NAME`, and `Repo_Name` are distinct inputs. Missing names follow the `build_images_allow_undefined` setting described above.
+
+#### Secret interpolation
+
+`build_images_secrets.*` resolves values passed to the build through the `secrets` input. It is only allowed as a direct value in a flavor's `secrets` mapping (`snapshots.<flavor>.secrets.<name>` or `releases.<flavor>.secrets.<name>`). Using it in `build_args`, tags, registry fields, or nested secret structures fails before the build, even when `build_images_allow_undefined` is `true`. Only the secrets a flavor references are resolved and mounted, and secret values are not written to the results artifact.
+
+```yaml
+snapshots:
+  default:
+    dockerfile: Dockerfile
+    secrets:
+      GITHUB_TOKEN: "{{ build_images_secrets.PAT }}"
+```
+
+Secret names are case-sensitive and missing names follow the `build_images_allow_undefined` setting described above. Values are used as-is: AWS SSM ARNs and Azure Key Vault URLs remain references until the flavor is built, and values are not interpolated recursively. Never put secrets in `build_images_vars` or `build_args`, where they can end up in image metadata.
+
+#### Event context versus build source
+
+`GITHUB_REF_NAME` and `GITHUB_SHA` describe the triggering event, even inside a reusable workflow. They do not change when the build checks out `inputs.from`.
+
+| Trigger | `GITHUB_REF_NAME` | `GITHUB_SHA` | Automatic build `from` |
+| --- | --- | --- | --- |
+| Release / pre-release | Release tag, e.g. `v1.2.3` | Commit in the tagged release | Release tag |
+| Push to the configured branch | Branch name, e.g. `main` | Tip commit pushed to that branch | Pushed commit SHA |
+| Pull request | `<number>/merge`, e.g. `123/merge` | PR merge commit SHA | PR head SHA |
+| `workflow_dispatch` | Branch or tag selected when dispatching | Commit at that selected ref | User-supplied `from` |
+
+The image version uses `from`, with snapshot dereferencing when enabled; it is not necessarily `GITHUB_SHA` or `GITHUB_REF_NAME`. No additional build-source environment variable is exported by this feature.
+
+> [!WARNING]
+> Do not pass secrets through `build_args` or `build_images_vars`, including via `env.*`. Build arguments can appear in image metadata and the build results artifact. Use flavor `secrets` or `build_images_secrets` and Dockerfile secret mounts instead.
 
 ### Registry objects
 
@@ -329,6 +436,10 @@ RUN --mount=type=secret,id=MAVEN_USERNAME \
     mvn package
 ```
 
+**2. Secrets passed through the `build_images_secrets` feature argument**
+
+With any `workflows_repo_ref` other than `v3`, these values can be referenced in a flavor's `secrets` mapping with `{{ build_images_secrets.NAME }}` (see [Secret interpolation](#secret-interpolation)). Each flavor only receives the secrets it references. With `workflows_repo_ref: v3`, the values are mounted into every flavor automatically and no explicit reference is needed.
+
 ### About GitHub secrets & vars
 
 The `build_docker_(snapshots, pre-releases, releases)` workflows all use the `build_images_reusable` workflow, which supports sending additional secrets and variables to the Dagger module. This is done by setting the `build_images_vars` and `build_images_secrets` feature parameters, as explained in the [Feature arguments](#feature-arguments) section below.
@@ -341,14 +452,15 @@ Additionally, the workflow sets the `environment` job parameter, which can be ei
 The same variable or secret can be defined in multiple of these scopes, with the value defined within either environment having precedence over variables defined at the organization or repository level. You can read more about workflow environments and their variables and secrets [in the GitHub documentation](https://docs.github.com/en/actions/concepts/workflows-and-actions/deployment-environments).
 
 > [!NOTE]
-> Note that, apart from GitHub secrets and vars, in these fields you can also
-> define text variables and references to secrets in the AWS Parameter Store or
-> Azure Keyvault, which will be available in all image builds of all flavors
-> defined in your `.github/build_images.yml`.
+> Apart from GitHub secrets and vars, these fields can also contain plain text and
+> references to secrets in AWS Parameter Store or Azure Key Vault. With `workflows_repo_ref: v3`,
+> input secrets are mounted into all image builds of all flavors defined in
+> `.github/build_images.yaml`; with any other ref, each flavor must reference them
+> explicitly with `{{ build_images_secrets.NAME }}`.
 
 > [!WARNING]
-> Avoid defining secrets and references to secrets within the `build_image_vars` field, as they can end up populated in your Docker image layers.
-> Always use the `build_image_secrets` field to provide secrets, which will use [Dagger's secure mechanism](https://docs.dagger.io/extending/secrets/?sdk=System+shell)
+> Avoid defining secrets and references to secrets within the `build_images_vars` field, as they can end up populated in your Docker image layers.
+> Always use the `build_images_secrets` field to provide secrets, which will use [Dagger's secure mechanism](https://docs.dagger.io/extending/secrets/?sdk=System+shell)
 > to provide them to the build process without the risk of them being exfiltrated into the final image.
 ## Make dispatches
 
@@ -478,8 +590,10 @@ The following feature arguments control behavior and defaults for the build and 
 | `trigger_filter_by_env_releases` | Value passed as `filter_by_env` to `make_dispatches.yaml` when triggered automatically after a release build. | `pro` |
 | `skip_commit_types` | Comma-separated list of conventional commit type prefixes to ignore on `push` events for `build_docker_snapshots`. If ALL commits in a push match one of these types the build is skipped. Only applies to `push` events; `workflow_dispatch` and `pull_request` always build. Wrapped in try/catch so failures default to building. | `ci,docs,build,chore,test` |
 | `push_paths_ignore` | List of path patterns (GitHub Actions `paths-ignore` format) to exclude from triggering `build_docker_snapshots` on `push` events. Rendered directly under `paths-ignore`. | `.github/**`, `docs/**` |
-| `build_images_vars` | Array of TOML-formatted vars and plain text values passed to the Dagger module as the `additional_build_args` input in the `build_images_reusable` workflow call. | none |
-| `build_images_secrets` | Array of TOML-formatted secret (both GitHub secrets and external secrets) values passed to the Dagger module as the `secrets` input in the `build_images_reusable` workflow call. | none |
+| `build_images_vars` | Array of TOML-formatted vars and plain text values appended to the `vars` input of the Dagger call (or to `additional_build_args` with `workflows_repo_ref: v3`). Reference them with `{{ build_images_vars.NAME }}` in `build_images.yaml`. Reserved control names are rejected during hydration. | none |
+| `build_images_allow_undefined` | Whether an undefined `env.*`, `build_images_vars.*` or `build_images_secrets.*` reference in `build_images.yaml` becomes an empty string with a warning instead of failing. Ignored with `workflows_repo_ref: v3`. | `false` |
+| `build_images_secrets` | Array of TOML-formatted secrets (both GitHub secrets and external secret references) passed to the Dagger module as the `secrets` input. With refs other than `v3`, reference them with `{{ build_images_secrets.NAME }}` in each flavor's `secrets` mapping. | none |
+| `workflows_repo_ref` | Git reference of `prefapp/firestarter-workflows` used by the build workflows. Exactly `v3` selects the legacy build call; every other ref selects the new call. Accepts tags or branch names; the first two characters must be letters, digits, `.`, `_` or `-` (commas later in the ref are supported). | `v4` |
 
 Example of `build_images_vars` and `build_images_secrets` usage:
 
@@ -500,10 +614,24 @@ args:
     - MY_SECRET_3="arn:aws:ssm:region:account:parameter/dev/my-postgres-pass"
 ```
 
+With any `workflows_repo_ref` other than `v3`, reference those values explicitly in `.github/build_images.yaml`:
+
+```yaml
+snapshots:
+  default:
+    dockerfile: Dockerfile
+    build_args:
+      VALUE: "{{ build_images_vars.value1 }}"
+    secrets:
+      MY_SECRET_1: "{{ build_images_secrets.MY_SECRET_1 }}"
+```
+
+With `workflows_repo_ref: v3`, `build_images_vars` are passed as additional build arguments and all input secrets are mounted into every flavor, so no config-file references are needed.
+
 Please note that `vars` and `secrets` referenced in both the `build_images_vars` and `build_images_secrets` arguments are subject to the environment set for the `build_images_reusable` workflow by the `build_docker_<type>` workflows, as explained in the [About workflow environments](#about-workflow-environments) section of the documentation.
 
 > [!IMPORTANT]
-> `build_images_vars` and the flavor-level `build_args` are passed to the build as Docker build args (`--build-arg`). To use them, the Dockerfile must declare them with `ARG <NAME>`; an undeclared build arg is accepted by the build but ignored. Treat them as non-sensitive values.
+> With `workflows_repo_ref: v3`, `build_images_vars` are passed to the build as Docker build args (`--build-arg`) and can be consumed directly with `ARG <NAME>` in the Dockerfile. With other refs, they are interpolation values: add `NAME: "{{ build_images_vars.NAME }}"` to a flavor's `build_args` to pass them as build arguments. Undeclared build args are accepted by the build but ignored. Treat all build args as non-sensitive values.
 >
 > `build_images_secrets` and the flavor-level `secrets` are mounted as BuildKit secrets, so they **do not need an `ARG`**. Consume them with `RUN --mount=type=secret,id=<NAME> ...` and read the value from `/run/secrets/<NAME>` (see [How build secrets work](#how-build-secrets-work)).
 

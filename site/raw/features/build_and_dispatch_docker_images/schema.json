@@ -160,9 +160,19 @@
     "build_images_vars": {
       "type": "array",
       "items": {
-        "type": "string"
+        "type": "string",
+        "not": {
+          "anyOf": [
+            {
+              "pattern": "(?:^|\\n)\\s*\\[{0,2}\\s*(?:repo_name|\"repo_name\"|'repo_name'|flavors|\"flavors\"|'flavors'|platforms|\"platforms\"|'platforms'|auth_strategy|\"auth_strategy\"|'auth_strategy'|snapshots_registry|\"snapshots_registry\"|'snapshots_registry'|releases_registry|\"releases_registry\"|'releases_registry'|output_results|\"output_results\"|'output_results'|type|\"type\"|'type'|from|\"from\"|'from'|dereference_enabled|\"dereference_enabled\"|'dereference_enabled'|allow_undefined|\"allow_undefined\"|'allow_undefined'|workflow_run_id|\"workflow_run_id\"|'workflow_run_id'|workflow_run_url|\"workflow_run_url\"|'workflow_run_url'|login_required|\"login_required\"|'login_required'|service_path|\"service_path\"|'service_path'|snapshots_registry_creds|\"snapshots_registry_creds\"|'snapshots_registry_creds'|releases_registry_creds|\"releases_registry_creds\"|'releases_registry_creds'|container_structure_filename|\"container_structure_filename\"|'container_structure_filename'|publish|\"publish\"|'publish')\\s*(?:=|\\.|\\])"
+            },
+            {
+              "pattern": "(?:^|\\n)\\s*\\[{0,2}\\s*\"[^\"\\n]*\\\\[^\"\\n]*\"\\s*(?:=|\\.|\\])"
+            }
+          ]
+        }
       },
-      "description": "Build variables for Docker images.",
+      "description": "TOML-formatted Docker build variables appended to the vars input, or to additional_build_args when the workflows ref is v3.",
       "default": [],
       "examples": [
         [
@@ -170,17 +180,36 @@
         ]
       ]
     },
+    "build_images_allow_undefined": {
+      "type": "boolean",
+      "description": "Whether undefined env, build_images_vars or build_images_secrets references in build_images.yaml become an empty string with a warning instead of failing; ignored when the workflows ref is v3.",
+      "default": false,
+      "examples": [
+        true
+      ]
+    },
     "build_images_secrets": {
       "type": "array",
       "items": {
         "type": "string"
       },
-      "description": "Build secrets for Docker images.",
+      "description": "TOML-formatted secrets passed to the Dagger build; with refs other than v3 each flavor must reference them through build_images_secrets expressions.",
       "default": [],
       "examples": [
         [
           "MY_SECRET=value"
         ]
+      ]
+    },
+    "workflows_repo_ref": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9._-](?:[A-Za-z0-9._-][A-Za-z0-9._/,-]*)?$",
+      "description": "Git reference of prefapp/firestarter-workflows used by the build workflows; exactly v3 selects the legacy call and any other ref selects the new call.",
+      "default": "v4",
+      "examples": [
+        "v3",
+        "v4",
+        "v4.0.1"
       ]
     },
     "prereleases_dereference_enabled": {
@@ -239,11 +268,6 @@
       "user_managed": false
     },
     {
-      "src": ".github/workflows/build_images_reusable.yaml",
-      "dest": ".github/workflows/build_images_reusable.yaml",
-      "user_managed": false
-    },
-    {
       "src": ".github/workflows/build_images_summary_reusable.yaml",
       "dest": ".github/workflows/build_images_summary_reusable.yaml",
       "user_managed": false
@@ -267,8 +291,13 @@
       "src": ".github/.yamllint.conf",
       "dest": ".github/.yamllint.conf",
       "user_managed": true
+    },
+    {
+      "src": ".github/workflows/build_images_reusable_v4.yaml",
+      "dest": ".github/workflows/build_images_reusable.yaml",
+      "user_managed": false
     }
   ],
   "description": "This feature builds and publishes Docker images from release, pre-release, and snapshot sources, then automatically dispatches the resulting image updates to their corresponding state repositories.",
-  "version": "6.1.0"
+  "version": "7.0.0"
 }

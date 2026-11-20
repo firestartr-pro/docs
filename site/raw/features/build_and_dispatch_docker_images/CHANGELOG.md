@@ -1,5 +1,21 @@
 # Changelog
 
+## [7.0.0](https://github.com/prefapp/features/compare/build_and_dispatch_docker_images-v6.1.0...build_and_dispatch_docker_images-v7.0.0) (2026-11-20)
+
+
+### ⚠ BREAKING CHANGES
+
+* **`build_and_dispatch_docker_images`:** prepare workflows for new build_images version ([#1431](https://github.com/prefapp/features/issues/1431))
+
+### Features
+
+* **`build_and_dispatch_docker_images`:** prepare workflows for new build_images version ([#1431](https://github.com/prefapp/features/issues/1431)) ([cf4c3dc](https://github.com/prefapp/features/commit/cf4c3dcefceeb27875d7a8c5e2acc1bf9981b467))
+
+
+### Bug Fixes
+
+* Updated feature tests to use claims instead of CRs ([#1363](https://github.com/prefapp/features/issues/1363)) ([e0654a8](https://github.com/prefapp/features/commit/e0654a82aae3d3807ce04696fe228ca9c7bd0bb1))
+
 ## [6.1.0](https://github.com/prefapp/features/compare/build_and_dispatch_docker_images-v6.0.0...build_and_dispatch_docker_images-v6.1.0) (2026-11-05)
 
 

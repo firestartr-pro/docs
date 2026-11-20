@@ -1,5 +1,10 @@
 [
   {
+    "version": "7.0.0",
+    "date": "2026-11-20T12:33:01Z",
+    "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/features/build_and_dispatch_docker_images/7.0.0/schema.json"
+  },
+  {
     "version": "6.1.0",
     "date": "2026-11-05T12:10:53Z",
     "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/features/build_and_dispatch_docker_images/6.1.0/schema.json"
