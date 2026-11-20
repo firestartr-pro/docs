@@ -739,6 +739,16 @@
           "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/ovh-network/README.md"
         }
       ]
+    },
+    {
+      "name": "ovh-postgresql",
+      "version": "0.2.0",
+      "files": [
+        {
+          "name": "README.md",
+          "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/tfm/ovh-postgresql/README.md"
+        }
+      ]
     }
   ]
 }
