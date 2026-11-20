@@ -87,14 +87,17 @@ feature_name: example
 # $arg: The name of the argument as consumed by the claim (each $arg becomes a schema property)
 # $default: The default value for the argument
 # $format: Optional named value type resolved from the registry in scripts/arg-formats.js
-#          (string, int, bool, semver, semver-range, string-list). It controls the JSON
-#          type emitted for the argument in schema.json:
-#            string         -> { type: "string" } (no pattern)
-#            int            -> { type: "integer" }
-#            bool           -> { type: "boolean" }
-#            semver         -> { type: "string", pattern: <semver regexp> }
-#            semver-range   -> { type: "string", pattern: <npm semver range regexp> }
-#            string-list    -> { type: "array", items: { type: "string" } }
+#          (string, int, bool, semver, semver-range, string-list, yaml-safe-ref,
+#          build-images-vars). It controls the JSON type emitted for the argument in
+#          schema.json:
+#            string            -> { type: "string" } (no pattern)
+#            int               -> { type: "integer" }
+#            bool              -> { type: "boolean" }
+#            semver            -> { type: "string", pattern: <semver regexp> }
+#            semver-range      -> { type: "string", pattern: <npm semver range regexp> }
+#            string-list       -> { type: "array", items: { type: "string" } }
+#            yaml-safe-ref     -> { type: "string", pattern: <yaml-safe git ref regexp> }
+#            build-images-vars -> { type: "array", items: { type: "string", pattern: <reserved key regexp> } }
 #          The generated schema.json validates claimed values against these native
 #          types; only $defaults are checked at schema generation and emitted as native
 #          types (a quoted "8080" becomes the integer 8080). Unknown formats fail
