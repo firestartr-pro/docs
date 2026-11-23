@@ -75,5 +75,5 @@
     }
   ],
   "description": "Publishes a repository's docs into a docs repository, the one central repository where the documentation of every repo that installs this feature is gathered. A release writes a new version folder, a push to the source branch refreshes the docs that follow that branch, and a pull request receives a comment that lists what it would publish or delete. The work is done by the Publisher action, so this feature installs a workflow that calls it, a starter entries file, and this README.",
-  "version": "1.1.0"
+  "version": "1.1.1"
 }
