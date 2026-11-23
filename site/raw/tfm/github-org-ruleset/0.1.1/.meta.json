@@ -2,5 +2,6 @@
   "source": "prefapp/tfm",
   "tag": "github-org-ruleset-v0.1.1",
   "date": "2026-04-16T09:35:17Z",
-  "specHash": "b99349d98aa383bbaac3ea1577d42717e40bb55121bc05ca12c79b11bbb36c86"
+  "specHash": "b99349d98aa383bbaac3ea1577d42717e40bb55121bc05ca12c79b11bbb36c86",
+  "sourceRevision": "bf6e3d3ec32d7b5754b28f110c4926d5ba0ef08b"
 }

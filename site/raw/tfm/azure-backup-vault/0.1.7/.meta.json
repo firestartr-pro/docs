@@ -2,5 +2,6 @@
   "source": "prefapp/tfm",
   "tag": "azure-backup-vault-v0.1.7",
   "date": "2026-02-26T09:59:27Z",
-  "specHash": "b99349d98aa383bbaac3ea1577d42717e40bb55121bc05ca12c79b11bbb36c86"
+  "specHash": "b99349d98aa383bbaac3ea1577d42717e40bb55121bc05ca12c79b11bbb36c86",
+  "sourceRevision": "af03c2c20ae8e91d88059829d49a23bbef22f5b3"
 }

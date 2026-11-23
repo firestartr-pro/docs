@@ -2,5 +2,6 @@
   "source": "prefapp/tfm",
   "tag": "azure-vnet-subnet-v2.2.0",
   "date": "2026-03-17T09:36:53Z",
-  "specHash": "b99349d98aa383bbaac3ea1577d42717e40bb55121bc05ca12c79b11bbb36c86"
+  "specHash": "b99349d98aa383bbaac3ea1577d42717e40bb55121bc05ca12c79b11bbb36c86",
+  "sourceRevision": "f4998c44476054d3ed1ac0e94100244d51e70afd"
 }

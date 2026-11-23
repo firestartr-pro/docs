@@ -2,5 +2,6 @@
   "source": "prefapp/tfm",
   "tag": "azure-windows-vm-v0.1.11",
   "date": "2026-08-20T13:08:26Z",
-  "specHash": "b99349d98aa383bbaac3ea1577d42717e40bb55121bc05ca12c79b11bbb36c86"
+  "specHash": "b99349d98aa383bbaac3ea1577d42717e40bb55121bc05ca12c79b11bbb36c86",
+  "sourceRevision": "a1029635cb0490dbfdeb2f503db1a6fd855bc1a4"
 }

@@ -2,5 +2,6 @@
   "source": "prefapp/tfm",
   "tag": "aws-cloudfront-delivery-v0.2.4",
   "date": "2025-11-18T00:39:20Z",
-  "specHash": "b99349d98aa383bbaac3ea1577d42717e40bb55121bc05ca12c79b11bbb36c86"
+  "specHash": "b99349d98aa383bbaac3ea1577d42717e40bb55121bc05ca12c79b11bbb36c86",
+  "sourceRevision": "a444118616fd4a0bf32d6060f17eb8f5e7cc4618"
 }

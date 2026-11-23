@@ -2,5 +2,6 @@
   "source": "prefapp/tfm",
   "tag": "aws-sso-v0.6.1",
   "date": "2025-04-24T11:11:43Z",
-  "specHash": "b99349d98aa383bbaac3ea1577d42717e40bb55121bc05ca12c79b11bbb36c86"
+  "specHash": "b99349d98aa383bbaac3ea1577d42717e40bb55121bc05ca12c79b11bbb36c86",
+  "sourceRevision": "2a510ed98b91a2f5cc880bce226082e7c1d15e54"
 }

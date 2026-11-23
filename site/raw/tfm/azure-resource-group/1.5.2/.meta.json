@@ -2,5 +2,6 @@
   "source": "prefapp/tfm",
   "tag": "azure-resource-group-v1.5.2",
   "date": "2026-08-20T13:24:45Z",
-  "specHash": "b99349d98aa383bbaac3ea1577d42717e40bb55121bc05ca12c79b11bbb36c86"
+  "specHash": "b99349d98aa383bbaac3ea1577d42717e40bb55121bc05ca12c79b11bbb36c86",
+  "sourceRevision": "8166d888b22d846b983f706517658841a7540c83"
 }
