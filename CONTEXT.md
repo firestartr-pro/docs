@@ -6,7 +6,7 @@ development workflow; it lists shared terms only and is not a specification.
 ## Repository map
 
 - **`site/raw/`** — Promoted technical material produced by other repositories (`core/`,
-  `features/`, `images/`, `tfm/`). Edited upstream, not editorial content of this site.
+  `features/`, `tfm/`). Edited upstream, not editorial content of this site.
 - **`site/homepage/`** — Destination-owned editorial homepage source, including its image
   assets. Tracked here and never written by a promotion.
 - **`site/web/`** — The Hugo site using the pinned Hextra Hugo Module. `content/`,

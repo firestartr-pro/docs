@@ -6,7 +6,6 @@
 #   - site/homepage/     destination-owned homepage and its image assets
 #   - site/raw/core/docs/       promoted core documentation
 #   - site/raw/features/        promoted feature documentation
-#   - site/raw/images/          promoted images
 #   - logos/logo.png            site favicon
 #
 # Published layout:
@@ -212,10 +211,6 @@ if [ -f "logos/logo.png" ]; then
   echo "    ✓ logos/logo.png → static/favicon.png and static/images/logo.png"
 fi
 
-if [ -d "${RAW_DIR}/images" ]; then
-  cp -R "${RAW_DIR}/images/." "${WEB_STATIC_DIR}/images/"
-  echo "    ✓ site/raw/images → static/images"
-fi
 if [ -d "${HOMEPAGE_DIR}/images" ]; then
   cp -R "${HOMEPAGE_DIR}/images/." "${WEB_STATIC_DIR}/images/"
   echo "    ✓ site/homepage/images → static/images"
@@ -224,8 +219,8 @@ fi
 # Every Area that keeps images next to its docs publishes them under the Area's
 # own path: a feature package, a tfm module, a mirrored subtree and a mirrored
 # subtree of a subtree (site/raw/core/docs/backstage) all follow the same rule and
-# cannot collide on a file name. The flat site/raw/images/ root stays reserved for
-# the Areas that predate this layout, and is skipped here.
+# cannot collide on a file name. The shared static/images/ root holds only the
+# homepage's own images and the logo.
 #
 # A Version folder keeps an identical copy of its package's images; this build
 # serves the package and not the Version folder, so publishing them would triple
@@ -280,8 +275,8 @@ while IFS= read -r -d '' file; do
       "${file}"
   fi
 
-  # Shared images live at the site-wide /images/ path under the configured
-  # base URL, regardless of the page's section depth.
+  # A page whose Area carries no images falls back to the shared /images/ root,
+  # which holds only the homepage's images, regardless of the page's section depth.
   sed_inplace -E \
     -e 's|\]\(\./images/|](/images/|g' \
     -e 's|\]\(images/|](/images/|g' \

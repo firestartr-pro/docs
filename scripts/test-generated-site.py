@@ -41,7 +41,8 @@ GUIDES = {
     "Migrating-to-our-new-app-state-repo-structure": "the migration guide",
 }
 BACKSTAGE_SOURCE = ROOT / "site" / "raw" / "core" / "docs" / "backstage"
-PORTAL_FIXTURE_IMAGE = ROOT / "site" / "raw" / "images" / "backstage-test-fixture.png"
+# The portal keeps its images inside its own Area, like every other Area does.
+PORTAL_FIXTURE_IMAGE = BACKSTAGE_SOURCE / "images" / "backstage-test-fixture.png"
 
 # A section is published only when the migration finds a source for it: an Area that has
 # not published yet is skipped, not a build error, exactly as scripts/migrate-content.sh
@@ -341,6 +342,7 @@ def create_portal_fixture() -> None:
     (BACKSTAGE_SOURCE / "resource-edition" / "README.md").write_text(
         "# Resource edition\n\nFixture marker: nested section home.\n"
     )
+    PORTAL_FIXTURE_IMAGE.parent.mkdir(parents=True, exist_ok=True)
     PORTAL_FIXTURE_IMAGE.write_bytes(PORTAL_FIXTURE_IMAGE_BYTES)
 
 
@@ -395,14 +397,15 @@ def check_portal_fixture() -> None:
                 provisioning,
             )
             image_src = (match.group(2) or match.group(3)) if match else ""
+            expected_src = "/docs/images/core/docs/backstage/backstage-test-fixture.png"
             check(
-                image_src == "/docs/images/backstage-test-fixture.png",
-                "portal image resolves under /docs/images/backstage-*",
+                image_src == expected_src,
+                "portal image resolves under /docs/images/core/docs/backstage/",
             )
-            if image_src != "/docs/images/backstage-test-fixture.png":
+            if image_src != expected_src:
                 print(f"      found image src: {image_src!r}")
             check(
-                (PUBLIC_DIR / "images" / "backstage-test-fixture.png").is_file(),
+                (PUBLIC_DIR / "images" / "core" / "docs" / "backstage" / "backstage-test-fixture.png").is_file(),
                 "portal image is published",
             )
 
