@@ -1,0 +1,192 @@
+[
+  {
+    "version": "v3.1.1",
+    "date": "2026-10-23T15:55:03Z",
+    "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/core/crds/v3.1.1/index.yaml"
+  },
+  {
+    "version": "v3.1.0",
+    "date": "2026-10-22T12:25:22Z",
+    "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/core/crds/v3.1.0/index.yaml"
+  },
+  {
+    "version": "v3.0.2",
+    "date": "2026-10-02T19:08:15Z",
+    "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/core/crds/v3.0.2/index.yaml"
+  },
+  {
+    "version": "v3.0.1",
+    "date": "2026-10-02T18:34:50Z",
+    "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/core/crds/v3.0.1/index.yaml"
+  },
+  {
+    "version": "v3.0.0",
+    "date": "2026-10-02T10:53:47Z",
+    "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/core/crds/v3.0.0/index.yaml"
+  },
+  {
+    "version": "v2.11.1",
+    "date": "2026-09-29T08:38:06Z",
+    "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/core/crds/v2.11.1/index.yaml"
+  },
+  {
+    "version": "v2.11.0",
+    "date": "2026-09-23T11:04:20Z",
+    "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/core/crds/v2.11.0/index.yaml"
+  },
+  {
+    "version": "v2.10.0",
+    "date": "2026-08-18T12:32:52Z",
+    "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/core/crds/v2.10.0/index.yaml"
+  },
+  {
+    "version": "v2.9.0",
+    "date": "2026-08-14T12:13:16Z",
+    "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/core/crds/v2.9.0/index.yaml"
+  },
+  {
+    "version": "v2.8.0",
+    "date": "2026-08-03T10:37:29Z",
+    "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/core/crds/v2.8.0/index.yaml"
+  },
+  {
+    "version": "v2.7.1",
+    "date": "2026-07-24T12:18:43Z",
+    "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/core/crds/v2.7.1/index.yaml"
+  },
+  {
+    "version": "v2.7.0",
+    "date": "2026-07-21T09:44:21Z",
+    "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/core/crds/v2.7.0/index.yaml"
+  },
+  {
+    "version": "v2.6.4",
+    "date": "2026-06-11T09:59:03Z",
+    "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/core/crds/v2.6.4/index.yaml"
+  },
+  {
+    "version": "v2.6.3",
+    "date": "2026-06-10T19:45:51Z",
+    "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/core/crds/v2.6.3/index.yaml"
+  },
+  {
+    "version": "v2.6.2",
+    "date": "2026-06-10T18:18:18Z",
+    "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/core/crds/v2.6.2/index.yaml"
+  },
+  {
+    "version": "v2.6.1",
+    "date": "2026-06-09T17:54:34Z",
+    "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/core/crds/v2.6.1/index.yaml"
+  },
+  {
+    "version": "v2.6.0",
+    "date": "2026-06-08T18:11:24Z",
+    "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/core/crds/v2.6.0/index.yaml"
+  },
+  {
+    "version": "v2.5.0",
+    "date": "2026-05-28T13:41:37Z",
+    "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/core/crds/v2.5.0/index.yaml"
+  },
+  {
+    "version": "v2.4.0",
+    "date": "2026-05-07T21:31:39Z",
+    "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/core/crds/v2.4.0/index.yaml"
+  },
+  {
+    "version": "v2.3.0",
+    "date": "2026-05-04T13:16:03Z",
+    "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/core/crds/v2.3.0/index.yaml"
+  },
+  {
+    "version": "v2.2.0",
+    "date": "2026-04-29T17:08:52Z",
+    "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/core/crds/v2.2.0/index.yaml"
+  },
+  {
+    "version": "v2.1.0",
+    "date": "2026-04-22T17:48:43Z",
+    "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/core/crds/v2.1.0/index.yaml"
+  },
+  {
+    "version": "v2.0.0",
+    "date": "2026-04-17T12:15:50Z",
+    "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/core/crds/v2.0.0/index.yaml"
+  },
+  {
+    "version": "v1.60.1",
+    "date": "2026-04-17T11:30:37Z",
+    "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/core/crds/v1.60.1/index.yaml"
+  },
+  {
+    "version": "v1.60.0",
+    "date": "2026-04-16T11:09:37Z",
+    "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/core/crds/v1.60.0/index.yaml"
+  },
+  {
+    "version": "v1.59.3",
+    "date": "2026-04-01T14:12:02Z",
+    "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/core/crds/v1.59.3/index.yaml"
+  },
+  {
+    "version": "v1.59.2",
+    "date": "2026-04-01T11:21:12Z",
+    "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/core/crds/v1.59.2/index.yaml"
+  },
+  {
+    "version": "v1.59.1",
+    "date": "2026-04-01T09:48:25Z",
+    "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/core/crds/v1.59.1/index.yaml"
+  },
+  {
+    "version": "v1.59.0",
+    "date": "2026-03-31T16:38:19Z",
+    "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/core/crds/v1.59.0/index.yaml"
+  },
+  {
+    "version": "v1.58.0",
+    "date": "2026-03-16T14:47:34Z",
+    "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/core/crds/v1.58.0/index.yaml"
+  },
+  {
+    "version": "v1.57.0",
+    "date": "2026-02-20T15:20:06Z",
+    "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/core/crds/v1.57.0/index.yaml"
+  },
+  {
+    "version": "v1.56.0",
+    "date": "2026-02-12T11:17:00Z",
+    "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/core/crds/v1.56.0/index.yaml"
+  },
+  {
+    "version": "v1.55.0",
+    "date": "2026-02-03T13:11:06Z",
+    "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/core/crds/v1.55.0/index.yaml"
+  },
+  {
+    "version": "v1.54.0",
+    "date": "2025-12-16T15:17:49Z",
+    "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/core/crds/v1.54.0/index.yaml"
+  },
+  {
+    "version": "v1.53.1",
+    "date": "2025-11-13T17:08:53Z",
+    "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/core/crds/v1.53.1/index.yaml"
+  },
+  {
+    "version": "v1.53.0",
+    "date": "2025-11-13T17:08:53Z",
+    "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/core/crds/v1.53.0/index.yaml"
+  },
+  {
+    "version": "v1.52.0",
+    "date": "2025-11-13T17:08:53Z",
+    "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/core/crds/v1.52.0/index.yaml"
+  },
+  {
+    "version": "v1.51.2",
+    "date": "2025-11-13T17:08:53Z",
+    "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/core/crds/v1.51.2/index.yaml"
+  }
+]
