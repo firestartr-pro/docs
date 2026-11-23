@@ -1,0 +1,75 @@
+# Resource Edition
+
+Once your resource is created, you can manage it from the catalog screen.
+The surfaces you see depend on the entity kind; do not expect a User or
+Group to look like a Component.
+
+## Step 1 — Open the catalog
+
+Open **Home** in the sidebar to see the catalog with all the resources of the
+organization.
+
+The catalog is Backstage's [Software Catalog](https://backstage.io/docs/features/software-catalog/).
+
+![Catalog in the sidebar](./images/resource-edition/01-catalog-menu.png)
+
+## Step 2 — Find your resource
+
+You can filter the catalog by kind and by name to quickly find the resource
+you want to manage.
+
+![Catalog filters](./images/resource-edition/02-catalog-filters.png)
+
+## Step 3 — Open the resource
+
+Once you open a resource, a contextual menu bar is displayed. Which items
+appear depends on the kind:
+
+- **Component (service):** *Overview*, *Features*, *Settings*, *CI/CD*,
+  *Code Insights*, *Pull Requests*, *Dependencies*, and, only when the
+  component consumes or provides APIs, *API*. *Kubernetes* appears only
+  when Kubernetes is set up for the component, and *Docs* only when it has
+  [TechDocs](https://backstage.io/docs/features/techdocs/) documentation.
+- **Component (website):** *Overview*, *Features*, *Settings*, *CI/CD*,
+  and *Dependencies* (no *Code Insights*, *Pull Requests*, or *API*), with
+  the same conditional *Kubernetes* and *Docs* tabs as service components.
+- **Component (other types):** *Overview* and *Settings*, plus *Docs* when
+  TechDocs documentation exists — no *Features* tab.
+- **User** and **Group:** *Overview* and *Settings*.
+- **System:** *Overview*, *Settings*, and *Diagram*.
+- **Domain:** *Overview* and *Settings*.
+
+The **Features** tab exists only on **service** and **website** components.
+Do not look for it on components of other types, nor on a User, Group,
+System, or Domain.
+
+![Resource page with the contextual menu bar](./images/resource-edition/03-entity-overview.png)
+
+## Step 4 — Manage the resource in Settings
+
+To manage your resource, go to **Settings** in the menu bar. An edition form
+is displayed with the current configuration of the resource, ready for you to
+modify.
+
+![Settings edition form of the resource](./images/resource-edition/04-settings-tab.png)
+
+## Step 5 — Save your changes
+
+Modify what you need and press the save button in the **save bar** at the
+bottom of the form. The save bar tracks your work: it tells you whether you
+have unsaved changes, the save button stays disabled until something actually
+changed, and **Discard** restores the last saved state if you want to throw
+your edits away.
+
+Just clicking the button launches the provision task that updates your
+resource, which you can follow from the **Tasks** tab, as described in
+[Resources Provisioning](./resources-provisioning.md), or watch it live in the
+save bar itself: the phase, the running progress, and the latest provision
+message are shown live while the save runs, and any failure reason stays
+visible there until the next save or you dismiss it.
+
+While a save is running the form stays put: the claim-type tabs and the
+*Configuration*/*Annotations* toggle are disabled until it finishes, so the
+progress you are watching cannot be taken over by another claim's save.
+
+![Save configuration button](./images/resource-edition/05-save-button.png)
