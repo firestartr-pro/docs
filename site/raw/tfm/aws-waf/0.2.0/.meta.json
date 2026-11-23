@@ -2,5 +2,6 @@
   "source": "prefapp/tfm",
   "tag": "aws-waf-v0.2.0",
   "date": "2026-02-06T13:02:13Z",
-  "specHash": "b99349d98aa383bbaac3ea1577d42717e40bb55121bc05ca12c79b11bbb36c86"
+  "specHash": "b99349d98aa383bbaac3ea1577d42717e40bb55121bc05ca12c79b11bbb36c86",
+  "sourceRevision": "897183a35307ba4999190cf18ec93b57aa6edac1"
 }

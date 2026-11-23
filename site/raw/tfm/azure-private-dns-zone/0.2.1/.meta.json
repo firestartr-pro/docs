@@ -2,5 +2,6 @@
   "source": "prefapp/tfm",
   "tag": "azure-private-dns-zone-v0.2.1",
   "date": "2026-08-19T10:47:59Z",
-  "specHash": "b99349d98aa383bbaac3ea1577d42717e40bb55121bc05ca12c79b11bbb36c86"
+  "specHash": "b99349d98aa383bbaac3ea1577d42717e40bb55121bc05ca12c79b11bbb36c86",
+  "sourceRevision": "96ae9c95041bf4a542bbedf03b8ccdf7d665951b"
 }

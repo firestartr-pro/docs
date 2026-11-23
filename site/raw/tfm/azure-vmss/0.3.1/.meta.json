@@ -2,5 +2,6 @@
   "source": "prefapp/tfm",
   "tag": "azure-vmss-v0.3.1",
   "date": "2025-04-24T11:00:20Z",
-  "specHash": "b99349d98aa383bbaac3ea1577d42717e40bb55121bc05ca12c79b11bbb36c86"
+  "specHash": "b99349d98aa383bbaac3ea1577d42717e40bb55121bc05ca12c79b11bbb36c86",
+  "sourceRevision": "703e0976bfd87c376d86cf7107f8803eabc7b4b7"
 }

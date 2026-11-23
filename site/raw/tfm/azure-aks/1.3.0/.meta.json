@@ -2,5 +2,6 @@
   "source": "prefapp/tfm",
   "tag": "azure-aks-v1.3.0",
   "date": "2024-01-25T10:23:36Z",
-  "specHash": "b99349d98aa383bbaac3ea1577d42717e40bb55121bc05ca12c79b11bbb36c86"
+  "specHash": "b99349d98aa383bbaac3ea1577d42717e40bb55121bc05ca12c79b11bbb36c86",
+  "sourceRevision": "bf0a5fabd1b03aac17839ac147f5bceae176c629"
 }

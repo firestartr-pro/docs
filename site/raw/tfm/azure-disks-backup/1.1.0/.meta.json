@@ -2,5 +2,6 @@
   "source": "prefapp/tfm",
   "tag": "azure-disks-backup-v1.1.0",
   "date": "2024-10-21T16:40:23Z",
-  "specHash": "b99349d98aa383bbaac3ea1577d42717e40bb55121bc05ca12c79b11bbb36c86"
+  "specHash": "b99349d98aa383bbaac3ea1577d42717e40bb55121bc05ca12c79b11bbb36c86",
+  "sourceRevision": "4b33efeea07dc46178950e42dabcf917b9b43436"
 }

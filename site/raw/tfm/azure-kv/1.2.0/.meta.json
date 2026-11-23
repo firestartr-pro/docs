@@ -2,5 +2,6 @@
   "source": "prefapp/tfm",
   "tag": "azure-kv-v1.2.0",
   "date": "2024-07-30T11:28:18Z",
-  "specHash": "b99349d98aa383bbaac3ea1577d42717e40bb55121bc05ca12c79b11bbb36c86"
+  "specHash": "b99349d98aa383bbaac3ea1577d42717e40bb55121bc05ca12c79b11bbb36c86",
+  "sourceRevision": "dc58aa03c709f7d28821f54b4052f631de4113b8"
 }

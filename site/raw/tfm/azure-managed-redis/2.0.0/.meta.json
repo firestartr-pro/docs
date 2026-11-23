@@ -2,5 +2,6 @@
   "source": "prefapp/tfm",
   "tag": "azure-managed-redis-v2.0.0",
   "date": "2026-09-11T12:55:36Z",
-  "specHash": "b99349d98aa383bbaac3ea1577d42717e40bb55121bc05ca12c79b11bbb36c86"
+  "specHash": "b99349d98aa383bbaac3ea1577d42717e40bb55121bc05ca12c79b11bbb36c86",
+  "sourceRevision": "fb1c6e7053d1211aef2538c1b5da370c0b4d28c9"
 }

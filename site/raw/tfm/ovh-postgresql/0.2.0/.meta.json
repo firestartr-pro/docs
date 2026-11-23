@@ -2,5 +2,6 @@
   "source": "prefapp/tfm",
   "tag": "ovh-postgresql-v0.2.0",
   "date": "2026-11-20T12:55:14Z",
-  "specHash": "b99349d98aa383bbaac3ea1577d42717e40bb55121bc05ca12c79b11bbb36c86"
+  "specHash": "b99349d98aa383bbaac3ea1577d42717e40bb55121bc05ca12c79b11bbb36c86",
+  "sourceRevision": "e3b8766ed8506b633c897fe9a6c33ebe94c8f974"
 }

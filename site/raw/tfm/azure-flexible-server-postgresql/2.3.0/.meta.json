@@ -2,5 +2,6 @@
   "source": "prefapp/tfm",
   "tag": "azure-flexible-server-postgresql-v2.3.0",
   "date": "2023-08-31T08:43:23Z",
-  "specHash": "b99349d98aa383bbaac3ea1577d42717e40bb55121bc05ca12c79b11bbb36c86"
+  "specHash": "b99349d98aa383bbaac3ea1577d42717e40bb55121bc05ca12c79b11bbb36c86",
+  "sourceRevision": "20208f904b8a1393d2b695fa7e0687644b8a839d"
 }

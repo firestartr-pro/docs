@@ -2,5 +2,6 @@
   "source": "prefapp/tfm",
   "tag": "aws-kms-multiple-v0.1.1",
   "date": "2026-03-24T12:34:45Z",
-  "specHash": "b99349d98aa383bbaac3ea1577d42717e40bb55121bc05ca12c79b11bbb36c86"
+  "specHash": "b99349d98aa383bbaac3ea1577d42717e40bb55121bc05ca12c79b11bbb36c86",
+  "sourceRevision": "3df9f733a8cde86034b320a493a5e31d86ed903e"
 }

@@ -2,5 +2,6 @@
   "source": "prefapp/tfm",
   "tag": "azure-redis-cache-v0.2.0",
   "date": "2025-04-24T10:12:19Z",
-  "specHash": "b99349d98aa383bbaac3ea1577d42717e40bb55121bc05ca12c79b11bbb36c86"
+  "specHash": "b99349d98aa383bbaac3ea1577d42717e40bb55121bc05ca12c79b11bbb36c86",
+  "sourceRevision": "df5f19ffe5b683ce1b1b439b9228dd2dac8b9f4b"
 }

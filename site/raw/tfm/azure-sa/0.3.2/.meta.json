@@ -2,5 +2,6 @@
   "source": "prefapp/tfm",
   "tag": "azure-sa-v0.3.2",
   "date": "2025-11-26T11:41:18Z",
-  "specHash": "b99349d98aa383bbaac3ea1577d42717e40bb55121bc05ca12c79b11bbb36c86"
+  "specHash": "b99349d98aa383bbaac3ea1577d42717e40bb55121bc05ca12c79b11bbb36c86",
+  "sourceRevision": "0061dfce193b6aeb5ddd41532b71453667672e2b"
 }
