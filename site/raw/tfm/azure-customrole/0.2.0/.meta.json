@@ -2,5 +2,6 @@
   "source": "prefapp/tfm",
   "tag": "azure-customrole-v0.2.0",
   "date": "2025-04-24T10:24:59Z",
-  "specHash": "b99349d98aa383bbaac3ea1577d42717e40bb55121bc05ca12c79b11bbb36c86"
+  "specHash": "b99349d98aa383bbaac3ea1577d42717e40bb55121bc05ca12c79b11bbb36c86",
+  "sourceRevision": "98805946b2d31530d9d36db53cbe5ba821a32d45"
 }

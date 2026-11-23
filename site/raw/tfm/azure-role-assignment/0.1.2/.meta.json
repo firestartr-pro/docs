@@ -2,5 +2,6 @@
   "source": "prefapp/tfm",
   "tag": "azure-role-assignment-v0.1.2",
   "date": "2025-04-24T10:45:23Z",
-  "specHash": "b99349d98aa383bbaac3ea1577d42717e40bb55121bc05ca12c79b11bbb36c86"
+  "specHash": "b99349d98aa383bbaac3ea1577d42717e40bb55121bc05ca12c79b11bbb36c86",
+  "sourceRevision": "2353e885a1b10f9702827125a2ea2020357cd3e2"
 }

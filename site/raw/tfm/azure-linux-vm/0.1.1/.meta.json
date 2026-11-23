@@ -2,5 +2,6 @@
   "source": "prefapp/tfm",
   "tag": "azure-linux-vm-v0.1.1",
   "date": "2026-01-12T13:01:58Z",
-  "specHash": "b99349d98aa383bbaac3ea1577d42717e40bb55121bc05ca12c79b11bbb36c86"
+  "specHash": "b99349d98aa383bbaac3ea1577d42717e40bb55121bc05ca12c79b11bbb36c86",
+  "sourceRevision": "cffda55646870da992af5403e360dd6b61b35451"
 }

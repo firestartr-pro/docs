@@ -1,0 +1,158 @@
+{
+  "source": "prefapp/tfm",
+  "tags": {
+    "azure-app-gateway-v0.1.0": {
+      "sourceRevision": "89611752108b25f88f76888a5341781a2d538ee4",
+      "reason": "content",
+      "specHash": "b99349d98aa383bbaac3ea1577d42717e40bb55121bc05ca12c79b11bbb36c86",
+      "detail": "not found: README.md"
+    },
+    "azure-managed-redis-v1.0.0": {
+      "sourceRevision": "741d6b4b56e582a86e6d99ae8db44893867f3f3d",
+      "reason": "content",
+      "specHash": "b99349d98aa383bbaac3ea1577d42717e40bb55121bc05ca12c79b11bbb36c86",
+      "detail": "not found: README.md"
+    },
+    "azure-managed-redis-v1.0.1": {
+      "sourceRevision": "47a1a1eed282778b06956a3eaae3b4bd659433b2",
+      "reason": "content",
+      "specHash": "b99349d98aa383bbaac3ea1577d42717e40bb55121bc05ca12c79b11bbb36c86",
+      "detail": "not found: README.md"
+    },
+    "azure-nsg-nsr-v0.1.0": {
+      "sourceRevision": "d89622e95ada997fd0ad1584615e5f43b58abf15",
+      "reason": "content",
+      "specHash": "b99349d98aa383bbaac3ea1577d42717e40bb55121bc05ca12c79b11bbb36c86",
+      "detail": "not found: README.md"
+    },
+    "azure-nsg-nsr-v0.1.1": {
+      "sourceRevision": "d0a8db435b33b773ec6b03d1d208f4f14dc3ca99",
+      "reason": "content",
+      "specHash": "b99349d98aa383bbaac3ea1577d42717e40bb55121bc05ca12c79b11bbb36c86",
+      "detail": "not found: README.md"
+    },
+    "azure-nsg-nsr-v0.1.2": {
+      "sourceRevision": "a79ba29bed22e8745c089e215c2d6b15c1405d4a",
+      "reason": "content",
+      "specHash": "b99349d98aa383bbaac3ea1577d42717e40bb55121bc05ca12c79b11bbb36c86",
+      "detail": "not found: README.md"
+    },
+    "azure-nsg-nsr-v0.2.0": {
+      "sourceRevision": "1b0a66d68196c2fd749a66296c942e1d49e887da",
+      "reason": "content",
+      "specHash": "b99349d98aa383bbaac3ea1577d42717e40bb55121bc05ca12c79b11bbb36c86",
+      "detail": "not found: README.md"
+    },
+    "azure-nsg-nsr-v0.2.1": {
+      "sourceRevision": "e0508a09e3c91c5d7cd764de17626d98e9b413ae",
+      "reason": "content",
+      "specHash": "b99349d98aa383bbaac3ea1577d42717e40bb55121bc05ca12c79b11bbb36c86",
+      "detail": "not found: README.md"
+    },
+    "azure-nsg-nsr-v0.2.2": {
+      "sourceRevision": "8057dfcc6af8e55ac59b1a71a19ab42818f9cf67",
+      "reason": "content",
+      "specHash": "b99349d98aa383bbaac3ea1577d42717e40bb55121bc05ca12c79b11bbb36c86",
+      "detail": "not found: README.md"
+    },
+    "azure-nsg-nsr-v0.2.3": {
+      "sourceRevision": "97071058e1a701378754c37b1716c8d243b6ea59",
+      "reason": "content",
+      "specHash": "b99349d98aa383bbaac3ea1577d42717e40bb55121bc05ca12c79b11bbb36c86",
+      "detail": "not found: README.md"
+    },
+    "azure-policy-assignments-v0.1.0": {
+      "sourceRevision": "44912fecc93398217b7975e0074ee9586b973046",
+      "reason": "content",
+      "specHash": "b99349d98aa383bbaac3ea1577d42717e40bb55121bc05ca12c79b11bbb36c86",
+      "detail": "not found: README.md"
+    },
+    "azure-policy-assignments-v0.1.1": {
+      "sourceRevision": "d4ed735d3cc98479a07490cbcc76c8cbd9c4be7c",
+      "reason": "content",
+      "specHash": "b99349d98aa383bbaac3ea1577d42717e40bb55121bc05ca12c79b11bbb36c86",
+      "detail": "not found: README.md"
+    },
+    "azure-policy-assignments-v0.2.0": {
+      "sourceRevision": "6233c3f7ebd92241f894201dd5ef4bf2dbe43ff4",
+      "reason": "content",
+      "specHash": "b99349d98aa383bbaac3ea1577d42717e40bb55121bc05ca12c79b11bbb36c86",
+      "detail": "not found: README.md"
+    },
+    "azure-policy-assignments-v0.2.1": {
+      "sourceRevision": "6ab30bf81bb7a5c23389cbb56884e22d619cce32",
+      "reason": "content",
+      "specHash": "b99349d98aa383bbaac3ea1577d42717e40bb55121bc05ca12c79b11bbb36c86",
+      "detail": "not found: README.md"
+    },
+    "azure-policy-definitions-v0.1.0": {
+      "sourceRevision": "8ef31f9230f88456a58df9f6e5f185b160827d29",
+      "reason": "content",
+      "specHash": "b99349d98aa383bbaac3ea1577d42717e40bb55121bc05ca12c79b11bbb36c86",
+      "detail": "not found: README.md"
+    },
+    "azure-policy-definitions-v0.2.0": {
+      "sourceRevision": "4343897abd0ff7c7ef933e3704a03456f0eee041",
+      "reason": "content",
+      "specHash": "b99349d98aa383bbaac3ea1577d42717e40bb55121bc05ca12c79b11bbb36c86",
+      "detail": "not found: README.md"
+    },
+    "azure-policy-definitions-v0.2.1": {
+      "sourceRevision": "ce3c68d3e21d8b6e2b26d273710b19464e387102",
+      "reason": "content",
+      "specHash": "b99349d98aa383bbaac3ea1577d42717e40bb55121bc05ca12c79b11bbb36c86",
+      "detail": "not found: README.md"
+    },
+    "azure-role-assignment-v0.1.0": {
+      "sourceRevision": "33d01c5e223d4cca31ff6f5c12f3a112eddc4fc6",
+      "reason": "content",
+      "specHash": "b99349d98aa383bbaac3ea1577d42717e40bb55121bc05ca12c79b11bbb36c86",
+      "detail": "not found: README.md"
+    },
+    "azure-vnet-peering-v1.1.0": {
+      "sourceRevision": "fd5a5b6e9fef11894e32f834ac302796c0919d22",
+      "reason": "content",
+      "specHash": "b99349d98aa383bbaac3ea1577d42717e40bb55121bc05ca12c79b11bbb36c86",
+      "detail": "not found: README.md"
+    },
+    "azure-vnet-subnet-v1.1.0": {
+      "sourceRevision": "d28337a4aa9ad067cfb8fc61fc91dc765ecc7342",
+      "reason": "no folder",
+      "specHash": "b99349d98aa383bbaac3ea1577d42717e40bb55121bc05ca12c79b11bbb36c86"
+    },
+    "cloudamqp-vpc-v0.1.0": {
+      "sourceRevision": "1073c0a2b1dd826f33cf532c9bee8d5f5415c6dd",
+      "reason": "content",
+      "specHash": "b99349d98aa383bbaac3ea1577d42717e40bb55121bc05ca12c79b11bbb36c86",
+      "detail": "not found: README.md"
+    },
+    "cloudamqp-vpc-v1.0.0": {
+      "sourceRevision": "7c667cf02354e2314b07988cfc7697b60abc5c0a",
+      "reason": "content",
+      "specHash": "b99349d98aa383bbaac3ea1577d42717e40bb55121bc05ca12c79b11bbb36c86",
+      "detail": "not found: README.md"
+    },
+    "cloudamqp-vpc-v1.1.0": {
+      "sourceRevision": "75302ee1ebcc43d80b1c18a00f52a4a7f962da26",
+      "reason": "content",
+      "specHash": "b99349d98aa383bbaac3ea1577d42717e40bb55121bc05ca12c79b11bbb36c86",
+      "detail": "not found: README.md"
+    },
+    "cloudamqp-vpc-v1.1.1": {
+      "sourceRevision": "c23272adaebcff2b2e14d73d2f2077f0a0e21262",
+      "reason": "content",
+      "specHash": "b99349d98aa383bbaac3ea1577d42717e40bb55121bc05ca12c79b11bbb36c86",
+      "detail": "not found: README.md"
+    },
+    "cloudamqp-vpc-v1.2.0": {
+      "sourceRevision": "048fb6985913fe6900bf51780b909eb45cfc6fca",
+      "reason": "content",
+      "specHash": "b99349d98aa383bbaac3ea1577d42717e40bb55121bc05ca12c79b11bbb36c86",
+      "detail": "not found: README.md"
+    },
+    "gh-org-webhook-v0.1.0": {
+      "sourceRevision": "7a28454b01358eddf5420bc3b98067f315ed071e",
+      "reason": "retired"
+    }
+  }
+}

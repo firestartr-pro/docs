@@ -2,5 +2,6 @@
   "source": "prefapp/tfm",
   "tag": "mongodb-atlas-azure-privatelink-v0.2.3",
   "date": "2026-08-20T13:07:38Z",
-  "specHash": "b99349d98aa383bbaac3ea1577d42717e40bb55121bc05ca12c79b11bbb36c86"
+  "specHash": "b99349d98aa383bbaac3ea1577d42717e40bb55121bc05ca12c79b11bbb36c86",
+  "sourceRevision": "ef1ecde61fbb37a14ab360a4c2dcc6e6f6fb5a3a"
 }

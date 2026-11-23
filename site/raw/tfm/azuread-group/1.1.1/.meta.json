@@ -2,5 +2,6 @@
   "source": "prefapp/tfm",
   "tag": "azuread-group-v1.1.1",
   "date": "2025-04-24T11:01:14Z",
-  "specHash": "b99349d98aa383bbaac3ea1577d42717e40bb55121bc05ca12c79b11bbb36c86"
+  "specHash": "b99349d98aa383bbaac3ea1577d42717e40bb55121bc05ca12c79b11bbb36c86",
+  "sourceRevision": "62f1c0db436f8824317e97083bee47b9fcb91bd0"
 }

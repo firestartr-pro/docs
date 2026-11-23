@@ -2,5 +2,6 @@
   "source": "prefapp/tfm",
   "tag": "azure-app-gateway-v0.10.1",
   "date": "2026-08-20T13:27:36Z",
-  "specHash": "b99349d98aa383bbaac3ea1577d42717e40bb55121bc05ca12c79b11bbb36c86"
+  "specHash": "b99349d98aa383bbaac3ea1577d42717e40bb55121bc05ca12c79b11bbb36c86",
+  "sourceRevision": "29769fbabcd425ff9f16282b1e599d91a279ab89"
 }

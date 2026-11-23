@@ -2,5 +2,6 @@
   "source": "prefapp/tfm",
   "tag": "azure-sa-backup-v0.3.3",
   "date": "2026-08-20T13:09:59Z",
-  "specHash": "b99349d98aa383bbaac3ea1577d42717e40bb55121bc05ca12c79b11bbb36c86"
+  "specHash": "b99349d98aa383bbaac3ea1577d42717e40bb55121bc05ca12c79b11bbb36c86",
+  "sourceRevision": "902380d068d6a8ea26e0b540216b4e5e853c24c0"
 }

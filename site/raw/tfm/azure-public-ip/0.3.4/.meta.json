@@ -2,5 +2,6 @@
   "source": "prefapp/tfm",
   "tag": "azure-public-ip-v0.3.4",
   "date": "2026-08-20T13:21:30Z",
-  "specHash": "b99349d98aa383bbaac3ea1577d42717e40bb55121bc05ca12c79b11bbb36c86"
+  "specHash": "b99349d98aa383bbaac3ea1577d42717e40bb55121bc05ca12c79b11bbb36c86",
+  "sourceRevision": "a399f90355fb115bc7776a8ec815594f424799f3"
 }

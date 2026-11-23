@@ -2,5 +2,6 @@
   "source": "prefapp/tfm",
   "tag": "aws-oidc-v1.4.2",
   "date": "2026-04-30T11:34:35Z",
-  "specHash": "b99349d98aa383bbaac3ea1577d42717e40bb55121bc05ca12c79b11bbb36c86"
+  "specHash": "b99349d98aa383bbaac3ea1577d42717e40bb55121bc05ca12c79b11bbb36c86",
+  "sourceRevision": "9fb72aa925f661acbf8b6e9bc8ca56a2e640a0c2"
 }

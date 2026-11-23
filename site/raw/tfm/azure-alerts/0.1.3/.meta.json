@@ -2,5 +2,6 @@
   "source": "prefapp/tfm",
   "tag": "azure-alerts-v0.1.3",
   "date": "2026-08-19T10:48:46Z",
-  "specHash": "b99349d98aa383bbaac3ea1577d42717e40bb55121bc05ca12c79b11bbb36c86"
+  "specHash": "b99349d98aa383bbaac3ea1577d42717e40bb55121bc05ca12c79b11bbb36c86",
+  "sourceRevision": "a0599951f3d91f4c720662a8ea4af665c59f97ae"
 }

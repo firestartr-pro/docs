@@ -2,5 +2,6 @@
   "source": "prefapp/tfm",
   "tag": "azure-oidc-v1.4.2",
   "date": "2026-08-19T10:50:41Z",
-  "specHash": "b99349d98aa383bbaac3ea1577d42717e40bb55121bc05ca12c79b11bbb36c86"
+  "specHash": "b99349d98aa383bbaac3ea1577d42717e40bb55121bc05ca12c79b11bbb36c86",
+  "sourceRevision": "b58107eca368d8a69b93fc1a152a43f440c7de32"
 }

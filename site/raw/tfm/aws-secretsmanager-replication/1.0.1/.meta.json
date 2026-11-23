@@ -2,5 +2,6 @@
   "source": "prefapp/tfm",
   "tag": "aws-secretsmanager-replication-v1.0.1",
   "date": "2026-05-06T11:55:31Z",
-  "specHash": "b99349d98aa383bbaac3ea1577d42717e40bb55121bc05ca12c79b11bbb36c86"
+  "specHash": "b99349d98aa383bbaac3ea1577d42717e40bb55121bc05ca12c79b11bbb36c86",
+  "sourceRevision": "712c3818a2631d4bd59513ca1e2d7596e258e3a4"
 }

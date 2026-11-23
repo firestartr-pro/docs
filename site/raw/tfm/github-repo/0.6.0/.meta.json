@@ -2,5 +2,6 @@
   "source": "prefapp/tfm",
   "tag": "github-repo-v0.6.0",
   "date": "2026-06-09T17:27:35Z",
-  "specHash": "b99349d98aa383bbaac3ea1577d42717e40bb55121bc05ca12c79b11bbb36c86"
+  "specHash": "b99349d98aa383bbaac3ea1577d42717e40bb55121bc05ca12c79b11bbb36c86",
+  "sourceRevision": "7eaa88e8a55c85bc8b7270a7d72055d8a53d6df1"
 }

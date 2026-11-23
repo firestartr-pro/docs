@@ -2,5 +2,6 @@
   "source": "prefapp/features",
   "tag": "build_and_publish_lambda_code-v1.0.1",
   "date": "2026-08-14T11:54:47Z",
-  "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc"
+  "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+  "sourceRevision": "ce427ffb69d15212c8ea05806c3c60b780500442"
 }

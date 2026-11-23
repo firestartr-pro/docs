@@ -2,5 +2,6 @@
   "source": "prefapp/tfm",
   "tag": "aws-eks-v1.6.0",
   "date": "2026-11-12T12:34:01Z",
-  "specHash": "b99349d98aa383bbaac3ea1577d42717e40bb55121bc05ca12c79b11bbb36c86"
+  "specHash": "b99349d98aa383bbaac3ea1577d42717e40bb55121bc05ca12c79b11bbb36c86",
+  "sourceRevision": "f800528a35d5807f6a3f78708ad30c172ac75c2e"
 }

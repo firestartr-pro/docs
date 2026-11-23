@@ -2,5 +2,6 @@
   "source": "prefapp/tfm",
   "tag": "github-org-secrets-section-v0.2.0",
   "date": "2026-11-12T10:06:04Z",
-  "specHash": "b99349d98aa383bbaac3ea1577d42717e40bb55121bc05ca12c79b11bbb36c86"
+  "specHash": "b99349d98aa383bbaac3ea1577d42717e40bb55121bc05ca12c79b11bbb36c86",
+  "sourceRevision": "33ce28a4797bb6bfa863982cc440247901b0d41e"
 }

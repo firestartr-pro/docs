@@ -2,5 +2,6 @@
   "source": "prefapp/tfm",
   "tag": "mongodb-atlas-cluster-v0.3.1",
   "date": "2025-07-07T10:47:24Z",
-  "specHash": "b99349d98aa383bbaac3ea1577d42717e40bb55121bc05ca12c79b11bbb36c86"
+  "specHash": "b99349d98aa383bbaac3ea1577d42717e40bb55121bc05ca12c79b11bbb36c86",
+  "sourceRevision": "371e4badb063946ad1bfe6f2a08a3b3071b45974"
 }

@@ -2,5 +2,6 @@
   "source": "prefapp/features",
   "tag": "build_and_dispatch_docker_images-v5.6.1",
   "date": "2026-08-10T10:08:30Z",
-  "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc"
+  "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+  "sourceRevision": "2c3081793137d8cde377436057466e38cb4190bc"
 }
