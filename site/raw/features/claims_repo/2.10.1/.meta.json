@@ -2,5 +2,6 @@
   "source": "prefapp/features",
   "tag": "claims_repo-v2.10.1",
   "date": "2026-09-17T14:18:11Z",
-  "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc"
+  "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+  "sourceRevision": "a033664accb0d6f7b168712b3b9c91ce26d2e70d"
 }

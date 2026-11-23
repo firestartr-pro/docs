@@ -1,0 +1,2245 @@
+{
+  "source": "prefapp/features",
+  "tags": {
+    "build_and_dispatch-v0.1.0": {
+      "sourceRevision": "887c24d7215f93dda5658e0a76d1ee4fae8b79a6",
+      "reason": "retired"
+    },
+    "build_and_dispatch-v0.1.1": {
+      "sourceRevision": "1bb0eec95b8ebb4619042f0f53db3c751690f229",
+      "reason": "retired"
+    },
+    "build_and_dispatch-v0.1.2": {
+      "sourceRevision": "c5efdd3ff48838da3e83dedd08cd245f1fa054c2",
+      "reason": "retired"
+    },
+    "build_and_dispatch-v0.1.3": {
+      "sourceRevision": "1b16e14af87c5f39118026e33b9c03229b4d89b3",
+      "reason": "retired"
+    },
+    "build_and_dispatch-v0.2.0": {
+      "sourceRevision": "f26605991149a2648a58356ab1e552b7afd79db3",
+      "reason": "retired"
+    },
+    "build_and_dispatch-v0.2.1": {
+      "sourceRevision": "d9ee770d640df3afbbc76251a9be2ade0b4b7237",
+      "reason": "retired"
+    },
+    "build_and_dispatch-v0.3.0": {
+      "sourceRevision": "b7450578ddc825ac77754f42f52a4f2c5f407775",
+      "reason": "retired"
+    },
+    "build_and_dispatch-v0.3.1": {
+      "sourceRevision": "0e9aa517e986f5acf5f420ea7aad6635ff518bb8",
+      "reason": "retired"
+    },
+    "build_and_dispatch_docker_images-v0.4.0": {
+      "sourceRevision": "4ed3b29d82e74a28fa7ce34780fe1a3e5fc4a75c",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "build_and_dispatch_docker_images-v0.5.0": {
+      "sourceRevision": "1bb5457a1e24134c41aa74525f065728c6c7c765",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "build_and_dispatch_docker_images-v0.6.0": {
+      "sourceRevision": "3f109bf2130e48b6bbcc8e320aa9822f4e7fc367",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "build_and_dispatch_docker_images-v0.6.1": {
+      "sourceRevision": "aed7fc12d5be51f5a8fed5752b198c709a283081",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "build_and_dispatch_docker_images-v0.7.0": {
+      "sourceRevision": "9ec1235c0aef348eb3b3b003c27c90dd76f7130d",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "build_and_dispatch_docker_images-v1.0.0": {
+      "sourceRevision": "c18a1f860a45b079fb4aa5c0ef9f8e0e808b8d69",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "build_and_dispatch_docker_images-v1.1.0": {
+      "sourceRevision": "0f8c5c808c516e76a294c398f8d066def839e242",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "build_and_dispatch_docker_images-v2.0.0": {
+      "sourceRevision": "f3b32627f9fc55043b93e8b0f03e89b2798cb7b4",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "build_and_dispatch_docker_images-v2.0.1": {
+      "sourceRevision": "b94c86988b12010c572ae5b995eddaa2bc28c0c1",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "build_and_dispatch_docker_images-v3.0.0": {
+      "sourceRevision": "cd742b8e7b4db85027afb9be07ae726863958fe7",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "build_and_dispatch_docker_images-v4.0.0": {
+      "sourceRevision": "de883ad6e189b7b9a9f403000fae42015fd2d61d",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "build_and_dispatch_docker_images-v4.0.1": {
+      "sourceRevision": "b003d2202d89cb362b5ec66e13355e4b66af31ba",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "build_and_dispatch_docker_images-v4.0.2": {
+      "sourceRevision": "96861929d64a46de2b440ccdd553c4571ce3dbb7",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "build_and_dispatch_docker_images-v4.0.3": {
+      "sourceRevision": "d676a8da769f6f0d10acfabc1717c54b01adba9d",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "build_and_dispatch_docker_images-v4.0.4": {
+      "sourceRevision": "606fcfc8d0a86c2df06b529feb00bf8a6b4bae48",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "build_and_dispatch_docker_images-v4.0.5": {
+      "sourceRevision": "983d95aeffa4f93d0f0cb818b08f4590a6220054",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "build_and_dispatch_docker_images-v5.0.0": {
+      "sourceRevision": "9dff848a58df87510b78ac7f20120df11a8f0b60",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "build_and_dispatch_docker_images-v5.0.1": {
+      "sourceRevision": "288cce4657eea40adc8b947f2c627ecc2946a4d7",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "build_and_dispatch_docker_images-v5.0.2": {
+      "sourceRevision": "7cfe864182c711f4e892c85dc3e2b11106ac17b8",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "build_and_dispatch_docker_images-v5.0.3": {
+      "sourceRevision": "1905fcc340bf559c48199eda3452f03cda6ad285",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "build_and_dispatch_docker_images-v5.0.4": {
+      "sourceRevision": "860e7a7ba2c35ce59a8b9347c7322619a257960e",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "build_and_dispatch_docker_images-v5.0.5": {
+      "sourceRevision": "c883c8ad1d1338d021abb7d4a2b452a1c931ed8b",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "build_and_dispatch_docker_images-v5.0.6": {
+      "sourceRevision": "2d673e8d41c2178e48fff5f0b8662b88b3e588b1",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "build_and_dispatch_docker_images-v5.0.7": {
+      "sourceRevision": "c3bc308ce96625a07958048fb19b1d75cd637b29",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "build_and_dispatch_docker_images-v5.1.0": {
+      "sourceRevision": "06f553665ec4226facd6ba8954b73bf6cd9ea700",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "build_and_dispatch_docker_images-v5.1.1": {
+      "sourceRevision": "e1cb6b9fb7e9265259853c4af9fd05ffc774c9b4",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "build_and_dispatch_docker_images-v5.1.2": {
+      "sourceRevision": "0b538c95bc2497e3a5ea1ab47797801a536c3e35",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "build_and_dispatch_docker_images-v5.1.3": {
+      "sourceRevision": "97db393cf58dad2171b0862d8c5026f1d54cda30",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "build_and_dispatch_docker_images-v5.1.4": {
+      "sourceRevision": "1d505e5960fac9670f0e79f4a201ae8a055016e5",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "build_and_dispatch_docker_images-v5.2.0": {
+      "sourceRevision": "2ac4d1ceec58fef4a9338d54a4addb36160c20d9",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "build_and_dispatch_docker_images-v5.3.0": {
+      "sourceRevision": "132ce7be88d960e0ebfde35f6e14787bba6e3d34",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "build_and_dispatch_docker_images-v5.3.1": {
+      "sourceRevision": "673d77c5e08ab686b3c6fb4e67eb04cad5e995d4",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "build_and_dispatch_docker_images-v5.3.2": {
+      "sourceRevision": "c7d167aed6cfbe7f6a93328edeed3e66a1c99936",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "build_and_dispatch_docker_images-v5.3.3": {
+      "sourceRevision": "cde6993747001e2aa5828d5af4bbfa1b5e8499a7",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "build_and_dispatch_docker_images-v5.3.4": {
+      "sourceRevision": "2e9f40d4fe510a6f1d76b2d7ec393e316462b19b",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "build_and_dispatch_docker_images-v5.3.5": {
+      "sourceRevision": "60b05112c774a0a1f70fe930e6c2430d842c21d7",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "build_and_dispatch_docker_images-v5.3.6": {
+      "sourceRevision": "03207de6a88295447ac57ad488ebaacee00888c4",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "build_and_dispatch_docker_images-v5.4.0": {
+      "sourceRevision": "af79d17d34507ebc45927b03dbedf2834df9efd4",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "build_and_dispatch_docker_images-v5.4.1": {
+      "sourceRevision": "226e7c10b057c6b6a29ee7b8e404a5fc99f2a831",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "build_and_dispatch_docker_images-v5.4.2": {
+      "sourceRevision": "f8474298b4c8e7a076c1448d30fcb7169d1b7ff4",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "build_and_dispatch_docker_images-v5.4.3": {
+      "sourceRevision": "1a5e040bb0acdf7cb26e46e77068327a725a6933",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "build_images-v1.0.0": {
+      "sourceRevision": "93e4ef367b13f7ca009e0acbaddbb4d1f66b54f8",
+      "reason": "retired"
+    },
+    "build_images-v1.0.1": {
+      "sourceRevision": "2a5934a4d6902a0c0a8bb1b72590a66aa9b745b7",
+      "reason": "retired"
+    },
+    "build_images-v1.1.0": {
+      "sourceRevision": "72cc489d3c76a5e3870d785ef5d8a73422baa62f",
+      "reason": "retired"
+    },
+    "build_images-v1.2.0": {
+      "sourceRevision": "f26605991149a2648a58356ab1e552b7afd79db3",
+      "reason": "retired"
+    },
+    "build_images-v1.3.0": {
+      "sourceRevision": "01be255d922b51c2aefab001a6a017a1cb156cbe",
+      "reason": "retired"
+    },
+    "build_images-v1.4.0": {
+      "sourceRevision": "6234257ae73942cf166d2499118ffe2b413f2450",
+      "reason": "retired"
+    },
+    "build_images-v1.4.1": {
+      "sourceRevision": "5e469deb91b50940fa11a414edb805bbd2121b80",
+      "reason": "retired"
+    },
+    "build_images-v1.4.2": {
+      "sourceRevision": "d9ee770d640df3afbbc76251a9be2ade0b4b7237",
+      "reason": "retired"
+    },
+    "build_images-v1.4.3": {
+      "sourceRevision": "e66a95c700fefa477e18316a082822c085815f94",
+      "reason": "retired"
+    },
+    "build_images-v1.4.4": {
+      "sourceRevision": "1eccda6b7f65d02e0af25b92fb84c5a07a731444",
+      "reason": "retired"
+    },
+    "build_images-v1.4.5": {
+      "sourceRevision": "5bd1208bc55896ceb36a5149680f520ce3596036",
+      "reason": "retired"
+    },
+    "build_images-v1.4.6": {
+      "sourceRevision": "3219f9f72bb795e310afe7138c03fec5f1aec13c",
+      "reason": "retired"
+    },
+    "build_images-v1.4.7": {
+      "sourceRevision": "43e9c840a78478e73c90e39e8c97db2d71002028",
+      "reason": "retired"
+    },
+    "build_images-v1.4.8": {
+      "sourceRevision": "d800a8415c25914bc5792d5e28ff13c11341b247",
+      "reason": "retired"
+    },
+    "build_images-v1.5.0": {
+      "sourceRevision": "8566dfded3701a7e02d0b05d6c0b96f7fe45cacc",
+      "reason": "retired"
+    },
+    "build_images-v1.5.1": {
+      "sourceRevision": "2c46bb4f2867a24c75d62102bd31e62603230776",
+      "reason": "retired"
+    },
+    "build_images-v1.5.2": {
+      "sourceRevision": "95933029f51ae6881cc01633a11dbedefe195440",
+      "reason": "retired"
+    },
+    "build_images-v1.6.0": {
+      "sourceRevision": "b7450578ddc825ac77754f42f52a4f2c5f407775",
+      "reason": "retired"
+    },
+    "catalog_repo-v1.0.0": {
+      "sourceRevision": "bbb54c2c51a687ba6fc0e9bf2733bb7391f97e14",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "catalog_repo-v1.1.0": {
+      "sourceRevision": "2116a9439cd33ca666f072364e15f42efcb65cb2",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "catalog_repo-v1.2.0": {
+      "sourceRevision": "3c6d05608d8f148990ce71cdef381525b9b3ff21",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "catalog_repo-v1.2.0-snapshot1": {
+      "sourceRevision": "3dc860b91989f9164b2720cdf136f8cf1ed2164f",
+      "reason": "prerelease"
+    },
+    "catalog_repo-v1.2.0-snapshot10": {
+      "sourceRevision": "e6d4bbccb33daead9e047c56a30e5713e29cd443",
+      "reason": "prerelease"
+    },
+    "catalog_repo-v1.2.0-snapshot2": {
+      "sourceRevision": "036ae6f1b351b6fdeb0f23584f0a551c5d75cfff",
+      "reason": "prerelease"
+    },
+    "catalog_repo-v1.2.0-snapshot3": {
+      "sourceRevision": "f838e3f50ea0561ec144ec833a26866ae1da234b",
+      "reason": "prerelease"
+    },
+    "catalog_repo-v1.2.0-snapshot4": {
+      "sourceRevision": "9fbe4e47f088f64ebd21e0706ae4640ede5c0399",
+      "reason": "prerelease"
+    },
+    "catalog_repo-v1.2.0-snapshot5": {
+      "sourceRevision": "4a4f857309dac03dbb3ef46990c4496fc0891976",
+      "reason": "prerelease"
+    },
+    "catalog_repo-v1.2.0-snapshot6": {
+      "sourceRevision": "3de863969036168b0323c2ee1d87a1a5139feb69",
+      "reason": "prerelease"
+    },
+    "catalog_repo-v1.2.0-snapshot7": {
+      "sourceRevision": "dadab4a7cfe8ecadefd6766bdce1466573debb07",
+      "reason": "prerelease"
+    },
+    "catalog_repo-v1.2.0-snapshot8": {
+      "sourceRevision": "834c9840aba5e4632cc0edac6efcf74bedea197e",
+      "reason": "prerelease"
+    },
+    "catalog_repo-v1.2.0-snapshot9": {
+      "sourceRevision": "4239d1189a63bf0aa62f38e5a4844c9394f6cdc0",
+      "reason": "prerelease"
+    },
+    "catalog_repo-v1.3.0": {
+      "sourceRevision": "f7a0b09b1697eee506bd392b42b83ba739e4d4e5",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "catalog_repo-v1.3.1": {
+      "sourceRevision": "9309e5df5e2f9903b1432c1282a7e2b1df4d4bb5",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "catalog_repo-v1.3.2": {
+      "sourceRevision": "d5347805c9310e4756d862b7ddaf261537b4ac71",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "catalog_repo-v1.4.0": {
+      "sourceRevision": "ddce524f7d300a2fd52ba7fe238721df8e5f9013",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "charts_repo-v1.1.0": {
+      "sourceRevision": "c45c2c7fb4879672e867f8d713a0ebfbbae366cf",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "charts_repo-v1.2.0": {
+      "sourceRevision": "330c7613b50f6345bf08c8cd045453caa0aceb5d",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "charts_repo-v1.3.0": {
+      "sourceRevision": "c902fa0646b83a637388f46c2c8746c8b91cff95",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "charts_repo-v1.4.0": {
+      "sourceRevision": "fe3a181ed90ef66991fea7b21edb1b41a5c6565e",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "charts_repo-v1.4.1": {
+      "sourceRevision": "ad2f742d57f172f0fd1abd39f42ee2842ae7f686",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "charts_repo-v1.4.2": {
+      "sourceRevision": "0adb588808c23b2b5fbccf7bc51b2a9e51b24f18",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "charts_repo-v1.4.3": {
+      "sourceRevision": "745f013d34e5500d9f197d7d6bbddbdc2e794e42",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "charts_repo-v1.5.0": {
+      "sourceRevision": "2ecd4b4546ecbc11fc8fced6d8a90c0083809881",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "charts_repo-v2.0.0": {
+      "sourceRevision": "a8e28c0365fff3504c17c0529d2b1adaacbaaf7d",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "charts_repo-v2.0.1": {
+      "sourceRevision": "372e4b3c11c82073e3258ea059759fa932291a7b",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "charts_repo-v2.0.2": {
+      "sourceRevision": "f25494d0f150e2ea25b35de0e2da271937c8640f",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "claims_repo-v1.0.0": {
+      "sourceRevision": "dd285625bdc9e66d78b76c4de68025b8a08d9539",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "claims_repo-v1.1.0": {
+      "sourceRevision": "a36ca6a67ac50d52c3820d6ffd4c7298e3e79bfc",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "claims_repo-v1.10.0": {
+      "sourceRevision": "36ea96545b3fc7e7d8060245a2f32cf5791f59e2",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "claims_repo-v1.10.0-snapshot": {
+      "sourceRevision": "1f19590d3730ed95c943c4cf018551eeb6d4c267",
+      "reason": "prerelease"
+    },
+    "claims_repo-v1.10.0-snapshot2": {
+      "sourceRevision": "182b7ee1eee0ed71eb82609cdc14e33fa5669666",
+      "reason": "prerelease"
+    },
+    "claims_repo-v1.10.1": {
+      "sourceRevision": "29ab3fc78174c212fd0f05b14d6eac1bd7e41c2e",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "claims_repo-v1.10.1-snapshot-2": {
+      "sourceRevision": "492aec5d7f47460b039489a3b9995e2d4f7eeb3c",
+      "reason": "prerelease"
+    },
+    "claims_repo-v1.10.1-snapshot-3": {
+      "sourceRevision": "12a4286b61746fbd96525a8400b4b16a5148e9d2",
+      "reason": "prerelease"
+    },
+    "claims_repo-v1.10.1-snapshot-4": {
+      "sourceRevision": "14b626f90482f30ba71bc093f0f79f31c2cf2a77",
+      "reason": "prerelease"
+    },
+    "claims_repo-v1.10.1-snapshot-5": {
+      "sourceRevision": "14b626f90482f30ba71bc093f0f79f31c2cf2a77",
+      "reason": "prerelease"
+    },
+    "claims_repo-v1.10.1-snapshot-6": {
+      "sourceRevision": "aa0fd6c309c03e8f944100e8346c19ed97d2b220",
+      "reason": "prerelease"
+    },
+    "claims_repo-v1.10.1-snapshot-7": {
+      "sourceRevision": "856495472e91eb84a940a6b678e24a3739b88a93",
+      "reason": "prerelease"
+    },
+    "claims_repo-v1.10.2": {
+      "sourceRevision": "23c0b8c6d6d7730dbffaf750b0a808c5b21b81c8",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "claims_repo-v1.10.2-snapshot": {
+      "sourceRevision": "ca829fbfd357271fbefe32888791ff1a47ebd20a",
+      "reason": "prerelease"
+    },
+    "claims_repo-v1.10.2-snapshot2": {
+      "sourceRevision": "b6709a00ea059e614ad964e210637cbb6053a656",
+      "reason": "prerelease"
+    },
+    "claims_repo-v1.10.3": {
+      "sourceRevision": "92457efc5da9c2b127107824a075de8c80b1043a",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "claims_repo-v1.10.4": {
+      "sourceRevision": "868b4b139b82187586aaa059bac8ab355ccb37e9",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "claims_repo-v1.11.0": {
+      "sourceRevision": "86eb61a7790f9163074d75b159e23cfdd33eea33",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "claims_repo-v1.12.0": {
+      "sourceRevision": "9a7ce2333526d5314a4f5571e3c40ad93b601727",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "claims_repo-v1.13.0": {
+      "sourceRevision": "3760fc8ff3a6f799e76b3af7301d38711fe0dbbd",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "claims_repo-v1.14.0": {
+      "sourceRevision": "1ef1a3235e97f4ba56b7f0e557b6f90252a6ce5b",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "claims_repo-v1.14.1": {
+      "sourceRevision": "eab9f2fe6642e8c7f4093cb023a4c9cc5de414e6",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "claims_repo-v1.15.0": {
+      "sourceRevision": "4a7f17716057ffb3e24146e4704dd6076b13fb83",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "claims_repo-v1.15.1": {
+      "sourceRevision": "b00ae3213b2fb44f45c83962ca09e46200f9d62d",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "claims_repo-v1.15.2": {
+      "sourceRevision": "dec77888369ecdb5ba98c7b2bd224f3cc0b9ab78",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "claims_repo-v1.15.3": {
+      "sourceRevision": "c6ae80015574e5d91a19ff07818974ae612487d1",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "claims_repo-v1.15.4": {
+      "sourceRevision": "5e89a0e7173d45a540b41b09b047a3c1fb7bfbd1",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "claims_repo-v1.16.0": {
+      "sourceRevision": "173eb6da0922507e78df55ca52cec62639f1aff8",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "claims_repo-v1.16.1": {
+      "sourceRevision": "b9d14d0a3d415893af026bb513e31eea20edb7be",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "claims_repo-v1.16.2": {
+      "sourceRevision": "5889ca99821f7cdf58d107d082b6c04070ad1ee4",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "claims_repo-v1.16.3": {
+      "sourceRevision": "ddcfb41596ca233d49fa2dfa18887731f73d6ab2",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "claims_repo-v1.17.0": {
+      "sourceRevision": "21fab0bbd1744120534b58139f6cd0fff2d59537",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "claims_repo-v1.17.1": {
+      "sourceRevision": "c4c01dee0bdeae523ac6af469dd0f675e700bc2c",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "claims_repo-v1.17.2": {
+      "sourceRevision": "9a232b43c292f7612b98a5fd2d861cc1085959f5",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "claims_repo-v1.18.0": {
+      "sourceRevision": "07bd90e3ab5fd4354358ed739b37cc405937933d",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "claims_repo-v1.19.0": {
+      "sourceRevision": "6901f105e6a76a45e187fa9b9238fc7b563b2958",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "claims_repo-v1.19.1": {
+      "sourceRevision": "2a5a30e1054b77d30b637694a7011e38cafbb3b7",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "claims_repo-v1.19.2": {
+      "sourceRevision": "3facfaf9690b31c63ab36a0b3a234e59a5914803",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "claims_repo-v1.19.3": {
+      "sourceRevision": "b1e5cb72982e2e86991ae8d415603cb1037775ca",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "claims_repo-v1.2.0": {
+      "sourceRevision": "76ba0e4843cd64220d25e1e70a4e6e7a99bda7a5",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "claims_repo-v1.2.1": {
+      "sourceRevision": "8767a188bb65151d04ce5d55e698374a7a1a9020",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "claims_repo-v1.2.2": {
+      "sourceRevision": "fddc0c6505c01f9b7fec3c52e429499ceaf9d57b",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "claims_repo-v1.2.3": {
+      "sourceRevision": "86830922347920911daafa5212a15c336e0ade7b",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "claims_repo-v1.2.4": {
+      "sourceRevision": "288cce4657eea40adc8b947f2c627ecc2946a4d7",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "claims_repo-v1.2.5": {
+      "sourceRevision": "88af64434fb0131e7c2d1679fc78a277befce356",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "claims_repo-v1.2.6": {
+      "sourceRevision": "9ba309f92c4b1c712d24e91f12f0ba3770b8725e",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "claims_repo-v1.20.0": {
+      "sourceRevision": "a1c8f0ce7ef51435750723a80aa22fad938b75f2",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "claims_repo-v1.20.1": {
+      "sourceRevision": "941c17e5a83985e1971e6a5e89a291c41b8ff818",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "claims_repo-v1.21.0": {
+      "sourceRevision": "402bb4b0738b6b46bbeeae42f991d8c6be675937",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "claims_repo-v1.21.1": {
+      "sourceRevision": "77789a310f26d4b4774f47f94e0e8ef6268d7800",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "claims_repo-v1.22.0": {
+      "sourceRevision": "6128e55f5379eb61ce2101956dd92e7841ae9eca",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "claims_repo-v1.22.1": {
+      "sourceRevision": "f330947b875381277481d2f67b918937bff25d17",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "claims_repo-v1.23.0": {
+      "sourceRevision": "b70efc48cf1fc3193c5986e908988e19bfb66664",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "claims_repo-v1.24.0": {
+      "sourceRevision": "f42736d666a75b0a0b7219d00a3ad41c764ebfd5",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "claims_repo-v1.3.0": {
+      "sourceRevision": "dd73611bd7f8d5dc18e9c1deed43a87c03636fa9",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "claims_repo-v1.4.0": {
+      "sourceRevision": "aa5151394395de73ccbf2cb03e1f19716b226f77",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "claims_repo-v1.4.1": {
+      "sourceRevision": "d631dd049d927f897a107a3d054828d8326665f3",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "claims_repo-v1.4.2": {
+      "sourceRevision": "c54def30a615b25526589cd5461e41b6d6f46512",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "claims_repo-v1.5.0": {
+      "sourceRevision": "b02ce1c967ea0a5d0c231ab05e528ff6e227edfe",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "claims_repo-v1.5.1": {
+      "sourceRevision": "5ee8d4db49e02c858524ad38f5d9aa771fa81a2a",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "claims_repo-v1.5.2": {
+      "sourceRevision": "6728c869f50706661b473bce54b98387621705c6",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "claims_repo-v1.5.3": {
+      "sourceRevision": "e0a570f4436f3a18a30f3d54393cbc2f9f037f75",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "claims_repo-v1.6.0": {
+      "sourceRevision": "c3454c0d57b295c6556d0f1c1d3cd7e5eb6609c9",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "claims_repo-v1.6.1": {
+      "sourceRevision": "df653908be992a4acc98f784818f3f01ebf5aec5",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "claims_repo-v1.6.2": {
+      "sourceRevision": "4a74902b075bd7b397486fc4c859e00e29705bee",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "claims_repo-v1.6.3": {
+      "sourceRevision": "1b521ee9f91b201499afc5a523fc3dc66b4b5d02",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "claims_repo-v1.6.4": {
+      "sourceRevision": "b9cba3fb7afebf821b94909bcf130cdce276cc7b",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "claims_repo-v1.6.5": {
+      "sourceRevision": "7cfe864182c711f4e892c85dc3e2b11106ac17b8",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "claims_repo-v1.6.6": {
+      "sourceRevision": "501bae3510d9bb3f823b5e6947fdbd06e76e3273",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "claims_repo-v1.6.7": {
+      "sourceRevision": "7ac3730e23479c1c67b415d8d81be786ad203bb0",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "claims_repo-v1.6.8": {
+      "sourceRevision": "b01c2124f8767db4d59f5060663fde3ed29094d4",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "claims_repo-v1.7.0": {
+      "sourceRevision": "cab299b0d4a5c28406035c5649a6a0e79ffa89f4",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "claims_repo-v1.7.1": {
+      "sourceRevision": "f694851faf81cc859bee51dd6fbe685dd5e188c9",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "claims_repo-v1.7.2": {
+      "sourceRevision": "2a64ff9c3f28ff9a91df05c0ff8214504fcf3bcd",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "claims_repo-v1.7.3": {
+      "sourceRevision": "4d4e870b6c9fbc5f97282bafafe9518e4e2bbd2e",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "claims_repo-v1.7.4": {
+      "sourceRevision": "08b281ac8cd041c530806592b1a5c560c4b5e2f6",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "claims_repo-v1.7.5": {
+      "sourceRevision": "aa6b052dcd74dbf50423714f167428e011fca247",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "claims_repo-v1.7.6": {
+      "sourceRevision": "079041b5b78180c749f7462afaa42a8eb2a6d18d",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "claims_repo-v1.7.7": {
+      "sourceRevision": "d37968cb50d12d1e15ae8a7706eead982432b51a",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "claims_repo-v1.8.0": {
+      "sourceRevision": "9f0f03d3e44a871669ad592e8c755d5efb3c5109",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "claims_repo-v1.8.1": {
+      "sourceRevision": "c6a699428a6a754b307a8627d5fb83673b6e582e",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "claims_repo-v1.8.2": {
+      "sourceRevision": "54b801c1b6334ff9984d2fa096fd718d8ddd381f",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "claims_repo-v1.9.0": {
+      "sourceRevision": "b2275188965ea43ea4893b60edc74f907d1cec60",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "claims_repo-v1.9.0-snapshot": {
+      "sourceRevision": "e23228a9378b168abe8f983e177c3d7f124a209d",
+      "reason": "prerelease"
+    },
+    "claims_repo-v1.9.0-snapshot2": {
+      "sourceRevision": "ff52839a3105f3770d4b6095ba374d0d0d7db708",
+      "reason": "prerelease"
+    },
+    "claims_repo-v1.9.1": {
+      "sourceRevision": "e9f3fba3fa38eb322c49e71eeb3b4a82ef76ae0c",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "claims_repo-v1.9.1-snapshot": {
+      "sourceRevision": "3f4433526d4e4dace70fc118d41e4823a54bf18b",
+      "reason": "prerelease"
+    },
+    "claims_repo-v1.9.1-snapshot2": {
+      "sourceRevision": "381f33b0cd6ae79205a555bd18ecaada6e9164c7",
+      "reason": "prerelease"
+    },
+    "claims_repo-v1.9.1-snapshot3": {
+      "sourceRevision": "a62f82641bbf7f0cad3bb39cb7e698627cbfeff3",
+      "reason": "prerelease"
+    },
+    "claims_repo-v1.9.1-snapshot4": {
+      "sourceRevision": "ba227052d0752660b3bd7ddedc9d7a6f83a6f625",
+      "reason": "prerelease"
+    },
+    "claims_repo-v1.9.1-snapshot5": {
+      "sourceRevision": "45fed84a1b86b75ddd0b096d4e4cbbc575b918eb",
+      "reason": "prerelease"
+    },
+    "claims_repo-v1.9.2": {
+      "sourceRevision": "ef2ae4c8a39bea59914831a41d5ab464dbe9623a",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "claims_repo-v1.9.3": {
+      "sourceRevision": "8680fe98fcabd82f1477c123ccdd950643ecdadc",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "claims_repo-v2.0.0": {
+      "sourceRevision": "473c2fbc589f43719d5e67869dacd4106d52ea5e",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "claims_repo-v2.1.0": {
+      "sourceRevision": "00bdd45b6cecee6eb1877000e85dcb83b9f449ca",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "claims_repo-v2.1.1": {
+      "sourceRevision": "0c592e93b128f4677fac3123f92451a634d3d920",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "claims_repo-v2.1.2": {
+      "sourceRevision": "3422e4f329503694f68b76d1c8b6076cf4168c76",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "claims_repo-v2.2.0": {
+      "sourceRevision": "24acb02f54f3dbdeb4091950431eea85d4e1f5c1",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "cloudfront_s3_build_and_deploy-v0.2.0": {
+      "sourceRevision": "4c99694a697462116f550cc6ce3daf5133cd13d8",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "cloudfront_s3_build_and_deploy-v0.2.1": {
+      "sourceRevision": "71ec30b7df5ae493c742c8b2d50853309cdb7d09",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "example-2-v0.1.0": {
+      "sourceRevision": "7492c65fee426ca9b95c947afcdb321002eaa5db",
+      "reason": "retired"
+    },
+    "example-2-v0.2.0": {
+      "sourceRevision": "ed7e3c841df5b7e64aaa0b46d66cdf06fe16a94a",
+      "reason": "retired"
+    },
+    "example-2-v0.3.0": {
+      "sourceRevision": "8eda020333fac0bcc94e22a176dce4415ece83e3",
+      "reason": "retired"
+    },
+    "example-v1.0.0": {
+      "sourceRevision": "cee68234cb8fed70e337c051999aaa3029ea428b",
+      "reason": "retired"
+    },
+    "example-v2.0.0": {
+      "sourceRevision": "8c7abd449d3621fac003833856fe075aafcb710a",
+      "reason": "retired"
+    },
+    "example-v2.1.0": {
+      "sourceRevision": "47dfdfb5e6f453c872a22942beaf82c2c3f1e5cb",
+      "reason": "retired"
+    },
+    "example-v2.10.0": {
+      "sourceRevision": "130d740b1275ffa66f3167744fdc1f8a9065e8e7",
+      "reason": "retired"
+    },
+    "example-v2.11.0": {
+      "sourceRevision": "90fbf424a9de6930e9cf34bcf80fedd4b68b3a99",
+      "reason": "retired"
+    },
+    "example-v2.12.0": {
+      "sourceRevision": "04dd3657ddf049779ddf9b517ec3fee1a305e26b",
+      "reason": "retired"
+    },
+    "example-v2.13.0": {
+      "sourceRevision": "8286ea93edbcebc6c22a5e01a4aff27d08aff5a3",
+      "reason": "retired"
+    },
+    "example-v2.14.0": {
+      "sourceRevision": "057fb83b7bffe54209edf2ecbfef598aea9a3a7f",
+      "reason": "retired"
+    },
+    "example-v2.14.1": {
+      "sourceRevision": "a10a222c72aafdf934105a074703d11bbf9b3597",
+      "reason": "retired"
+    },
+    "example-v2.15.0": {
+      "sourceRevision": "26f1e0a91927086e859d5a729ddfe6b72c94284f",
+      "reason": "retired"
+    },
+    "example-v2.16.0": {
+      "sourceRevision": "84856b8587de126003c99a3d574c84d0abbb303a",
+      "reason": "retired"
+    },
+    "example-v2.17.0": {
+      "sourceRevision": "9a95cb65d7cf2a51c8f4446c7652d26e4c6a6260",
+      "reason": "retired"
+    },
+    "example-v2.18.0": {
+      "sourceRevision": "ae1e050da5e136384464fa0924a9212c9b7a11f8",
+      "reason": "retired"
+    },
+    "example-v2.2.0": {
+      "sourceRevision": "1dd4967aa9f991d7e81e6a91e83fd7961d698684",
+      "reason": "retired"
+    },
+    "example-v2.3.0": {
+      "sourceRevision": "7875900bb6f291a489c79724e07f867aa1bb6afd",
+      "reason": "retired"
+    },
+    "example-v2.4.0": {
+      "sourceRevision": "a717824638ab1fba14d62b7cd75a95cc3e12d7e1",
+      "reason": "retired"
+    },
+    "example-v2.5.0": {
+      "sourceRevision": "0de352467710f837d8e5e5942130d5262f3ac5cc",
+      "reason": "retired"
+    },
+    "example-v2.6.0": {
+      "sourceRevision": "c5e57dbdb7dcb65d97dabe836b910122efe27462",
+      "reason": "retired"
+    },
+    "example-v2.6.1": {
+      "sourceRevision": "c26bae7be99c3a9f259834f551df5f88376680c6",
+      "reason": "retired"
+    },
+    "example-v2.6.2": {
+      "sourceRevision": "da2687c9bc7d9d54d8925630724b7b22ef186b9d",
+      "reason": "retired"
+    },
+    "example-v2.7.0": {
+      "sourceRevision": "2be820ecee98f8a0609a37b7554205e802ce8d5e",
+      "reason": "retired"
+    },
+    "example-v2.7.1": {
+      "sourceRevision": "b435d4ab77e38930c529e043d9a12db5c5b665b6",
+      "reason": "retired"
+    },
+    "example-v2.8.0": {
+      "sourceRevision": "c27fefb6aeeefb0a28f6ca844bb1e59efb0fc700",
+      "reason": "retired"
+    },
+    "example-v2.8.1": {
+      "sourceRevision": "a04e3a697da5dc5032d776c65c4ffd2192f9a8aa",
+      "reason": "retired"
+    },
+    "example-v2.9.0": {
+      "sourceRevision": "cf06f9fa5abdba5445b98176910e6595c996c2c1",
+      "reason": "retired"
+    },
+    "features_repo-v0.2.0": {
+      "sourceRevision": "7d5e8c284609f0e4e0f354747ab45f8ab4b943f1",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "features_repo-v0.3.0": {
+      "sourceRevision": "aa30fd26a794a39a94cb9dc24fa3fc9e0cc80cdf",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "features_repo-v0.3.1": {
+      "sourceRevision": "6892c7efd351fa77f03a1a2b538b6360a47c197a",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "features_repo-v1.0.0": {
+      "sourceRevision": "11ff89bc316e96187de97947b83dcc26180eac9a",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "features_repo-v1.0.1": {
+      "sourceRevision": "f83b6892f962d64cfdbb9c1f2d9a4f2e1a93981e",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "firestartr_repo-v1.0.0": {
+      "sourceRevision": "5ba5f7afb3530033812e8567d9c43466410cf184",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "firestartr_repo-v1.1.0": {
+      "sourceRevision": "cfb4ca71e3928e0f8f59b268573cf8372ab5ec90",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "generator-v1.0.0": {
+      "sourceRevision": "32d5e8f4453c0111ef26e903178b97e945f195f6",
+      "reason": "retired"
+    },
+    "generator-v1.1.0": {
+      "sourceRevision": "e14beb2c697d82d2bd77427763919ea84bdf4f38",
+      "reason": "retired"
+    },
+    "generator-v1.2.0": {
+      "sourceRevision": "294d9f120ef3361087473a1af3d476209c898ac0",
+      "reason": "retired"
+    },
+    "generator-v1.3.0": {
+      "sourceRevision": "425c64de9bbaa659fe37f5aa31c3b7536f684b43",
+      "reason": "retired"
+    },
+    "hello-world-v0.1.1": {
+      "sourceRevision": "199e3880ed2cf9f0a033e323cab57939edced78c",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "installer-v1.0.0": {
+      "sourceRevision": "ce6a87c7c4492cb770094a5e0f794f94ce8e8885",
+      "reason": "retired"
+    },
+    "installer-v1.1.0": {
+      "sourceRevision": "edba922094e0d4a6f6a5cc9f13f47712a688af25",
+      "reason": "retired"
+    },
+    "installer-v1.10.0": {
+      "sourceRevision": "d71ecdb1d019755f62246e08a21adb743b340464",
+      "reason": "retired"
+    },
+    "installer-v1.11.0": {
+      "sourceRevision": "871a071e3d07be4945fbec9054443ea1b40a9332",
+      "reason": "retired"
+    },
+    "installer-v1.12.0": {
+      "sourceRevision": "763606ea1f7611b09bab6a8c4aaf60e50aacd01b",
+      "reason": "retired"
+    },
+    "installer-v1.12.1": {
+      "sourceRevision": "44769489064e6531703c14d58af62bd801f102ad",
+      "reason": "retired"
+    },
+    "installer-v1.13.0": {
+      "sourceRevision": "ee35553988eff478708195f75f5059c3c744aa69",
+      "reason": "retired"
+    },
+    "installer-v1.13.1": {
+      "sourceRevision": "398a30b41c1034316aef7fb17767384bcfc4d200",
+      "reason": "retired"
+    },
+    "installer-v1.13.2": {
+      "sourceRevision": "ef75d28b65d19159ed87b406a379e59defe7eb5b",
+      "reason": "retired"
+    },
+    "installer-v1.13.3": {
+      "sourceRevision": "bdfd55f17f903c5c3ccfe1286efc603fe59488a4",
+      "reason": "retired"
+    },
+    "installer-v1.13.4": {
+      "sourceRevision": "35e4a93f71d35dbf1bdd27db52fc9216a1ec62db",
+      "reason": "retired"
+    },
+    "installer-v1.13.5": {
+      "sourceRevision": "e155128646b27c4bb63f6896a968feaee91146de",
+      "reason": "retired"
+    },
+    "installer-v1.14.0": {
+      "sourceRevision": "ae1e050da5e136384464fa0924a9212c9b7a11f8",
+      "reason": "retired"
+    },
+    "installer-v1.2.0": {
+      "sourceRevision": "f447fea4cbb59693f59dfce2140f392f8a838bbc",
+      "reason": "retired"
+    },
+    "installer-v1.3.0": {
+      "sourceRevision": "e758bf3c6d9459a9b89943f6e3e291b34dc8e289",
+      "reason": "retired"
+    },
+    "installer-v1.3.1": {
+      "sourceRevision": "02659e6848885db8ea19f6694316e309fd774865",
+      "reason": "retired"
+    },
+    "installer-v1.4.0": {
+      "sourceRevision": "55cbe9ea60a7666e532ae4dddca84cec0d0b9732",
+      "reason": "retired"
+    },
+    "installer-v1.4.1": {
+      "sourceRevision": "cce496a693a950e135120d863ae0a5aa82598cd9",
+      "reason": "retired"
+    },
+    "installer-v1.4.2": {
+      "sourceRevision": "1fdaf4cab64f43673ccf5b4be4a6b2d9ad06fffe",
+      "reason": "retired"
+    },
+    "installer-v1.4.3": {
+      "sourceRevision": "920f7632a90b4849af3302b2b8e1bdf2d7a97d7f",
+      "reason": "retired"
+    },
+    "installer-v1.4.4": {
+      "sourceRevision": "fd6483292b05fd775a33394c99d753e364cac06b",
+      "reason": "retired"
+    },
+    "installer-v1.4.5": {
+      "sourceRevision": "fdf42094a89c8463172f08de1b177815fccee360",
+      "reason": "retired"
+    },
+    "installer-v1.4.6": {
+      "sourceRevision": "8bd0818876c6f2991deb65e8c8bdc5e745518f15",
+      "reason": "retired"
+    },
+    "installer-v1.4.7": {
+      "sourceRevision": "49c5de15512f2755565550a8f40a199e970b3580",
+      "reason": "retired"
+    },
+    "installer-v1.4.8": {
+      "sourceRevision": "843e5a98f0fb3cc9d78701aa55413c87c71e96aa",
+      "reason": "retired"
+    },
+    "installer-v1.5.0": {
+      "sourceRevision": "8100e7e5c419fe478579378cebdb803cb0b80077",
+      "reason": "retired"
+    },
+    "installer-v1.6.0": {
+      "sourceRevision": "94c691dc5d075672f2d9762db98c536f1d28313b",
+      "reason": "retired"
+    },
+    "installer-v1.7.0": {
+      "sourceRevision": "420c725bbe1a6dd96ec8fe66356373f3f40cf379",
+      "reason": "retired"
+    },
+    "installer-v1.7.1": {
+      "sourceRevision": "2b73a460807b03ce3101799fde7ccc066ab51f14",
+      "reason": "retired"
+    },
+    "installer-v1.7.2": {
+      "sourceRevision": "8092a1e3e83816a10483f3c93c2901d2a472e5d9",
+      "reason": "retired"
+    },
+    "installer-v1.7.3": {
+      "sourceRevision": "be186a80ea908edac97d751bbae2b50550e237f1",
+      "reason": "retired"
+    },
+    "installer-v1.8.0": {
+      "sourceRevision": "e67c882e003cec7315c4242119baa7f5d147d41b",
+      "reason": "retired"
+    },
+    "installer-v1.9.0": {
+      "sourceRevision": "77db7778794cb1b9cf7bdd04aae17ed351ec25cc",
+      "reason": "retired"
+    },
+    "issue_templates-v1.0.0": {
+      "sourceRevision": "b594eebdec5841608b8a67d1b342c8e42a1668d9",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "issue_templates-v1.0.1": {
+      "sourceRevision": "c96617c58b53ea9b53d183135455e8cb9ef979ba",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "issue_templates-v1.0.2": {
+      "sourceRevision": "93e4ef367b13f7ca009e0acbaddbb4d1f66b54f8",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "issue_templates-v1.1.0": {
+      "sourceRevision": "72cc489d3c76a5e3870d785ef5d8a73422baa62f",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "issue_templates-v1.2.0": {
+      "sourceRevision": "f26605991149a2648a58356ab1e552b7afd79db3",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "issue_templates-v1.2.1": {
+      "sourceRevision": "d9ee770d640df3afbbc76251a9be2ade0b4b7237",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "issue_templates-v1.3.0": {
+      "sourceRevision": "3506e2bd812c37fe4bd93db03fc8f8f7bf46a82d",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "issue_templates-v1.4.0": {
+      "sourceRevision": "1fbf4d7b6dc2445020630edd3e2d84e79877e82a",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "release_please-v1.0.0": {
+      "sourceRevision": "72cc489d3c76a5e3870d785ef5d8a73422baa62f",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "release_please-v1.0.1": {
+      "sourceRevision": "d063873bb85853396f63f0783a3dab915dce686b",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "release_please-v1.1.0": {
+      "sourceRevision": "dafcc1f5d779edcb7b117aef2d4dfc1f24d20295",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "release_please-v1.2.0": {
+      "sourceRevision": "7dc861c314fb51b9657ed2c1eba378dd96f67c60",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "release_please-v1.3.0": {
+      "sourceRevision": "f26605991149a2648a58356ab1e552b7afd79db3",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "release_please-v1.3.1": {
+      "sourceRevision": "d9ee770d640df3afbbc76251a9be2ade0b4b7237",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "release_please-v1.4.0": {
+      "sourceRevision": "61a208745ddd439509304d5cc372c714dc650a0f",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "release_please-v1.4.1": {
+      "sourceRevision": "1f964e229d3238a59537b6d694537d755644682c",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "release_please-v1.5.0": {
+      "sourceRevision": "42c2f64a2984a83bdbbe2240f2481c9fe26155a1",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "release_please-v1.5.1": {
+      "sourceRevision": "193ff16073d338b49d8199967d40ae15cff95a37",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "release_please-v1.6.0": {
+      "sourceRevision": "7af7e0a506771b24c2d05ad566c13a5f7f647458",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "release_please-v1.6.1": {
+      "sourceRevision": "14a6f59cd308a23323b2240a0c70d58e0cdcbd3d",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "release_please-v1.6.2": {
+      "sourceRevision": "bbd68394b4cdabf87a7705c80dd9cec6f27baec9",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "state_argocd-v1.0.0": {
+      "sourceRevision": "5d86b138596e2e7d47999ebd50bf50000aa350f5",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "state_github-v1.0.0": {
+      "sourceRevision": "997c73fd708bc00908812d1681ab622a1783ba82",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "state_github-v1.1.0": {
+      "sourceRevision": "094884fd222671092267179a33de3dba771b508d",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "state_github-v1.2.0": {
+      "sourceRevision": "47d4d9fefc3971633ae934954fa04efbe5e9a1e0",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "state_infra-v1.0.0": {
+      "sourceRevision": "de883ad6e189b7b9a9f403000fae42015fd2d61d",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "state_infra-v1.1.0": {
+      "sourceRevision": "58fd056b41c327171b9172886acfdd37f3b72a36",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "state_infra-v1.2.0": {
+      "sourceRevision": "ad671cbbefe42f3923c28cc4a8bfabec0ec049a1",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "state_repo-v1.1.0": {
+      "sourceRevision": "c18a1f860a45b079fb4aa5c0ef9f8e0e808b8d69",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "state_repo-v1.1.1": {
+      "sourceRevision": "c269fe3710e25957d4e0bc159057dd8c4798e141",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "state_repo-v1.1.2": {
+      "sourceRevision": "415e2b9a580fa30540318488e5d8680f8460c44a",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "state_repo-v1.2.0": {
+      "sourceRevision": "8903603084e96809ebf9b091fa6b241a37e3c0df",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "state_repo-v1.2.1": {
+      "sourceRevision": "7a7fed09f965109423c56682969c0b36ba472a92",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "state_repo-v1.2.2": {
+      "sourceRevision": "638e2bc8f417e750b8d50e3eb4d688f7eddabe48",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "state_repo-v1.3.0": {
+      "sourceRevision": "ee22f4322257b02b187b43725ed2642bdb22c65d",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "state_repo-v1.3.1": {
+      "sourceRevision": "4cc8778bf397fda3acdae51bd58abd1995e8644c",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "state_repo-v1.3.2": {
+      "sourceRevision": "cd742b8e7b4db85027afb9be07ae726863958fe7",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "state_repo-v1.4.0": {
+      "sourceRevision": "6e69b3ff1fef9cc4856d3bd86f112cea5b97ec67",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "state_repo-v1.5.0": {
+      "sourceRevision": "de883ad6e189b7b9a9f403000fae42015fd2d61d",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "state_repo-v1.6.0": {
+      "sourceRevision": "606fcfc8d0a86c2df06b529feb00bf8a6b4bae48",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "state_repo-v1.6.1": {
+      "sourceRevision": "960aa1731f58a4bd181bd6c9bdb3a1cb4f0b2ecd",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "state_repo-v2.0.0": {
+      "sourceRevision": "55656fdcc6430b66d5d8e5aa52ea285dcf862ab8",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "state_repo-v2.1.0": {
+      "sourceRevision": "79e2dab5d99e17f404e98cb662fad95fc8f27ec8",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "state_repo-v2.2.0": {
+      "sourceRevision": "2af0f41d2994341baea160a80c1e7ce6a729dca2",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "state_repo-v2.2.1": {
+      "sourceRevision": "4cfe04c426449f64f9f88a01acc1d8304e8d556f",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "state_repo-v2.2.2": {
+      "sourceRevision": "1a76ccae9bf78614dafab7d9be4d4737b0083c92",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "state_repo-v2.2.3": {
+      "sourceRevision": "f2bed9c3c29b04f95032856e9ccb3543dc11330b",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "state_repo-v2.3.0": {
+      "sourceRevision": "c74a7296a030682c7faf3e33a068ea78792d1989",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "state_repo-v2.3.1": {
+      "sourceRevision": "70ecf105aee9a73d226efe4afce4e9f186c2d618",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "state_repo-v2.4.0": {
+      "sourceRevision": "2c74e4db093743d6353653456c574e08138b4c7e",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "state_repo_apps-v1.1.0": {
+      "sourceRevision": "606fcfc8d0a86c2df06b529feb00bf8a6b4bae48",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "state_repo_apps-v1.2.0": {
+      "sourceRevision": "1b795e955a2e0bb2bb24595e230458eb292f9375",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "state_repo_apps-v1.2.1": {
+      "sourceRevision": "c1f9fabddb6ed4f78fe5a9c75b222fd7819e26a4",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "state_repo_apps-v1.2.2": {
+      "sourceRevision": "842856c6c21fb9495f3b66a50e2875b5e865c3d6",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "state_repo_apps-v1.3.0": {
+      "sourceRevision": "a4449bd3254f0e02a85c6d7f0192585ed355ace3",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "state_repo_apps-v2.0.0": {
+      "sourceRevision": "57b81d1da927178fb6b6a70e4e94c0023d37ca7e",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "state_repo_apps-v2.0.1": {
+      "sourceRevision": "f72e3c0c963dd96453412b113a9e9da6de0fd898",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "state_repo_apps-v2.1.0": {
+      "sourceRevision": "50f494f213ce979b434e53595befc6ea950a4443",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "state_repo_apps-v2.2.0": {
+      "sourceRevision": "f5579225f265488962ff97ce820e56e288a84c18",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "state_repo_apps-v2.3.0": {
+      "sourceRevision": "cad3c2c448a0be7c863dff1291e51dc3ebe850f8",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "state_repo_apps-v2.3.1": {
+      "sourceRevision": "983d95aeffa4f93d0f0cb818b08f4590a6220054",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "state_repo_apps-v2.3.2": {
+      "sourceRevision": "ce3b9b2e1fee6e33a9db1690c79448058bc53951",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "state_repo_apps-v3.0.0": {
+      "sourceRevision": "692e08c63b6c982b737d756cd648da8780e6724f",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "state_repo_apps-v3.1.0": {
+      "sourceRevision": "8d8d4314b1241f8145f24e3ba044a59d2742dd07",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "state_repo_apps-v3.1.1": {
+      "sourceRevision": "453111744c52b617fd40d42c51167b37e69cdb7d",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "state_repo_apps-v3.2.0": {
+      "sourceRevision": "7358ed42c6b54f14dddb334fc0a3a908166538c1",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "state_repo_apps-v3.2.1": {
+      "sourceRevision": "7cfe864182c711f4e892c85dc3e2b11106ac17b8",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "state_repo_apps-v3.3.0": {
+      "sourceRevision": "10dc9c5464468fdbadc2cd99fd93746830973b9f",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "state_repo_apps-v3.4.0": {
+      "sourceRevision": "db270cbecd34d5dd773a392e0e69a2fcb65f4d74",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "state_repo_apps-v3.5.0": {
+      "sourceRevision": "d79fd9b615967e5ab49f64a7fa20576df0a32015",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "state_repo_apps-v3.6.0": {
+      "sourceRevision": "89292e7a5d4a48fd8c5e369e9e890a7150f9da61",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "state_repo_apps-v3.6.1": {
+      "sourceRevision": "afaa6a821c49bb3c91f7cc91f3a6afb2c404ba0c",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "state_repo_apps-v3.6.2": {
+      "sourceRevision": "71304ddaaece0fae26e32c9a7ae98766e0103ebe",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "state_repo_apps-v3.7.0": {
+      "sourceRevision": "7f1ff89e58b02a338d9a6126618fbe39dee7bab0",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "state_repo_apps-v3.7.1": {
+      "sourceRevision": "15209a28fb37beff23316038101fd455c0dd3870",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "state_repo_apps-v3.8.0": {
+      "sourceRevision": "63f54bd5aa839224e8e7713b84f5f97c72be9000",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "state_repo_apps-v3.8.1": {
+      "sourceRevision": "8c6f9e103e13d638859ff87674e917d900816e06",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "state_repo_apps-v3.8.2": {
+      "sourceRevision": "26868548ac4686b929a01bf19525524b7612eca8",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "state_repo_apps-v3.8.3": {
+      "sourceRevision": "64efcaa1d2f815f20b57ad3c53cf6c450e90b96a",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "state_repo_apps-v3.8.4": {
+      "sourceRevision": "d56e8ac3717aedba6eea4f58fd48f3ec52536820",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "state_repo_apps-v3.8.5": {
+      "sourceRevision": "969eb89451a621bd7bcd30d1ff39134c789d1ade",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "state_repo_apps-v3.9.0": {
+      "sourceRevision": "559e2df35d1469a6fa0a826d5dd830c7b4f4cfc5",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "state_repo_apps-v3.9.1": {
+      "sourceRevision": "329783588e2616b88688d1ab83c8c96774b57f05",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "state_repo_sys_services-v1.1.0": {
+      "sourceRevision": "606fcfc8d0a86c2df06b529feb00bf8a6b4bae48",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "state_repo_sys_services-v1.1.1": {
+      "sourceRevision": "8add5df9a7f58b67aa65fda59131196dddc8aba0",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "state_repo_sys_services-v1.1.2": {
+      "sourceRevision": "8fd2f27c37bd4ab77bb4f1e119bc4f0d94d3a1c1",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "state_repo_sys_services-v1.1.3": {
+      "sourceRevision": "0501e56739b38ecda09f785336255a22c7ff9d33",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "state_repo_sys_services-v1.1.4": {
+      "sourceRevision": "4f12285768f1ebf056a5cefd4422da6ee462e705",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "state_repo_sys_services-v1.2.0": {
+      "sourceRevision": "1b795e955a2e0bb2bb24595e230458eb292f9375",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "state_repo_sys_services-v1.2.1": {
+      "sourceRevision": "b5f7f6cc7e9d1264e9116f0ff44571ea0c3eb31f",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "state_repo_sys_services-v1.3.0": {
+      "sourceRevision": "a4449bd3254f0e02a85c6d7f0192585ed355ace3",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "state_repo_sys_services-v2.0.0": {
+      "sourceRevision": "0f03d946e78c2be0ab01f736a80b9c27584fbb2e",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "state_repo_sys_services-v2.0.1": {
+      "sourceRevision": "ce3b9b2e1fee6e33a9db1690c79448058bc53951",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "state_repo_sys_services-v2.0.1-snapshot-1": {
+      "sourceRevision": "6c83e165458ab27d3682743f4d138c6946ed5850",
+      "reason": "prerelease"
+    },
+    "state_repo_sys_services-v2.0.1-snapshot-2": {
+      "sourceRevision": "b2275188965ea43ea4893b60edc74f907d1cec60",
+      "reason": "prerelease"
+    },
+    "state_repo_sys_services-v2.0.1-snapshot-3": {
+      "sourceRevision": "b2275188965ea43ea4893b60edc74f907d1cec60",
+      "reason": "prerelease"
+    },
+    "state_repo_sys_services-v2.0.1-snapshot-4": {
+      "sourceRevision": "a749970da714605ebfa8ed81a308347ed1dc5c98",
+      "reason": "prerelease"
+    },
+    "state_repo_sys_services-v2.1.0": {
+      "sourceRevision": "42c95f4caf87f3a38036e1b2e3fa47b98e8c63ca",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "state_repo_sys_services-v2.2.0": {
+      "sourceRevision": "3cda9d8cc90eb4c0b025a9af7179c670ae3b6367",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "state_repo_sys_services-v2.3.0": {
+      "sourceRevision": "e61eba7ee953c8211facd3e58e0285274bbaec07",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "state_repo_sys_services-v2.3.1": {
+      "sourceRevision": "eaf4de83852fbb9bb53a09fb53fd26fd37b0806c",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "state_repo_sys_services-v2.3.10": {
+      "sourceRevision": "55fb2304aaa2f47769bc222c13e7252af08d3f08",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "state_repo_sys_services-v2.3.11": {
+      "sourceRevision": "b4ea5702e0e9ccd7fa5a51c3f45ae2b92953b551",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "state_repo_sys_services-v2.3.12": {
+      "sourceRevision": "c5101d4d374d4d823fcee1afb67d3a78b683ee82",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "state_repo_sys_services-v2.3.2": {
+      "sourceRevision": "22c39337b6a9b42f1d0e7bb2f1c7f145e49f39d4",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "state_repo_sys_services-v2.3.3": {
+      "sourceRevision": "cae6278a18169139f1a5a8a11707dd7722524df7",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "state_repo_sys_services-v2.3.4": {
+      "sourceRevision": "bd4c2023beac3f63f0d5a459791251fd46543f6f",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "state_repo_sys_services-v2.3.5": {
+      "sourceRevision": "6eab387f20d7ce3424f4370d91e8cc4cb58e1f69",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "state_repo_sys_services-v2.3.6": {
+      "sourceRevision": "5025a3a52d7c3654ff7b0343d56ff4fed67d86df",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "state_repo_sys_services-v2.3.7": {
+      "sourceRevision": "bdb9f304b7d96746ecaabe5f43946a6768ab7186",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "state_repo_sys_services-v2.3.8": {
+      "sourceRevision": "813f3fc37b0584b3e0f0f5e353be89911c64aad8",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "state_repo_sys_services-v2.3.9": {
+      "sourceRevision": "fd7a1d137478a08df4f787b8780e0aa9831d1c29",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "state_secrets-v1.0.0": {
+      "sourceRevision": "3d0dc95ac420e5c36fff02735622a4b1562f1034",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "tech_docs-v0.10.0": {
+      "sourceRevision": "f26605991149a2648a58356ab1e552b7afd79db3",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "tech_docs-v0.10.1": {
+      "sourceRevision": "d9ee770d640df3afbbc76251a9be2ade0b4b7237",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "tech_docs-v0.10.2": {
+      "sourceRevision": "79bbe067452262016bd452bc260b6e21ac89e4f0",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "tech_docs-v0.10.3": {
+      "sourceRevision": "47cf3c60cc0955953eca71532d617b2468634ba6",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "tech_docs-v0.2.0": {
+      "sourceRevision": "ae1e050da5e136384464fa0924a9212c9b7a11f8",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "tech_docs-v0.3.0": {
+      "sourceRevision": "2bc4041c373b45fbbd5d649367681ddfa5b88845",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "tech_docs-v0.3.1": {
+      "sourceRevision": "ec0e2ef71d027094eeedaaa19a109623d45f17e5",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "tech_docs-v0.4.0": {
+      "sourceRevision": "eda2e0037f9ca1dcf8a34fb7bf15a12f9e0824a9",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "tech_docs-v0.5.0": {
+      "sourceRevision": "93e4ef367b13f7ca009e0acbaddbb4d1f66b54f8",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "tech_docs-v0.6.0": {
+      "sourceRevision": "72cc489d3c76a5e3870d785ef5d8a73422baa62f",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "tech_docs-v0.6.1": {
+      "sourceRevision": "d063873bb85853396f63f0783a3dab915dce686b",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "tech_docs-v0.7.0": {
+      "sourceRevision": "b4a76ac1c414d1a608ac1af4f414a0ab7c25d97f",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "tech_docs-v0.8.0": {
+      "sourceRevision": "bddb6a1a4f89b5561df9332bc9fb782eab2581ca",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "tech_docs-v0.9.0": {
+      "sourceRevision": "41906a755c4418a60718a5c3a4b71f26df628f80",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "terraform-infra-v1.1.0": {
+      "sourceRevision": "823f7b16ad2263f26404a2f592e6b6ab617ef1d3",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "terraform-infra-v1.2.0": {
+      "sourceRevision": "5fdbeec586f1d6fee07f18ccf5ed04d42fb3bae8",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "terraform-infra-v1.3.0": {
+      "sourceRevision": "f8e79ab715bb5fdfe93281386477b3ed77292595",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "terraform-infra-v1.3.1": {
+      "sourceRevision": "ba589922ae9fef927f791673d1fc2644985d5334",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "terraform-infra-v1.3.2": {
+      "sourceRevision": "bb03f2ea8652560e101745dc9b12c9172c582f80",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "terraform-infra-v1.4.0": {
+      "sourceRevision": "c6fbd72c549ab43277ccfcf98f00574b07d7259d",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "terraform-infra-v1.4.1": {
+      "sourceRevision": "4d664309cf73c529c50aa744544f659ad328a0fa",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "terraform-infra-v1.5.0": {
+      "sourceRevision": "13901570b4966fbbea5c1e8324863ac5cfaf6b2b",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "terraform-infra-v1.5.1": {
+      "sourceRevision": "edf8d7b4a983c365d75c7611c3bb64ce07469e84",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "terraform-infra-v1.5.2": {
+      "sourceRevision": "60635db199a57c438d8ccc380cb217449d90e732",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "terraform-infra-v1.6.0": {
+      "sourceRevision": "6f4a2c949f4d8c3879fb3bb00b9ff04153de24fd",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "terraform-infra-v1.7.0": {
+      "sourceRevision": "73696d4bdc2a306e5c8e712b69de47cd545e8b36",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "terraform-infra-v1.7.1": {
+      "sourceRevision": "63b2783d7781c4b6aa44d1f00c8fe28682c90dcb",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "terraform-infra-v1.8.0": {
+      "sourceRevision": "72125ca7470e20a8f79ae269086a7b2260da9b30",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "terraform-infra-v1.8.1": {
+      "sourceRevision": "e86916a659918a44392058e6fe061e71501e5e8f",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "terraform-infra-v1.8.2": {
+      "sourceRevision": "a1dd8354bcdaddbdfc29d46ecbbd3c5bb96abb98",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "terraform-infra-v2.0.0": {
+      "sourceRevision": "eb13e9a9bf04f0a038bdacc7a507fe55b0e1420f",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "terraform-infra-v2.1.0": {
+      "sourceRevision": "d67e405570200faa44073440c5965431221ca3a8",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    },
+    "terraform-infra-v2.2.0": {
+      "sourceRevision": "96d1802b82237adb93cfa276b42e2795d25a1e52",
+      "reason": "content",
+      "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+      "detail": "not found: schema.json"
+    }
+  }
+}

@@ -2,5 +2,6 @@
   "source": "prefapp/features",
   "tag": "catalog_repo-v1.5.0",
   "date": "2026-07-22T15:43:36Z",
-  "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc"
+  "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+  "sourceRevision": "0dd15012bd29533220dc1d1d4f5ac1a9becd4714"
 }

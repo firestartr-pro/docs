@@ -2,5 +2,6 @@
   "source": "prefapp/features",
   "tag": "state_infra-v2.0.0",
   "date": "2026-11-05T11:47:23Z",
-  "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc"
+  "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+  "sourceRevision": "b6ba143d3f969344cd3ab9912024b42085c666d9"
 }

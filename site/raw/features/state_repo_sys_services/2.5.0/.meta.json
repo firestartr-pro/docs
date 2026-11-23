@@ -2,5 +2,6 @@
   "source": "prefapp/features",
   "tag": "state_repo_sys_services-v2.5.0",
   "date": "2026-08-31T16:02:27Z",
-  "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc"
+  "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+  "sourceRevision": "8ca77d4324ff700b4d68f7dc2ec00bd3f89761f7"
 }

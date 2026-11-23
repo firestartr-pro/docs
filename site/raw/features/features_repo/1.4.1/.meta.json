@@ -2,5 +2,6 @@
   "source": "prefapp/features",
   "tag": "features_repo-v1.4.1",
   "date": "2026-09-01T14:30:06Z",
-  "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc"
+  "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+  "sourceRevision": "c185b3a9319e9e0fa110a38584cf04e2c30c0ee4"
 }

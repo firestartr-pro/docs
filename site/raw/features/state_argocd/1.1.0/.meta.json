@@ -2,5 +2,6 @@
   "source": "prefapp/features",
   "tag": "state_argocd-v1.1.0",
   "date": "2026-07-22T15:47:06Z",
-  "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc"
+  "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+  "sourceRevision": "74020e22c49ca02a95bf6f5097394c1ba1e43a8b"
 }

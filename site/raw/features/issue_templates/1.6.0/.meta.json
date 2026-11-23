@@ -2,5 +2,6 @@
   "source": "prefapp/features",
   "tag": "issue_templates-v1.6.0",
   "date": "2026-08-31T16:22:55Z",
-  "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc"
+  "specHash": "f5dcecdd25d149496943eac7e417072e128ec798d365be37541efefe5b8d17fc",
+  "sourceRevision": "3a74a1b2f97697c6aa1189c9d7c8c76f1f17c0ab"
 }
