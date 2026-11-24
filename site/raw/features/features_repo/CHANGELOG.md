@@ -1,5 +1,20 @@
 # Changelog
 
+## [2.2.0](https://github.com/prefapp/features/compare/features_repo-v2.1.2...features_repo-v2.2.0) (2026-11-24)
+
+
+### Features
+
+* **features_repo:** add `yaml-safe-ref` and `build-images-vars` formats ([#1488](https://github.com/prefapp/features/issues/1488)) ([aa5e823](https://github.com/prefapp/features/commit/aa5e823211245108ab7f1d2805beb1053742e0fa))
+* update hydration workflows to allow hydrating multiple claims ([#1381](https://github.com/prefapp/features/issues/1381)) ([9eff0b6](https://github.com/prefapp/features/commit/9eff0b6b023d3ac62510cd6bff7eaf4668937da0))
+
+
+### Bug Fixes
+
+* **`features_repo`:** change tests to default to crs to avoid breaking clients ([#1485](https://github.com/prefapp/features/issues/1485)) ([2a52a95](https://github.com/prefapp/features/commit/2a52a95e19818dcbf447715715b988a62bf47535))
+* features_repo not being retrocompatible with cr based testing ([#1483](https://github.com/prefapp/features/issues/1483)) ([c3db4e8](https://github.com/prefapp/features/commit/c3db4e80078149bfbdbc33d32111ed847ca9c035))
+* Updated feature tests to use claims instead of CRs ([#1363](https://github.com/prefapp/features/issues/1363)) ([e0654a8](https://github.com/prefapp/features/commit/e0654a82aae3d3807ce04696fe228ca9c7bd0bb1))
+
 ## [2.1.2](https://github.com/prefapp/features/compare/features_repo-v2.1.1...features_repo-v2.1.2) (2026-11-06)
 
 

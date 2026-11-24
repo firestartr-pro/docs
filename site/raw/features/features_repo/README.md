@@ -87,14 +87,17 @@ feature_name: example
 # $arg: The name of the argument as consumed by the claim (each $arg becomes a schema property)
 # $default: The default value for the argument
 # $format: Optional named value type resolved from the registry in scripts/arg-formats.js
-#          (string, int, bool, semver, semver-range, string-list). It controls the JSON
-#          type emitted for the argument in schema.json:
-#            string         -> { type: "string" } (no pattern)
-#            int            -> { type: "integer" }
-#            bool           -> { type: "boolean" }
-#            semver         -> { type: "string", pattern: <semver regexp> }
-#            semver-range   -> { type: "string", pattern: <npm semver range regexp> }
-#            string-list    -> { type: "array", items: { type: "string" } }
+#          (string, int, bool, semver, semver-range, string-list, yaml-safe-ref,
+#          build-images-vars). It controls the JSON type emitted for the argument in
+#          schema.json:
+#            string            -> { type: "string" } (no pattern)
+#            int               -> { type: "integer" }
+#            bool              -> { type: "boolean" }
+#            semver            -> { type: "string", pattern: <semver regexp> }
+#            semver-range      -> { type: "string", pattern: <npm semver range regexp> }
+#            string-list       -> { type: "array", items: { type: "string" } }
+#            yaml-safe-ref     -> { type: "string", pattern: <yaml-safe git ref regexp> }
+#            build-images-vars -> { type: "array", items: { type: "string", pattern: <reserved key regexp> } }
 #          The generated schema.json validates claimed values against these native
 #          types; only $defaults are checked at schema generation and emitted as native
 #          types (a quoted "8080" becomes the integer 8080). Unknown formats fail
@@ -167,13 +170,36 @@ You can add logic with conditionals:
 
 ## Testing Features
 
-### Using generic-fixtures/cr.yaml
+Render tests can use either `ComponentClaim` fixtures or legacy `FirestartrGithubRepository` CR fixtures (default). The `features_repo` argument `use_cr_fixtures` controls the scaffolded default for new repositories:
 
-The `generic-fixtures/cr.yaml` file provides a reusable Custom Resource (CR) fixture for testing feature rendering. This fixture contains a complete example of a `FirestartrGithubRepository` resource with all common fields populated.
+- `use_cr_fixtures: true` (default): scaffold legacy CR-based tests (`cr:` with `generic-fixtures/cr.yaml`, kind `FirestartrGithubRepository`) and configure the scaffolded `pr_verify` workflow to validate with `INPUT_KIND=FirestartrGithubRepository`.
+- `use_cr_fixtures: false`: scaffold claim-based tests (`claim:` with `generic-fixtures/claim.yaml`) and validate features with the renderer’s default input kind (`ComponentClaim`).
 
-#### How to use it
+Both `generic-fixtures/claim.yaml` and `generic-fixtures/cr.yaml` are installed so repositories can migrate between modes.
 
-Each feature package includes a `render_tests.yaml` file that defines test cases. To use the generic fixture:
+### Using generic-fixtures/claim.yaml (opt-in)
+
+The `generic-fixtures/claim.yaml` file provides a reusable `ComponentClaim` fixture for testing feature rendering. It uses the stitched-claim shape the renderer expects — top-level `providers.github` — which is what the `$ref`s in each feature's `config.yaml` resolve against.
+
+```yaml
+# packages/<feature-name>/render_tests.yaml
+tests:
+  - name: test1
+    claim: "../../generic-fixtures/claim.yaml"
+```
+
+The generic claim fixture includes:
+
+- **kind**: `ComponentClaim`, the input kind the renderer validates by default
+- **name**: Claim name (`claims`)
+- **providers.github.org**: Organization name (`firestartr-test`)
+- **providers.github.name**: Repository name (`claims`)
+- **providers.github.branchStrategy.defaultBranch**: Default branch (`main`)
+- **providers.github.actions.oidc**: OIDC configuration
+
+### Using generic-fixtures/cr.yaml (default)
+
+`generic-fixtures/cr.yaml` retains the legacy `FirestartrGithubRepository` fixture for CR-based tests:
 
 ```yaml
 # packages/<feature-name>/render_tests.yaml
@@ -182,41 +208,35 @@ tests:
     cr: "../../generic-fixtures/cr.yaml"
 ```
 
-#### What the fixture provides
-
 The generic CR fixture includes:
 
-- **Metadata**: annotations, labels, and resource name
-- **Spec.org**: Organization name (`firestartr-test`)
-- **Spec.context**: Backend and provider references
-- **Spec.firestartr**: Technology stack and state key configuration
-- **Spec.repo**: Repository settings (visibility, branches, merge options, etc.)
-- **Spec.actions**: OIDC configuration
-- **Spec.permissions**: Team/group permissions
-- **Spec.branchProtections**: Branch protection rules
+- **kind**: `FirestartrGithubRepository`
+- **spec.org**: Organization name (`firestartr-test`)
+- **metadata.annotations.firestartr.dev/external-name**: Repository name (`claims`)
+- **spec.repo**: Repository settings (including default branch)
 
-#### Creating custom fixtures
+### Creating custom fixtures
 
-If your feature requires specific CR fields not covered by the generic fixture, you can:
+If your feature requires specific fields not covered by the generic fixtures, create a custom fixture in your feature's `__tests__/` folder and reference it from `render_tests.yaml`:
 
-1. Create a custom fixture in your feature's `__tests__/` folder:
+```yaml
+# packages/<feature-name>/__tests__/custom-claim.yaml
+apiVersion: firestartr.dev/v1
+kind: ComponentClaim
+name: my-custom-claim
+providers:
+  github:
+    org: my-org
+    # ... your custom fields
+```
 
-   ```yaml
-   # packages/<feature-name>/__tests__/custom-cr.yaml
-   apiVersion: firestartr.dev/v1
-   kind: FirestartrGithubRepository
-   metadata:
-     name: my-custom-resource
-   spec:
-     # ... your custom fields
-   ```
+```yaml
+tests:
+  - name: custom-test
+    claim: "./__tests__/custom-claim.yaml"
+```
 
-2. Reference it in your `render_tests.yaml`:
-   ```yaml
-   tests:
-     - name: custom-test
-       cr: "./__tests__/custom-cr.yaml"
-   ```
+For legacy CR fixtures, use `kind: FirestartrGithubRepository` and the `cr:` key instead.
 
 ---
 
