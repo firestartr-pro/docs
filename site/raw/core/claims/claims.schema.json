@@ -1160,6 +1160,287 @@
     },
     {
       "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "$id": "GithubOrgRulesetClaim",
+      "definitions": {
+        "GithubOrgRulesetClaim": {
+          "$id": "firestartr.dev://github/GithubOrgRulesetClaim",
+          "type": "object",
+          "description": "A Github Organization Ruleset claim",
+          "allOf": [
+            {
+              "$ref": "firestartr.dev://common/ClaimProviderEnvelope"
+            },
+            {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "maxLength": 186,
+                  "pattern": "^[^/]+$"
+                },
+                "tfStateKey": {
+                  "$ref": "firestartr.dev://common/TerraformStateKey"
+                },
+                "org": {
+                  "$ref": "firestartr.dev://common/ClaimName"
+                },
+                "target": {
+                  "type": "string",
+                  "enum": [
+                    "branch",
+                    "tag",
+                    "push"
+                  ]
+                },
+                "enforcement": {
+                  "type": "string",
+                  "enum": [
+                    "active",
+                    "evaluate",
+                    "disabled"
+                  ]
+                },
+                "conditions": {
+                  "type": "object",
+                  "properties": {
+                    "ref_name": {
+                      "type": "object"
+                    },
+                    "repository_name": {
+                      "type": "object"
+                    },
+                    "repository_property": {
+                      "type": "object"
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                "rules": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "type": {
+                        "type": "string",
+                        "enum": [
+                          "creation",
+                          "deletion",
+                          "update",
+                          "non_fast_forward",
+                          "required_linear_history",
+                          "required_signatures",
+                          "pull_request",
+                          "required_status_checks",
+                          "commit_message_pattern",
+                          "commit_author_email_pattern",
+                          "committer_email_pattern",
+                          "branch_name_pattern",
+                          "tag_name_pattern",
+                          "copilot_code_review",
+                          "file_path_restriction",
+                          "file_extension_restriction",
+                          "max_file_size",
+                          "max_file_path_length"
+                        ]
+                      },
+                      "parameters": {
+                        "type": "object"
+                      }
+                    },
+                    "required": [
+                      "type"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "bypass_actors": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "actor_type": {
+                        "type": "string",
+                        "enum": [
+                          "Integration",
+                          "OrganizationAdmin",
+                          "Team",
+                          "RepositoryRole",
+                          "DeployKey"
+                        ]
+                      },
+                      "group": {
+                        "$ref": "firestartr.dev://common/FirestartrGroupRef"
+                      },
+                      "actor_id": {
+                        "type": "integer"
+                      },
+                      "actor_slug": {
+                        "type": "string"
+                      },
+                      "actor_role": {
+                        "type": "string",
+                        "enum": [
+                          "maintain",
+                          "write",
+                          "admin"
+                        ]
+                      },
+                      "bypass_mode": {
+                        "type": "string",
+                        "enum": [
+                          "always",
+                          "pull_request"
+                        ]
+                      }
+                    },
+                    "required": [
+                      "actor_type",
+                      "bypass_mode"
+                    ],
+                    "additionalProperties": false,
+                    "allOf": [
+                      {
+                        "if": {
+                          "properties": {
+                            "actor_type": {
+                              "const": "Team"
+                            }
+                          }
+                        },
+                        "then": {
+                          "required": [
+                            "group"
+                          ],
+                          "not": {
+                            "anyOf": [
+                              {
+                                "required": [
+                                  "actor_id"
+                                ]
+                              },
+                              {
+                                "required": [
+                                  "actor_slug"
+                                ]
+                              },
+                              {
+                                "required": [
+                                  "actor_role"
+                                ]
+                              }
+                            ]
+                          }
+                        },
+                        "else": {
+                          "not": {
+                            "required": [
+                              "group"
+                            ]
+                          }
+                        }
+                      },
+                      {
+                        "if": {
+                          "properties": {
+                            "actor_type": {
+                              "const": "Integration"
+                            }
+                          }
+                        },
+                        "then": {
+                          "anyOf": [
+                            {
+                              "required": [
+                                "actor_id"
+                              ]
+                            },
+                            {
+                              "required": [
+                                "actor_slug"
+                              ]
+                            }
+                          ],
+                          "not": {
+                            "required": [
+                              "actor_role"
+                            ]
+                          }
+                        },
+                        "else": {
+                          "not": {
+                            "required": [
+                              "actor_slug"
+                            ]
+                          }
+                        }
+                      },
+                      {
+                        "if": {
+                          "properties": {
+                            "actor_type": {
+                              "const": "RepositoryRole"
+                            }
+                          }
+                        },
+                        "then": {
+                          "anyOf": [
+                            {
+                              "required": [
+                                "actor_id"
+                              ]
+                            },
+                            {
+                              "required": [
+                                "actor_role"
+                              ]
+                            }
+                          ]
+                        },
+                        "else": {
+                          "not": {
+                            "required": [
+                              "actor_role"
+                            ]
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              },
+              "additionalProperties": false,
+              "required": [
+                "org",
+                "target",
+                "enforcement",
+                "conditions"
+              ],
+              "if": {
+                "properties": {
+                  "target": {
+                    "enum": [
+                      "branch",
+                      "tag"
+                    ]
+                  }
+                }
+              },
+              "then": {
+                "properties": {
+                  "conditions": {
+                    "required": [
+                      "ref_name"
+                    ]
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
       "$id": "GithubComponentClaimVarsAndSecrets",
       "definitions": {
         "GithubComponentClaimVars": {
@@ -2131,6 +2412,46 @@
                 "additionalProperties": false
               }
             }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "OrgRulesetClaim",
+    "definitions": {
+      "OrgRulesetClaim": {
+        "$id": "firestartr.dev://common/OrgRulesetClaim",
+        "type": "object",
+        "description": "An Organization Ruleset claim",
+        "unevaluatedProperties": false,
+        "allOf": [
+          {
+            "$ref": "firestartr.dev://common/ClaimEnvelope"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "system": {
+                "$ref": "firestartr.dev://common/FirestartrSystemRef"
+              },
+              "owner": {
+                "$ref": "firestartr.dev://common/FirestartrOwnerRef"
+              },
+              "providers": {
+                "type": "object",
+                "properties": {
+                  "github": {
+                    "$ref": "firestartr.dev://github/GithubOrgRulesetClaim"
+                  }
+                },
+                "additionalProperties": false
+              }
+            },
+            "required": [
+              "owner"
+            ]
           }
         ]
       }
