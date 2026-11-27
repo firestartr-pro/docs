@@ -11,7 +11,7 @@ This repository stores the rendered Custom Resources (CRs) for GitHub-related cl
 ## Repository Structure
 
 - **`.config/`** - Configuration directory containing:
-  - **`resources/`** - Default values for GitHub resource claims (`defaults_github_group.yaml`, `defaults_github_membership.yaml`, `defaults_github_repository.yaml`).
+  - **`resources/`** - Default values for GitHub resource claims (`defaults_github_group.yaml`, `defaults_github_membership.yaml`, `defaults_github_repository.yaml`, `defaults_github_orgruleset.yaml`).
   - **`branch_strategies.yaml`** - Branch protection strategies configuration.
   - **`expander_branch_strategies.yaml`** - Expander branch strategies for component claims.
 - **Root directory** - Contains the rendered CR files (`.yaml`) generated from the claims repository.
@@ -39,4 +39,3 @@ git push
 
 - When the `AUTO_MERGE` file is present, any hydration PR (branches starting with `automated/`) will be automatically merged.
 - If the file is removed, hydration PRs will require manual review and merge.
-- The auto-merge is also supported via the `automerge` input in the claims repository hydrate workflow.

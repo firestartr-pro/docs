@@ -1,5 +1,18 @@
 # Changelog
 
+## [2.1.0](https://github.com/prefapp/features/compare/state_github-v2.0.0...state_github-v2.1.0) (2026-11-27)
+
+
+### Features
+
+* **claims_repo:** move hydration PR auto-merge decisions to the state repos ([#1450](https://github.com/prefapp/features/issues/1450)) ([1a11a7b](https://github.com/prefapp/features/commit/1a11a7bfc134b46eca6b3ab4384e2e64274b4c12))
+* **claims_repo:** support OrgRulesetClaim in render, hydrate and delete ([#1490](https://github.com/prefapp/features/issues/1490)) ([3f9b1c5](https://github.com/prefapp/features/commit/3f9b1c5aa906a9dae00b4521ec0c1e5a20423c96))
+
+
+### Bug Fixes
+
+* Updated feature tests to use claims instead of CRs ([#1363](https://github.com/prefapp/features/issues/1363)) ([e0654a8](https://github.com/prefapp/features/commit/e0654a82aae3d3807ce04696fe228ca9c7bd0bb1))
+
 ## [2.0.0](https://github.com/prefapp/features/compare/state_github-v1.4.0...state_github-v2.0.0) (2026-11-05)
 
 

@@ -25,6 +25,11 @@
       "user_managed": true
     },
     {
+      "src": ".config/resources/defaults_github_orgruleset.yaml",
+      "dest": ".config/resources/defaults_github_orgruleset.yaml",
+      "user_managed": true
+    },
+    {
       "src": ".config/branch_strategies.yaml",
       "dest": ".config/branch_strategies.yaml",
       "user_managed": true
@@ -40,5 +45,5 @@
       "user_managed": false
     }
   ],
-  "version": "2.0.0"
+  "version": "2.1.0"
 }
