@@ -1,5 +1,10 @@
 [
   {
+    "version": "v3.2.0",
+    "date": "2026-11-27T11:54:59Z",
+    "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/core/crds/v3.2.0/index.yaml"
+  },
+  {
     "version": "v3.1.1",
     "date": "2026-10-23T15:55:03Z",
     "url": "https://raw.githubusercontent.com/firestartr-pro/docs/main/site/raw/core/crds/v3.1.1/index.yaml"
