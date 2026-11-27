@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.3.0](https://github.com/prefapp/features/compare/claims_repo-v3.2.0...claims_repo-v3.3.0) (2026-11-27)
+
+
+### Features
+
+* **claims_repo:** support OrgRulesetClaim in render, hydrate and delete ([#1490](https://github.com/prefapp/features/issues/1490)) ([3f9b1c5](https://github.com/prefapp/features/commit/3f9b1c5aa906a9dae00b4521ec0c1e5a20423c96))
+
 ## [3.2.0](https://github.com/prefapp/features/compare/claims_repo-v3.1.0...claims_repo-v3.2.0) (2026-11-11)
 
 

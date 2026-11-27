@@ -44,6 +44,7 @@ Available GitHub claim types — exactly the kinds the claim type dropdown offer
 - `GroupClaim` — hydrates `FirestartrGithubGroup` CRs.
 - `OrgWebhookClaim` — hydrates `FirestartrGithubOrgWebhook` CRs.
 - `OrgSettingsClaim` — hydrates **3** CRs: `FirestartrGithubOrganizationSettings`, `FirestartrGithubOrganizationVariableSection` when the claim declares `actions_variables`, and `FirestartrGithubOrganizationSecretSection` when it declares `org_secrets`.
+- `OrgRulesetClaim` — hydrates one `FirestartrGithubOrgRuleset` CR per claim. A ruleset covers every repository its conditions select, so deleting the claim (and with it the CR) removes the ruleset for all of them.
 
 > **Note:** `GitHubOrgClaim` is no longer supported. If you have existing claim files using `kind: GitHubOrgClaim`, migrate them to `kind: OrgSettingsClaim`.
 
@@ -176,6 +177,6 @@ The same claim types listed for [hydrating](#hydrating-claims) are available for
 
 ## CLI version requirements
 
-The workflows in this feature rely on the Firestartr CLI (`@firestartr/cli`) to render and import claims. Before running, they check that the CLI version pinned by the `FIRESTARTR_CLI_VERSION` repository variable satisfies the `>=2.11.0` constraint. Set that variable to a release that satisfies the constraint. Snapshot builds (non-canonical semver versions) can skip the check via the `--ignore-snapshots` flag.
+The workflows in this feature rely on the Firestartr CLI (`@firestartr/cli`) to render and import claims. Before running, they check that the CLI version pinned by the `FIRESTARTR_CLI_VERSION` repository variable satisfies the `>=3.2.0` constraint. Set that variable to a release that satisfies the constraint. Snapshot builds (non-canonical semver versions) can skip the check via the `--ignore-snapshots` flag.
 
-The check can be tuned with the `cli_version_constraint` argument (the minimum CLI version, defaults to `>=2.11.0`) and disabled entirely by setting `cli_version_check_enabled` to `false` (defaults to `true`).
+The check can be tuned with the `cli_version_constraint` argument (the minimum CLI version, defaults to `>=3.2.0`) and disabled entirely by setting `cli_version_check_enabled` to `false` (defaults to `true`). `>=3.2.0` is the first release that renders `FirestartrGithubOrgRuleset`, so an older CLI would drop `OrgRulesetClaim` silently.
